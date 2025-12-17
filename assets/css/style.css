@@ -1,0 +1,1017 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Quintessential&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap&family=Shantell+Sans:ital,wght@0,300..800;1,300..800&display=swap");
+* {
+  transition: transform 0.3s ease-in-out;
+}
+
+p, a, ul, li, span {
+  font-size: 14px;
+}
+
+.heading {
+  color: #0060a6;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 40px;
+  text-transform: capitalize;
+  margin-bottom: 16px;
+  font-family: "Playfair Display", serif;
+}
+
+.supportive-text {
+  color: #000000;
+  font-style: normal;
+  font-weight: 400;
+  text-align: justify;
+  line-height: 28px;
+  text-transform: capitalize;
+  margin-bottom: 16px;
+}
+
+header {
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+}
+header .navbar {
+  background-color: rgba(23, 23, 23, 0.6);
+}
+header .navbar .navbar-brand {
+  color: #ffffff;
+}
+header .navbar .navbar-brand img {
+  width: 10%;
+}
+header .navbar .navbar-toggler {
+  color: #ffffff;
+}
+header .navbar .offcanvas {
+  width: 80%;
+  background-color: #000000;
+}
+header .navbar .offcanvas .offcanvas-header .offcanvas-title {
+  color: #ffffff;
+  font-size: 22px;
+}
+header .navbar .offcanvas .offcanvas-header .offcanvas-title span {
+  color: #0060a6;
+}
+header .navbar .offcanvas .offcanvas-header .btn-close {
+  border-radius: 50px;
+  background-color: #fbfbfb;
+}
+header .navbar .offcanvas .offcanvas-body .navbar-nav {
+  line-height: 30px;
+}
+header .navbar .offcanvas .offcanvas-body .navbar-nav .nav-item {
+  margin: 0;
+}
+header .navbar .offcanvas .offcanvas-body .navbar-nav .nav-item .nav-link {
+  font-family: "Playfair Display", serif;
+  color: #ffffff;
+  text-transform: uppercase;
+}
+header .navbar .offcanvas .offcanvas-body .navbar-nav .nav-item:hover .nav-link {
+  color: #ffffff;
+}
+header .navbar .offcanvas .offcanvas-body .navbar-nav .nav-item:hover .nav-link::after {
+  content: "";
+  display: block;
+}
+
+#hero {
+  position: relative;
+}
+#hero .hero-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+#hero h1 {
+  color: #ffffff;
+  text-align: center;
+  font-size: 26px;
+  font-style: normal;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+#hero,
+#homeHero {
+  position: relative;
+  height: 50vh;
+  /* Overlay */
+}
+#hero img,
+#homeHero img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  height: 100%;
+  width: 100%;
+}
+#hero::before,
+#homeHero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 0;
+}
+
+#homePage #homeHero {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+#homePage #homeHero .homeHeroSwiper .swiper-wrapper .img-fluid {
+  height: 100vh !important;
+  -o-object-fit: cover;
+     object-fit: cover;
+  z-index: 1;
+  position: relative;
+}
+#homePage #homeHero .homehero-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  text-align: center;
+  z-index: 10;
+  width: 100%;
+}
+#homePage #homeHero .homehero-content h1 {
+  color: #ffffff;
+  text-align: center;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 700;
+  text-transform: capitalize;
+  line-height: 42px;
+  margin: 0;
+  font-family: "Playfair Display", serif;
+}
+#homePage #homeHero .homehero-content p {
+  text-align: center;
+  color: #ffffff;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 26px;
+}
+#homePage #homeHero .homehero-content a {
+  display: inline-block;
+  padding: 14px 20px;
+  color: #ffffff;
+  text-align: center;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 18px;
+  text-decoration: none;
+  text-transform: uppercase;
+  border: 2px solid #ffffff;
+}
+#homePage #homeHero .homehero-content a:hover {
+  background-color: #0060a6;
+  color: #ffffff;
+  border: 1.475px solid #0060a6;
+}
+#homePage #why-choose-us {
+  overflow: hidden;
+}
+#homePage #why-choose-us .card {
+  background-color: rgba(159, 159, 189, 0.1019607843);
+  border: 0;
+}
+#homePage #why-choose-us .card ul li {
+  line-height: 30px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 14px;
+}
+#homePage #why-choose-us .card ul li img {
+  width: 30px;
+  margin-right: 15px;
+}
+#homePage #why-choose-us .card ul li p {
+  margin-bottom: 0;
+}
+#homePage #why-choose-us .why-choose-us-img {
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+#homePage #why-choose-us .why-choose-us-img:hover {
+  transform: scale(1.03);
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3);
+}
+#homePage #service-counter {
+  background-color: #f8f9fa;
+}
+#homePage #service-counter .service-counter-wrapper {
+  flex-wrap: wrap;
+}
+#homePage #service-counter .service-counter-wrapper .counter-item {
+  text-align: center;
+  margin: 32px 0;
+  transition: transform 0.3s ease;
+  margin-top: 0;
+}
+#homePage #service-counter .service-counter-wrapper .counter-item:hover {
+  transform: translateY(-10px);
+}
+#homePage #service-counter .service-counter-wrapper .counter-item .counter-number {
+  font-size: 32px;
+  font-weight: 700;
+  color: #0060a6;
+  margin-bottom: 0;
+  font-family: "Playfair Display", serif;
+  margin-bottom: 12px;
+}
+#homePage #service-counter .service-counter-wrapper .counter-item .counter-label {
+  font-size: 1.1rem;
+  color: #000000;
+  font-weight: 500;
+  margin-bottom: 0;
+}
+#homePage #trending-destinations {
+  overflow: hidden;
+}
+#homePage #trending-destinations .destination-item img {
+  width: 160px;
+  border-radius: 50%;
+  height: 160px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+#homePage #trending-destinations .destination-item .destination-name {
+  font-size: 18px;
+  text-align: center;
+  font-weight: 500;
+}
+#homePage #beauty-of-srilanka img {
+  height: 26rem;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+#homePage #beauty-of-srilanka .image-overlay {
+  position: relative;
+}
+#homePage #beauty-of-srilanka .image-overlay .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 1;
+}
+#homePage #beauty-of-srilanka .image-overlay .overlay-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: white;
+  z-index: 2;
+}
+#homePage #beauty-of-srilanka .image-overlay .overlay-text .heading {
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.7);
+  font-family: "Quintessential", cursive;
+  color: #ffffff;
+  font-size: 34px;
+}
+#homePage #beauty-of-srilanka .image-overlay .overlay-text .btn {
+  background-color: transparent;
+  border: 2px solid white;
+  border-radius: 0;
+  padding: 10px 16px;
+  font-size: 16px;
+}
+#homePage #book-your-trip {
+  overflow: hidden;
+}
+#homePage #book-your-trip span {
+  color: #000000;
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-family: "Quintessential", cursive;
+}
+#homePage #book-your-trip ul li {
+  margin-left: 12px;
+}
+#homePage #book-your-trip ul li h3 {
+  font-size: 20px;
+  margin-bottom: 0;
+}
+#homePage #book-your-trip ul li p {
+  margin-bottom: 0;
+  color: #414141;
+  margin-top: 4px;
+}
+#homePage #book-your-trip .beauty-srilanka {
+  border-radius: 26px;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+#homePage #book-your-trip .beauty-srilanka:hover {
+  transform: scale(1.06);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+#homePage #popular-things-to-do .popular-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+  cursor: pointer;
+}
+#homePage #popular-things-to-do .popular-card img {
+  width: 100%;
+  height: 220px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 16px;
+  transition: transform 0.4s ease;
+}
+#homePage #popular-things-to-do .popular-card .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  transition: background 0.4s ease;
+  border-radius: 16px;
+}
+#homePage #popular-things-to-do .popular-card:hover img {
+  transform: scale(1.08);
+}
+#homePage #popular-things-to-do .popular-card:hover .overlay {
+  background: rgba(0, 0, 0, 0.1);
+}
+#homePage #popular-things-to-do .popular-card .title {
+  position: absolute;
+  bottom: 15px;
+  left: 20px;
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-shadow: 0px 2px 6px rgba(0, 0, 0, 0.5);
+  z-index: 2;
+}
+#homePage #featured-trips .card {
+  border-radius: 12px;
+}
+#homePage #featured-trips .card img {
+  height: 200px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+#homePage #featured-trips .card .card-title {
+  font-family: "Quintessential", cursive;
+  font-size: 18px;
+  margin-bottom: 14px;
+  font-weight: 600;
+}
+#homePage #featured-trips .card .card-text {
+  color: #636363;
+}
+#homePage #featured-trips .card span {
+  font-weight: 500;
+}
+#homePage #featured-trips .card img {
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+#homePage #customer-reviews .review-content {
+  max-width: 650px;
+  margin: auto;
+  line-height: 1.7;
+}
+#homePage #customer-reviews .carousel-indicators button {
+  background-color: #888;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: none;
+  margin: 0 5px;
+}
+#homePage #customer-reviews .carousel-item.active {
+  border-bottom: 2px solid transparent !important;
+}
+#homePage #customer-reviews .active::after {
+  border-bottom: 1px solid #ffffff;
+}
+#homePage #travel-articles img {
+  border-radius: 16px;
+  height: 14rem;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+#homePage #travel-articles .card {
+  border: 0;
+}
+#homePage #travel-articles .card .card-body {
+  padding: 0;
+  margin-top: 12px;
+}
+#homePage #travel-articles .card .card-title {
+  font-size: 16px;
+  font-weight: 600;
+}
+#homePage #travel-articles .card .btn {
+  color: black;
+  font-weight: 600;
+  background-color: transparent;
+  font-family: "Quintessential", cursive;
+}
+#homePage #get-in-touch .card {
+  border: 2px solid #08568b;
+  border-radius: 14px;
+}
+#homePage #get-in-touch .card .btn {
+  color: black;
+  background: transparent;
+  font-weight: 700;
+  border: 2px solid rgb(0, 85, 197);
+}
+#homePage #get-in-touch .hover-zoom {
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+#homePage #get-in-touch .hover-zoom:hover {
+  transform: scale(1.04);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+}
+
+#aboutPage #intro-section {
+  overflow: hidden;
+}
+#aboutPage #intro-section p {
+  text-align: justify;
+  font-family: "Shantell Sans", cursive;
+  text-align: center;
+}
+#aboutPage #vission-mission {
+  overflow: hidden;
+}
+#aboutPage #vission-mission p {
+  text-align: justify;
+}
+#aboutPage #vission-mission img {
+  border-radius: 26px;
+  height: 20rem;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+#aboutPage #vission-mission .active::after {
+  border-bottom: 1px solid #ffffff;
+}
+#aboutPage #our-membership {
+  overflow: hidden;
+}
+#aboutPage #our-membership img {
+  height: 5rem;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+#aboutPage #hotel-partners {
+  overflow: hidden;
+}
+#aboutPage #hotel-partners .active::after {
+  border-bottom: 1px solid #ffffff;
+}
+#aboutPage #hotel-partners img {
+  height: 7rem;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+#aboutPage #our-businesses {
+  overflow: hidden;
+}
+#aboutPage #our-businesses .active::after {
+  border-bottom: 1px solid #ffffff;
+}
+#aboutPage #our-businesses img {
+  height: 7rem;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+#aboutPage #our-businesses .carousel-indicators {
+  bottom: -42px;
+}
+#aboutPage #our-businesses .carousel-indicators [data-bs-target] {
+  background-color: rgb(4, 103, 131);
+}
+
+#faqPage #faq-intro {
+  overflow: hidden;
+}
+#faqPage #faq-intro p {
+  font-family: "Shantell Sans", cursive;
+  font-weight: 500;
+  text-align: center;
+}
+#faqPage #faq {
+  overflow: hidden;
+}
+#faqPage #faq p {
+  font-family: "Shantell Sans", cursive;
+  font-weight: 500;
+}
+#faqPage #faq .accordion-button {
+  font-weight: 500;
+}
+#faqPage #contact {
+  overflow: hidden;
+}
+#faqPage #contact p {
+  font-family: "Shantell Sans", cursive;
+  font-weight: 600;
+}
+#faqPage #contact .btn-primary {
+  background-color: #226e91;
+  border-color: #226e91;
+  color: #fff;
+  font-weight: bold;
+  padding: 12px 30px;
+  font-size: 1.1rem;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+#faqPage #contact .btn-primary:hover {
+  background-color: #022a3d;
+  border-color: #022a3d;
+  color: #fff;
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+#contactPage #contactContent {
+  overflow: hidden;
+}
+#contactPage #contactContent .img-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#contactPage #contactContent .img-container .img-fluid {
+  transition: transform 0.3s ease;
+}
+#contactPage #contactContent .img-container .img-fluid:hover {
+  transform: scale(1.05);
+}
+
+#blogPage #blogs {
+  overflow: hidden;
+}
+#blogPage #blogs .card .card-body .card-title {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 18px;
+  font-family: "Playfair Display", serif;
+}
+#blogPage #blogs .card .card-body .btn {
+  background-color: #006da9;
+  border-color: #006da9;
+  border-radius: 0;
+  font-weight: 600;
+}
+#blogPage #blogs img {
+  height: 14rem;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+#blogDetailPage #blog-details {
+  overflow: hidden;
+}
+#blogDetailPage #blog-details .btn {
+  background-color: #006da9;
+  border-color: #006da9;
+  border-radius: 0;
+  font-weight: 600;
+}
+#blogDetailPage #blog-details .blockquote {
+  font-family: "Quintessential", cursive;
+  font-weight: 600;
+}
+#blogDetailPage #blog-details p {
+  text-align: justify;
+}
+#blogDetailPage #blog-details h2 {
+  font-family: "Playfair Display", serif;
+}
+#blogDetailPage #blog-details .related-posts img {
+  height: 14rem;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+#toursPage #tour-theme img {
+  height: 12rem;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+#toursPage #tour-theme .selectable-card {
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: 0.2s ease-in-out;
+}
+#toursPage #tour-theme .selectable-card.selected {
+  border: 2px solid #015d96;
+  box-shadow: 0 0 12px rgba(0, 123, 255, 0.4);
+}
+#toursPage #tour-theme .selectable-card .card-body .card-title {
+  margin-bottom: 0;
+  font-size: 19px;
+  font-weight: 600;
+  font-family: "Quintessential", cursive;
+}
+#toursPage #tour-theme #customizeBtn {
+  z-index: 999;
+  border-radius: 0;
+  background-color: #1455a1;
+  font-weight: 500;
+}
+
+#toursCustomizePage .form-control, #toursCustomizePage .form-select {
+  border-radius: 0;
+  border-color: rgba(73, 73, 73, 0.5803921569) !important;
+}
+#toursCustomizePage #customize-tour {
+  overflow: hidden;
+}
+#toursCustomizePage #customize-tour .active::after {
+  border-bottom: 1px solid #ffffff;
+}
+#toursCustomizePage #customize-tour .trip-options .form-check-label {
+  font-family: "Shantell Sans", cursive !important;
+  font-weight: 500 !important;
+}
+#toursCustomizePage #customize-tour .intro p {
+  font-family: "Quintessential", cursive;
+  font-weight: 600;
+  text-align: center;
+}
+#toursCustomizePage #customize-tour img {
+  height: 12rem;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+#toursCustomizePage #customize-tour h3, #toursCustomizePage #customize-tour label {
+  font-size: 16px;
+  font-family: "Shantell Sans", cursive;
+  font-weight: 600;
+}
+#toursCustomizePage #customize-tour .form-check-label {
+  font-family: "Roboto", sans-serif !important;
+  font-weight: 400;
+}
+#toursCustomizePage #customize-tour .bin-button {
+  height: 30px !important;
+}
+#toursCustomizePage #customize-tour .cities .btn {
+  background-color: #ffffff;
+  border: 0;
+  padding: 0;
+}
+#toursCustomizePage #customize-tour .cities .btn img {
+  height: 40px;
+}
+#toursCustomizePage #customize-tour .submit-button {
+  border-radius: 0;
+  background-color: #0060a6;
+}
+#toursCustomizePage #customize-tour #contactSection p {
+  font-family: "Quintessential", cursive;
+  font-weight: 500;
+}
+#toursCustomizePage #customize-tour #contactSection .contact-button {
+  border-radius: 0;
+  background-color: #0060a6;
+  font-weight: 600;
+}
+
+#selectToursPage #select-city {
+  overflow: hidden;
+}
+#selectToursPage #select-city .active::after {
+  border-bottom: 1px solid #ffffff;
+}
+#selectToursPage #select-city img {
+  height: 12rem;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+#selectToursPage #select-city h3 {
+  font-size: 16px;
+  font-family: "Shantell Sans", cursive;
+  font-weight: 600;
+  margin-bottom: 0;
+}
+#selectToursPage #select-city .planTripBtn {
+  background-color: #0060a6;
+  border-radius: 0;
+}
+#selectToursPage #select-city .selectable-city {
+  cursor: pointer;
+  position: relative;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border-radius: 0;
+}
+#selectToursPage #select-city .selectable-city:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+#selectToursPage #select-city .selectable-city.selected {
+  border: 2px solid #0060a6;
+}
+#selectToursPage #select-city .selectable-city .city-checkbox {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 10;
+}
+#selectToursPage #select-city .selectable-city .city-checkbox input {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+#whatsapp-widget .chat-header,
+#whatsapp-widget .chat-content,
+#whatsapp-widget .message-input {
+  position: fixed;
+  right: 20px;
+  width: 300px;
+  background-color: #e5ddd5;
+  z-index: 10003;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+#whatsapp-widget .chat-header {
+  top: calc(100% - 420px);
+  height: 60px;
+  background-color: #075e54;
+  color: white;
+  padding: 10px;
+  display: none;
+  align-items: center;
+  border-radius: 12px 12px 0 0;
+}
+#whatsapp-widget .chat-header .avatar-container {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+}
+#whatsapp-widget .chat-header img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+#whatsapp-widget .chat-header .online-dot {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 12px;
+  height: 12px;
+  background-color: #25d366;
+  border-radius: 50%;
+  border: 2px solid #075e54;
+}
+#whatsapp-widget .chat-header .chat-header-info {
+  flex-grow: 1;
+}
+#whatsapp-widget .chat-header span {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 0;
+  color: #FFF;
+}
+#whatsapp-widget .chat-header .online-status {
+  font-size: 12px;
+}
+#whatsapp-widget .chat-header .close-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background-color 0.3s;
+}
+#whatsapp-widget .chat-header .close-btn:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+#whatsapp-widget .chat-content {
+  top: calc(100% - 360px);
+  height: 300px;
+  padding: 20px;
+  overflow-y: auto;
+  display: none;
+}
+#whatsapp-widget .chat-content .message {
+  max-width: 80%;
+  padding: 8px 12px;
+  margin-bottom: 10px;
+  border-radius: 7.5px;
+  position: relative;
+  word-wrap: break-word;
+}
+#whatsapp-widget .chat-content .message.received {
+  background-color: #ffffff;
+  align-self: flex-start;
+}
+#whatsapp-widget .chat-content .message.sent {
+  background-color: #dcf8c6;
+  align-self: flex-end;
+  margin-left: auto;
+}
+#whatsapp-widget .message-input {
+  bottom: 20px;
+  height: 60px;
+  display: none;
+  padding: 10px;
+  background-color: #f0f0f0;
+  border-radius: 0 0 12px 12px;
+}
+#whatsapp-widget .whatsapp-btn {
+  background-color: #25d366;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 12px;
+  width: 100%;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#whatsapp-widget .whatsapp-btn:hover {
+  background-color: #128c7e;
+}
+#whatsapp-widget .typing-indicator {
+  background-color: #e5ddd5;
+  padding: 10px;
+  border-radius: 20px;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+#whatsapp-widget .typing-indicator span {
+  height: 10px;
+  width: 10px;
+  float: left;
+  margin: 0 1px;
+  background-color: #9e9ea1;
+  display: block;
+  border-radius: 50%;
+  opacity: 0.4;
+}
+#whatsapp-widget .typing-indicator span:nth-of-type(1) {
+  animation: 1s blink infinite 0.3333s;
+}
+#whatsapp-widget .typing-indicator span:nth-of-type(2) {
+  animation: 1s blink infinite 0.6666s;
+}
+#whatsapp-widget .typing-indicator span:nth-of-type(3) {
+  animation: 1s blink infinite 0.9999s;
+}
+@keyframes blink {
+  50% {
+    opacity: 1;
+  }
+}
+#whatsapp-widget .chat-icon {
+  position: fixed;
+  bottom: 90px;
+  right: 10px;
+  width: 60px;
+  height: 60px;
+  background-color: #25d366;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  z-index: 10004;
+  animation: wave 2s infinite;
+}
+#whatsapp-widget .chat-icon img {
+  width: 35px;
+  height: 35px;
+}
+@keyframes wave {
+  0% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5);
+  }
+  70% {
+    box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+  }
+}
+
+footer {
+  color: #ffffff;
+  background-image: url("../images/footer-img.png"), linear-gradient(165deg, rgba(255, 255, 255, 0) 0%, #000000 100%) !important;
+  background-size: cover;
+  overflow: hidden;
+  background-blend-mode: overlay;
+}
+footer .row:first-child {
+  padding: 50px 0 50px 0;
+  border-bottom: 1px solid #333935;
+}
+footer .row:first-child .footer-logo {
+  display: flex;
+  align-items: center;
+}
+footer .row:first-child .footer-logo img {
+  width: 40%;
+}
+footer .row:first-child .footer-logo span {
+  color: #0060a6;
+}
+footer .row:first-child h6 {
+  font-style: normal;
+  font-weight: 700;
+  line-height: 26.4px;
+  margin: 0;
+  margin-bottom: 15px;
+  font-size: 22px;
+}
+footer .row:first-child p {
+  margin: 0;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  color: #ffffff;
+}
+footer .row:first-child ul {
+  margin: 0;
+}
+footer .row:first-child ul li {
+  font-style: normal;
+  font-weight: 400;
+  line-height: 35px;
+  font-size: 15px;
+}
+footer .row:first-child ul li a {
+  color: #ffffff;
+  text-decoration: none;
+}
+footer .row:first-child #footer-social-list li a {
+  display: flex;
+  width: 40px;
+  height: 40px;
+  padding: 15px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50px;
+  border: 1px solid rgba(0, 0, 0, 0.2588235294);
+  background: rgba(0, 0, 0, 0);
+  color: #ffffff;
+}
+footer .row:first-child #footer-contact-list li img {
+  background-color: #ffffff;
+  padding: 4px;
+  border-radius: 40%;
+}
+footer .row:first-child #footer-contact-list li a {
+  color: #ffffff;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 46px;
+}
+footer .row:last-child p {
+  color: #ffffff;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 300;
+}
+footer .row:last-child p a {
+  color: #ffffff;
+  text-decoration: none;
+}/*# sourceMappingURL=style.css.map */

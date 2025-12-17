@@ -1,0 +1,73 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Quintessential&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap&family=Shantell+Sans:ital,wght@0,300..800;1,300..800&display=swap");
+@media (min-width: 768px) {
+  .heading {
+    font-size: 34px !important;
+  }
+  #homePage #homeHero .homeHeroSwiper .swiper-wrapper .img-fluid {
+    height: 100vh !important;
+  }
+  #homePage #homeHero .homehero-content h1 {
+    font-size: 40px;
+    line-height: 50px;
+  }
+  #homePage #homeHero .homehero-content p {
+    font-size: 16px;
+  }
+  #homePage #homeHero .homehero-content a {
+    font-size: 16px;
+  }
+  #homePage #service-counter .service-counter-wrapper .counter-item {
+    margin: 0 !important;
+  }
+  #aboutPage .heading {
+    font-size: 30px !important;
+  }
+  #toursCustomizePage #customize-tour img {
+    height: 22rem;
+    -o-object-fit: cover;
+       object-fit: cover;
+  }
+}
+@media (min-width: 992px) {
+  p, a, ul, li, span {
+    font-size: 16px;
+  }
+  #hero h1 {
+    font-size: 40px;
+  }
+  #homePage #book-your-trip .heading {
+    font-size: 42px !important;
+    line-height: 50px !important;
+  }
+  #homePage #featured-trips .card .card-title {
+    font-size: 20px;
+  }
+  #aboutPage #intro-section .row {
+    padding: 0 12rem;
+  }
+  #aboutPage #intro-section p {
+    line-height: 26px;
+  }
+  #faqPage #faq-intro p {
+    padding: 0 14rem;
+  }
+  #toursPage #tour-theme .supportive-text {
+    padding: 0 12%;
+  }
+  #toursCustomizePage #customize-tour .code {
+    width: 20% !important;
+  }
+}
+@media (min-width: 1200px) {
+  #homePage #homeHero .homehero-content h1 {
+    font-size: 54px;
+    line-height: 68px;
+  }
+  #homePage #homeHero .homehero-content p {
+    font-size: 18px;
+    line-height: 30px;
+  }
+  #homePage #beauty-of-srilanka .heading {
+    font-size: 44px !important;
+  }
+}/*# sourceMappingURL=responsive.css.map */

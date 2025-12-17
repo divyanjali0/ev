@@ -1,0 +1,141 @@
+[2025-12-16 16:53:30] (ERROR @ C:\xampp\htdocs\ev\core\cache\includes\elements\modx\revolution\modsnippet\6.include.cache.php : 113) PHP warning: include(parts/header.php): Failed to open stream: No such file or directory
+[2025-12-16 16:53:30] (ERROR @ C:\xampp\htdocs\ev\core\cache\includes\elements\modx\revolution\modsnippet\6.include.cache.php : 113) PHP warning: include(): Failed opening 'parts/header.php' for inclusion (include_path='C:\xampp\php\PEAR')
+[2025-12-16 16:53:58] (ERROR @ C:\xampp\htdocs\ev\core\cache\includes\elements\modx\revolution\modsnippet\6.include.cache.php : 113) PHP warning: include(parts/header.php): Failed to open stream: No such file or directory
+[2025-12-16 16:53:58] (ERROR @ C:\xampp\htdocs\ev\core\cache\includes\elements\modx\revolution\modsnippet\6.include.cache.php : 113) PHP warning: include(): Failed opening 'parts/header.php' for inclusion (include_path='C:\xampp\php\PEAR')
+[2025-12-16 16:58:11] (ERROR @ C:\xampp\htdocs\ev\core\cache\includes\elements\modx\revolution\modsnippet\6.include.cache.php : 113) PHP warning: include(parts/header.php): Failed to open stream: No such file or directory
+[2025-12-16 16:58:11] (ERROR @ C:\xampp\htdocs\ev\core\cache\includes\elements\modx\revolution\modsnippet\6.include.cache.php : 113) PHP warning: include(): Failed opening 'parts/header.php' for inclusion (include_path='C:\xampp\php\PEAR')
+[2025-12-16 17:01:25] (ERROR @ C:\xampp\htdocs\ev\core\cache\includes\elements\modx\revolution\modsnippet\6.include.cache.php : 113) PHP warning: include(parts/header.php): Failed to open stream: No such file or directory
+[2025-12-16 17:01:25] (ERROR @ C:\xampp\htdocs\ev\core\cache\includes\elements\modx\revolution\modsnippet\6.include.cache.php : 113) PHP warning: include(): Failed opening 'parts/header.php' for inclusion (include_path='C:\xampp\php\PEAR')
+[2025-12-16 17:01:38] (ERROR @ C:\xampp\htdocs\ev\core\cache\includes\elements\modx\revolution\modsnippet\6.include.cache.php : 113) PHP warning: include(parts/header.php): Failed to open stream: No such file or directory
+[2025-12-16 17:01:38] (ERROR @ C:\xampp\htdocs\ev\core\cache\includes\elements\modx\revolution\modsnippet\6.include.cache.php : 113) PHP warning: include(): Failed opening 'parts/header.php' for inclusion (include_path='C:\xampp\php\PEAR')
+[2025-12-16 17:02:07] (ERROR @ C:\xampp\htdocs\ev\core\cache\includes\elements\modx\revolution\modsnippet\6.include.cache.php : 113) PHP warning: include(parts/header.php): Failed to open stream: No such file or directory
+[2025-12-16 17:02:07] (ERROR @ C:\xampp\htdocs\ev\core\cache\includes\elements\modx\revolution\modsnippet\6.include.cache.php : 113) PHP warning: include(): Failed opening 'parts/header.php' for inclusion (include_path='C:\xampp\php\PEAR')
+[2025-12-16 17:04:11] (ERROR @ C:\xampp\htdocs\ev\core\cache\includes\elements\modx\revolution\modsnippet\6.include.cache.php : 113) PHP warning: include(parts/header.php): Failed to open stream: No such file or directory
+[2025-12-16 17:04:11] (ERROR @ C:\xampp\htdocs\ev\core\cache\includes\elements\modx\revolution\modsnippet\6.include.cache.php : 113) PHP warning: include(): Failed opening 'parts/header.php' for inclusion (include_path='C:\xampp\php\PEAR')
+[2025-12-16 17:05:13] (ERROR @ C:\xampp\htdocs\ev\core\cache\includes\elements\modx\revolution\modsnippet\6.include.cache.php : 113) PHP warning: include(parts/header.php): Failed to open stream: No such file or directory
+[2025-12-16 17:05:13] (ERROR @ C:\xampp\htdocs\ev\core\cache\includes\elements\modx\revolution\modsnippet\6.include.cache.php : 113) PHP warning: include(): Failed opening 'parts/header.php' for inclusion (include_path='C:\xampp\php\PEAR')
+[2025-12-16 17:12:29] (ERROR @ C:\xampp\htdocs\ev\core\cache\includes\elements\modx\revolution\modsnippet\6.include.cache.php : 113) PHP warning: include(parts/header.php): Failed to open stream: No such file or directory
+[2025-12-16 17:12:29] (ERROR @ C:\xampp\htdocs\ev\core\cache\includes\elements\modx\revolution\modsnippet\6.include.cache.php : 113) PHP warning: include(): Failed opening 'parts/header.php' for inclusion (include_path='C:\xampp\php\PEAR')
+[2025-12-16 17:14:13] (ERROR @ C:\xampp\htdocs\ev\core\cache\includes\elements\modx\revolution\modsnippet\6.include.cache.php : 113) PHP warning: include(parts/header.php): Failed to open stream: No such file or directory
+[2025-12-16 17:14:13] (ERROR @ C:\xampp\htdocs\ev\core\cache\includes\elements\modx\revolution\modsnippet\6.include.cache.php : 113) PHP warning: include(): Failed opening 'parts/header.php' for inclusion (include_path='C:\xampp\php\PEAR')
+[2025-12-16 17:14:51] (ERROR @ C:\xampp\htdocs\ev\core\cache\includes\elements\modx\revolution\modsnippet\6.include.cache.php : 113) PHP warning: include(parts/header.php): Failed to open stream: No such file or directory
+[2025-12-16 17:14:51] (ERROR @ C:\xampp\htdocs\ev\core\cache\includes\elements\modx\revolution\modsnippet\6.include.cache.php : 113) PHP warning: include(): Failed opening 'parts/header.php' for inclusion (include_path='C:\xampp\php\PEAR')
+[2025-12-16 17:15:00] (ERROR @ C:\xampp\htdocs\ev\core\cache\includes\elements\modx\revolution\modsnippet\6.include.cache.php : 113) PHP warning: include(parts/header.php): Failed to open stream: No such file or directory
+[2025-12-16 17:15:00] (ERROR @ C:\xampp\htdocs\ev\core\cache\includes\elements\modx\revolution\modsnippet\6.include.cache.php : 113) PHP warning: include(): Failed opening 'parts/header.php' for inclusion (include_path='C:\xampp\php\PEAR')
+[2025-12-16 17:15:51] (ERROR @ C:\xampp\htdocs\ev\core\cache\includes\elements\modx\revolution\modsnippet\6.include.cache.php : 113) PHP warning: include(parts/header.php): Failed to open stream: No such file or directory
+[2025-12-16 17:15:51] (ERROR @ C:\xampp\htdocs\ev\core\cache\includes\elements\modx\revolution\modsnippet\6.include.cache.php : 113) PHP warning: include(): Failed opening 'parts/header.php' for inclusion (include_path='C:\xampp\php\PEAR')
+[2025-12-16 17:16:05] (ERROR @ C:\xampp\htdocs\ev\core\cache\includes\elements\modx\revolution\modsnippet\6.include.cache.php : 113) PHP warning: include(parts/header.php): Failed to open stream: No such file or directory
+[2025-12-16 17:16:05] (ERROR @ C:\xampp\htdocs\ev\core\cache\includes\elements\modx\revolution\modsnippet\6.include.cache.php : 113) PHP warning: include(): Failed opening 'parts/header.php' for inclusion (include_path='C:\xampp\php\PEAR')
+[2025-12-16 17:17:34] (ERROR @ C:\xampp\htdocs\ev\core\cache\includes\elements\modx\revolution\modsnippet\6.include.cache.php : 113) PHP warning: include(parts/header.php): Failed to open stream: No such file or directory
+[2025-12-16 17:17:34] (ERROR @ C:\xampp\htdocs\ev\core\cache\includes\elements\modx\revolution\modsnippet\6.include.cache.php : 113) PHP warning: include(): Failed opening 'parts/header.php' for inclusion (include_path='C:\xampp\php\PEAR')
+[2025-12-16 17:19:08] (ERROR @ C:\xampp\htdocs\ev\core\cache\includes\elements\modx\revolution\modsnippet\6.include.cache.php : 113) PHP warning: include(parts/header.php): Failed to open stream: No such file or directory
+[2025-12-16 17:19:08] (ERROR @ C:\xampp\htdocs\ev\core\cache\includes\elements\modx\revolution\modsnippet\6.include.cache.php : 113) PHP warning: include(): Failed opening 'parts/header.php' for inclusion (include_path='C:\xampp\php\PEAR')
+[2025-12-16 17:20:54] (ERROR @ C:\xampp\htdocs\ev\core\cache\includes\elements\modx\revolution\modsnippet\6.include.cache.php : 113) PHP warning: include(parts/header.php): Failed to open stream: No such file or directory
+[2025-12-16 17:20:54] (ERROR @ C:\xampp\htdocs\ev\core\cache\includes\elements\modx\revolution\modsnippet\6.include.cache.php : 113) PHP warning: include(): Failed opening 'parts/header.php' for inclusion (include_path='C:\xampp\php\PEAR')
+[2025-12-16 17:21:33] (ERROR @ C:\xampp\htdocs\ev\core\cache\includes\elements\modx\revolution\modsnippet\6.include.cache.php : 113) PHP warning: include(parts/header.php): Failed to open stream: No such file or directory
+[2025-12-16 17:21:33] (ERROR @ C:\xampp\htdocs\ev\core\cache\includes\elements\modx\revolution\modsnippet\6.include.cache.php : 113) PHP warning: include(): Failed opening 'parts/header.php' for inclusion (include_path='C:\xampp\php\PEAR')
+[2025-12-16 17:24:51] (ERROR @ C:\xampp\htdocs\ev\core\cache\includes\elements\modx\revolution\modsnippet\6.include.cache.php : 113) PHP warning: include(parts/header.php): Failed to open stream: No such file or directory
+[2025-12-16 17:24:51] (ERROR @ C:\xampp\htdocs\ev\core\cache\includes\elements\modx\revolution\modsnippet\6.include.cache.php : 113) PHP warning: include(): Failed opening 'parts/header.php' for inclusion (include_path='C:\xampp\php\PEAR')
+[2025-12-16 17:37:56] (ERROR @ C:\xampp\htdocs\ev\core\cache\includes\elements\modx\revolution\modsnippet\6.include.cache.php : 113) PHP warning: include(parts/header.php): Failed to open stream: No such file or directory
+[2025-12-16 17:37:56] (ERROR @ C:\xampp\htdocs\ev\core\cache\includes\elements\modx\revolution\modsnippet\6.include.cache.php : 113) PHP warning: include(): Failed opening 'parts/header.php' for inclusion (include_path='C:\xampp\php\PEAR')
+[2025-12-16 17:38:08] (ERROR @ C:\xampp\htdocs\ev\core\cache\includes\elements\modx\revolution\modsnippet\6.include.cache.php : 113) PHP warning: include(parts/header.php): Failed to open stream: No such file or directory
+[2025-12-16 17:38:08] (ERROR @ C:\xampp\htdocs\ev\core\cache\includes\elements\modx\revolution\modsnippet\6.include.cache.php : 113) PHP warning: include(): Failed opening 'parts/header.php' for inclusion (include_path='C:\xampp\php\PEAR')
+[2025-12-16 17:38:18] (ERROR @ C:\xampp\htdocs\ev\core\cache\includes\elements\modx\revolution\modsnippet\6.include.cache.php : 113) PHP warning: include(parts/header.php): Failed to open stream: No such file or directory
+[2025-12-16 17:38:18] (ERROR @ C:\xampp\htdocs\ev\core\cache\includes\elements\modx\revolution\modsnippet\6.include.cache.php : 113) PHP warning: include(): Failed opening 'parts/header.php' for inclusion (include_path='C:\xampp\php\PEAR')
+[2025-12-16 17:38:32] (ERROR @ C:\xampp\htdocs\ev\core\cache\includes\elements\modx\revolution\modsnippet\6.include.cache.php : 113) PHP warning: include(parts/header.php): Failed to open stream: No such file or directory
+[2025-12-16 17:38:32] (ERROR @ C:\xampp\htdocs\ev\core\cache\includes\elements\modx\revolution\modsnippet\6.include.cache.php : 113) PHP warning: include(): Failed opening 'parts/header.php' for inclusion (include_path='C:\xampp\php\PEAR')
+[2025-12-16 17:06:50] (ERROR @ C:\xampp\htdocs\ev\core\src\Revolution\Processors\SoftwareUpdate\GetList.php : 80) ClientExceptionInterface Err: cURL error 35: Recv failure: Connection was reset (see https://curl.haxx.se/libcurl/c/libcurl-errors.html) for https://sentinel.modx.com/releases/products/997329d1-6f68-48d5-8e5e-5251adbb1f38/upgrades/?current=3.1.2-pl&level=major&variant=Traditional&prereleases=0
+[2025-12-16 17:07:07] (ERROR @ C:\xampp\htdocs\ev\core\src\Revolution\Processors\System\Dashboard\Widget\Feed.php : 87) cURL error 28: Connection timed out after 10008 milliseconds
+[2025-12-16 17:07:07] (ERROR @ C:\xampp\htdocs\ev\core\src\Revolution\Processors\System\Dashboard\Widget\Feed.php : 87) cURL error 28: Connection timed out after 10010 milliseconds
+[2025-12-16 23:01:00] (ERROR @ C:\xampp\htdocs\ev\assets\includes\save_itenary.php : 81) PHP warning: Undefined array key "mealAllergy"
+[2025-12-16 23:11:51] (ERROR @ C:\xampp\htdocs\ev\core\cache\includes\elements\modx\revolution\modsnippet\6.include.cache.php : 595) PHP warning: Undefined variable $referenceNo
+[2025-12-16 23:11:51] (ERROR @ C:\xampp\htdocs\ev\core\cache\includes\elements\modx\revolution\modsnippet\6.include.cache.php : 596) PHP warning: Undefined variable $pdf
+[2025-12-17 10:24:27] (ERROR @ C:\xampp\htdocs\ev\assets\includes\save_itenary.php : 13) PHP warning: Undefined array key "nights"
+[2025-12-17 10:24:27] (ERROR @ C:\xampp\htdocs\ev\assets\includes\save_itenary.php : 42) PHP warning: Undefined array key "start_date"
+[2025-12-17 10:24:27] (ERROR @ C:\xampp\htdocs\ev\assets\includes\save_itenary.php : 43) PHP warning: Undefined array key "end_date"
+[2025-12-17 10:24:27] (ERROR @ C:\xampp\htdocs\ev\assets\includes\save_itenary.php : 45) PHP warning: Undefined array key "adults"
+[2025-12-17 10:24:27] (ERROR @ C:\xampp\htdocs\ev\assets\includes\save_itenary.php : 46) PHP warning: Undefined array key "children_6_11"
+[2025-12-17 10:24:27] (ERROR @ C:\xampp\htdocs\ev\assets\includes\save_itenary.php : 47) PHP warning: Undefined array key "children_above_11"
+[2025-12-17 10:24:27] (ERROR @ C:\xampp\htdocs\ev\assets\includes\save_itenary.php : 48) PHP warning: Undefined array key "infants"
+[2025-12-17 10:24:27] (ERROR @ C:\xampp\htdocs\ev\assets\includes\save_itenary.php : 49) PHP warning: Undefined array key "hotelRating"
+[2025-12-17 10:24:27] (ERROR @ C:\xampp\htdocs\ev\assets\includes\save_itenary.php : 50) PHP warning: Undefined array key "mealPlan"
+[2025-12-17 10:24:27] (ERROR @ C:\xampp\htdocs\ev\assets\includes\save_itenary.php : 51) PHP warning: Undefined array key "mealAllergy"
+[2025-12-17 10:24:27] (ERROR @ C:\xampp\htdocs\ev\assets\includes\save_itenary.php : 53) PHP warning: Undefined array key "pickupLocation"
+[2025-12-17 10:24:27] (ERROR @ C:\xampp\htdocs\ev\assets\includes\save_itenary.php : 54) PHP warning: Undefined array key "dropoffLocation"
+[2025-12-17 10:24:27] (ERROR @ C:\xampp\htdocs\ev\assets\includes\save_itenary.php : 55) PHP warning: Undefined array key "title"
+[2025-12-17 10:24:27] (ERROR @ C:\xampp\htdocs\ev\assets\includes\save_itenary.php : 56) PHP warning: Undefined array key "fullName"
+[2025-12-17 10:24:27] (ERROR @ C:\xampp\htdocs\ev\assets\includes\save_itenary.php : 57) PHP warning: Undefined array key "email"
+[2025-12-17 10:24:27] (ERROR @ C:\xampp\htdocs\ev\assets\includes\save_itenary.php : 58) PHP warning: Undefined array key "whatsappCode"
+[2025-12-17 10:24:27] (ERROR @ C:\xampp\htdocs\ev\assets\includes\save_itenary.php : 59) PHP warning: Undefined array key "whatsapp"
+[2025-12-17 10:24:27] (ERROR @ C:\xampp\htdocs\ev\assets\includes\save_itenary.php : 60) PHP warning: Undefined array key "country"
+[2025-12-17 10:24:27] (ERROR @ C:\xampp\htdocs\ev\assets\includes\save_itenary.php : 61) PHP warning: Undefined array key "nationality"
+[2025-12-17 10:25:46] (ERROR @ C:\xampp\htdocs\ev\assets\includes\save_itenary.php : 13) PHP warning: Undefined array key "nights"
+[2025-12-17 10:25:46] (ERROR @ C:\xampp\htdocs\ev\assets\includes\save_itenary.php : 42) PHP warning: Undefined array key "start_date"
+[2025-12-17 10:25:46] (ERROR @ C:\xampp\htdocs\ev\assets\includes\save_itenary.php : 43) PHP warning: Undefined array key "end_date"
+[2025-12-17 10:25:46] (ERROR @ C:\xampp\htdocs\ev\assets\includes\save_itenary.php : 45) PHP warning: Undefined array key "adults"
+[2025-12-17 10:25:46] (ERROR @ C:\xampp\htdocs\ev\assets\includes\save_itenary.php : 46) PHP warning: Undefined array key "children_6_11"
+[2025-12-17 10:25:46] (ERROR @ C:\xampp\htdocs\ev\assets\includes\save_itenary.php : 47) PHP warning: Undefined array key "children_above_11"
+[2025-12-17 10:25:46] (ERROR @ C:\xampp\htdocs\ev\assets\includes\save_itenary.php : 48) PHP warning: Undefined array key "infants"
+[2025-12-17 10:25:46] (ERROR @ C:\xampp\htdocs\ev\assets\includes\save_itenary.php : 49) PHP warning: Undefined array key "hotelRating"
+[2025-12-17 10:25:46] (ERROR @ C:\xampp\htdocs\ev\assets\includes\save_itenary.php : 50) PHP warning: Undefined array key "mealPlan"
+[2025-12-17 10:25:46] (ERROR @ C:\xampp\htdocs\ev\assets\includes\save_itenary.php : 51) PHP warning: Undefined array key "mealAllergy"
+[2025-12-17 10:25:46] (ERROR @ C:\xampp\htdocs\ev\assets\includes\save_itenary.php : 53) PHP warning: Undefined array key "pickupLocation"
+[2025-12-17 10:25:46] (ERROR @ C:\xampp\htdocs\ev\assets\includes\save_itenary.php : 54) PHP warning: Undefined array key "dropoffLocation"
+[2025-12-17 10:25:46] (ERROR @ C:\xampp\htdocs\ev\assets\includes\save_itenary.php : 55) PHP warning: Undefined array key "title"
+[2025-12-17 10:25:46] (ERROR @ C:\xampp\htdocs\ev\assets\includes\save_itenary.php : 56) PHP warning: Undefined array key "fullName"
+[2025-12-17 10:25:46] (ERROR @ C:\xampp\htdocs\ev\assets\includes\save_itenary.php : 57) PHP warning: Undefined array key "email"
+[2025-12-17 10:25:46] (ERROR @ C:\xampp\htdocs\ev\assets\includes\save_itenary.php : 58) PHP warning: Undefined array key "whatsappCode"
+[2025-12-17 10:25:46] (ERROR @ C:\xampp\htdocs\ev\assets\includes\save_itenary.php : 59) PHP warning: Undefined array key "whatsapp"
+[2025-12-17 10:25:46] (ERROR @ C:\xampp\htdocs\ev\assets\includes\save_itenary.php : 60) PHP warning: Undefined array key "country"
+[2025-12-17 10:25:46] (ERROR @ C:\xampp\htdocs\ev\assets\includes\save_itenary.php : 61) PHP warning: Undefined array key "nationality"
+[2025-12-17 10:28:12] (ERROR @ C:\xampp\htdocs\ev\assets\includes\save_itenary.php : 121) PHP warning: require_once(C:\xampp\htdocs\ev\assets\includes/pdf/itinerary-style.php): Failed to open stream: No such file or directory
+[2025-12-17 10:36:00] (ERROR @ C:\xampp\htdocs\ev\assets\includes\save_itenary.php : 97) PHP warning: Undefined variable $days
+[2025-12-17 10:36:01] (ERROR @ C:\xampp\htdocs\ev\pdf\itinerary-cover.php : 35) PHP warning: Undefined variable $days
+[2025-12-17 10:43:02] (ERROR @ C:\xampp\htdocs\ev\assets\includes\save_itenary.php : 97) PHP warning: Undefined variable $days
+[2025-12-17 10:43:03] (ERROR @ C:\xampp\htdocs\ev\assets\libs\tcpdf\tcpdf.php : 7801) PHP warning: unlink(C:\xampp\tmp/__tcpdf_692af836297858b0d058abc02adfe199_imgmask_alpha_c01999e1038164741cda0a56c7766540): No such file or directory
+[2025-12-17 10:43:03] (ERROR @ C:\xampp\htdocs\ev\assets\libs\tcpdf\tcpdf.php : 7801) PHP warning: unlink(C:\xampp\tmp/__tcpdf_692af836297858b0d058abc02adfe199_imgmask_plain_c01999e1038164741cda0a56c7766540): No such file or directory
+[2025-12-17 10:44:50] (ERROR @ C:\xampp\htdocs\ev\assets\includes\save_itenary.php : 97) PHP warning: Undefined variable $days
+[2025-12-17 10:44:50] (ERROR @ C:\xampp\htdocs\ev\assets\libs\tcpdf\tcpdf.php : 7801) PHP warning: unlink(C:\xampp\tmp/__tcpdf_ea7cd5ca0b7cffb691fe5c8c1a8f0049_imgmask_alpha_c01999e1038164741cda0a56c7766540): No such file or directory
+[2025-12-17 10:44:50] (ERROR @ C:\xampp\htdocs\ev\assets\libs\tcpdf\tcpdf.php : 7801) PHP warning: unlink(C:\xampp\tmp/__tcpdf_ea7cd5ca0b7cffb691fe5c8c1a8f0049_imgmask_plain_c01999e1038164741cda0a56c7766540): No such file or directory
+[2025-12-17 10:54:31] (ERROR @ C:\xampp\htdocs\ev\assets\includes\save_itenary.php : 97) PHP warning: Undefined variable $days
+[2025-12-17 10:54:32] (ERROR @ C:\xampp\htdocs\ev\pdf\itinerary-cover.php : 45) PHP warning: Undefined variable $days
+[2025-12-17 10:59:32] (ERROR @ C:\xampp\htdocs\ev\assets\includes\save_itenary.php : 49) PHP warning: Undefined array key "mealAllergy"
+[2025-12-17 10:59:48] (ERROR @ C:\xampp\htdocs\ev\assets\includes\save_itenary.php : 97) PHP warning: Undefined variable $days
+[2025-12-17 10:59:49] (ERROR @ C:\xampp\htdocs\ev\pdf\itinerary-cover.php : 45) PHP warning: Undefined variable $days
+[2025-12-17 10:59:49] (ERROR @ C:\xampp\htdocs\ev\pdf\itinerary-cover.php : 104) PHP warning: Undefined variable $days
+[2025-12-17 11:01:40] (ERROR @ C:\xampp\htdocs\ev\assets\includes\save_itenary.php : 97) PHP warning: Undefined variable $days
+[2025-12-17 11:01:41] (ERROR @ C:\xampp\htdocs\ev\pdf\itinerary-cover.php : 45) PHP warning: Undefined variable $days
+[2025-12-17 11:01:41] (ERROR @ C:\xampp\htdocs\ev\pdf\itinerary-cover.php : 104) PHP warning: Undefined variable $days
+[2025-12-17 11:05:13] (ERROR @ C:\xampp\htdocs\ev\assets\includes\save_itenary.php : 97) PHP warning: Undefined variable $days
+[2025-12-17 11:05:13] (ERROR @ C:\xampp\htdocs\ev\pdf\itinerary-cover.php : 45) PHP warning: Undefined variable $days
+[2025-12-17 11:09:53] (ERROR @ C:\xampp\htdocs\ev\assets\includes\save_itenary.php : 97) PHP warning: Undefined variable $days
+[2025-12-17 11:09:54] (ERROR @ C:\xampp\htdocs\ev\assets\libs\tcpdf\tcpdf.php : 7801) PHP warning: unlink(C:\xampp\tmp/__tcpdf_a934dda64b5ea1b052188aa3190f3136_imgmask_alpha_c01999e1038164741cda0a56c7766540): No such file or directory
+[2025-12-17 11:09:54] (ERROR @ C:\xampp\htdocs\ev\assets\libs\tcpdf\tcpdf.php : 7801) PHP warning: unlink(C:\xampp\tmp/__tcpdf_a934dda64b5ea1b052188aa3190f3136_imgmask_plain_c01999e1038164741cda0a56c7766540): No such file or directory
+[2025-12-17 11:10:38] (ERROR @ C:\xampp\htdocs\ev\assets\includes\save_itenary.php : 97) PHP warning: Undefined variable $days
+[2025-12-17 11:10:39] (ERROR @ C:\xampp\htdocs\ev\pdf\itinerary-cover.php : 45) PHP warning: Undefined variable $days
+[2025-12-17 11:14:04] (ERROR @ C:\xampp\htdocs\ev\assets\includes\save_itenary.php : 97) PHP warning: Undefined variable $days
+[2025-12-17 11:14:05] (ERROR @ C:\xampp\htdocs\ev\pdf\itinerary-cover.php : 45) PHP warning: Undefined variable $days
+[2025-12-17 11:17:09] (ERROR @ C:\xampp\htdocs\ev\assets\includes\save_itenary.php : 97) PHP warning: Undefined variable $days
+[2025-12-17 11:17:09] (ERROR @ C:\xampp\htdocs\ev\pdf\itinerary-cover.php : 44) PHP warning: Undefined variable $days
+[2025-12-17 11:29:09] (ERROR @ C:\xampp\htdocs\ev\assets\includes\save_itenary.php : 97) PHP warning: Undefined variable $days
+[2025-12-17 11:29:25] (ERROR @ C:\xampp\htdocs\ev\assets\includes\save_itenary.php : 97) PHP warning: Undefined variable $days
+[2025-12-17 11:29:25] (ERROR @ C:\xampp\htdocs\ev\pdf\itinerary-cover.php : 52) PHP warning: Undefined variable $days
+[2025-12-17 11:33:04] (ERROR @ C:\xampp\htdocs\ev\assets\includes\save_itenary.php : 97) PHP warning: Undefined variable $days
+[2025-12-17 11:37:33] (ERROR @ C:\xampp\htdocs\ev\assets\includes\save_itenary.php : 97) PHP warning: Undefined variable $days
+[2025-12-17 11:40:15] (ERROR @ C:\xampp\htdocs\ev\assets\includes\save_itenary.php : 97) PHP warning: Undefined variable $days
+[2025-12-17 11:46:59] (ERROR @ C:\xampp\htdocs\ev\assets\includes\save_itenary.php : 97) PHP warning: Undefined variable $days
+[2025-12-17 11:49:10] (ERROR @ C:\xampp\htdocs\ev\assets\includes\save_itenary.php : 97) PHP warning: Undefined variable $days
+[2025-12-17 11:56:43] (ERROR @ C:\xampp\htdocs\ev\assets\includes\save_itenary.php : 97) PHP warning: Undefined variable $days
+[2025-12-17 12:07:04] (ERROR @ C:\xampp\htdocs\ev\assets\includes\save_itenary.php : 97) PHP warning: Undefined variable $days
+[2025-12-17 12:07:05] (ERROR @ C:\xampp\htdocs\ev\pdf\itinerary-summary.php : 62) PHP warning: Undefined variable $cities
+[2025-12-17 12:07:05] (ERROR @ C:\xampp\htdocs\ev\pdf\itinerary-summary.php : 62) PHP warning: foreach() argument must be of type array|object, null given
+[2025-12-17 12:12:05] (ERROR @ C:\xampp\htdocs\ev\assets\includes\save_itenary.php : 97) PHP warning: Undefined variable $days
+[2025-12-17 12:12:06] (ERROR @ C:\xampp\htdocs\ev\pdf\itinerary-summary.php : 64) PHP warning: Undefined variable $cities
+[2025-12-17 12:12:06] (ERROR @ C:\xampp\htdocs\ev\pdf\itinerary-summary.php : 64) PHP warning: foreach() argument must be of type array|object, null given
+[2025-12-17 12:13:09] (ERROR @ C:\xampp\htdocs\ev\assets\includes\save_itenary.php : 97) PHP warning: Undefined variable $days
+[2025-12-17 12:13:10] (ERROR @ C:\xampp\htdocs\ev\pdf\itinerary-summary.php : 64) PHP warning: Undefined variable $cities
+[2025-12-17 12:13:10] (ERROR @ C:\xampp\htdocs\ev\pdf\itinerary-summary.php : 64) PHP warning: foreach() argument must be of type array|object, null given
+[2025-12-17 12:46:04] (ERROR @ C:\xampp\htdocs\ev\assets\libs\tcpdf\tcpdf.php : 7801) PHP warning: unlink(C:\xampp\tmp/__tcpdf_960d0f04e8e7dde9333916f3d8706813_imgmask_alpha_c01999e1038164741cda0a56c7766540): No such file or directory
+[2025-12-17 12:46:04] (ERROR @ C:\xampp\htdocs\ev\assets\libs\tcpdf\tcpdf.php : 7801) PHP warning: unlink(C:\xampp\tmp/__tcpdf_960d0f04e8e7dde9333916f3d8706813_imgmask_plain_c01999e1038164741cda0a56c7766540): No such file or directory
+[2025-12-17 12:46:04] (ERROR @ C:\xampp\htdocs\ev\assets\libs\tcpdf\tcpdf.php : 7801) PHP warning: unlink(C:\xampp\tmp/__tcpdf_960d0f04e8e7dde9333916f3d8706813_imgmask_alpha_e0ebd2d72b292b28f25132245517bd34): No such file or directory
+[2025-12-17 12:46:04] (ERROR @ C:\xampp\htdocs\ev\assets\libs\tcpdf\tcpdf.php : 7801) PHP warning: unlink(C:\xampp\tmp/__tcpdf_960d0f04e8e7dde9333916f3d8706813_imgmask_plain_e0ebd2d72b292b28f25132245517bd34): No such file or directory
