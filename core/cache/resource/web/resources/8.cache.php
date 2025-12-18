@@ -2,12 +2,12 @@
   'resourceClass' => 'MODX\\Revolution\\modDocument',
   'resource' => 
   array (
-    'id' => 2,
+    'id' => 8,
     'type' => 'document',
-    'pagetitle' => 'about',
+    'pagetitle' => 'select-city',
     'longtitle' => '',
     'description' => '',
-    'alias' => 'index',
+    'alias' => 'select-city',
     'link_attributes' => '',
     'published' => 1,
     'pub_date' => 0,
@@ -15,151 +15,20 @@
     'parent' => 0,
     'isfolder' => 0,
     'introtext' => '',
-    'content' => '<body id = "aboutPage">
-    <!-- Hero starts -->
-    <section id="hero">
-        <img src="assets/images/about-hero.jpg" alt="Explore Vacations - About Us">
-        <div class="hero-content">
-            <h1>About Us</h1>
-        </div>
-    </section>
-    <!-- Hero ends -->
-
-    <!-- Intro section starts -->
-    <section id="intro-section" class="pt-5">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <p>
-                        "Explore Vacations is dedicated to creating unforgettable travel experiences across Sri Lanka. We design personalized tours that match your interests, pace, and budget. From stunning beaches and lush tea plantations to ancient heritage sites and wildlife safaris, we carefully plan every detail of your journey. Our friendly and experienced team ensures comfortable transport, trusted accommodation, and 24/7 support, so you can relax and enjoy a smooth, memorable, and truly authentic Sri Lankan adventure."
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Intro section ends -->
-
-    <!-- Vision mission section starts -->
-    <section id="vission-mission" class="py-5">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-12 col-md-6 col-lg-7">
-                    <div class="mb-4">
-                        <h2 class="heading">Our Vision</h2>
-                        <p>To be the leading travel company in Sri Lanka, recognized globally for creating meaningful and memorable journeys. We aim to inspire travelers by showcasing Sri Lanka’s rich culture, breathtaking landscapes, and warm hospitality, while delivering world-class, personalized travel experiences that leave a lasting impression.</p>
-                    </div>
-
-                    <div>
-                        <h2 class="heading">Our Mission</h2>
-                        <p>To deliver unforgettable travel experiences by providing personalized travel solutions, reliable customer support, and thoughtfully curated journeys that ensure comfort, safety, and complete customer satisfaction.</p>
-                    </div>
-                </div>
-
-                <div class="col-12 col-md-6 col-lg-5">
-                    <div id="aboutImageCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
-                        <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <img src="assets/images/about-us.jpg" class="img-fluid rounded" alt="About Us 1">
-                            </div>
-
-                            <div class="carousel-item">
-                                <img src="assets/images/about-us-2.jpg" class="img-fluid rounded" alt="About Us 2">
-                            </div>
-
-                            <div class="carousel-item">
-                                <img src="assets/images/about-us-3.jpg" class="img-fluid rounded" alt="About Us 3">
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Vision mission section ends -->
-
-    <!-- Our Membership section starts -->
-    <section id="our-membership" class="py-5">
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <h2 class="heading text-center mb-4">Our Memberships & Affiliations</h2>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-12 col-md-4 mb-4 mb-md-0 d-flex justify-content-center">
-                    <img src="assets/images/memberships/1.jpg" alt="Membership 1" class="img-fluid">
-                </div>
-                <div class="col-12 col-md-4 mb-4 mb-md-0 d-flex justify-content-center">
-                    <img src="assets/images/memberships/2.jpg" alt="Membership 2" class="img-fluid">
-                </div>
-                <div class="col-12 col-md-4 mb-4 mb-md-0 d-flex justify-content-center">
-                    <img src="assets/images/memberships/3.jpg" alt="Membership 1" class="img-fluid">
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Our Membership section ends -->
-
-    <!-- Hotel Partners section starts -->
-    <section id="hotel-partners" class="py-5">
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <h2 class="heading text-center mb-4">Our Hotel Partners</h2>
-                </div>
-            </div>
-           <div id="hotelPartnersCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2500">
-                <div class="carousel-inner">
-                    <!-- Slide 1 -->
-                    <div class="carousel-item active">
-                        <div class="row text-center">
-                            <div class="col-6 col-md-3"><img src="assets/images/hotels/1.jpg" class="img-fluid" alt=""></div>
-                            <div class="col-6 col-md-3"><img src="assets/images/hotels/2.jpg" class="img-fluid" alt=""></div>
-                            <div class="col-6 col-md-3"><img src="assets/images/hotels/3.jpg" class="img-fluid" alt=""></div>
-                            <div class="col-6 col-md-3"><img src="assets/images/hotels/4.jpg" class="img-fluid" alt=""></div>
-                        </div>
-                    </div>
-
-                    <!-- Slide 2 -->
-                    <div class="carousel-item">
-                        <div class="row text-center">
-                            <div class="col-6 col-md-3"><img src="assets/images/hotels/5.jpg" class="img-fluid" alt=""></div>
-                            <div class="col-6 col-md-3"><img src="assets/images/hotels/6.jpg" class="img-fluid" alt=""></div>
-                            <div class="col-6 col-md-3"><img src="assets/images/hotels/7.jpg" class="img-fluid" alt=""></div>
-                            <div class="col-6 col-md-3"><img src="assets/images/hotels/8.jpg" class="img-fluid" alt=""></div>
-                        </div>
-                    </div>
-
-                    <!-- Slide 3 -->
-                    <div class="carousel-item">
-                        <div class="row text-center">
-                            <div class="col-6 col-md-3"><img src="assets/images/hotels/9.jpg" class="img-fluid" alt=""></div>
-                            <div class="col-6 col-md-3"><img src="assets/images/hotels/10.jpg" class="img-fluid" alt=""></div>
-                            <div class="col-6 col-md-3"><img src="assets/images/hotels/11.jpg" class="img-fluid" alt=""></div>
-                            <div class="col-6 col-md-3"><img src="assets/images/hotels/12.jpg" class="img-fluid" alt=""></div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Hotel Partners section ends -->
-</body>',
+    'content' => '[[!SelectCity]]',
     'richtext' => 1,
     'template' => 2,
-    'menuindex' => 1,
+    'menuindex' => 7,
     'searchable' => 1,
     'cacheable' => 1,
     'createdby' => 1,
-    'createdon' => 1765877664,
+    'createdon' => 1765881083,
     'editedby' => 1,
-    'editedon' => 1765905558,
+    'editedon' => 1765882246,
     'deleted' => 0,
     'deletedon' => 0,
     'deletedby' => 0,
-    'publishedon' => 1765877640,
+    'publishedon' => 1765881240,
     'publishedby' => 1,
     'menutitle' => '',
     'content_dispo' => 0,
@@ -302,138 +171,7 @@ scrollTopBtn.addEventListener(\'click\', () => {
     </nav>
     <!-- Navbar ends-->
 </header>
-<body id = "aboutPage">
-    <!-- Hero starts -->
-    <section id="hero">
-        <img src="assets/images/about-hero.jpg" alt="Explore Vacations - About Us">
-        <div class="hero-content">
-            <h1>About Us</h1>
-        </div>
-    </section>
-    <!-- Hero ends -->
-
-    <!-- Intro section starts -->
-    <section id="intro-section" class="pt-5">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <p>
-                        "Explore Vacations is dedicated to creating unforgettable travel experiences across Sri Lanka. We design personalized tours that match your interests, pace, and budget. From stunning beaches and lush tea plantations to ancient heritage sites and wildlife safaris, we carefully plan every detail of your journey. Our friendly and experienced team ensures comfortable transport, trusted accommodation, and 24/7 support, so you can relax and enjoy a smooth, memorable, and truly authentic Sri Lankan adventure."
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Intro section ends -->
-
-    <!-- Vision mission section starts -->
-    <section id="vission-mission" class="py-5">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-12 col-md-6 col-lg-7">
-                    <div class="mb-4">
-                        <h2 class="heading">Our Vision</h2>
-                        <p>To be the leading travel company in Sri Lanka, recognized globally for creating meaningful and memorable journeys. We aim to inspire travelers by showcasing Sri Lanka’s rich culture, breathtaking landscapes, and warm hospitality, while delivering world-class, personalized travel experiences that leave a lasting impression.</p>
-                    </div>
-
-                    <div>
-                        <h2 class="heading">Our Mission</h2>
-                        <p>To deliver unforgettable travel experiences by providing personalized travel solutions, reliable customer support, and thoughtfully curated journeys that ensure comfort, safety, and complete customer satisfaction.</p>
-                    </div>
-                </div>
-
-                <div class="col-12 col-md-6 col-lg-5">
-                    <div id="aboutImageCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
-                        <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <img src="assets/images/about-us.jpg" class="img-fluid rounded" alt="About Us 1">
-                            </div>
-
-                            <div class="carousel-item">
-                                <img src="assets/images/about-us-2.jpg" class="img-fluid rounded" alt="About Us 2">
-                            </div>
-
-                            <div class="carousel-item">
-                                <img src="assets/images/about-us-3.jpg" class="img-fluid rounded" alt="About Us 3">
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Vision mission section ends -->
-
-    <!-- Our Membership section starts -->
-    <section id="our-membership" class="py-5">
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <h2 class="heading text-center mb-4">Our Memberships & Affiliations</h2>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-12 col-md-4 mb-4 mb-md-0 d-flex justify-content-center">
-                    <img src="assets/images/memberships/1.jpg" alt="Membership 1" class="img-fluid">
-                </div>
-                <div class="col-12 col-md-4 mb-4 mb-md-0 d-flex justify-content-center">
-                    <img src="assets/images/memberships/2.jpg" alt="Membership 2" class="img-fluid">
-                </div>
-                <div class="col-12 col-md-4 mb-4 mb-md-0 d-flex justify-content-center">
-                    <img src="assets/images/memberships/3.jpg" alt="Membership 1" class="img-fluid">
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Our Membership section ends -->
-
-    <!-- Hotel Partners section starts -->
-    <section id="hotel-partners" class="py-5">
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <h2 class="heading text-center mb-4">Our Hotel Partners</h2>
-                </div>
-            </div>
-           <div id="hotelPartnersCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2500">
-                <div class="carousel-inner">
-                    <!-- Slide 1 -->
-                    <div class="carousel-item active">
-                        <div class="row text-center">
-                            <div class="col-6 col-md-3"><img src="assets/images/hotels/1.jpg" class="img-fluid" alt=""></div>
-                            <div class="col-6 col-md-3"><img src="assets/images/hotels/2.jpg" class="img-fluid" alt=""></div>
-                            <div class="col-6 col-md-3"><img src="assets/images/hotels/3.jpg" class="img-fluid" alt=""></div>
-                            <div class="col-6 col-md-3"><img src="assets/images/hotels/4.jpg" class="img-fluid" alt=""></div>
-                        </div>
-                    </div>
-
-                    <!-- Slide 2 -->
-                    <div class="carousel-item">
-                        <div class="row text-center">
-                            <div class="col-6 col-md-3"><img src="assets/images/hotels/5.jpg" class="img-fluid" alt=""></div>
-                            <div class="col-6 col-md-3"><img src="assets/images/hotels/6.jpg" class="img-fluid" alt=""></div>
-                            <div class="col-6 col-md-3"><img src="assets/images/hotels/7.jpg" class="img-fluid" alt=""></div>
-                            <div class="col-6 col-md-3"><img src="assets/images/hotels/8.jpg" class="img-fluid" alt=""></div>
-                        </div>
-                    </div>
-
-                    <!-- Slide 3 -->
-                    <div class="carousel-item">
-                        <div class="row text-center">
-                            <div class="col-6 col-md-3"><img src="assets/images/hotels/9.jpg" class="img-fluid" alt=""></div>
-                            <div class="col-6 col-md-3"><img src="assets/images/hotels/10.jpg" class="img-fluid" alt=""></div>
-                            <div class="col-6 col-md-3"><img src="assets/images/hotels/11.jpg" class="img-fluid" alt=""></div>
-                            <div class="col-6 col-md-3"><img src="assets/images/hotels/12.jpg" class="img-fluid" alt=""></div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Hotel Partners section ends -->
-</body>
+[[!SelectCity]]
 <footer>
     <div class="container">
         <div class="row">
@@ -780,6 +518,7 @@ scrollTopBtn.addEventListener(\'click\', () => {
         <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
     </div>
 </div>',
+    '[[~9]]' => 'index.php?id=9',
   ),
   'sourceCache' => 
   array (
@@ -1342,6 +1081,359 @@ scrollTopBtn.addEventListener(\'click\', () => {
     ),
     'MODX\\Revolution\\modSnippet' => 
     array (
+      'SelectCity' => 
+      array (
+        'fields' => 
+        array (
+          'id' => 5,
+          'source' => 1,
+          'property_preprocess' => false,
+          'name' => 'SelectCity',
+          'description' => '',
+          'editor_type' => 0,
+          'category' => 0,
+          'cache_type' => 0,
+          'snippet' => 'ob_start();
+
+    include (\'config-details.php\');
+    include \'assets/includes/db_connect.php\';
+
+    // Get selected theme IDs from URL
+    $themeIDs = isset($_GET[\'themes\']) ? $_GET[\'themes\'] : \'\';
+    $themeIDsArray = array_filter(explode(",", $themeIDs));
+
+    $themesData = [];
+    $allImages = [];
+
+    if (!empty($themeIDsArray)) {
+
+        // Create dynamic placeholders (?, ?, ?)
+        $placeholders = rtrim(str_repeat(\'?,\', count($themeIDsArray)), \',\');
+        $query = "SELECT * FROM tour_themes WHERE id IN ($placeholders)";
+        $stmt = $conn->prepare($query);
+        $stmt->execute($themeIDsArray);
+        $themesData = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    $citiesData = [];
+
+    $query = "
+        SELECT id, name, images
+        FROM cities
+        ORDER BY name ASC
+    ";
+
+    $stmt = $conn->prepare($query);
+    $stmt->execute();
+    $citiesData = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+?>
+
+<body id="selectToursPage">
+    <!-- Hero starts -->
+    <section id="hero">
+        <img src="assets/images/tour-hero.jpg" alt="Explore Vacations - Tours">
+        <div class="hero-content">
+            <h1>Tours</h1>
+        </div>
+    </section>
+    <!-- Hero ends -->
+
+    <!-- Customize Tours section starts -->
+    <section id="select-city" class="py-5">
+        <div class="container">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="[[~3]]">Tours</a></li>
+                    <?php if (!empty($themesData)): ?>
+                        <?php foreach ($themesData as $t): ?>
+                            <li class="breadcrumb-item active">
+                                <?php echo htmlspecialchars($t[\'theme_name\']); ?>
+                            </li>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
+                </ol>
+            </nav>
+
+            <div class="row g-4 mt-3 d-flex justify-content-center">
+                <?php if (!empty($citiesData)): ?>
+                  <?php foreach ($citiesData as $city): ?>
+                        <?php 
+                            $cityImages = json_decode($city[\'images\'], true); 
+                            $firstImage = !empty($cityImages) ? \'assets/\' . $cityImages[0] : \'\';
+                        ?>
+                        <div class="col-12 col-lg-3 col-md-6">
+                            <div  class="card h-100 shadow-sm city-card selectable-city" data-city-id="<?php echo $city[\'id\']; ?>" >
+                                <!-- Checkbox -->
+                                <div class="city-checkbox">
+                                    <input type="checkbox" name="cities[]" value="<?php echo $city[\'id\']; ?>">
+                                </div>
+                                <img src="<?php echo htmlspecialchars($firstImage); ?>" class="card-img-top" alt="<?php echo htmlspecialchars($city[\'name\']); ?>">
+
+                                <div class="card-body text-center">
+                                    <h3 class="card-title">
+                                        <?php echo htmlspecialchars($city[\'name\']); ?>
+                                    </h3>
+                                </div>
+
+                            </div>
+                        </div>
+                        <?php endforeach; ?>
+
+                    <div class="text-center mt-4">
+                        <button id="planTripBtn" class="planTripBtn btn btn-success px-4"style="display:none;">
+                            Plan Trip
+                        </button>
+                    </div>
+                    <?php else: ?>
+                    <div class="col-12 text-center">
+                        <p class="text-muted">No cities found.</p>
+                    </div>
+                <?php endif; ?>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener(\'DOMContentLoaded\', function () {
+
+            const cards = document.querySelectorAll(\'.selectable-city\');
+            const planTripBtn = document.getElementById(\'planTripBtn\');
+
+            // Toggle checkbox selection
+            cards.forEach(card => {
+                card.addEventListener(\'click\', function (e) {
+                    if (e.target.tagName === \'INPUT\') return;
+
+                    const checkbox = card.querySelector(\'input[type="checkbox"]\');
+                    checkbox.checked = !checkbox.checked;
+                    card.classList.toggle(\'selected\', checkbox.checked);
+                    togglePlanButton();
+                });
+            });
+
+            // Checkbox change event
+            document.querySelectorAll(\'.city-checkbox input\').forEach(cb => {
+                cb.addEventListener(\'change\', function () {
+                    cb.closest(\'.selectable-city\').classList.toggle(\'selected\', cb.checked);
+                    togglePlanButton();
+                });
+            });
+
+            // Show/hide Plan Trip button
+            function togglePlanButton() {
+                const checked = document.querySelectorAll(\'.city-checkbox input:checked\');
+                planTripBtn.style.display = checked.length ? \'inline-block\' : \'none\';
+            }
+
+            // Redirect to customize-tour.php with selected cities and themes
+            planTripBtn.addEventListener(\'click\', () => {
+                const selectedCities = Array.from(
+                    document.querySelectorAll(\'.city-checkbox input:checked\')
+                ).map(cb => cb.value);
+
+                const themeIDs = new URLSearchParams(window.location.search).get(\'themes\') || \'\';
+
+                // Base URL: use customize-tour.php directly
+                const baseUrl = "[[~9]]";
+
+                // Correct separator for query parameters
+                const separator = baseUrl.includes(\'?\') ? \'&\' : \'?\';
+
+                // Build URL safely
+                const url = `${baseUrl}${separator}themes=${encodeURIComponent(themeIDs)}&cities=${encodeURIComponent(selectedCities.join(\',\'))}`;
+
+                window.location.href = url;
+            });
+
+        });
+    </script>
+</body>
+
+<?php
+return ob_get_clean();',
+          'locked' => false,
+          'properties' => 
+          array (
+          ),
+          'moduleguid' => '',
+          'static' => false,
+          'static_file' => '',
+          'content' => 'ob_start();
+
+    include (\'config-details.php\');
+    include \'assets/includes/db_connect.php\';
+
+    // Get selected theme IDs from URL
+    $themeIDs = isset($_GET[\'themes\']) ? $_GET[\'themes\'] : \'\';
+    $themeIDsArray = array_filter(explode(",", $themeIDs));
+
+    $themesData = [];
+    $allImages = [];
+
+    if (!empty($themeIDsArray)) {
+
+        // Create dynamic placeholders (?, ?, ?)
+        $placeholders = rtrim(str_repeat(\'?,\', count($themeIDsArray)), \',\');
+        $query = "SELECT * FROM tour_themes WHERE id IN ($placeholders)";
+        $stmt = $conn->prepare($query);
+        $stmt->execute($themeIDsArray);
+        $themesData = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    $citiesData = [];
+
+    $query = "
+        SELECT id, name, images
+        FROM cities
+        ORDER BY name ASC
+    ";
+
+    $stmt = $conn->prepare($query);
+    $stmt->execute();
+    $citiesData = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+?>
+
+<body id="selectToursPage">
+    <!-- Hero starts -->
+    <section id="hero">
+        <img src="assets/images/tour-hero.jpg" alt="Explore Vacations - Tours">
+        <div class="hero-content">
+            <h1>Tours</h1>
+        </div>
+    </section>
+    <!-- Hero ends -->
+
+    <!-- Customize Tours section starts -->
+    <section id="select-city" class="py-5">
+        <div class="container">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="[[~3]]">Tours</a></li>
+                    <?php if (!empty($themesData)): ?>
+                        <?php foreach ($themesData as $t): ?>
+                            <li class="breadcrumb-item active">
+                                <?php echo htmlspecialchars($t[\'theme_name\']); ?>
+                            </li>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
+                </ol>
+            </nav>
+
+            <div class="row g-4 mt-3 d-flex justify-content-center">
+                <?php if (!empty($citiesData)): ?>
+                  <?php foreach ($citiesData as $city): ?>
+                        <?php 
+                            $cityImages = json_decode($city[\'images\'], true); 
+                            $firstImage = !empty($cityImages) ? \'assets/\' . $cityImages[0] : \'\';
+                        ?>
+                        <div class="col-12 col-lg-3 col-md-6">
+                            <div  class="card h-100 shadow-sm city-card selectable-city" data-city-id="<?php echo $city[\'id\']; ?>" >
+                                <!-- Checkbox -->
+                                <div class="city-checkbox">
+                                    <input type="checkbox" name="cities[]" value="<?php echo $city[\'id\']; ?>">
+                                </div>
+                                <img src="<?php echo htmlspecialchars($firstImage); ?>" class="card-img-top" alt="<?php echo htmlspecialchars($city[\'name\']); ?>">
+
+                                <div class="card-body text-center">
+                                    <h3 class="card-title">
+                                        <?php echo htmlspecialchars($city[\'name\']); ?>
+                                    </h3>
+                                </div>
+
+                            </div>
+                        </div>
+                        <?php endforeach; ?>
+
+                    <div class="text-center mt-4">
+                        <button id="planTripBtn" class="planTripBtn btn btn-success px-4"style="display:none;">
+                            Plan Trip
+                        </button>
+                    </div>
+                    <?php else: ?>
+                    <div class="col-12 text-center">
+                        <p class="text-muted">No cities found.</p>
+                    </div>
+                <?php endif; ?>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener(\'DOMContentLoaded\', function () {
+
+            const cards = document.querySelectorAll(\'.selectable-city\');
+            const planTripBtn = document.getElementById(\'planTripBtn\');
+
+            // Toggle checkbox selection
+            cards.forEach(card => {
+                card.addEventListener(\'click\', function (e) {
+                    if (e.target.tagName === \'INPUT\') return;
+
+                    const checkbox = card.querySelector(\'input[type="checkbox"]\');
+                    checkbox.checked = !checkbox.checked;
+                    card.classList.toggle(\'selected\', checkbox.checked);
+                    togglePlanButton();
+                });
+            });
+
+            // Checkbox change event
+            document.querySelectorAll(\'.city-checkbox input\').forEach(cb => {
+                cb.addEventListener(\'change\', function () {
+                    cb.closest(\'.selectable-city\').classList.toggle(\'selected\', cb.checked);
+                    togglePlanButton();
+                });
+            });
+
+            // Show/hide Plan Trip button
+            function togglePlanButton() {
+                const checked = document.querySelectorAll(\'.city-checkbox input:checked\');
+                planTripBtn.style.display = checked.length ? \'inline-block\' : \'none\';
+            }
+
+            // Redirect to customize-tour.php with selected cities and themes
+            planTripBtn.addEventListener(\'click\', () => {
+                const selectedCities = Array.from(
+                    document.querySelectorAll(\'.city-checkbox input:checked\')
+                ).map(cb => cb.value);
+
+                const themeIDs = new URLSearchParams(window.location.search).get(\'themes\') || \'\';
+
+                // Base URL: use customize-tour.php directly
+                const baseUrl = "[[~9]]";
+
+                // Correct separator for query parameters
+                const separator = baseUrl.includes(\'?\') ? \'&\' : \'?\';
+
+                // Build URL safely
+                const url = `${baseUrl}${separator}themes=${encodeURIComponent(themeIDs)}&cities=${encodeURIComponent(selectedCities.join(\',\'))}`;
+
+                window.location.href = url;
+            });
+
+        });
+    </script>
+</body>
+
+<?php
+return ob_get_clean();',
+        ),
+        'policies' => 
+        array (
+        ),
+        'source' => 
+        array (
+          'id' => 1,
+          'name' => 'Filesystem',
+          'description' => '',
+          'class_key' => 'MODX\\Revolution\\Sources\\modFileMediaSource',
+          'properties' => 
+          array (
+          ),
+          'is_stream' => true,
+        ),
+      ),
     ),
     'MODX\\Revolution\\modTemplateVar' => 
     array (

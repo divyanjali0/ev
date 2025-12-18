@@ -48,36 +48,19 @@
     <!-- Tour Theme section ends -->
 
     <script>
-        const selectedThemes = new Set();
         const cards = document.querySelectorAll(\'.selectable-card\');
-        const customizeBtn = document.getElementById(\'customizeBtn\');
 
         cards.forEach(card => {
             card.addEventListener(\'click\', () => {
-                const id = card.getAttribute(\'data-theme-id\');
-
-                if (selectedThemes.has(id)) {
-                    selectedThemes.delete(id);
-                    card.classList.remove(\'selected\');
-                } else {
-                    selectedThemes.add(id);
-                    card.classList.add(\'selected\');
-                }
-
-                // Show/hide button
-                if (selectedThemes.size > 0) {
-                    customizeBtn.classList.remove(\'d-none\');
-                } else {
-                    customizeBtn.classList.add(\'d-none\');
-                }
+                const themeId = card.getAttribute(\'data-theme-id\');
 
                 const url = new URL("[[~8]]", window.location.href);
-                url.searchParams.set(\'themes\', Array.from(selectedThemes).join(\',\'));
-                customizeBtn.href = url.pathname + url.search;
+                url.searchParams.set(\'themes\', themeId); 
+                window.location.href = url.pathname + url.search;
             });
         });
-
     </script>
+
 </body>',
     'richtext' => 1,
     'template' => 2,
@@ -87,7 +70,7 @@
     'createdby' => 1,
     'createdon' => 1765879148,
     'editedby' => 1,
-    'editedon' => 1765883877,
+    'editedon' => 1766051362,
     'deleted' => 0,
     'deletedon' => 0,
     'deletedby' => 0,
@@ -267,36 +250,19 @@ scrollTopBtn.addEventListener(\'click\', () => {
     <!-- Tour Theme section ends -->
 
     <script>
-        const selectedThemes = new Set();
         const cards = document.querySelectorAll(\'.selectable-card\');
-        const customizeBtn = document.getElementById(\'customizeBtn\');
 
         cards.forEach(card => {
             card.addEventListener(\'click\', () => {
-                const id = card.getAttribute(\'data-theme-id\');
-
-                if (selectedThemes.has(id)) {
-                    selectedThemes.delete(id);
-                    card.classList.remove(\'selected\');
-                } else {
-                    selectedThemes.add(id);
-                    card.classList.add(\'selected\');
-                }
-
-                // Show/hide button
-                if (selectedThemes.size > 0) {
-                    customizeBtn.classList.remove(\'d-none\');
-                } else {
-                    customizeBtn.classList.add(\'d-none\');
-                }
+                const themeId = card.getAttribute(\'data-theme-id\');
 
                 const url = new URL("index.php?id=8", window.location.href);
-                url.searchParams.set(\'themes\', Array.from(selectedThemes).join(\',\'));
-                customizeBtn.href = url.pathname + url.search;
+                url.searchParams.set(\'themes\', themeId); 
+                window.location.href = url.pathname + url.search;
             });
         });
-
     </script>
+
 </body>
 <footer>
     <div class="container">

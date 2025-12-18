@@ -620,3 +620,4 @@ include ('config-details.php');
 
 <?php
 return ob_get_clean();
+return;

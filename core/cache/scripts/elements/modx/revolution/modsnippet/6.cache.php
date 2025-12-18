@@ -1,18 +1,17 @@
-<?php
-ob_start();
+<?php  return 'ob_start();
 
-include ('config-details.php');
-    include 'assets/includes/db_connect.php';
-    include 'assets/includes/save_itenary.php';
+include (\'config-details.php\');
+    include \'assets/includes/db_connect.php\';
+    include \'assets/includes/save_itenary.php\';
 
     // Get selected city IDs
-    $cityIDs = isset($_GET['cities']) ? $_GET['cities'] : '';
-    $cityIDsArray = array_filter(explode(',', $cityIDs));
+    $cityIDs = isset($_GET[\'cities\']) ? $_GET[\'cities\'] : \'\';
+    $cityIDsArray = array_filter(explode(\',\', $cityIDs));
 
     $selectedCities = [];
 
     if (!empty($cityIDsArray)) {
-        $placeholders = rtrim(str_repeat('?,', count($cityIDsArray)), ',');
+        $placeholders = rtrim(str_repeat(\'?,\', count($cityIDsArray)), \',\');
         $query = "
             SELECT id, name
             FROM cities
@@ -25,7 +24,7 @@ include ('config-details.php');
 
 
     // Get selected theme IDs from URL
-    $themeIDs = isset($_GET['themes']) ? $_GET['themes'] : '';
+    $themeIDs = isset($_GET[\'themes\']) ? $_GET[\'themes\'] : \'\';
     $themeIDsArray = array_filter(explode(",", $themeIDs));
 
     $themesData = [];
@@ -34,7 +33,7 @@ include ('config-details.php');
     if (!empty($themeIDsArray)) {
 
         // Create dynamic placeholders (?, ?, ?)
-        $placeholders = rtrim(str_repeat('?,', count($themeIDsArray)), ',');
+        $placeholders = rtrim(str_repeat(\'?,\', count($themeIDsArray)), \',\');
         $query = "SELECT * FROM tour_themes WHERE id IN ($placeholders)";
         $stmt = $conn->prepare($query);
         $stmt->execute($themeIDsArray);
@@ -42,7 +41,7 @@ include ('config-details.php');
 
         // Collect all images into one array
         foreach ($themesData as $theme) {
-            $images = json_decode($theme['theme_images'], true);
+            $images = json_decode($theme[\'theme_images\'], true);
 
             if ($images) {
                 foreach ($images as $img) {
@@ -129,7 +128,7 @@ include ('config-details.php');
                     <?php if (!empty($themesData)): ?>
                         <?php foreach ($themesData as $t): ?>
                             <li class="breadcrumb-item active">
-                                <?php echo htmlspecialchars($t['theme_name']); ?>
+                                <?php echo htmlspecialchars($t[\'theme_name\']); ?>
                             </li>
                         <?php endforeach; ?>
                     <?php endif; ?>
@@ -144,8 +143,8 @@ include ('config-details.php');
                             <div class="carousel-inner">
                                 <?php if (!empty($allImages)): ?>
                                     <?php foreach ($allImages as $index => $img): ?>
-                                        <div class="carousel-item <?php echo $index === 0 ? 'active' : ''; ?>">
-                                            <img src="assets/<?php echo ltrim($img, '/'); ?>" class="d-block w-100 rounded" alt="Tour Image">
+                                        <div class="carousel-item <?php echo $index === 0 ? \'active\' : \'\'; ?>">
+                                            <img src="assets/<?php echo ltrim($img, \'/\'); ?>" class="d-block w-100 rounded" alt="Tour Image">
                                         </div>
                                     <?php endforeach; ?>
                                 <?php else: ?>
@@ -157,7 +156,7 @@ include ('config-details.php');
                             </div>
                             <div class="carousel-indicators">
                                 <?php foreach ($allImages as $index => $img): ?>
-                                    <button type="button" data-bs-target="#tourCarousel" data-bs-slide-to="<?php echo $index; ?>" class="<?php echo $index === 0 ? 'active' : ''; ?>" aria-current="<?php echo $index === 0 ? 'true' : 'false'; ?>" aria-label="Slide <?php echo $index + 1; ?>"></button>
+                                    <button type="button" data-bs-target="#tourCarousel" data-bs-slide-to="<?php echo $index; ?>" class="<?php echo $index === 0 ? \'active\' : \'\'; ?>" aria-current="<?php echo $index === 0 ? \'true\' : \'false\'; ?>" aria-label="Slide <?php echo $index + 1; ?>"></button>
                                 <?php endforeach; ?>
                             </div>
                         </div>
@@ -171,7 +170,7 @@ include ('config-details.php');
                 <div class="intro row align-items-center mt-4">
                     <div class="col">
                         <p class="mb-0">
-                            ✨Customize your trip, and send us your plan. We'll guide you through the next steps and put together a full itinerary with cozy stays 🏨, fun activities 🎉, and all the details you need...
+                            ✨Customize your trip, and send us your plan. We\'ll guide you through the next steps and put together a full itinerary with cozy stays 🏨, fun activities 🎉, and all the details you need...
                         </p>
                     </div>
                 </div>
@@ -286,7 +285,7 @@ include ('config-details.php');
                                     <?php foreach ($selectedCities as $city): ?>
                                         <div class="col-md-6 col-lg-6 mb-2">
                                             <div class="card p-2 text-center" style="border-radius:0;">
-                                                <?php echo htmlspecialchars($city['name']); ?>
+                                                <?php echo htmlspecialchars($city[\'name\']); ?>
                                             </div>
                                         </div>
                                     <?php endforeach; ?>
@@ -375,8 +374,8 @@ include ('config-details.php');
                                         <select class="form-select" id="whatsappCode" name="whatsappCode" required>
                                             <option value="" selected disabled>Select</option>
                                             <?php foreach($countryCodes as $c): ?>
-                                                <option value="<?php echo htmlspecialchars($c['country_code']); ?>">
-                                                    <?php echo htmlspecialchars($c['country_name'] . ' (' . $c['country_code'] . ')'); ?>
+                                                <option value="<?php echo htmlspecialchars($c[\'country_code\']); ?>">
+                                                    <?php echo htmlspecialchars($c[\'country_name\'] . \' (\' . $c[\'country_code\'] . \')\'); ?>
                                                 </option>
                                             <?php endforeach; ?>
                                         </select>
@@ -426,29 +425,29 @@ include ('config-details.php');
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBl50Q8W4ZF2_EkOJ1lnRoVxO1IdjIupjM&libraries=places&callback=initMap" async defer></script>
 
     <script>
-        const btn = document.getElementById('guestDropdownButton');
-        const menu = document.getElementById('guestDropdownMenu');
-        const ids = ['adults','children_6_11','children_above_11','infants'];
+        const btn = document.getElementById(\'guestDropdownButton\');
+        const menu = document.getElementById(\'guestDropdownMenu\');
+        const ids = [\'adults\',\'children_6_11\',\'children_above_11\',\'infants\'];
 
-        btn.addEventListener('click', () => menu.classList.toggle('show'));
-        document.addEventListener('click', e => { if(!btn.contains(e.target)&&!menu.contains(e.target)) menu.classList.remove('show'); });
+        btn.addEventListener(\'click\', () => menu.classList.toggle(\'show\'));
+        document.addEventListener(\'click\', e => { if(!btn.contains(e.target)&&!menu.contains(e.target)) menu.classList.remove(\'show\'); });
 
         function update() {
-            const adults = +document.getElementById('adults').value;
+            const adults = +document.getElementById(\'adults\').value;
             const children = ids.slice(1).reduce((s,id)=>s + +document.getElementById(id).value,0);
             btn.textContent = `${adults} Adults, ${children} Children`;
 
-            document.getElementById('adults_hidden').value = adults;
-            document.getElementById('children_6_11_hidden').value = document.getElementById('children_6_11').value;
-            document.getElementById('children_above_11_hidden').value = document.getElementById('children_above_11').value;
-            document.getElementById('infants_hidden').value = document.getElementById('infants').value;
+            document.getElementById(\'adults_hidden\').value = adults;
+            document.getElementById(\'children_6_11_hidden\').value = document.getElementById(\'children_6_11\').value;
+            document.getElementById(\'children_above_11_hidden\').value = document.getElementById(\'children_above_11\').value;
+            document.getElementById(\'infants_hidden\').value = document.getElementById(\'infants\').value;
         }
 
-        document.querySelectorAll('.increment,.decrement').forEach(b=>{
-            b.addEventListener('click', ()=>{
+        document.querySelectorAll(\'.increment,.decrement\').forEach(b=>{
+            b.addEventListener(\'click\', ()=>{
                 const i = document.getElementById(b.dataset.target);
                 const min = +i.min||0;
-                i.value = Math.max(min, +i.value + (b.classList.contains('increment')?1:-1));
+                i.value = Math.max(min, +i.value + (b.classList.contains(\'increment\')?1:-1));
                 update();
             });
         });
@@ -459,26 +458,26 @@ include ('config-details.php');
 
     <script>
         document.addEventListener("DOMContentLoaded", () => {
-            const start = document.querySelector('input[name="start_date"]');
-            const end = document.querySelector('input[name="end_date"]');
-            const nights = document.querySelector('input[name="nights"]');
-            const today = new Date().toISOString().split('T')[0];
+            const start = document.querySelector(\'input[name="start_date"]\');
+            const end = document.querySelector(\'input[name="end_date"]\');
+            const nights = document.querySelector(\'input[name="nights"]\');
+            const today = new Date().toISOString().split(\'T\')[0];
 
             start.min = today;
             end.min = today;
 
             const calcNights = () => {
                 const diff = (new Date(end.value) - new Date(start.value)) / (1000 * 60 * 60 * 24);
-                nights.value = diff > 0 ? `${diff} night${diff > 1 ? 's' : ''}` : '';
+                nights.value = diff > 0 ? `${diff} night${diff > 1 ? \'s\' : \'\'}` : \'\';
             };
 
-            start.addEventListener('change', () => {
-                if (end.value && new Date(end.value) < new Date(start.value)) end.value = nights.value = '';
+            start.addEventListener(\'change\', () => {
+                if (end.value && new Date(end.value) < new Date(start.value)) end.value = nights.value = \'\';
                 end.min = start.value;
                 calcNights();
             });
 
-            end.addEventListener('change', calcNights);
+            end.addEventListener(\'change\', calcNights);
         });
     </script>
 
@@ -512,7 +511,7 @@ include ('config-details.php');
                     const tourPath = new google.maps.Polyline({
                         path: pathCoordinates,
                         geodesic: true,
-                        strokeColor: '#FF0000',
+                        strokeColor: \'#FF0000\',
                         strokeOpacity: 0.7,
                         strokeWeight: 4
                     });
@@ -529,8 +528,8 @@ include ('config-details.php');
 
         function geocodeCity(cityName, labelNumber) {
             return new Promise((resolve, reject) => {
-                geocoder.geocode({ address: cityName + ', Sri Lanka' }, (results, status) => {
-                    if (status === 'OK') {
+                geocoder.geocode({ address: cityName + \', Sri Lanka\' }, (results, status) => {
+                    if (status === \'OK\') {
                         const location = results[0].geometry.location;
 
                         new google.maps.Marker({
@@ -546,7 +545,7 @@ include ('config-details.php');
 
                         resolve(location);
                     } else {
-                        console.warn('Geocode failed for:', cityName, status);
+                        console.warn(\'Geocode failed for:\', cityName, status);
                         resolve(null); 
                     }
                 });
@@ -554,12 +553,12 @@ include ('config-details.php');
         }
 
         function initAutocomplete() {
-            const pickupInput = document.getElementById('pickupLocation');
-            const dropoffInput = document.getElementById('dropoffLocation');
+            const pickupInput = document.getElementById(\'pickupLocation\');
+            const dropoffInput = document.getElementById(\'dropoffLocation\');
 
             const options = {
-                types: ['geocode', 'establishment'],
-                componentRestrictions: { country: 'LK' } 
+                types: [\'geocode\', \'establishment\'],
+                componentRestrictions: { country: \'LK\' } 
             };
 
             if (pickupInput) {
@@ -573,16 +572,16 @@ include ('config-details.php');
     </script>
 
     <script>
-        const yesRadio = document.getElementById('mealAllergyYes');
-        const noRadio = document.getElementById('mealAllergyNo');
-        const allergyInput = document.getElementById('allergyDetails');
+        const yesRadio = document.getElementById(\'mealAllergyYes\');
+        const noRadio = document.getElementById(\'mealAllergyNo\');
+        const allergyInput = document.getElementById(\'allergyDetails\');
 
-        yesRadio.addEventListener('change', () => {
-            allergyInput.style.display = yesRadio.checked ? 'block' : 'none';
+        yesRadio.addEventListener(\'change\', () => {
+            allergyInput.style.display = yesRadio.checked ? \'block\' : \'none\';
         });
 
-        noRadio.addEventListener('change', () => {
-            allergyInput.style.display = 'none';
+        noRadio.addEventListener(\'change\', () => {
+            allergyInput.style.display = \'none\';
         });
     </script>
 
@@ -601,17 +600,17 @@ include ('config-details.php');
 
     <script>
         document.addEventListener("DOMContentLoaded", () => {
-            <?php if (!empty($_SESSION['itinerary_success']) && !empty($_SESSION['pdf_to_download'])): ?>
+            <?php if (!empty($_SESSION[\'itinerary_success\']) && !empty($_SESSION[\'pdf_to_download\'])): ?>
                 Swal.fire({
-                    icon: 'success',
-                    title: 'Submitted Successfully',
-                    text: 'Your tour request has been received.',
-                    confirmButtonText: 'Download Itinerary'
+                    icon: \'success\',
+                    title: \'Submitted Successfully\',
+                    text: \'Your tour request has been received.\',
+                    confirmButtonText: \'Download Itinerary\'
                 }).then(() => {
-                    window.location.href = '<?php echo $_SESSION['pdf_to_download']; ?>';
+                    window.location.href = \'<?php echo $_SESSION[\'pdf_to_download\']; ?>\';
                 });
                 <?php
-                unset($_SESSION['itinerary_success'], $_SESSION['pdf_to_download']);
+                unset($_SESSION[\'itinerary_success\'], $_SESSION[\'pdf_to_download\']);
                 ?>
             <?php endif; ?>
         });
@@ -620,3 +619,5 @@ include ('config-details.php');
 
 <?php
 return ob_get_clean();
+return;
+';

@@ -3,6 +3,8 @@
 /** @var array $data */
 /** @var string $assetRoot */
 
+require_once __DIR__ . '/footer-details.php';
+
 $pageWidth = $pdf->getPageWidth();
 $marginLeft = 15;
 $marginRight = 15;
@@ -78,4 +80,8 @@ $pdf->SetFont('helvetica', 'BI', 12);
 $pdf->SetTextColor(50, 50, 50);             
 $pdf->MultiCell(0, 8, "Thank you for choosing Explore Vacations! We look forward to making your trip unforgettable.", 0, 'C');
 
+
+addFooter(
+    $pdf,'+94 76 1414 554','info@explorevacations.lk','explore.vacations'
+);
 

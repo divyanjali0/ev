@@ -3,6 +3,9 @@
 /** @var array $cities */
 /** @var array $data */
 /** @var string $themeList */
+/** @var string $assetRoot */
+
+require_once __DIR__ . '/footer-details.php';
 
 $pdf->SetTopMargin(10);
 addNewStyledPage($pdf);
@@ -101,3 +104,7 @@ foreach ($cities as $city) {
 
     $day++;
 }
+
+addFooter(
+    $pdf,'+94 76 1414 554','info@explorevacations.lk','explore.vacations'
+);

@@ -120,6 +120,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     require_once __DIR__ . '/../../pdf/detailed-itinerary.php';
     require_once __DIR__ . '/../../pdf/map-page.php';
     require_once __DIR__ . '/../../pdf/customer-details.php';
+    require_once __DIR__ . '/../../pdf/footer-details.php';
 
     /* ============================
        SAVE PDF

@@ -3,6 +3,8 @@
 /** @var array $cities */
 /** @var string $assetRoot */
 
+require_once __DIR__ . '/footer-details.php';
+
 $pageWidth = $pdf->getPageWidth();
 $marginLeft = 15;
 $marginRight = 15;
@@ -131,3 +133,7 @@ foreach ($cities as $city) {
         $pdf->Ln(4);
     }
 }
+
+addFooter(
+    $pdf,'+94 76 1414 554','info@explorevacations.lk','explore.vacations'
+);
