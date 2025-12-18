@@ -2,12 +2,12 @@
   'resourceClass' => 'MODX\\Revolution\\modDocument',
   'resource' => 
   array (
-    'id' => 3,
+    'id' => 5,
     'type' => 'document',
-    'pagetitle' => 'tours',
+    'pagetitle' => 'blog',
     'longtitle' => '',
     'description' => '',
-    'alias' => 'tours',
+    'alias' => 'blog',
     'link_attributes' => '',
     'published' => 1,
     'pub_date' => 0,
@@ -15,66 +15,80 @@
     'parent' => 0,
     'isfolder' => 0,
     'introtext' => '',
-    'content' => '<body id="toursPage">
+    'content' => '<body id = "blogPage">
     <!-- Hero starts -->
     <section id="hero">
-        <img src="assets/images/tour-hero.jpg" alt="Explore Vacations - Tours">
+        <img src="assets/images/blog-hero.jpg" alt="Explore Vacations - BLOGS">
         <div class="hero-content">
-            <h1>Tours</h1>
+            <h1>BLOGS</h1>
         </div>
     </section>
     <!-- Hero ends -->
 
-    <!-- Tour Theme section starts -->
-    <section id="tour-theme" class="py-5">
+    <!-- Blogs section starts -->
+    <section id="blogs" class="py-5">
         <div class="container">
-            <div class="row">
-                <div class="col">
-                    <h2 class="heading text-center">Discover Our Tour Themes</h2>
-                    <p class="supportive-text mb-0 text-center">Select a theme and customize your tour. Explore various options and create a journey that suits your interests, whether it\'s adventure, culture, wildlife, or relaxation...</p>
-                </div>
-            </div>
+            <div class="col">
+                <div class="row">
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100 shadow-sm">
+                            <img src="assets/images/blogs/1.jpg" class="card-img-top" alt="Sri Lanka Beaches">
+                            <div class="card-body">
+                                <h2 class="card-title">Exploring Sri Lanka’s Beaches</h2>
+                                <p class="card-text">
+                                    Discover the breathtaking coastline of Sri Lanka, from Mirissa to Trincomalee.
+                                </p>
+                                <a href="[[~6]]" class="btn btn-primary">View More</a>
+                            </div>
+                        </div>
+                    </div>
 
-            <div class="row mt-2">
-                <div class="col">
-                    <div class="d-flex justify-content-end mb-3">
-                        <a id="customizeBtn" href="#" class="btn btn-primary d-none">Customize Your Tour</a>
-                    </div>                    
-                    [[!ToursDB]]
+                    <!-- Blog Card 2 -->
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100 shadow-sm">
+                            <img src="assets/images/blogs/2.jpg" class="card-img-top" alt="Sri Lankan Culture">
+                            <div class="card-body">
+                                <h2 class="card-title">The Rich Culture of Sri Lanka</h2>
+                                <p class="card-text">
+                                    A look into traditional dances, festivals, and heritage sites across the island.
+                                </p>
+                                <a href="[[~6]]" class="btn btn-primary">View More</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Blog Card 3 -->
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100 shadow-sm">
+                            <img src="assets/images/blogs/3.jpg" class="card-img-top" alt="Ella Sri Lanka">
+                            <div class="card-body">
+                                <h2 class="card-title">Adventure in Ella</h2>
+                                <p class="card-text">
+                                    Hike through tea plantations, waterfalls, and stunning viewpoints in Ella.
+                                </p>
+                                <a href="[[~6]]" class="btn btn-primary">View More</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
-    <!-- Tour Theme section ends -->
-
-<script>
-document.addEventListener(\'click\', function (e) {
-    if (e.target.classList.contains(\'select-theme-btn\')) {
-        const themeId = e.target.getAttribute(\'data-theme-id\');
-
-        const url = new URL("[[~8]]", window.location.href);
-        url.searchParams.set(\'themes\', themeId);
-
-        window.location.href = url.pathname + url.search;
-    }
-});
-</script>
-
-
+    <!-- Blogs section ends -->
 </body>',
     'richtext' => 1,
     'template' => 2,
-    'menuindex' => 2,
+    'menuindex' => 4,
     'searchable' => 1,
     'cacheable' => 1,
     'createdby' => 1,
-    'createdon' => 1765879148,
+    'createdon' => 1765879444,
     'editedby' => 1,
-    'editedon' => 1766058093,
+    'editedon' => 1765879535,
     'deleted' => 0,
     'deletedon' => 0,
     'deletedby' => 0,
-    'publishedon' => 1765879320,
+    'publishedon' => 1765879440,
     'publishedby' => 1,
     'menutitle' => '',
     'content_dispo' => 0,
@@ -217,52 +231,66 @@ scrollTopBtn.addEventListener(\'click\', () => {
     </nav>
     <!-- Navbar ends-->
 </header>
-<body id="toursPage">
+<body id = "blogPage">
     <!-- Hero starts -->
     <section id="hero">
-        <img src="assets/images/tour-hero.jpg" alt="Explore Vacations - Tours">
+        <img src="assets/images/blog-hero.jpg" alt="Explore Vacations - BLOGS">
         <div class="hero-content">
-            <h1>Tours</h1>
+            <h1>BLOGS</h1>
         </div>
     </section>
     <!-- Hero ends -->
 
-    <!-- Tour Theme section starts -->
-    <section id="tour-theme" class="py-5">
+    <!-- Blogs section starts -->
+    <section id="blogs" class="py-5">
         <div class="container">
-            <div class="row">
-                <div class="col">
-                    <h2 class="heading text-center">Discover Our Tour Themes</h2>
-                    <p class="supportive-text mb-0 text-center">Select a theme and customize your tour. Explore various options and create a journey that suits your interests, whether it\'s adventure, culture, wildlife, or relaxation...</p>
-                </div>
-            </div>
+            <div class="col">
+                <div class="row">
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100 shadow-sm">
+                            <img src="assets/images/blogs/1.jpg" class="card-img-top" alt="Sri Lanka Beaches">
+                            <div class="card-body">
+                                <h2 class="card-title">Exploring Sri Lanka’s Beaches</h2>
+                                <p class="card-text">
+                                    Discover the breathtaking coastline of Sri Lanka, from Mirissa to Trincomalee.
+                                </p>
+                                <a href="index.php?id=6" class="btn btn-primary">View More</a>
+                            </div>
+                        </div>
+                    </div>
 
-            <div class="row mt-2">
-                <div class="col">
-                    <div class="d-flex justify-content-end mb-3">
-                        <a id="customizeBtn" href="#" class="btn btn-primary d-none">Customize Your Tour</a>
-                    </div>                    
-                    [[!ToursDB]]
+                    <!-- Blog Card 2 -->
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100 shadow-sm">
+                            <img src="assets/images/blogs/2.jpg" class="card-img-top" alt="Sri Lankan Culture">
+                            <div class="card-body">
+                                <h2 class="card-title">The Rich Culture of Sri Lanka</h2>
+                                <p class="card-text">
+                                    A look into traditional dances, festivals, and heritage sites across the island.
+                                </p>
+                                <a href="index.php?id=6" class="btn btn-primary">View More</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Blog Card 3 -->
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100 shadow-sm">
+                            <img src="assets/images/blogs/3.jpg" class="card-img-top" alt="Ella Sri Lanka">
+                            <div class="card-body">
+                                <h2 class="card-title">Adventure in Ella</h2>
+                                <p class="card-text">
+                                    Hike through tea plantations, waterfalls, and stunning viewpoints in Ella.
+                                </p>
+                                <a href="index.php?id=6" class="btn btn-primary">View More</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
-    <!-- Tour Theme section ends -->
-
-<script>
-document.addEventListener(\'click\', function (e) {
-    if (e.target.classList.contains(\'select-theme-btn\')) {
-        const themeId = e.target.getAttribute(\'data-theme-id\');
-
-        const url = new URL("index.php?id=8", window.location.href);
-        url.searchParams.set(\'themes\', themeId);
-
-        window.location.href = url.pathname + url.search;
-    }
-});
-</script>
-
-
+    <!-- Blogs section ends -->
 </body>
 <footer>
     <div class="container">
@@ -513,7 +541,7 @@ scrollTopBtn.addEventListener(\'click\', () => {
     </nav>
     <!-- Navbar ends-->
 </header>',
-    '[[~8]]' => 'index.php?id=8',
+    '[[~6]]' => 'index.php?id=6',
     '[[$footer?]]' => '<footer>
     <div class="container">
         <div class="row">
@@ -1173,135 +1201,6 @@ scrollTopBtn.addEventListener(\'click\', () => {
     ),
     'MODX\\Revolution\\modSnippet' => 
     array (
-      'ToursDB' => 
-      array (
-        'fields' => 
-        array (
-          'id' => 3,
-          'source' => 1,
-          'property_preprocess' => false,
-          'name' => 'ToursDB',
-          'description' => '',
-          'editor_type' => 0,
-          'category' => 0,
-          'cache_type' => 0,
-          'snippet' => 'include (\'config-details.php\');
-    include \'assets/includes/db_connect.php\';
-
-    $query = "SELECT * FROM tour_themes";
-    $stmt = $conn->prepare($query);
-    $stmt->execute();
-    $themes = $stmt->fetchAll(PDO::FETCH_ASSOC);
-?>
-
-<?php
-    if (count($themes) > 0) {
-        echo \'<div class="row g-4">\';
-
-        foreach ($themes as $row) {
-
-            $images = json_decode($row[\'theme_images\'], true);
-
-            if (!$images || count($images) === 0) {
-                $imgPath = \'assets/images/default-theme.jpg\';
-            } else {
-                $imgPath = \'assets/\' . ltrim($images[0], \'/\');
-            }
-
-            echo \'
-            <div class="col-md-4 col-lg-3">
-                <div class="theme-card card h-100 shadow-sm selectable-card">
-                    <div class="image-wrapper">
-                        <img src="\' . $imgPath . \'" class="card-img-top" alt="\' . htmlspecialchars($row[\'theme_name\']) . \'">
-                        <div class="overlay">
-                            <button 
-                                class="btn btn-primary select-theme-btn"
-                                data-theme-id="\' . $row[\'id\'] . \'">
-                                Select Theme
-                            </button>
-                        </div>
-                    </div>
-                    <div class="card-body text-center">
-                        <h3 class="card-title">\' . htmlspecialchars($row[\'theme_name\']) . \'</h3>
-                    </div>
-                </div>
-            </div>\';
-        }
-
-        echo \'</div>\';
-    } else {
-        echo "<p class=\'text-center mt-4\'>No tour themes found.</p>";
-    }',
-          'locked' => false,
-          'properties' => 
-          array (
-          ),
-          'moduleguid' => '',
-          'static' => false,
-          'static_file' => '',
-          'content' => 'include (\'config-details.php\');
-    include \'assets/includes/db_connect.php\';
-
-    $query = "SELECT * FROM tour_themes";
-    $stmt = $conn->prepare($query);
-    $stmt->execute();
-    $themes = $stmt->fetchAll(PDO::FETCH_ASSOC);
-?>
-
-<?php
-    if (count($themes) > 0) {
-        echo \'<div class="row g-4">\';
-
-        foreach ($themes as $row) {
-
-            $images = json_decode($row[\'theme_images\'], true);
-
-            if (!$images || count($images) === 0) {
-                $imgPath = \'assets/images/default-theme.jpg\';
-            } else {
-                $imgPath = \'assets/\' . ltrim($images[0], \'/\');
-            }
-
-            echo \'
-            <div class="col-md-4 col-lg-3">
-                <div class="theme-card card h-100 shadow-sm selectable-card">
-                    <div class="image-wrapper">
-                        <img src="\' . $imgPath . \'" class="card-img-top" alt="\' . htmlspecialchars($row[\'theme_name\']) . \'">
-                        <div class="overlay">
-                            <button 
-                                class="btn btn-primary select-theme-btn"
-                                data-theme-id="\' . $row[\'id\'] . \'">
-                                Select Theme
-                            </button>
-                        </div>
-                    </div>
-                    <div class="card-body text-center">
-                        <h3 class="card-title">\' . htmlspecialchars($row[\'theme_name\']) . \'</h3>
-                    </div>
-                </div>
-            </div>\';
-        }
-
-        echo \'</div>\';
-    } else {
-        echo "<p class=\'text-center mt-4\'>No tour themes found.</p>";
-    }',
-        ),
-        'policies' => 
-        array (
-        ),
-        'source' => 
-        array (
-          'id' => 1,
-          'name' => 'Filesystem',
-          'description' => '',
-          'class_key' => 'MODX\\Revolution\\Sources\\modFileMediaSource',
-          'properties' => 
-          array (
-          ),
-          'is_stream' => true,
-        ),
-      ),
     ),
     'MODX\\Revolution\\modTemplateVar' => 
     array (

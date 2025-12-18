@@ -2,12 +2,12 @@
   'resourceClass' => 'MODX\\Revolution\\modDocument',
   'resource' => 
   array (
-    'id' => 3,
+    'id' => 6,
     'type' => 'document',
-    'pagetitle' => 'tours',
+    'pagetitle' => 'blog-details',
     'longtitle' => '',
     'description' => '',
-    'alias' => 'tours',
+    'alias' => 'blog-details',
     'link_attributes' => '',
     'published' => 1,
     'pub_date' => 0,
@@ -15,66 +15,167 @@
     'parent' => 0,
     'isfolder' => 0,
     'introtext' => '',
-    'content' => '<body id="toursPage">
+    'content' => '<body id = "blogDetailPage">
     <!-- Hero starts -->
     <section id="hero">
-        <img src="assets/images/tour-hero.jpg" alt="Explore Vacations - Tours">
+        <img src="assets/images/blog-detail-hero.jpg" alt="Explore Vacations - Blog Details">
         <div class="hero-content">
-            <h1>Tours</h1>
+            <h1>Blog Details</h1>
         </div>
     </section>
     <!-- Hero ends -->
 
-    <!-- Tour Theme section starts -->
-    <section id="tour-theme" class="py-5">
+    <!-- Blog Details Section Starts -->
+    <section id="blog-details" class="py-5">
         <div class="container">
             <div class="row">
-                <div class="col">
-                    <h2 class="heading text-center">Discover Our Tour Themes</h2>
-                    <p class="supportive-text mb-0 text-center">Select a theme and customize your tour. Explore various options and create a journey that suits your interests, whether it\'s adventure, culture, wildlife, or relaxation...</p>
+                <div class="col-lg-8">
+                    <div class="mb-4">
+                        <img src="assets/images/blogs/detail-img.jpg" class="img-fluid rounded" alt="Blog Featured Image">
+                    </div>
+
+                    <!-- Title & Meta -->
+                    <h2 class="fw-bold mb-3">Exploring the Beauty of Sri Lanka</h2>
+                    <div class="text-muted mb-4">
+                        <span class="me-3"><i class="fa-regular fa-user"></i> Admin</span>
+                        <span class="me-3"><i class="fa-regular fa-calendar"></i> December 12, 2025</span>
+                        <span><i class="fa-solid fa-tag"></i> Travel, Sri Lanka</span>
+                    </div>
+
+                    <!-- Blog Body -->
+                    <p>
+                        Sri Lanka is one of the most breathtaking islands in the world, rich with culture,
+                        wildlife, and unforgettable landscapes. From golden beaches to misty mountains, the
+                        island offers a diverse range of experiences for travelers.
+                    </p>
+
+                    <p>
+                        Whether you’re exploring ancient temples in Anuradhapura, hiking through the lush
+                        tea plantations of Ella, or watching the sunset in Galle Fort, each destination
+                        tells a story of heritage and natural beauty.
+                    </p>
+
+                    <!-- Highlighted Quote -->
+                    <blockquote class="blockquote border-start ps-3 my-4">
+                        “Sri Lanka is an island that everyone loves at some level inside themselves.”
+                    </blockquote>
+
+                    <p>
+                        The island’s hospitality is unmatched. Locals warmly welcome visitors and share
+                        their love for traditional food, festivals, and cultural values. Combined with
+                        world-class hotels and scenic train rides, Sri Lanka should be on every traveler’s list.
+                    </p>
+
+                    <!-- Tags -->
+                    <div class="mt-4">
+                        <strong>Tags:</strong>
+                        <a href="#" class="badge bg-secondary text-decoration-none">Sri Lanka</a>
+                        <a href="#" class="badge bg-secondary text-decoration-none">Travel</a>
+                        <a href="#" class="badge bg-secondary text-decoration-none">Culture</a>
+                    </div>
+
+                    <!-- Social Share -->
+                    <div class="mt-4">
+                        <strong>Share:</strong>
+                        <a href="#" class="text-muted ms-3"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="text-muted ms-3"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-muted ms-3"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-muted ms-3"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+
+                <!-- Sidebar -->
+                <div class="col-lg-4">
+                    <div class="card p-3 shadow-sm mb-4">
+                        <h5 class="mb-3">Search</h5>
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Search blogs...">
+                            <button class="btn btn-primary"><i class="fa fa-search"></i></button>
+                        </div>
+                    </div>
+                    <div class="card p-3 shadow-sm mb-4">
+                        <h5 class="mb-3">Recent Posts</h5>
+                        <ul class="list-unstyled">
+                            <li class="mb-3">
+                                <a href="#" class="text-decoration-none">Top 10 Beaches in Sri Lanka</a>
+                            </li>
+                            <li class="mb-3">
+                                <a href="#" class="text-decoration-none">Why Ella Is a Must-Visit</a>
+                            </li>
+                            <li>
+                                <a href="#" class="text-decoration-none">Wildlife Adventures in Yala</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="card p-3 shadow-sm">
+                        <h5 class="mb-3">Categories</h5>
+                        <ul class="list-unstyled">
+                            <li class="mb-2"><a href="#" class="text-decoration-none">Travel</a></li>
+                            <li class="mb-2"><a href="#" class="text-decoration-none">Culture</a></li>
+                            <li class="mb-2"><a href="#" class="text-decoration-none">Adventure</a></li>
+                            <li><a href="#" class="text-decoration-none">Food</a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
 
-            <div class="row mt-2">
-                <div class="col">
-                    <div class="d-flex justify-content-end mb-3">
-                        <a id="customizeBtn" href="#" class="btn btn-primary d-none">Customize Your Tour</a>
-                    </div>                    
-                    [[!ToursDB]]
+            <hr>
+
+            <!-- Related Posts -->
+            <div class="mt-4 related-posts">
+                <h3 class="fw-bold mb-4">Related Blogs</h3>
+                <div class="row">
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100 shadow-sm">
+                            <img src="assets/images/blogs/1.jpg" class="card-img-top" alt="">
+                            <div class="card-body">
+                                <h5 class="card-title">A Guide to Galle Fort</h5>
+                                <p class="card-text">Explore the historic streets, cafes and coastlines.</p>
+                                <a href="#" class="btn btn-primary">View More</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100 shadow-sm">
+                            <img src="assets/images/blogs/2.jpg" class="card-img-top" alt="">
+                            <div class="card-body">
+                                <h5 class="card-title">Hiking in Ella</h5>
+                                <p class="card-text">Scenic mountains and peaceful tea estates.</p>
+                                <a href="#" class="btn btn-primary">View More</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100 shadow-sm">
+                            <img src="assets/images/blogs/3.jpg" class="card-img-top" alt="">
+                            <div class="card-body">
+                                <h5 class="card-title">Sri Lankan Cuisine</h5>
+                                <p class="card-text">A journey through authentic island flavors.</p>
+                                <a href="#" class="btn btn-primary">View More</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
-    <!-- Tour Theme section ends -->
-
-<script>
-document.addEventListener(\'click\', function (e) {
-    if (e.target.classList.contains(\'select-theme-btn\')) {
-        const themeId = e.target.getAttribute(\'data-theme-id\');
-
-        const url = new URL("[[~8]]", window.location.href);
-        url.searchParams.set(\'themes\', themeId);
-
-        window.location.href = url.pathname + url.search;
-    }
-});
-</script>
-
-
+    <!-- Blog Details Section Ends -->
 </body>',
     'richtext' => 1,
     'template' => 2,
-    'menuindex' => 2,
+    'menuindex' => 5,
     'searchable' => 1,
     'cacheable' => 1,
     'createdby' => 1,
-    'createdon' => 1765879148,
+    'createdon' => 1765879495,
     'editedby' => 1,
-    'editedon' => 1766058093,
+    'editedon' => 1765879512,
     'deleted' => 0,
     'deletedon' => 0,
     'deletedby' => 0,
-    'publishedon' => 1765879320,
+    'publishedon' => 1765879512,
     'publishedby' => 1,
     'menutitle' => '',
     'content_dispo' => 0,
@@ -217,52 +318,153 @@ scrollTopBtn.addEventListener(\'click\', () => {
     </nav>
     <!-- Navbar ends-->
 </header>
-<body id="toursPage">
+<body id = "blogDetailPage">
     <!-- Hero starts -->
     <section id="hero">
-        <img src="assets/images/tour-hero.jpg" alt="Explore Vacations - Tours">
+        <img src="assets/images/blog-detail-hero.jpg" alt="Explore Vacations - Blog Details">
         <div class="hero-content">
-            <h1>Tours</h1>
+            <h1>Blog Details</h1>
         </div>
     </section>
     <!-- Hero ends -->
 
-    <!-- Tour Theme section starts -->
-    <section id="tour-theme" class="py-5">
+    <!-- Blog Details Section Starts -->
+    <section id="blog-details" class="py-5">
         <div class="container">
             <div class="row">
-                <div class="col">
-                    <h2 class="heading text-center">Discover Our Tour Themes</h2>
-                    <p class="supportive-text mb-0 text-center">Select a theme and customize your tour. Explore various options and create a journey that suits your interests, whether it\'s adventure, culture, wildlife, or relaxation...</p>
+                <div class="col-lg-8">
+                    <div class="mb-4">
+                        <img src="assets/images/blogs/detail-img.jpg" class="img-fluid rounded" alt="Blog Featured Image">
+                    </div>
+
+                    <!-- Title & Meta -->
+                    <h2 class="fw-bold mb-3">Exploring the Beauty of Sri Lanka</h2>
+                    <div class="text-muted mb-4">
+                        <span class="me-3"><i class="fa-regular fa-user"></i> Admin</span>
+                        <span class="me-3"><i class="fa-regular fa-calendar"></i> December 12, 2025</span>
+                        <span><i class="fa-solid fa-tag"></i> Travel, Sri Lanka</span>
+                    </div>
+
+                    <!-- Blog Body -->
+                    <p>
+                        Sri Lanka is one of the most breathtaking islands in the world, rich with culture,
+                        wildlife, and unforgettable landscapes. From golden beaches to misty mountains, the
+                        island offers a diverse range of experiences for travelers.
+                    </p>
+
+                    <p>
+                        Whether you’re exploring ancient temples in Anuradhapura, hiking through the lush
+                        tea plantations of Ella, or watching the sunset in Galle Fort, each destination
+                        tells a story of heritage and natural beauty.
+                    </p>
+
+                    <!-- Highlighted Quote -->
+                    <blockquote class="blockquote border-start ps-3 my-4">
+                        “Sri Lanka is an island that everyone loves at some level inside themselves.”
+                    </blockquote>
+
+                    <p>
+                        The island’s hospitality is unmatched. Locals warmly welcome visitors and share
+                        their love for traditional food, festivals, and cultural values. Combined with
+                        world-class hotels and scenic train rides, Sri Lanka should be on every traveler’s list.
+                    </p>
+
+                    <!-- Tags -->
+                    <div class="mt-4">
+                        <strong>Tags:</strong>
+                        <a href="#" class="badge bg-secondary text-decoration-none">Sri Lanka</a>
+                        <a href="#" class="badge bg-secondary text-decoration-none">Travel</a>
+                        <a href="#" class="badge bg-secondary text-decoration-none">Culture</a>
+                    </div>
+
+                    <!-- Social Share -->
+                    <div class="mt-4">
+                        <strong>Share:</strong>
+                        <a href="#" class="text-muted ms-3"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="text-muted ms-3"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-muted ms-3"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-muted ms-3"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+
+                <!-- Sidebar -->
+                <div class="col-lg-4">
+                    <div class="card p-3 shadow-sm mb-4">
+                        <h5 class="mb-3">Search</h5>
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Search blogs...">
+                            <button class="btn btn-primary"><i class="fa fa-search"></i></button>
+                        </div>
+                    </div>
+                    <div class="card p-3 shadow-sm mb-4">
+                        <h5 class="mb-3">Recent Posts</h5>
+                        <ul class="list-unstyled">
+                            <li class="mb-3">
+                                <a href="#" class="text-decoration-none">Top 10 Beaches in Sri Lanka</a>
+                            </li>
+                            <li class="mb-3">
+                                <a href="#" class="text-decoration-none">Why Ella Is a Must-Visit</a>
+                            </li>
+                            <li>
+                                <a href="#" class="text-decoration-none">Wildlife Adventures in Yala</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="card p-3 shadow-sm">
+                        <h5 class="mb-3">Categories</h5>
+                        <ul class="list-unstyled">
+                            <li class="mb-2"><a href="#" class="text-decoration-none">Travel</a></li>
+                            <li class="mb-2"><a href="#" class="text-decoration-none">Culture</a></li>
+                            <li class="mb-2"><a href="#" class="text-decoration-none">Adventure</a></li>
+                            <li><a href="#" class="text-decoration-none">Food</a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
 
-            <div class="row mt-2">
-                <div class="col">
-                    <div class="d-flex justify-content-end mb-3">
-                        <a id="customizeBtn" href="#" class="btn btn-primary d-none">Customize Your Tour</a>
-                    </div>                    
-                    [[!ToursDB]]
+            <hr>
+
+            <!-- Related Posts -->
+            <div class="mt-4 related-posts">
+                <h3 class="fw-bold mb-4">Related Blogs</h3>
+                <div class="row">
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100 shadow-sm">
+                            <img src="assets/images/blogs/1.jpg" class="card-img-top" alt="">
+                            <div class="card-body">
+                                <h5 class="card-title">A Guide to Galle Fort</h5>
+                                <p class="card-text">Explore the historic streets, cafes and coastlines.</p>
+                                <a href="#" class="btn btn-primary">View More</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100 shadow-sm">
+                            <img src="assets/images/blogs/2.jpg" class="card-img-top" alt="">
+                            <div class="card-body">
+                                <h5 class="card-title">Hiking in Ella</h5>
+                                <p class="card-text">Scenic mountains and peaceful tea estates.</p>
+                                <a href="#" class="btn btn-primary">View More</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100 shadow-sm">
+                            <img src="assets/images/blogs/3.jpg" class="card-img-top" alt="">
+                            <div class="card-body">
+                                <h5 class="card-title">Sri Lankan Cuisine</h5>
+                                <p class="card-text">A journey through authentic island flavors.</p>
+                                <a href="#" class="btn btn-primary">View More</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
-    <!-- Tour Theme section ends -->
-
-<script>
-document.addEventListener(\'click\', function (e) {
-    if (e.target.classList.contains(\'select-theme-btn\')) {
-        const themeId = e.target.getAttribute(\'data-theme-id\');
-
-        const url = new URL("index.php?id=8", window.location.href);
-        url.searchParams.set(\'themes\', themeId);
-
-        window.location.href = url.pathname + url.search;
-    }
-});
-</script>
-
-
+    <!-- Blog Details Section Ends -->
 </body>
 <footer>
     <div class="container">
@@ -513,7 +715,6 @@ scrollTopBtn.addEventListener(\'click\', () => {
     </nav>
     <!-- Navbar ends-->
 </header>',
-    '[[~8]]' => 'index.php?id=8',
     '[[$footer?]]' => '<footer>
     <div class="container">
         <div class="row">
@@ -803,6 +1004,9 @@ scrollTopBtn.addEventListener(\'click\', () => {
         ),
         'policies' => 
         array (
+          'web' => 
+          array (
+          ),
         ),
         'source' => 
         array (
@@ -929,6 +1133,9 @@ scrollTopBtn.addEventListener(\'click\', () => {
         ),
         'policies' => 
         array (
+          'web' => 
+          array (
+          ),
         ),
         'source' => 
         array (
@@ -1157,6 +1364,9 @@ scrollTopBtn.addEventListener(\'click\', () => {
         ),
         'policies' => 
         array (
+          'web' => 
+          array (
+          ),
         ),
         'source' => 
         array (
@@ -1173,135 +1383,6 @@ scrollTopBtn.addEventListener(\'click\', () => {
     ),
     'MODX\\Revolution\\modSnippet' => 
     array (
-      'ToursDB' => 
-      array (
-        'fields' => 
-        array (
-          'id' => 3,
-          'source' => 1,
-          'property_preprocess' => false,
-          'name' => 'ToursDB',
-          'description' => '',
-          'editor_type' => 0,
-          'category' => 0,
-          'cache_type' => 0,
-          'snippet' => 'include (\'config-details.php\');
-    include \'assets/includes/db_connect.php\';
-
-    $query = "SELECT * FROM tour_themes";
-    $stmt = $conn->prepare($query);
-    $stmt->execute();
-    $themes = $stmt->fetchAll(PDO::FETCH_ASSOC);
-?>
-
-<?php
-    if (count($themes) > 0) {
-        echo \'<div class="row g-4">\';
-
-        foreach ($themes as $row) {
-
-            $images = json_decode($row[\'theme_images\'], true);
-
-            if (!$images || count($images) === 0) {
-                $imgPath = \'assets/images/default-theme.jpg\';
-            } else {
-                $imgPath = \'assets/\' . ltrim($images[0], \'/\');
-            }
-
-            echo \'
-            <div class="col-md-4 col-lg-3">
-                <div class="theme-card card h-100 shadow-sm selectable-card">
-                    <div class="image-wrapper">
-                        <img src="\' . $imgPath . \'" class="card-img-top" alt="\' . htmlspecialchars($row[\'theme_name\']) . \'">
-                        <div class="overlay">
-                            <button 
-                                class="btn btn-primary select-theme-btn"
-                                data-theme-id="\' . $row[\'id\'] . \'">
-                                Select Theme
-                            </button>
-                        </div>
-                    </div>
-                    <div class="card-body text-center">
-                        <h3 class="card-title">\' . htmlspecialchars($row[\'theme_name\']) . \'</h3>
-                    </div>
-                </div>
-            </div>\';
-        }
-
-        echo \'</div>\';
-    } else {
-        echo "<p class=\'text-center mt-4\'>No tour themes found.</p>";
-    }',
-          'locked' => false,
-          'properties' => 
-          array (
-          ),
-          'moduleguid' => '',
-          'static' => false,
-          'static_file' => '',
-          'content' => 'include (\'config-details.php\');
-    include \'assets/includes/db_connect.php\';
-
-    $query = "SELECT * FROM tour_themes";
-    $stmt = $conn->prepare($query);
-    $stmt->execute();
-    $themes = $stmt->fetchAll(PDO::FETCH_ASSOC);
-?>
-
-<?php
-    if (count($themes) > 0) {
-        echo \'<div class="row g-4">\';
-
-        foreach ($themes as $row) {
-
-            $images = json_decode($row[\'theme_images\'], true);
-
-            if (!$images || count($images) === 0) {
-                $imgPath = \'assets/images/default-theme.jpg\';
-            } else {
-                $imgPath = \'assets/\' . ltrim($images[0], \'/\');
-            }
-
-            echo \'
-            <div class="col-md-4 col-lg-3">
-                <div class="theme-card card h-100 shadow-sm selectable-card">
-                    <div class="image-wrapper">
-                        <img src="\' . $imgPath . \'" class="card-img-top" alt="\' . htmlspecialchars($row[\'theme_name\']) . \'">
-                        <div class="overlay">
-                            <button 
-                                class="btn btn-primary select-theme-btn"
-                                data-theme-id="\' . $row[\'id\'] . \'">
-                                Select Theme
-                            </button>
-                        </div>
-                    </div>
-                    <div class="card-body text-center">
-                        <h3 class="card-title">\' . htmlspecialchars($row[\'theme_name\']) . \'</h3>
-                    </div>
-                </div>
-            </div>\';
-        }
-
-        echo \'</div>\';
-    } else {
-        echo "<p class=\'text-center mt-4\'>No tour themes found.</p>";
-    }',
-        ),
-        'policies' => 
-        array (
-        ),
-        'source' => 
-        array (
-          'id' => 1,
-          'name' => 'Filesystem',
-          'description' => '',
-          'class_key' => 'MODX\\Revolution\\Sources\\modFileMediaSource',
-          'properties' => 
-          array (
-          ),
-          'is_stream' => true,
-        ),
-      ),
     ),
     'MODX\\Revolution\\modTemplateVar' => 
     array (

@@ -2,12 +2,12 @@
   'resourceClass' => 'MODX\\Revolution\\modDocument',
   'resource' => 
   array (
-    'id' => 3,
+    'id' => 2,
     'type' => 'document',
-    'pagetitle' => 'tours',
+    'pagetitle' => 'about',
     'longtitle' => '',
     'description' => '',
-    'alias' => 'tours',
+    'alias' => 'index',
     'link_attributes' => '',
     'published' => 1,
     'pub_date' => 0,
@@ -15,66 +15,151 @@
     'parent' => 0,
     'isfolder' => 0,
     'introtext' => '',
-    'content' => '<body id="toursPage">
+    'content' => '<body id = "aboutPage">
     <!-- Hero starts -->
     <section id="hero">
-        <img src="assets/images/tour-hero.jpg" alt="Explore Vacations - Tours">
+        <img src="assets/images/about-hero.jpg" alt="Explore Vacations - About Us">
         <div class="hero-content">
-            <h1>Tours</h1>
+            <h1>About Us</h1>
         </div>
     </section>
     <!-- Hero ends -->
 
-    <!-- Tour Theme section starts -->
-    <section id="tour-theme" class="py-5">
+    <!-- Intro section starts -->
+    <section id="intro-section" class="pt-5">
         <div class="container">
             <div class="row">
-                <div class="col">
-                    <h2 class="heading text-center">Discover Our Tour Themes</h2>
-                    <p class="supportive-text mb-0 text-center">Select a theme and customize your tour. Explore various options and create a journey that suits your interests, whether it\'s adventure, culture, wildlife, or relaxation...</p>
-                </div>
-            </div>
-
-            <div class="row mt-2">
-                <div class="col">
-                    <div class="d-flex justify-content-end mb-3">
-                        <a id="customizeBtn" href="#" class="btn btn-primary d-none">Customize Your Tour</a>
-                    </div>                    
-                    [[!ToursDB]]
+                <div class="col-12">
+                    <p>
+                        "Explore Vacations is dedicated to creating unforgettable travel experiences across Sri Lanka. We design personalized tours that match your interests, pace, and budget. From stunning beaches and lush tea plantations to ancient heritage sites and wildlife safaris, we carefully plan every detail of your journey. Our friendly and experienced team ensures comfortable transport, trusted accommodation, and 24/7 support, so you can relax and enjoy a smooth, memorable, and truly authentic Sri Lankan adventure."
+                    </p>
                 </div>
             </div>
         </div>
     </section>
-    <!-- Tour Theme section ends -->
+    <!-- Intro section ends -->
 
-<script>
-document.addEventListener(\'click\', function (e) {
-    if (e.target.classList.contains(\'select-theme-btn\')) {
-        const themeId = e.target.getAttribute(\'data-theme-id\');
+    <!-- Vision mission section starts -->
+    <section id="vission-mission" class="py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-12 col-md-6 col-lg-7">
+                    <div class="mb-4">
+                        <h2 class="heading">Our Vision</h2>
+                        <p>To be the leading travel company in Sri Lanka, recognized globally for creating meaningful and memorable journeys. We aim to inspire travelers by showcasing Sri Lanka’s rich culture, breathtaking landscapes, and warm hospitality, while delivering world-class, personalized travel experiences that leave a lasting impression.</p>
+                    </div>
 
-        const url = new URL("[[~8]]", window.location.href);
-        url.searchParams.set(\'themes\', themeId);
+                    <div>
+                        <h2 class="heading">Our Mission</h2>
+                        <p>To deliver unforgettable travel experiences by providing personalized travel solutions, reliable customer support, and thoughtfully curated journeys that ensure comfort, safety, and complete customer satisfaction.</p>
+                    </div>
+                </div>
 
-        window.location.href = url.pathname + url.search;
-    }
-});
-</script>
+                <div class="col-12 col-md-6 col-lg-5">
+                    <div id="aboutImageCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="assets/images/about-us.jpg" class="img-fluid rounded" alt="About Us 1">
+                            </div>
 
+                            <div class="carousel-item">
+                                <img src="assets/images/about-us-2.jpg" class="img-fluid rounded" alt="About Us 2">
+                            </div>
 
+                            <div class="carousel-item">
+                                <img src="assets/images/about-us-3.jpg" class="img-fluid rounded" alt="About Us 3">
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Vision mission section ends -->
+
+    <!-- Our Membership section starts -->
+    <section id="our-membership" class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h2 class="heading text-center mb-4">Our Memberships & Affiliations</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-md-4 mb-4 mb-md-0 d-flex justify-content-center">
+                    <img src="assets/images/memberships/1.jpg" alt="Membership 1" class="img-fluid">
+                </div>
+                <div class="col-12 col-md-4 mb-4 mb-md-0 d-flex justify-content-center">
+                    <img src="assets/images/memberships/2.jpg" alt="Membership 2" class="img-fluid">
+                </div>
+                <div class="col-12 col-md-4 mb-4 mb-md-0 d-flex justify-content-center">
+                    <img src="assets/images/memberships/3.jpg" alt="Membership 1" class="img-fluid">
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Our Membership section ends -->
+
+    <!-- Hotel Partners section starts -->
+    <section id="hotel-partners" class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h2 class="heading text-center mb-4">Our Hotel Partners</h2>
+                </div>
+            </div>
+           <div id="hotelPartnersCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2500">
+                <div class="carousel-inner">
+                    <!-- Slide 1 -->
+                    <div class="carousel-item active">
+                        <div class="row text-center">
+                            <div class="col-6 col-md-3"><img src="assets/images/hotels/1.jpg" class="img-fluid" alt=""></div>
+                            <div class="col-6 col-md-3"><img src="assets/images/hotels/2.jpg" class="img-fluid" alt=""></div>
+                            <div class="col-6 col-md-3"><img src="assets/images/hotels/3.jpg" class="img-fluid" alt=""></div>
+                            <div class="col-6 col-md-3"><img src="assets/images/hotels/4.jpg" class="img-fluid" alt=""></div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 2 -->
+                    <div class="carousel-item">
+                        <div class="row text-center">
+                            <div class="col-6 col-md-3"><img src="assets/images/hotels/5.jpg" class="img-fluid" alt=""></div>
+                            <div class="col-6 col-md-3"><img src="assets/images/hotels/6.jpg" class="img-fluid" alt=""></div>
+                            <div class="col-6 col-md-3"><img src="assets/images/hotels/7.jpg" class="img-fluid" alt=""></div>
+                            <div class="col-6 col-md-3"><img src="assets/images/hotels/8.jpg" class="img-fluid" alt=""></div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 3 -->
+                    <div class="carousel-item">
+                        <div class="row text-center">
+                            <div class="col-6 col-md-3"><img src="assets/images/hotels/9.jpg" class="img-fluid" alt=""></div>
+                            <div class="col-6 col-md-3"><img src="assets/images/hotels/10.jpg" class="img-fluid" alt=""></div>
+                            <div class="col-6 col-md-3"><img src="assets/images/hotels/11.jpg" class="img-fluid" alt=""></div>
+                            <div class="col-6 col-md-3"><img src="assets/images/hotels/12.jpg" class="img-fluid" alt=""></div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Hotel Partners section ends -->
 </body>',
     'richtext' => 1,
     'template' => 2,
-    'menuindex' => 2,
+    'menuindex' => 1,
     'searchable' => 1,
     'cacheable' => 1,
     'createdby' => 1,
-    'createdon' => 1765879148,
+    'createdon' => 1765877664,
     'editedby' => 1,
-    'editedon' => 1766058093,
+    'editedon' => 1765905558,
     'deleted' => 0,
     'deletedon' => 0,
     'deletedby' => 0,
-    'publishedon' => 1765879320,
+    'publishedon' => 1765877640,
     'publishedby' => 1,
     'menutitle' => '',
     'content_dispo' => 0,
@@ -217,52 +302,137 @@ scrollTopBtn.addEventListener(\'click\', () => {
     </nav>
     <!-- Navbar ends-->
 </header>
-<body id="toursPage">
+<body id = "aboutPage">
     <!-- Hero starts -->
     <section id="hero">
-        <img src="assets/images/tour-hero.jpg" alt="Explore Vacations - Tours">
+        <img src="assets/images/about-hero.jpg" alt="Explore Vacations - About Us">
         <div class="hero-content">
-            <h1>Tours</h1>
+            <h1>About Us</h1>
         </div>
     </section>
     <!-- Hero ends -->
 
-    <!-- Tour Theme section starts -->
-    <section id="tour-theme" class="py-5">
+    <!-- Intro section starts -->
+    <section id="intro-section" class="pt-5">
         <div class="container">
             <div class="row">
-                <div class="col">
-                    <h2 class="heading text-center">Discover Our Tour Themes</h2>
-                    <p class="supportive-text mb-0 text-center">Select a theme and customize your tour. Explore various options and create a journey that suits your interests, whether it\'s adventure, culture, wildlife, or relaxation...</p>
-                </div>
-            </div>
-
-            <div class="row mt-2">
-                <div class="col">
-                    <div class="d-flex justify-content-end mb-3">
-                        <a id="customizeBtn" href="#" class="btn btn-primary d-none">Customize Your Tour</a>
-                    </div>                    
-                    [[!ToursDB]]
+                <div class="col-12">
+                    <p>
+                        "Explore Vacations is dedicated to creating unforgettable travel experiences across Sri Lanka. We design personalized tours that match your interests, pace, and budget. From stunning beaches and lush tea plantations to ancient heritage sites and wildlife safaris, we carefully plan every detail of your journey. Our friendly and experienced team ensures comfortable transport, trusted accommodation, and 24/7 support, so you can relax and enjoy a smooth, memorable, and truly authentic Sri Lankan adventure."
+                    </p>
                 </div>
             </div>
         </div>
     </section>
-    <!-- Tour Theme section ends -->
+    <!-- Intro section ends -->
 
-<script>
-document.addEventListener(\'click\', function (e) {
-    if (e.target.classList.contains(\'select-theme-btn\')) {
-        const themeId = e.target.getAttribute(\'data-theme-id\');
+    <!-- Vision mission section starts -->
+    <section id="vission-mission" class="py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-12 col-md-6 col-lg-7">
+                    <div class="mb-4">
+                        <h2 class="heading">Our Vision</h2>
+                        <p>To be the leading travel company in Sri Lanka, recognized globally for creating meaningful and memorable journeys. We aim to inspire travelers by showcasing Sri Lanka’s rich culture, breathtaking landscapes, and warm hospitality, while delivering world-class, personalized travel experiences that leave a lasting impression.</p>
+                    </div>
 
-        const url = new URL("index.php?id=8", window.location.href);
-        url.searchParams.set(\'themes\', themeId);
+                    <div>
+                        <h2 class="heading">Our Mission</h2>
+                        <p>To deliver unforgettable travel experiences by providing personalized travel solutions, reliable customer support, and thoughtfully curated journeys that ensure comfort, safety, and complete customer satisfaction.</p>
+                    </div>
+                </div>
 
-        window.location.href = url.pathname + url.search;
-    }
-});
-</script>
+                <div class="col-12 col-md-6 col-lg-5">
+                    <div id="aboutImageCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="assets/images/about-us.jpg" class="img-fluid rounded" alt="About Us 1">
+                            </div>
 
+                            <div class="carousel-item">
+                                <img src="assets/images/about-us-2.jpg" class="img-fluid rounded" alt="About Us 2">
+                            </div>
 
+                            <div class="carousel-item">
+                                <img src="assets/images/about-us-3.jpg" class="img-fluid rounded" alt="About Us 3">
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Vision mission section ends -->
+
+    <!-- Our Membership section starts -->
+    <section id="our-membership" class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h2 class="heading text-center mb-4">Our Memberships & Affiliations</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-md-4 mb-4 mb-md-0 d-flex justify-content-center">
+                    <img src="assets/images/memberships/1.jpg" alt="Membership 1" class="img-fluid">
+                </div>
+                <div class="col-12 col-md-4 mb-4 mb-md-0 d-flex justify-content-center">
+                    <img src="assets/images/memberships/2.jpg" alt="Membership 2" class="img-fluid">
+                </div>
+                <div class="col-12 col-md-4 mb-4 mb-md-0 d-flex justify-content-center">
+                    <img src="assets/images/memberships/3.jpg" alt="Membership 1" class="img-fluid">
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Our Membership section ends -->
+
+    <!-- Hotel Partners section starts -->
+    <section id="hotel-partners" class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h2 class="heading text-center mb-4">Our Hotel Partners</h2>
+                </div>
+            </div>
+           <div id="hotelPartnersCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2500">
+                <div class="carousel-inner">
+                    <!-- Slide 1 -->
+                    <div class="carousel-item active">
+                        <div class="row text-center">
+                            <div class="col-6 col-md-3"><img src="assets/images/hotels/1.jpg" class="img-fluid" alt=""></div>
+                            <div class="col-6 col-md-3"><img src="assets/images/hotels/2.jpg" class="img-fluid" alt=""></div>
+                            <div class="col-6 col-md-3"><img src="assets/images/hotels/3.jpg" class="img-fluid" alt=""></div>
+                            <div class="col-6 col-md-3"><img src="assets/images/hotels/4.jpg" class="img-fluid" alt=""></div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 2 -->
+                    <div class="carousel-item">
+                        <div class="row text-center">
+                            <div class="col-6 col-md-3"><img src="assets/images/hotels/5.jpg" class="img-fluid" alt=""></div>
+                            <div class="col-6 col-md-3"><img src="assets/images/hotels/6.jpg" class="img-fluid" alt=""></div>
+                            <div class="col-6 col-md-3"><img src="assets/images/hotels/7.jpg" class="img-fluid" alt=""></div>
+                            <div class="col-6 col-md-3"><img src="assets/images/hotels/8.jpg" class="img-fluid" alt=""></div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 3 -->
+                    <div class="carousel-item">
+                        <div class="row text-center">
+                            <div class="col-6 col-md-3"><img src="assets/images/hotels/9.jpg" class="img-fluid" alt=""></div>
+                            <div class="col-6 col-md-3"><img src="assets/images/hotels/10.jpg" class="img-fluid" alt=""></div>
+                            <div class="col-6 col-md-3"><img src="assets/images/hotels/11.jpg" class="img-fluid" alt=""></div>
+                            <div class="col-6 col-md-3"><img src="assets/images/hotels/12.jpg" class="img-fluid" alt=""></div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Hotel Partners section ends -->
 </body>
 <footer>
     <div class="container">
@@ -513,7 +683,6 @@ scrollTopBtn.addEventListener(\'click\', () => {
     </nav>
     <!-- Navbar ends-->
 </header>',
-    '[[~8]]' => 'index.php?id=8',
     '[[$footer?]]' => '<footer>
     <div class="container">
         <div class="row">
@@ -803,6 +972,9 @@ scrollTopBtn.addEventListener(\'click\', () => {
         ),
         'policies' => 
         array (
+          'web' => 
+          array (
+          ),
         ),
         'source' => 
         array (
@@ -929,6 +1101,9 @@ scrollTopBtn.addEventListener(\'click\', () => {
         ),
         'policies' => 
         array (
+          'web' => 
+          array (
+          ),
         ),
         'source' => 
         array (
@@ -1157,6 +1332,9 @@ scrollTopBtn.addEventListener(\'click\', () => {
         ),
         'policies' => 
         array (
+          'web' => 
+          array (
+          ),
         ),
         'source' => 
         array (
@@ -1173,135 +1351,6 @@ scrollTopBtn.addEventListener(\'click\', () => {
     ),
     'MODX\\Revolution\\modSnippet' => 
     array (
-      'ToursDB' => 
-      array (
-        'fields' => 
-        array (
-          'id' => 3,
-          'source' => 1,
-          'property_preprocess' => false,
-          'name' => 'ToursDB',
-          'description' => '',
-          'editor_type' => 0,
-          'category' => 0,
-          'cache_type' => 0,
-          'snippet' => 'include (\'config-details.php\');
-    include \'assets/includes/db_connect.php\';
-
-    $query = "SELECT * FROM tour_themes";
-    $stmt = $conn->prepare($query);
-    $stmt->execute();
-    $themes = $stmt->fetchAll(PDO::FETCH_ASSOC);
-?>
-
-<?php
-    if (count($themes) > 0) {
-        echo \'<div class="row g-4">\';
-
-        foreach ($themes as $row) {
-
-            $images = json_decode($row[\'theme_images\'], true);
-
-            if (!$images || count($images) === 0) {
-                $imgPath = \'assets/images/default-theme.jpg\';
-            } else {
-                $imgPath = \'assets/\' . ltrim($images[0], \'/\');
-            }
-
-            echo \'
-            <div class="col-md-4 col-lg-3">
-                <div class="theme-card card h-100 shadow-sm selectable-card">
-                    <div class="image-wrapper">
-                        <img src="\' . $imgPath . \'" class="card-img-top" alt="\' . htmlspecialchars($row[\'theme_name\']) . \'">
-                        <div class="overlay">
-                            <button 
-                                class="btn btn-primary select-theme-btn"
-                                data-theme-id="\' . $row[\'id\'] . \'">
-                                Select Theme
-                            </button>
-                        </div>
-                    </div>
-                    <div class="card-body text-center">
-                        <h3 class="card-title">\' . htmlspecialchars($row[\'theme_name\']) . \'</h3>
-                    </div>
-                </div>
-            </div>\';
-        }
-
-        echo \'</div>\';
-    } else {
-        echo "<p class=\'text-center mt-4\'>No tour themes found.</p>";
-    }',
-          'locked' => false,
-          'properties' => 
-          array (
-          ),
-          'moduleguid' => '',
-          'static' => false,
-          'static_file' => '',
-          'content' => 'include (\'config-details.php\');
-    include \'assets/includes/db_connect.php\';
-
-    $query = "SELECT * FROM tour_themes";
-    $stmt = $conn->prepare($query);
-    $stmt->execute();
-    $themes = $stmt->fetchAll(PDO::FETCH_ASSOC);
-?>
-
-<?php
-    if (count($themes) > 0) {
-        echo \'<div class="row g-4">\';
-
-        foreach ($themes as $row) {
-
-            $images = json_decode($row[\'theme_images\'], true);
-
-            if (!$images || count($images) === 0) {
-                $imgPath = \'assets/images/default-theme.jpg\';
-            } else {
-                $imgPath = \'assets/\' . ltrim($images[0], \'/\');
-            }
-
-            echo \'
-            <div class="col-md-4 col-lg-3">
-                <div class="theme-card card h-100 shadow-sm selectable-card">
-                    <div class="image-wrapper">
-                        <img src="\' . $imgPath . \'" class="card-img-top" alt="\' . htmlspecialchars($row[\'theme_name\']) . \'">
-                        <div class="overlay">
-                            <button 
-                                class="btn btn-primary select-theme-btn"
-                                data-theme-id="\' . $row[\'id\'] . \'">
-                                Select Theme
-                            </button>
-                        </div>
-                    </div>
-                    <div class="card-body text-center">
-                        <h3 class="card-title">\' . htmlspecialchars($row[\'theme_name\']) . \'</h3>
-                    </div>
-                </div>
-            </div>\';
-        }
-
-        echo \'</div>\';
-    } else {
-        echo "<p class=\'text-center mt-4\'>No tour themes found.</p>";
-    }',
-        ),
-        'policies' => 
-        array (
-        ),
-        'source' => 
-        array (
-          'id' => 1,
-          'name' => 'Filesystem',
-          'description' => '',
-          'class_key' => 'MODX\\Revolution\\Sources\\modFileMediaSource',
-          'properties' => 
-          array (
-          ),
-          'is_stream' => true,
-        ),
-      ),
     ),
     'MODX\\Revolution\\modTemplateVar' => 
     array (

@@ -22,15 +22,23 @@
             }
 
             echo \'
-                <div class="col-md-4 col-lg-3">
-                    <div class="theme-card card h-100 shadow-sm selectable-card" data-theme-id="\' . $row[\'id\'] . \'">
+            <div class="col-md-4 col-lg-3">
+                <div class="theme-card card h-100 shadow-sm selectable-card">
+                    <div class="image-wrapper">
                         <img src="\' . $imgPath . \'" class="card-img-top" alt="\' . htmlspecialchars($row[\'theme_name\']) . \'">
-                        <div class="card-body text-center">
-                            <h3 class="card-title">\' . htmlspecialchars($row[\'theme_name\']) . \'</h3>
+                        <div class="overlay">
+                            <button 
+                                class="btn btn-primary select-theme-btn"
+                                data-theme-id="\' . $row[\'id\'] . \'">
+                                Select Theme
+                            </button>
                         </div>
                     </div>
+                    <div class="card-body text-center">
+                        <h3 class="card-title">\' . htmlspecialchars($row[\'theme_name\']) . \'</h3>
+                    </div>
                 </div>
-            \';
+            </div>\';
         }
 
         echo \'</div>\';

@@ -2,12 +2,12 @@
   'resourceClass' => 'MODX\\Revolution\\modDocument',
   'resource' => 
   array (
-    'id' => 3,
+    'id' => 4,
     'type' => 'document',
-    'pagetitle' => 'tours',
+    'pagetitle' => 'faq',
     'longtitle' => '',
     'description' => '',
-    'alias' => 'tours',
+    'alias' => 'faq',
     'link_attributes' => '',
     'published' => 1,
     'pub_date' => 0,
@@ -15,62 +15,176 @@
     'parent' => 0,
     'isfolder' => 0,
     'introtext' => '',
-    'content' => '<body id="toursPage">
+    'content' => '<body id = "faqPage">
     <!-- Hero starts -->
     <section id="hero">
-        <img src="assets/images/tour-hero.jpg" alt="Explore Vacations - Tours">
+        <img src="assets/images/faq-hero.jpg" alt="Explore Vacations - FAQ">
         <div class="hero-content">
-            <h1>Tours</h1>
+            <h1>Frequently Asked Questions</h1>
         </div>
     </section>
     <!-- Hero ends -->
 
-    <!-- Tour Theme section starts -->
-    <section id="tour-theme" class="py-5">
+    <!-- FAQ Intro section starts -->
+    <section id="faq-intro" class="py-5">
         <div class="container">
             <div class="row">
                 <div class="col">
-                    <h2 class="heading text-center">Discover Our Tour Themes</h2>
-                    <p class="supportive-text mb-0 text-center">Select a theme and customize your tour. Explore various options and create a journey that suits your interests, whether it\'s adventure, culture, wildlife, or relaxation...</p>
-                </div>
-            </div>
-
-            <div class="row mt-2">
-                <div class="col">
-                    <div class="d-flex justify-content-end mb-3">
-                        <a id="customizeBtn" href="#" class="btn btn-primary d-none">Customize Your Tour</a>
-                    </div>                    
-                    [[!ToursDB]]
+                    <p>"Discover Sri Lanka with Explore Vacations and make every moment of your trip memorable. From pristine beaches and scenic mountains to vibrant culture and hidden gems, we’re here to guide you through an unforgettable journey. Find answers to common questions and tips that help you travel smoothly and enjoy the island to the fullest."<p>
                 </div>
             </div>
         </div>
     </section>
-    <!-- Tour Theme section ends -->
+    <!-- FAQ Intro section ends -->
 
-<script>
-document.addEventListener(\'click\', function (e) {
-    if (e.target.classList.contains(\'select-theme-btn\')) {
-        const themeId = e.target.getAttribute(\'data-theme-id\');
+    <!-- FAQ section starts -->
+    <section id="faq" class="py-5 bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h2 class="heading text-center mb-2">Frequently Asked Questions</h2>
+                    <p class="text-center mb-4">Explore Vacations makes your Sri Lanka trip unforgettable. Here are answers to common questions.</p>
+                </div>
+            </div>
+            <div class="row mt-2 mt-lg-4 d-flex align-items-center">
+               <div class="col-12 col-md-6 col-lg-4 mb-3 mb-md-0 d-flex align-items-center">
+                    <div class="swiper faq-swiper">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <img src="assets/images/faq-1.png" alt="FAQ image 1" class="img-fluid">
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="assets/images/faq-2.png" alt="FAQ image 2" class="img-fluid">
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="assets/images/faq-3.png" alt="FAQ image 3" class="img-fluid">
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="assets/images/faq-4.png" alt="FAQ image 3" class="img-fluid">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-8">
+                    <div class="accordion" id="faqAccordion">
+                        <!-- FAQ Item 1 -->
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="faqHeadingOne">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapseOne" aria-expanded="true" aria-controls="faqCollapseOne">
+                                    What are the best times to visit Sri Lanka?
+                                </button>
+                            </h2>
+                            <div id="faqCollapseOne" class="accordion-collapse collapse show" aria-labelledby="faqHeadingOne" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    The best time to visit depends on the region. The west and south coasts are ideal from December to March, while the east coast is best from April to September.
+                                </div>
+                            </div>
+                        </div>
 
-        const url = new URL("[[~8]]", window.location.href);
-        url.searchParams.set(\'themes\', themeId);
+                        <!-- FAQ Item 2 -->
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="faqHeadingTwo">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapseTwo" aria-expanded="false" aria-controls="faqCollapseTwo">
+                                    Do you provide guided tours in Sri Lanka?
+                                </button>
+                            </h2>
+                            <div id="faqCollapseTwo" class="accordion-collapse collapse" aria-labelledby="faqHeadingTwo" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Yes! Explore Vacations offers professional guided tours across popular destinations like Colombo, Kandy, Sigiriya, and Ella.
+                                </div>
+                            </div>
+                        </div>
 
-        window.location.href = url.pathname + url.search;
-    }
-});
-</script>
+                        <!-- FAQ Item 3 -->
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="faqHeadingThree">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapseThree" aria-expanded="false" aria-controls="faqCollapseThree">
+                                    Can you customize travel packages?
+                                </button>
+                            </h2>
+                            <div id="faqCollapseThree" class="accordion-collapse collapse" aria-labelledby="faqHeadingThree" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Absolutely! We create tailor-made packages based on your interests, budget, and preferred travel dates.
+                                </div>
+                            </div>
+                        </div>
 
+                        <!-- FAQ Item 4 -->
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="faqHeadingFour">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapseFour" aria-expanded="false" aria-controls="faqCollapseFour">
+                                    Are airport transfers included?
+                                </button>
+                            </h2>
+                            <div id="faqCollapseFour" class="accordion-collapse collapse" aria-labelledby="faqHeadingFour" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Yes, all our packages include comfortable airport transfers to start and end your Sri Lanka journey hassle-free.
+                                </div>
+                            </div>
+                        </div>
 
+                        <!-- FAQ Item 5 -->
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="faqHeadingFive">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapseFive" aria-expanded="false" aria-controls="faqCollapseFive">
+                                    What safety measures are in place for travelers?
+                                </button>
+                            </h2>
+                            <div id="faqCollapseFive" class="accordion-collapse collapse" aria-labelledby="faqHeadingFive" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    We prioritize safety with certified guides, well-maintained vehicles, and adherence to local travel regulations. Your comfort and security are our top priorities.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- FAQ section ends -->
+
+    <!-- Contact section starts -->
+    <section id="contact" class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col d-flex flex-column align-items-center">
+                    <h2 class="heading text-center">Contact Us</h2>
+                    <p class="text-center mb-4">Ready to explore the beauty of Sri Lanka? Start your journey with Explore Vacations today <br> and let us help you plan an unforgettable adventure!</p>
+                    <a href="[[~7]]" class="btn btn-primary">Get In Touch</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Contact section ends -->
+
+    <script>
+        const faqSwiper = new Swiper(\'.faq-swiper\', {
+            loop: true,
+            // spaceBetween: 20,
+            pagination: {
+                el: \'.swiper-pagination\',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: \'.swiper-button-next\',
+                prevEl: \'.swiper-button-prev\',
+            },
+            autoplay: {
+                delay: 2000,
+                disableOnInteraction: false,
+            },
+        });
+    </script>
 </body>',
     'richtext' => 1,
     'template' => 2,
-    'menuindex' => 2,
+    'menuindex' => 3,
     'searchable' => 1,
     'cacheable' => 1,
     'createdby' => 1,
-    'createdon' => 1765879148,
+    'createdon' => 1765879338,
     'editedby' => 1,
-    'editedon' => 1766058093,
+    'editedon' => 1765905598,
     'deleted' => 0,
     'deletedon' => 0,
     'deletedby' => 0,
@@ -217,52 +331,166 @@ scrollTopBtn.addEventListener(\'click\', () => {
     </nav>
     <!-- Navbar ends-->
 </header>
-<body id="toursPage">
+<body id = "faqPage">
     <!-- Hero starts -->
     <section id="hero">
-        <img src="assets/images/tour-hero.jpg" alt="Explore Vacations - Tours">
+        <img src="assets/images/faq-hero.jpg" alt="Explore Vacations - FAQ">
         <div class="hero-content">
-            <h1>Tours</h1>
+            <h1>Frequently Asked Questions</h1>
         </div>
     </section>
     <!-- Hero ends -->
 
-    <!-- Tour Theme section starts -->
-    <section id="tour-theme" class="py-5">
+    <!-- FAQ Intro section starts -->
+    <section id="faq-intro" class="py-5">
         <div class="container">
             <div class="row">
                 <div class="col">
-                    <h2 class="heading text-center">Discover Our Tour Themes</h2>
-                    <p class="supportive-text mb-0 text-center">Select a theme and customize your tour. Explore various options and create a journey that suits your interests, whether it\'s adventure, culture, wildlife, or relaxation...</p>
-                </div>
-            </div>
-
-            <div class="row mt-2">
-                <div class="col">
-                    <div class="d-flex justify-content-end mb-3">
-                        <a id="customizeBtn" href="#" class="btn btn-primary d-none">Customize Your Tour</a>
-                    </div>                    
-                    [[!ToursDB]]
+                    <p>"Discover Sri Lanka with Explore Vacations and make every moment of your trip memorable. From pristine beaches and scenic mountains to vibrant culture and hidden gems, we’re here to guide you through an unforgettable journey. Find answers to common questions and tips that help you travel smoothly and enjoy the island to the fullest."<p>
                 </div>
             </div>
         </div>
     </section>
-    <!-- Tour Theme section ends -->
+    <!-- FAQ Intro section ends -->
 
-<script>
-document.addEventListener(\'click\', function (e) {
-    if (e.target.classList.contains(\'select-theme-btn\')) {
-        const themeId = e.target.getAttribute(\'data-theme-id\');
+    <!-- FAQ section starts -->
+    <section id="faq" class="py-5 bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h2 class="heading text-center mb-2">Frequently Asked Questions</h2>
+                    <p class="text-center mb-4">Explore Vacations makes your Sri Lanka trip unforgettable. Here are answers to common questions.</p>
+                </div>
+            </div>
+            <div class="row mt-2 mt-lg-4 d-flex align-items-center">
+               <div class="col-12 col-md-6 col-lg-4 mb-3 mb-md-0 d-flex align-items-center">
+                    <div class="swiper faq-swiper">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <img src="assets/images/faq-1.png" alt="FAQ image 1" class="img-fluid">
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="assets/images/faq-2.png" alt="FAQ image 2" class="img-fluid">
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="assets/images/faq-3.png" alt="FAQ image 3" class="img-fluid">
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="assets/images/faq-4.png" alt="FAQ image 3" class="img-fluid">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-8">
+                    <div class="accordion" id="faqAccordion">
+                        <!-- FAQ Item 1 -->
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="faqHeadingOne">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapseOne" aria-expanded="true" aria-controls="faqCollapseOne">
+                                    What are the best times to visit Sri Lanka?
+                                </button>
+                            </h2>
+                            <div id="faqCollapseOne" class="accordion-collapse collapse show" aria-labelledby="faqHeadingOne" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    The best time to visit depends on the region. The west and south coasts are ideal from December to March, while the east coast is best from April to September.
+                                </div>
+                            </div>
+                        </div>
 
-        const url = new URL("index.php?id=8", window.location.href);
-        url.searchParams.set(\'themes\', themeId);
+                        <!-- FAQ Item 2 -->
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="faqHeadingTwo">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapseTwo" aria-expanded="false" aria-controls="faqCollapseTwo">
+                                    Do you provide guided tours in Sri Lanka?
+                                </button>
+                            </h2>
+                            <div id="faqCollapseTwo" class="accordion-collapse collapse" aria-labelledby="faqHeadingTwo" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Yes! Explore Vacations offers professional guided tours across popular destinations like Colombo, Kandy, Sigiriya, and Ella.
+                                </div>
+                            </div>
+                        </div>
 
-        window.location.href = url.pathname + url.search;
-    }
-});
-</script>
+                        <!-- FAQ Item 3 -->
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="faqHeadingThree">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapseThree" aria-expanded="false" aria-controls="faqCollapseThree">
+                                    Can you customize travel packages?
+                                </button>
+                            </h2>
+                            <div id="faqCollapseThree" class="accordion-collapse collapse" aria-labelledby="faqHeadingThree" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Absolutely! We create tailor-made packages based on your interests, budget, and preferred travel dates.
+                                </div>
+                            </div>
+                        </div>
 
+                        <!-- FAQ Item 4 -->
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="faqHeadingFour">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapseFour" aria-expanded="false" aria-controls="faqCollapseFour">
+                                    Are airport transfers included?
+                                </button>
+                            </h2>
+                            <div id="faqCollapseFour" class="accordion-collapse collapse" aria-labelledby="faqHeadingFour" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Yes, all our packages include comfortable airport transfers to start and end your Sri Lanka journey hassle-free.
+                                </div>
+                            </div>
+                        </div>
 
+                        <!-- FAQ Item 5 -->
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="faqHeadingFive">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapseFive" aria-expanded="false" aria-controls="faqCollapseFive">
+                                    What safety measures are in place for travelers?
+                                </button>
+                            </h2>
+                            <div id="faqCollapseFive" class="accordion-collapse collapse" aria-labelledby="faqHeadingFive" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    We prioritize safety with certified guides, well-maintained vehicles, and adherence to local travel regulations. Your comfort and security are our top priorities.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- FAQ section ends -->
+
+    <!-- Contact section starts -->
+    <section id="contact" class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col d-flex flex-column align-items-center">
+                    <h2 class="heading text-center">Contact Us</h2>
+                    <p class="text-center mb-4">Ready to explore the beauty of Sri Lanka? Start your journey with Explore Vacations today <br> and let us help you plan an unforgettable adventure!</p>
+                    <a href="index.php?id=7" class="btn btn-primary">Get In Touch</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Contact section ends -->
+
+    <script>
+        const faqSwiper = new Swiper(\'.faq-swiper\', {
+            loop: true,
+            // spaceBetween: 20,
+            pagination: {
+                el: \'.swiper-pagination\',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: \'.swiper-button-next\',
+                prevEl: \'.swiper-button-prev\',
+            },
+            autoplay: {
+                delay: 2000,
+                disableOnInteraction: false,
+            },
+        });
+    </script>
 </body>
 <footer>
     <div class="container">
@@ -513,7 +741,6 @@ scrollTopBtn.addEventListener(\'click\', () => {
     </nav>
     <!-- Navbar ends-->
 </header>',
-    '[[~8]]' => 'index.php?id=8',
     '[[$footer?]]' => '<footer>
     <div class="container">
         <div class="row">
@@ -803,6 +1030,9 @@ scrollTopBtn.addEventListener(\'click\', () => {
         ),
         'policies' => 
         array (
+          'web' => 
+          array (
+          ),
         ),
         'source' => 
         array (
@@ -929,6 +1159,9 @@ scrollTopBtn.addEventListener(\'click\', () => {
         ),
         'policies' => 
         array (
+          'web' => 
+          array (
+          ),
         ),
         'source' => 
         array (
@@ -1157,6 +1390,9 @@ scrollTopBtn.addEventListener(\'click\', () => {
         ),
         'policies' => 
         array (
+          'web' => 
+          array (
+          ),
         ),
         'source' => 
         array (
@@ -1173,135 +1409,6 @@ scrollTopBtn.addEventListener(\'click\', () => {
     ),
     'MODX\\Revolution\\modSnippet' => 
     array (
-      'ToursDB' => 
-      array (
-        'fields' => 
-        array (
-          'id' => 3,
-          'source' => 1,
-          'property_preprocess' => false,
-          'name' => 'ToursDB',
-          'description' => '',
-          'editor_type' => 0,
-          'category' => 0,
-          'cache_type' => 0,
-          'snippet' => 'include (\'config-details.php\');
-    include \'assets/includes/db_connect.php\';
-
-    $query = "SELECT * FROM tour_themes";
-    $stmt = $conn->prepare($query);
-    $stmt->execute();
-    $themes = $stmt->fetchAll(PDO::FETCH_ASSOC);
-?>
-
-<?php
-    if (count($themes) > 0) {
-        echo \'<div class="row g-4">\';
-
-        foreach ($themes as $row) {
-
-            $images = json_decode($row[\'theme_images\'], true);
-
-            if (!$images || count($images) === 0) {
-                $imgPath = \'assets/images/default-theme.jpg\';
-            } else {
-                $imgPath = \'assets/\' . ltrim($images[0], \'/\');
-            }
-
-            echo \'
-            <div class="col-md-4 col-lg-3">
-                <div class="theme-card card h-100 shadow-sm selectable-card">
-                    <div class="image-wrapper">
-                        <img src="\' . $imgPath . \'" class="card-img-top" alt="\' . htmlspecialchars($row[\'theme_name\']) . \'">
-                        <div class="overlay">
-                            <button 
-                                class="btn btn-primary select-theme-btn"
-                                data-theme-id="\' . $row[\'id\'] . \'">
-                                Select Theme
-                            </button>
-                        </div>
-                    </div>
-                    <div class="card-body text-center">
-                        <h3 class="card-title">\' . htmlspecialchars($row[\'theme_name\']) . \'</h3>
-                    </div>
-                </div>
-            </div>\';
-        }
-
-        echo \'</div>\';
-    } else {
-        echo "<p class=\'text-center mt-4\'>No tour themes found.</p>";
-    }',
-          'locked' => false,
-          'properties' => 
-          array (
-          ),
-          'moduleguid' => '',
-          'static' => false,
-          'static_file' => '',
-          'content' => 'include (\'config-details.php\');
-    include \'assets/includes/db_connect.php\';
-
-    $query = "SELECT * FROM tour_themes";
-    $stmt = $conn->prepare($query);
-    $stmt->execute();
-    $themes = $stmt->fetchAll(PDO::FETCH_ASSOC);
-?>
-
-<?php
-    if (count($themes) > 0) {
-        echo \'<div class="row g-4">\';
-
-        foreach ($themes as $row) {
-
-            $images = json_decode($row[\'theme_images\'], true);
-
-            if (!$images || count($images) === 0) {
-                $imgPath = \'assets/images/default-theme.jpg\';
-            } else {
-                $imgPath = \'assets/\' . ltrim($images[0], \'/\');
-            }
-
-            echo \'
-            <div class="col-md-4 col-lg-3">
-                <div class="theme-card card h-100 shadow-sm selectable-card">
-                    <div class="image-wrapper">
-                        <img src="\' . $imgPath . \'" class="card-img-top" alt="\' . htmlspecialchars($row[\'theme_name\']) . \'">
-                        <div class="overlay">
-                            <button 
-                                class="btn btn-primary select-theme-btn"
-                                data-theme-id="\' . $row[\'id\'] . \'">
-                                Select Theme
-                            </button>
-                        </div>
-                    </div>
-                    <div class="card-body text-center">
-                        <h3 class="card-title">\' . htmlspecialchars($row[\'theme_name\']) . \'</h3>
-                    </div>
-                </div>
-            </div>\';
-        }
-
-        echo \'</div>\';
-    } else {
-        echo "<p class=\'text-center mt-4\'>No tour themes found.</p>";
-    }',
-        ),
-        'policies' => 
-        array (
-        ),
-        'source' => 
-        array (
-          'id' => 1,
-          'name' => 'Filesystem',
-          'description' => '',
-          'class_key' => 'MODX\\Revolution\\Sources\\modFileMediaSource',
-          'properties' => 
-          array (
-          ),
-          'is_stream' => true,
-        ),
-      ),
     ),
     'MODX\\Revolution\\modTemplateVar' => 
     array (

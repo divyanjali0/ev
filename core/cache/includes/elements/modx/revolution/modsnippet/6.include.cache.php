@@ -67,6 +67,11 @@ include ('config-details.php');
 
 <head>
     <style>
+
+.is-invalid {
+    border-color: #dc3545;
+}
+
         .dropdown-menu {
             display: none;
             max-height: 0;
@@ -412,8 +417,13 @@ include ('config-details.php');
                             </div>
                         </div>
                         <div class="row">
+                            <div class="col-12">
+                                <div id="formError" class="alert alert-danger d-none"></div>
+                            </div>
                             <div class="col d-flex justify-content-end">
-                                <button class="btn btn-primary submit-button">Submit</button>
+                                <button type="submit" class="btn btn-primary submit-button">
+                                    Submit
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -614,6 +624,109 @@ include ('config-details.php');
                 unset($_SESSION['itinerary_success'], $_SESSION['pdf_to_download']);
                 ?>
             <?php endif; ?>
+        });
+    </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const form = document.getElementById("customTourForm");
+            const submitBtn = form.querySelector(".submit-button");
+            const errorBox = document.getElementById("formError");
+
+            form.addEventListener("submit", function (e) {
+                errorBox.classList.add("d-none");
+                errorBox.innerHTML = "";
+
+                let errors = [];
+
+                // ======================
+                // Basic required fields
+                // ======================
+                const requiredFields = [
+                    { id: "pickupLocation", label: "Pickup Location" },
+                    { id: "dropoffLocation", label: "Dropoff Location" },
+                    { id: "title", label: "Title" },
+                    { id: "fullName", label: "Full Name" },
+                    { id: "email", label: "Email" },
+                    { id: "whatsappCode", label: "WhatsApp Code" },
+                    { id: "whatsapp", label: "WhatsApp Number" },
+                    { id: "country", label: "Country" },
+                    { id: "nationality", label: "Nationality" },
+                    { id: "flightNumber", label: "Flight Number" }
+                ];
+
+                requiredFields.forEach(field => {
+                    const el = document.getElementById(field.id);
+                    if (!el || !el.value.trim()) {
+                        errors.push(field.label);
+                        el?.classList.add("is-invalid");
+                    } else {
+                        el.classList.remove("is-invalid");
+                    }
+                });
+
+                // ======================
+                // Dates validation
+                // ======================
+                const startDate = document.querySelector('input[name="start_date"]');
+                const endDate   = document.querySelector('input[name="end_date"]');
+                const nights    = document.querySelector('input[name="nights"]');
+
+                if (!startDate.value) errors.push("Start Date");
+                if (!endDate.value) errors.push("End Date");
+                if (!nights.value) errors.push("Number of Nights");
+
+                // ======================
+                // Hotel rating
+                // ======================
+                if (!document.querySelector('input[name="hotelRating"]:checked')) {
+                    errors.push("Preferred Hotel Rating");
+                }
+
+                // ======================
+                // Meal plan
+                // ======================
+                if (!document.querySelector('input[name="mealPlan"]:checked')) {
+                    errors.push("Meal Plan");
+                }
+
+                // ======================
+                // Allergy issues
+                // ======================
+                const allergyYes = document.getElementById("mealAllergyYes");
+                const allergyNo  = document.getElementById("mealAllergyNo");
+                const allergyReason = document.querySelector('input[name="allergy_reason"]');
+
+                if (!allergyYes.checked && !allergyNo.checked) {
+                    errors.push("Meal Allergy Selection");
+                }
+
+                if (allergyYes.checked && (!allergyReason || !allergyReason.value.trim())) {
+                    errors.push("Allergy Details");
+                    allergyReason?.classList.add("is-invalid");
+                } else {
+                    allergyReason?.classList.remove("is-invalid");
+                }
+
+                if (errors.length > 0) {
+                    e.preventDefault();
+
+                    errorBox.innerHTML = `
+                        <strong>Please fill the following required fields:</strong>
+                        <ul class="mb-0">
+                            ${[...new Set(errors)].map(e => `<li>${e}</li>`).join("")}
+                        </ul>
+                    `;
+                    errorBox.classList.remove("d-none");
+
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = "Submit";
+                    return;
+                }
+
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = "Submitting...";
+            });
         });
     </script>
 </body>

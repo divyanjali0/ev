@@ -2,12 +2,12 @@
   'resourceClass' => 'MODX\\Revolution\\modDocument',
   'resource' => 
   array (
-    'id' => 3,
+    'id' => 7,
     'type' => 'document',
-    'pagetitle' => 'tours',
+    'pagetitle' => 'contact-us',
     'longtitle' => '',
     'description' => '',
-    'alias' => 'tours',
+    'alias' => 'contact-us',
     'link_attributes' => '',
     'published' => 1,
     'pub_date' => 0,
@@ -15,66 +15,57 @@
     'parent' => 0,
     'isfolder' => 0,
     'introtext' => '',
-    'content' => '<body id="toursPage">
+    'content' => '
+<body id="contactPage">
     <!-- Hero starts -->
     <section id="hero">
-        <img src="assets/images/tour-hero.jpg" alt="Explore Vacations - Tours">
+        <img src="assets/images/contact-hero.jpg" alt="Explore Vacations - Contact Us">
         <div class="hero-content">
-            <h1>Tours</h1>
+            <h1>Contact Us</h1>
         </div>
     </section>
     <!-- Hero ends -->
 
-    <!-- Tour Theme section starts -->
-    <section id="tour-theme" class="py-5">
+    <!-- Contact us starts -->
+    <section id="contactContent" class="py-5 pb-xl-0">
         <div class="container">
             <div class="row">
-                <div class="col">
-                    <h2 class="heading text-center">Discover Our Tour Themes</h2>
-                    <p class="supportive-text mb-0 text-center">Select a theme and customize your tour. Explore various options and create a journey that suits your interests, whether it\'s adventure, culture, wildlife, or relaxation...</p>
+                <div class="col-12">
+                    <h2 class="heading" data-aos="fade-down">Get in touch with us</p>
                 </div>
             </div>
-
-            <div class="row mt-2">
-                <div class="col">
-                    <div class="d-flex justify-content-end mb-3">
-                        <a id="customizeBtn" href="#" class="btn btn-primary d-none">Customize Your Tour</a>
-                    </div>                    
-                    [[!ToursDB]]
+            <div class="row">
+                <p class="justify-text">Have questions related to your adventures? We\'re here to assist you every step of the way. Contact us today to plan your tours or personalized adventures. Our dedicated team is eager to make your journey memorable, so don\'t hesitate to get in touch with us. Let your experience begins with just a click or a call!</p>
+                <div class="img-container col-12 col-lg-5 order-lg-2" data-aos="fade-left">
+                    <img src="assets/images/contact-form-img.png" alt="Explore Vacations - contact image" class= "img-fluid">
+                </div>
+                <div class="col-12 col-lg-7 pt-3">
+                    <form action="[[~7]]" method="POST" data-aos="fade-right">
+                        [[!ContactUs]]
+                    </form>
                 </div>
             </div>
         </div>
     </section>
-    <!-- Tour Theme section ends -->
+    <!-- Contact us ends -->
 
-<script>
-document.addEventListener(\'click\', function (e) {
-    if (e.target.classList.contains(\'select-theme-btn\')) {
-        const themeId = e.target.getAttribute(\'data-theme-id\');
-
-        const url = new URL("[[~8]]", window.location.href);
-        url.searchParams.set(\'themes\', themeId);
-
-        window.location.href = url.pathname + url.search;
-    }
-});
-</script>
-
-
+    <div style="margin-bottom: -22px;">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3958.971585687321!2d79.87321017581856!3d7.129283315825712!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae2f04b1fa95fa5%3A0x42cca08eb23de111!2sExplore%20Vacations%20Sri%20Lanka!5e0!3m2!1sen!2slk!4v1765448477674!5m2!1sen!2slk" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
 </body>',
     'richtext' => 1,
     'template' => 2,
-    'menuindex' => 2,
+    'menuindex' => 6,
     'searchable' => 1,
     'cacheable' => 1,
     'createdby' => 1,
-    'createdon' => 1765879148,
+    'createdon' => 1765879553,
     'editedby' => 1,
-    'editedon' => 1766058093,
+    'editedon' => 1765880585,
     'deleted' => 0,
     'deletedon' => 0,
     'deletedby' => 0,
-    'publishedon' => 1765879320,
+    'publishedon' => 1765879560,
     'publishedby' => 1,
     'menutitle' => '',
     'content_dispo' => 0,
@@ -217,52 +208,43 @@ scrollTopBtn.addEventListener(\'click\', () => {
     </nav>
     <!-- Navbar ends-->
 </header>
-<body id="toursPage">
+
+<body id="contactPage">
     <!-- Hero starts -->
     <section id="hero">
-        <img src="assets/images/tour-hero.jpg" alt="Explore Vacations - Tours">
+        <img src="assets/images/contact-hero.jpg" alt="Explore Vacations - Contact Us">
         <div class="hero-content">
-            <h1>Tours</h1>
+            <h1>Contact Us</h1>
         </div>
     </section>
     <!-- Hero ends -->
 
-    <!-- Tour Theme section starts -->
-    <section id="tour-theme" class="py-5">
+    <!-- Contact us starts -->
+    <section id="contactContent" class="py-5 pb-xl-0">
         <div class="container">
             <div class="row">
-                <div class="col">
-                    <h2 class="heading text-center">Discover Our Tour Themes</h2>
-                    <p class="supportive-text mb-0 text-center">Select a theme and customize your tour. Explore various options and create a journey that suits your interests, whether it\'s adventure, culture, wildlife, or relaxation...</p>
+                <div class="col-12">
+                    <h2 class="heading" data-aos="fade-down">Get in touch with us</p>
                 </div>
             </div>
-
-            <div class="row mt-2">
-                <div class="col">
-                    <div class="d-flex justify-content-end mb-3">
-                        <a id="customizeBtn" href="#" class="btn btn-primary d-none">Customize Your Tour</a>
-                    </div>                    
-                    [[!ToursDB]]
+            <div class="row">
+                <p class="justify-text">Have questions related to your adventures? We\'re here to assist you every step of the way. Contact us today to plan your tours or personalized adventures. Our dedicated team is eager to make your journey memorable, so don\'t hesitate to get in touch with us. Let your experience begins with just a click or a call!</p>
+                <div class="img-container col-12 col-lg-5 order-lg-2" data-aos="fade-left">
+                    <img src="assets/images/contact-form-img.png" alt="Explore Vacations - contact image" class= "img-fluid">
+                </div>
+                <div class="col-12 col-lg-7 pt-3">
+                    <form action="index.php?id=7" method="POST" data-aos="fade-right">
+                        [[!ContactUs]]
+                    </form>
                 </div>
             </div>
         </div>
     </section>
-    <!-- Tour Theme section ends -->
+    <!-- Contact us ends -->
 
-<script>
-document.addEventListener(\'click\', function (e) {
-    if (e.target.classList.contains(\'select-theme-btn\')) {
-        const themeId = e.target.getAttribute(\'data-theme-id\');
-
-        const url = new URL("index.php?id=8", window.location.href);
-        url.searchParams.set(\'themes\', themeId);
-
-        window.location.href = url.pathname + url.search;
-    }
-});
-</script>
-
-
+    <div style="margin-bottom: -22px;">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3958.971585687321!2d79.87321017581856!3d7.129283315825712!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae2f04b1fa95fa5%3A0x42cca08eb23de111!2sExplore%20Vacations%20Sri%20Lanka!5e0!3m2!1sen!2slk!4v1765448477674!5m2!1sen!2slk" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
 </body>
 <footer>
     <div class="container">
@@ -513,7 +495,6 @@ scrollTopBtn.addEventListener(\'click\', () => {
     </nav>
     <!-- Navbar ends-->
 </header>',
-    '[[~8]]' => 'index.php?id=8',
     '[[$footer?]]' => '<footer>
     <div class="container">
         <div class="row">
@@ -1173,65 +1154,165 @@ scrollTopBtn.addEventListener(\'click\', () => {
     ),
     'MODX\\Revolution\\modSnippet' => 
     array (
-      'ToursDB' => 
+      'ContactUs' => 
       array (
         'fields' => 
         array (
-          'id' => 3,
+          'id' => 4,
           'source' => 1,
           'property_preprocess' => false,
-          'name' => 'ToursDB',
+          'name' => 'ContactUs',
           'description' => '',
           'editor_type' => 0,
           'category' => 0,
           'cache_type' => 0,
-          'snippet' => 'include (\'config-details.php\');
-    include \'assets/includes/db_connect.php\';
+          'snippet' => 'ob_start();
 
-    $query = "SELECT * FROM tour_themes";
-    $stmt = $conn->prepare($query);
-    $stmt->execute();
-    $themes = $stmt->fetchAll(PDO::FETCH_ASSOC);
+include(\'config-details.php\');
+include(\'assets/classes/EmailSender.php\');
+
+$errors = [];
+$successMessage = \'\';
+$errorMessage = \'\';
+
+$name = $email = $phone = $message = \'\';
+$recaptcha_response = \'\';
+
+// Handle form submission
+if ($_SERVER[\'REQUEST_METHOD\'] === \'POST\') {
+
+    $name    = test_input($_POST[\'name\'] ?? \'\');
+    $email   = test_input($_POST[\'email\'] ?? \'\');
+    $phone   = preg_replace(\'/\\D+/\', \'\', $_POST[\'phone\'] ?? \'\');
+    $message = test_input($_POST[\'message\'] ?? \'\');
+    $recaptcha_response = $_POST[\'recaptchaResponse\'] ?? \'\';
+
+    if (!verifyRecaptcha($recaptcha_response)) {
+        $errors[\'recaptcha\'] = "reCAPTCHA validation failed.";
+    }
+
+    if (empty($name)) {
+        $errors[\'name\'] = "Name is required";
+    }
+
+    if (empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $errors[\'email\'] = "Enter a valid email address";
+    }
+
+    if (empty($phone)) {
+        $errors[\'phone\'] = "Contact number is required";
+    }
+
+    if (empty($message)) {
+        $errors[\'message\'] = "Message is required";
+    }
+
+    if (empty($errors)) {
+        $emailSender = new EmailSender();
+        $emailTo = SMTP_USERNAME;
+        $emailSubject = \'Contact Form Message\';
+
+        $emailContent = "
+            <table cellpadding=\'6\'>
+                <tr><td><b>Name</b></td><td>{$name}</td></tr>
+                <tr><td><b>Email</b></td><td>{$email}</td></tr>
+                <tr><td><b>Phone</b></td><td>{$phone}</td></tr>
+                <tr><td><b>Message</b></td><td>".nl2br($message)."</td></tr>
+            </table>
+        ";
+
+        if ($emailSender->sendEmail($emailTo, $emailSubject, $emailContent)) {
+            $successMessage = "Your message has been sent successfully!";
+            $name = $email = $phone = $message = \'\';
+        } else {
+            $errorMessage = "Sorry, there was an issue sending your message.";
+        }
+    }
+}
 ?>
 
+<div class="row">
+
+    <!-- Success / Error Messages -->
+    <div class="col-12">
+        <?php if (!empty($successMessage)): ?>
+            <div class="alert alert-success alert-dismissible fade show text-center">
+                <?= $successMessage ?>
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        <?php elseif (!empty($errorMessage)): ?>
+            <div class="alert alert-danger alert-dismissible fade show text-center">
+                <?= $errorMessage ?>
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        <?php endif; ?>
+    </div>
+
+    <!-- Name -->
+    <div class="col-12 my-3">
+        <label class="form-label">Name<span class="text-danger">*</span></label>
+        <input type="text" name="name" class="form-control" value="<?= htmlspecialchars($name) ?>">
+        <?php if (!empty($errors[\'name\'])): ?>
+            <small class="text-danger"><?= $errors[\'name\'] ?></small>
+        <?php endif; ?>
+    </div>
+
+    <!-- Email -->
+    <div class="col-md-6 my-3">
+        <label class="form-label">Email<span class="text-danger">*</span></label>
+        <input type="email" name="email" class="form-control" value="<?= htmlspecialchars($email) ?>">
+        <?php if (!empty($errors[\'email\'])): ?>
+            <small class="text-danger"><?= $errors[\'email\'] ?></small>
+        <?php endif; ?>
+    </div>
+
+    <!-- Phone -->
+    <div class="col-md-6 my-3">
+        <label class="form-label">Phone<span class="text-danger">*</span></label>
+        <input type="tel" name="phone" class="form-control" value="<?= htmlspecialchars($phone) ?>">
+        <?php if (!empty($errors[\'phone\'])): ?>
+            <small class="text-danger"><?= $errors[\'phone\'] ?></small>
+        <?php endif; ?>
+    </div>
+
+    <!-- Message -->
+    <div class="col-12 my-3">
+        <label class="form-label">Message<span class="text-danger">*</span></label>
+        <textarea name="message" rows="5" class="form-control"><?= htmlspecialchars($message) ?></textarea>
+        <?php if (!empty($errors[\'message\'])): ?>
+            <small class="text-danger"><?= $errors[\'message\'] ?></small>
+        <?php endif; ?>
+    </div>
+
+    <!-- reCAPTCHA -->
+    <input type="hidden" name="recaptchaResponse" id="recaptchaResponse">
+    <?php if (!empty($errors[\'recaptcha\'])): ?>
+        <div class="col-12">
+            <small class="text-danger"><?= $errors[\'recaptcha\'] ?></small>
+        </div>
+    <?php endif; ?>
+
+    <!-- Submit -->
+    <div class="col-12 mt-4">
+        <input type="submit" name="submit" value="Send Message">
+    </div>
+</div>
+
+
+
+<!-- Google reCAPTCHA -->
+<script src="https://www.google.com/recaptcha/api.js?render=<?= GOOGLE_RECAPTCHA_SITE_KEY ?>"></script>
+<script>
+    grecaptcha.ready(function() {
+        grecaptcha.execute(\'<?= GOOGLE_RECAPTCHA_SITE_KEY ?>\', {action: \'submit\'}).then(function(token) {
+            document.getElementById(\'recaptchaResponse\').value = token;
+        });
+    });
+</script>
+
+
 <?php
-    if (count($themes) > 0) {
-        echo \'<div class="row g-4">\';
-
-        foreach ($themes as $row) {
-
-            $images = json_decode($row[\'theme_images\'], true);
-
-            if (!$images || count($images) === 0) {
-                $imgPath = \'assets/images/default-theme.jpg\';
-            } else {
-                $imgPath = \'assets/\' . ltrim($images[0], \'/\');
-            }
-
-            echo \'
-            <div class="col-md-4 col-lg-3">
-                <div class="theme-card card h-100 shadow-sm selectable-card">
-                    <div class="image-wrapper">
-                        <img src="\' . $imgPath . \'" class="card-img-top" alt="\' . htmlspecialchars($row[\'theme_name\']) . \'">
-                        <div class="overlay">
-                            <button 
-                                class="btn btn-primary select-theme-btn"
-                                data-theme-id="\' . $row[\'id\'] . \'">
-                                Select Theme
-                            </button>
-                        </div>
-                    </div>
-                    <div class="card-body text-center">
-                        <h3 class="card-title">\' . htmlspecialchars($row[\'theme_name\']) . \'</h3>
-                    </div>
-                </div>
-            </div>\';
-        }
-
-        echo \'</div>\';
-    } else {
-        echo "<p class=\'text-center mt-4\'>No tour themes found.</p>";
-    }',
+return ob_get_clean();',
           'locked' => false,
           'properties' => 
           array (
@@ -1239,53 +1320,153 @@ scrollTopBtn.addEventListener(\'click\', () => {
           'moduleguid' => '',
           'static' => false,
           'static_file' => '',
-          'content' => 'include (\'config-details.php\');
-    include \'assets/includes/db_connect.php\';
+          'content' => 'ob_start();
 
-    $query = "SELECT * FROM tour_themes";
-    $stmt = $conn->prepare($query);
-    $stmt->execute();
-    $themes = $stmt->fetchAll(PDO::FETCH_ASSOC);
+include(\'config-details.php\');
+include(\'assets/classes/EmailSender.php\');
+
+$errors = [];
+$successMessage = \'\';
+$errorMessage = \'\';
+
+$name = $email = $phone = $message = \'\';
+$recaptcha_response = \'\';
+
+// Handle form submission
+if ($_SERVER[\'REQUEST_METHOD\'] === \'POST\') {
+
+    $name    = test_input($_POST[\'name\'] ?? \'\');
+    $email   = test_input($_POST[\'email\'] ?? \'\');
+    $phone   = preg_replace(\'/\\D+/\', \'\', $_POST[\'phone\'] ?? \'\');
+    $message = test_input($_POST[\'message\'] ?? \'\');
+    $recaptcha_response = $_POST[\'recaptchaResponse\'] ?? \'\';
+
+    if (!verifyRecaptcha($recaptcha_response)) {
+        $errors[\'recaptcha\'] = "reCAPTCHA validation failed.";
+    }
+
+    if (empty($name)) {
+        $errors[\'name\'] = "Name is required";
+    }
+
+    if (empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $errors[\'email\'] = "Enter a valid email address";
+    }
+
+    if (empty($phone)) {
+        $errors[\'phone\'] = "Contact number is required";
+    }
+
+    if (empty($message)) {
+        $errors[\'message\'] = "Message is required";
+    }
+
+    if (empty($errors)) {
+        $emailSender = new EmailSender();
+        $emailTo = SMTP_USERNAME;
+        $emailSubject = \'Contact Form Message\';
+
+        $emailContent = "
+            <table cellpadding=\'6\'>
+                <tr><td><b>Name</b></td><td>{$name}</td></tr>
+                <tr><td><b>Email</b></td><td>{$email}</td></tr>
+                <tr><td><b>Phone</b></td><td>{$phone}</td></tr>
+                <tr><td><b>Message</b></td><td>".nl2br($message)."</td></tr>
+            </table>
+        ";
+
+        if ($emailSender->sendEmail($emailTo, $emailSubject, $emailContent)) {
+            $successMessage = "Your message has been sent successfully!";
+            $name = $email = $phone = $message = \'\';
+        } else {
+            $errorMessage = "Sorry, there was an issue sending your message.";
+        }
+    }
+}
 ?>
 
+<div class="row">
+
+    <!-- Success / Error Messages -->
+    <div class="col-12">
+        <?php if (!empty($successMessage)): ?>
+            <div class="alert alert-success alert-dismissible fade show text-center">
+                <?= $successMessage ?>
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        <?php elseif (!empty($errorMessage)): ?>
+            <div class="alert alert-danger alert-dismissible fade show text-center">
+                <?= $errorMessage ?>
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        <?php endif; ?>
+    </div>
+
+    <!-- Name -->
+    <div class="col-12 my-3">
+        <label class="form-label">Name<span class="text-danger">*</span></label>
+        <input type="text" name="name" class="form-control" value="<?= htmlspecialchars($name) ?>">
+        <?php if (!empty($errors[\'name\'])): ?>
+            <small class="text-danger"><?= $errors[\'name\'] ?></small>
+        <?php endif; ?>
+    </div>
+
+    <!-- Email -->
+    <div class="col-md-6 my-3">
+        <label class="form-label">Email<span class="text-danger">*</span></label>
+        <input type="email" name="email" class="form-control" value="<?= htmlspecialchars($email) ?>">
+        <?php if (!empty($errors[\'email\'])): ?>
+            <small class="text-danger"><?= $errors[\'email\'] ?></small>
+        <?php endif; ?>
+    </div>
+
+    <!-- Phone -->
+    <div class="col-md-6 my-3">
+        <label class="form-label">Phone<span class="text-danger">*</span></label>
+        <input type="tel" name="phone" class="form-control" value="<?= htmlspecialchars($phone) ?>">
+        <?php if (!empty($errors[\'phone\'])): ?>
+            <small class="text-danger"><?= $errors[\'phone\'] ?></small>
+        <?php endif; ?>
+    </div>
+
+    <!-- Message -->
+    <div class="col-12 my-3">
+        <label class="form-label">Message<span class="text-danger">*</span></label>
+        <textarea name="message" rows="5" class="form-control"><?= htmlspecialchars($message) ?></textarea>
+        <?php if (!empty($errors[\'message\'])): ?>
+            <small class="text-danger"><?= $errors[\'message\'] ?></small>
+        <?php endif; ?>
+    </div>
+
+    <!-- reCAPTCHA -->
+    <input type="hidden" name="recaptchaResponse" id="recaptchaResponse">
+    <?php if (!empty($errors[\'recaptcha\'])): ?>
+        <div class="col-12">
+            <small class="text-danger"><?= $errors[\'recaptcha\'] ?></small>
+        </div>
+    <?php endif; ?>
+
+    <!-- Submit -->
+    <div class="col-12 mt-4">
+        <input type="submit" name="submit" value="Send Message">
+    </div>
+</div>
+
+
+
+<!-- Google reCAPTCHA -->
+<script src="https://www.google.com/recaptcha/api.js?render=<?= GOOGLE_RECAPTCHA_SITE_KEY ?>"></script>
+<script>
+    grecaptcha.ready(function() {
+        grecaptcha.execute(\'<?= GOOGLE_RECAPTCHA_SITE_KEY ?>\', {action: \'submit\'}).then(function(token) {
+            document.getElementById(\'recaptchaResponse\').value = token;
+        });
+    });
+</script>
+
+
 <?php
-    if (count($themes) > 0) {
-        echo \'<div class="row g-4">\';
-
-        foreach ($themes as $row) {
-
-            $images = json_decode($row[\'theme_images\'], true);
-
-            if (!$images || count($images) === 0) {
-                $imgPath = \'assets/images/default-theme.jpg\';
-            } else {
-                $imgPath = \'assets/\' . ltrim($images[0], \'/\');
-            }
-
-            echo \'
-            <div class="col-md-4 col-lg-3">
-                <div class="theme-card card h-100 shadow-sm selectable-card">
-                    <div class="image-wrapper">
-                        <img src="\' . $imgPath . \'" class="card-img-top" alt="\' . htmlspecialchars($row[\'theme_name\']) . \'">
-                        <div class="overlay">
-                            <button 
-                                class="btn btn-primary select-theme-btn"
-                                data-theme-id="\' . $row[\'id\'] . \'">
-                                Select Theme
-                            </button>
-                        </div>
-                    </div>
-                    <div class="card-body text-center">
-                        <h3 class="card-title">\' . htmlspecialchars($row[\'theme_name\']) . \'</h3>
-                    </div>
-                </div>
-            </div>\';
-        }
-
-        echo \'</div>\';
-    } else {
-        echo "<p class=\'text-center mt-4\'>No tour themes found.</p>";
-    }',
+return ob_get_clean();',
         ),
         'policies' => 
         array (
