@@ -214,6 +214,7 @@ header .navbar .offcanvas .offcanvas-body .navbar-nav .nav-item:hover .nav-link:
 }
 #homePage #service-counter {
   background-color: #f8f9fa;
+overflow: hidden;
 }
 #homePage #service-counter .service-counter-wrapper {
   flex-wrap: wrap;
@@ -255,6 +256,9 @@ header .navbar .offcanvas .offcanvas-body .navbar-nav .nav-item:hover .nav-link:
   font-size: 18px;
   text-align: center;
   font-weight: 500;
+}
+#homePage #beauty-of-srilanka {
+overflow: hidden;
 }
 #homePage #beauty-of-srilanka img {
   height: 26rem;
@@ -325,6 +329,11 @@ header .navbar .offcanvas .offcanvas-body .navbar-nav .nav-item:hover .nav-link:
   transform: scale(1.06);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
+
+#homePage #popular-things-to-do {
+ overflow: hidden;
+}
+
 #homePage #popular-things-to-do .popular-card {
   position: relative;
   overflow: hidden;
@@ -365,6 +374,11 @@ header .navbar .offcanvas .offcanvas-body .navbar-nav .nav-item:hover .nav-link:
   text-shadow: 0px 2px 6px rgba(0, 0, 0, 0.5);
   z-index: 2;
 }
+
+#homePage #featured-trips {
+overflow:hidden;
+}
+
 #homePage #featured-trips .card {
   border-radius: 12px;
 }
@@ -389,6 +403,11 @@ header .navbar .offcanvas .offcanvas-body .navbar-nav .nav-item:hover .nav-link:
   border-top-left-radius: 12px;
   border-top-right-radius: 12px;
 }
+
+#homePage #customer-reviews {
+overflow:hidden;
+}
+
 #homePage #customer-reviews .review-content {
   max-width: 650px;
   margin: auto;
@@ -408,6 +427,11 @@ header .navbar .offcanvas .offcanvas-body .navbar-nav .nav-item:hover .nav-link:
 #homePage #customer-reviews .active::after {
   border-bottom: 1px solid #ffffff;
 }
+
+#homePage #travel-articles {
+overflow:hidden;
+}
+
 #homePage #travel-articles img {
   border-radius: 16px;
   height: 14rem;
@@ -431,6 +455,10 @@ header .navbar .offcanvas .offcanvas-body .navbar-nav .nav-item:hover .nav-link:
   background-color: transparent;
   font-family: "Quintessential", cursive;
 }
+#homePage #get-in-touch {
+overflow:hidden;
+}
+
 #homePage #get-in-touch .card {
   border: 2px solid #08568b;
   border-radius: 14px;
@@ -612,6 +640,10 @@ header .navbar .offcanvas .offcanvas-body .navbar-nav .nav-item:hover .nav-link:
   height: 14rem;
   -o-object-fit: cover;
      object-fit: cover;
+}
+
+#toursPage #tour-theme {
+  overflow: hidden;
 }
 
 #toursPage #tour-theme img {
@@ -1015,3 +1047,26 @@ footer .row:last-child p a {
   color: #ffffff;
   text-decoration: none;
 }/*# sourceMappingURL=style.css.map */
+
+
+
+#scrollTopBtn {
+    display: none; 
+    position: fixed;
+    bottom: 34px;
+    right: 12px;
+    z-index: 99;
+    font-size: 24px;
+    border: none;
+    outline: none;
+    background-color: #0056b3;
+    color: white;
+    cursor: pointer;
+    padding: 12px 16px;
+    border-radius: 50%;
+    transition: background-color 0.3s;
+}
+
+#scrollTopBtn:hover {
+    background-color: #0056b3;
+}

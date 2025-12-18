@@ -2,12 +2,12 @@
   'resourceClass' => 'MODX\\Revolution\\modDocument',
   'resource' => 
   array (
-    'id' => 7,
+    'id' => 4,
     'type' => 'document',
-    'pagetitle' => 'contact-us',
+    'pagetitle' => 'faq',
     'longtitle' => '',
     'description' => '',
-    'alias' => 'contact-us',
+    'alias' => 'faq',
     'link_attributes' => '',
     'published' => 1,
     'pub_date' => 0,
@@ -15,57 +15,180 @@
     'parent' => 0,
     'isfolder' => 0,
     'introtext' => '',
-    'content' => '
-<body id="contactPage">
+    'content' => '<body id = "faqPage">
     <!-- Hero starts -->
     <section id="hero">
-        <img src="assets/images/contact-hero.jpg" alt="Explore Vacations - Contact Us">
+        <img src="assets/images/faq-hero.jpg" alt="Explore Vacations - FAQ">
         <div class="hero-content">
-            <h1>Contact Us</h1>
+            <h1>Frequently Asked Questions</h1>
         </div>
     </section>
     <!-- Hero ends -->
 
-    <!-- Contact us starts -->
-    <section id="contactContent" class="py-5 pb-xl-0">
+    <!-- FAQ Intro section starts -->
+    <section id="faq-intro" class="py-5">
         <div class="container">
             <div class="row">
-                <div class="col-12">
-                    <h2 class="heading" data-aos="fade-down">Get in touch with us</p>
-                </div>
-            </div>
-            <div class="row">
-                <p class="justify-text">Have questions related to your adventures? We\'re here to assist you every step of the way. Contact us today to plan your tours or personalized adventures. Our dedicated team is eager to make your journey memorable, so don\'t hesitate to get in touch with us. Let your experience begins with just a click or a call!</p>
-                <div class="img-container col-12 col-lg-5 order-lg-2" data-aos="fade-left">
-                    <img src="assets/images/contact-form-img.png" alt="Explore Vacations - contact image" class= "img-fluid">
-                </div>
-                <div class="col-12 col-lg-7 pt-3">
-                    <form action="[[~7]]" method="POST" data-aos="fade-right">
-                        [[!ContactUs]]
-                    </form>
+                <div class="col">
+                    <p>"Discover Sri Lanka with Explore Vacations and make every moment of your trip memorable. From pristine beaches and scenic mountains to vibrant culture and hidden gems, we’re here to guide you through an unforgettable journey. Find answers to common questions and tips that help you travel smoothly and enjoy the island to the fullest."<p>
                 </div>
             </div>
         </div>
     </section>
-    <!-- Contact us ends -->
+    <!-- FAQ Intro section ends -->
 
-    <div style="margin-bottom: -22px;">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3958.971585687321!2d79.87321017581856!3d7.129283315825712!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae2f04b1fa95fa5%3A0x42cca08eb23de111!2sExplore%20Vacations%20Sri%20Lanka!5e0!3m2!1sen!2slk!4v1765448477674!5m2!1sen!2slk" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-    </div>
+    <!-- FAQ section starts -->
+    <section id="faq" class="py-5 bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h2 class="heading text-center mb-2">Frequently Asked Questions</h2>
+                    <p class="text-center mb-4">Explore Vacations makes your Sri Lanka trip unforgettable. Here are answers to common questions.</p>
+                </div>
+            </div>
+            <div class="row mt-2 mt-lg-4 d-flex align-items-center">
+               <div class="col-12 col-md-6 col-lg-4 mb-3 mb-md-0 d-flex align-items-center">
+                    <div class="swiper faq-swiper">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <img src="assets/images/faq-1.png" alt="FAQ image 1" class="img-fluid">
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="assets/images/faq-2.png" alt="FAQ image 2" class="img-fluid">
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="assets/images/faq-3.png" alt="FAQ image 3" class="img-fluid">
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="assets/images/faq-4.png" alt="FAQ image 3" class="img-fluid">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-8">
+                    <div class="accordion" id="faqAccordion">
+                        <!-- FAQ Item 1 -->
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="faqHeadingOne">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapseOne" aria-expanded="true" aria-controls="faqCollapseOne">
+                                    What are the best times to visit Sri Lanka?
+                                </button>
+                            </h2>
+                            <div id="faqCollapseOne" class="accordion-collapse collapse show" aria-labelledby="faqHeadingOne" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    The best time to visit depends on the region. The west and south coasts are ideal from December to March, while the east coast is best from April to September.
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- FAQ Item 2 -->
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="faqHeadingTwo">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapseTwo" aria-expanded="false" aria-controls="faqCollapseTwo">
+                                    Do you provide guided tours in Sri Lanka?
+                                </button>
+                            </h2>
+                            <div id="faqCollapseTwo" class="accordion-collapse collapse" aria-labelledby="faqHeadingTwo" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Yes! Explore Vacations offers professional guided tours across popular destinations like Colombo, Kandy, Sigiriya, and Ella.
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- FAQ Item 3 -->
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="faqHeadingThree">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapseThree" aria-expanded="false" aria-controls="faqCollapseThree">
+                                    Can you customize travel packages?
+                                </button>
+                            </h2>
+                            <div id="faqCollapseThree" class="accordion-collapse collapse" aria-labelledby="faqHeadingThree" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Absolutely! We create tailor-made packages based on your interests, budget, and preferred travel dates.
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- FAQ Item 4 -->
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="faqHeadingFour">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapseFour" aria-expanded="false" aria-controls="faqCollapseFour">
+                                    Are airport transfers included?
+                                </button>
+                            </h2>
+                            <div id="faqCollapseFour" class="accordion-collapse collapse" aria-labelledby="faqHeadingFour" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Yes, all our packages include comfortable airport transfers to start and end your Sri Lanka journey hassle-free.
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- FAQ Item 5 -->
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="faqHeadingFive">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapseFive" aria-expanded="false" aria-controls="faqCollapseFive">
+                                    What safety measures are in place for travelers?
+                                </button>
+                            </h2>
+                            <div id="faqCollapseFive" class="accordion-collapse collapse" aria-labelledby="faqHeadingFive" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    We prioritize safety with certified guides, well-maintained vehicles, and adherence to local travel regulations. Your comfort and security are our top priorities.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- FAQ section ends -->
+
+    <!-- Contact section starts -->
+    <section id="contact" class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col d-flex flex-column align-items-center">
+                    <h2 class="heading text-center">Contact Us</h2>
+                    <p class="text-center mb-4">Ready to explore the beauty of Sri Lanka? Start your journey with Explore Vacations today <br> and let us help you plan an unforgettable adventure!</p>
+                    <a href="[[~7]]" class="btn btn-primary">Get In Touch</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Contact section ends -->
+
+    <script>
+        const faqSwiper = new Swiper(\'.faq-swiper\', {
+            loop: true,
+            // spaceBetween: 20,
+            pagination: {
+                el: \'.swiper-pagination\',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: \'.swiper-button-next\',
+                prevEl: \'.swiper-button-prev\',
+            },
+            autoplay: {
+                delay: 2000,
+                disableOnInteraction: false,
+            },
+        });
+    </script>
 </body>',
     'richtext' => 1,
     'template' => 2,
-    'menuindex' => 6,
+    'menuindex' => 3,
     'searchable' => 1,
     'cacheable' => 1,
     'createdby' => 1,
-    'createdon' => 1765879553,
+    'createdon' => 1765879338,
     'editedby' => 1,
-    'editedon' => 1765880585,
+    'editedon' => 1765905598,
     'deleted' => 0,
     'deletedon' => 0,
     'deletedby' => 0,
-    'publishedon' => 1765879560,
+    'publishedon' => 1765879320,
     'publishedby' => 1,
     'menutitle' => '',
     'content_dispo' => 0,
@@ -128,8 +251,39 @@
     <!-- Custom JS -->
     <script src="assets/js/script.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<!-- Scroll to Top Button -->
+<button id="scrollTopBtn" title="Go to top"><img src="assets/images/top-icon.png" alt="top-icon" class="img-fluid" style="
+    width: 20px;
+    height: 20px;
+    display: flex;
+"></button>
 
 </body>
+
+<script>
+//Get the button
+const scrollTopBtn = document.getElementById("scrollTopBtn");
+
+// Show button when user scrolls down 100px
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+    if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+        scrollTopBtn.style.display = "block";
+    } else {
+        scrollTopBtn.style.display = "none";
+    }
+}
+
+// Scroll to top smoothly when clicked
+scrollTopBtn.addEventListener(\'click\', () => {
+    window.scrollTo({
+        top: 0,
+        behavior: \'smooth\'
+    });
+});
+</script>
+
 </html>
 <header>
     <!-- Navbar starts-->
@@ -177,43 +331,166 @@
     </nav>
     <!-- Navbar ends-->
 </header>
-
-<body id="contactPage">
+<body id = "faqPage">
     <!-- Hero starts -->
     <section id="hero">
-        <img src="assets/images/contact-hero.jpg" alt="Explore Vacations - Contact Us">
+        <img src="assets/images/faq-hero.jpg" alt="Explore Vacations - FAQ">
         <div class="hero-content">
-            <h1>Contact Us</h1>
+            <h1>Frequently Asked Questions</h1>
         </div>
     </section>
     <!-- Hero ends -->
 
-    <!-- Contact us starts -->
-    <section id="contactContent" class="py-5 pb-xl-0">
+    <!-- FAQ Intro section starts -->
+    <section id="faq-intro" class="py-5">
         <div class="container">
             <div class="row">
-                <div class="col-12">
-                    <h2 class="heading" data-aos="fade-down">Get in touch with us</p>
-                </div>
-            </div>
-            <div class="row">
-                <p class="justify-text">Have questions related to your adventures? We\'re here to assist you every step of the way. Contact us today to plan your tours or personalized adventures. Our dedicated team is eager to make your journey memorable, so don\'t hesitate to get in touch with us. Let your experience begins with just a click or a call!</p>
-                <div class="img-container col-12 col-lg-5 order-lg-2" data-aos="fade-left">
-                    <img src="assets/images/contact-form-img.png" alt="Explore Vacations - contact image" class= "img-fluid">
-                </div>
-                <div class="col-12 col-lg-7 pt-3">
-                    <form action="index.php?id=7" method="POST" data-aos="fade-right">
-                        [[!ContactUs]]
-                    </form>
+                <div class="col">
+                    <p>"Discover Sri Lanka with Explore Vacations and make every moment of your trip memorable. From pristine beaches and scenic mountains to vibrant culture and hidden gems, we’re here to guide you through an unforgettable journey. Find answers to common questions and tips that help you travel smoothly and enjoy the island to the fullest."<p>
                 </div>
             </div>
         </div>
     </section>
-    <!-- Contact us ends -->
+    <!-- FAQ Intro section ends -->
 
-    <div style="margin-bottom: -22px;">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3958.971585687321!2d79.87321017581856!3d7.129283315825712!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae2f04b1fa95fa5%3A0x42cca08eb23de111!2sExplore%20Vacations%20Sri%20Lanka!5e0!3m2!1sen!2slk!4v1765448477674!5m2!1sen!2slk" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-    </div>
+    <!-- FAQ section starts -->
+    <section id="faq" class="py-5 bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h2 class="heading text-center mb-2">Frequently Asked Questions</h2>
+                    <p class="text-center mb-4">Explore Vacations makes your Sri Lanka trip unforgettable. Here are answers to common questions.</p>
+                </div>
+            </div>
+            <div class="row mt-2 mt-lg-4 d-flex align-items-center">
+               <div class="col-12 col-md-6 col-lg-4 mb-3 mb-md-0 d-flex align-items-center">
+                    <div class="swiper faq-swiper">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <img src="assets/images/faq-1.png" alt="FAQ image 1" class="img-fluid">
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="assets/images/faq-2.png" alt="FAQ image 2" class="img-fluid">
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="assets/images/faq-3.png" alt="FAQ image 3" class="img-fluid">
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="assets/images/faq-4.png" alt="FAQ image 3" class="img-fluid">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-8">
+                    <div class="accordion" id="faqAccordion">
+                        <!-- FAQ Item 1 -->
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="faqHeadingOne">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapseOne" aria-expanded="true" aria-controls="faqCollapseOne">
+                                    What are the best times to visit Sri Lanka?
+                                </button>
+                            </h2>
+                            <div id="faqCollapseOne" class="accordion-collapse collapse show" aria-labelledby="faqHeadingOne" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    The best time to visit depends on the region. The west and south coasts are ideal from December to March, while the east coast is best from April to September.
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- FAQ Item 2 -->
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="faqHeadingTwo">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapseTwo" aria-expanded="false" aria-controls="faqCollapseTwo">
+                                    Do you provide guided tours in Sri Lanka?
+                                </button>
+                            </h2>
+                            <div id="faqCollapseTwo" class="accordion-collapse collapse" aria-labelledby="faqHeadingTwo" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Yes! Explore Vacations offers professional guided tours across popular destinations like Colombo, Kandy, Sigiriya, and Ella.
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- FAQ Item 3 -->
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="faqHeadingThree">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapseThree" aria-expanded="false" aria-controls="faqCollapseThree">
+                                    Can you customize travel packages?
+                                </button>
+                            </h2>
+                            <div id="faqCollapseThree" class="accordion-collapse collapse" aria-labelledby="faqHeadingThree" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Absolutely! We create tailor-made packages based on your interests, budget, and preferred travel dates.
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- FAQ Item 4 -->
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="faqHeadingFour">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapseFour" aria-expanded="false" aria-controls="faqCollapseFour">
+                                    Are airport transfers included?
+                                </button>
+                            </h2>
+                            <div id="faqCollapseFour" class="accordion-collapse collapse" aria-labelledby="faqHeadingFour" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Yes, all our packages include comfortable airport transfers to start and end your Sri Lanka journey hassle-free.
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- FAQ Item 5 -->
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="faqHeadingFive">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapseFive" aria-expanded="false" aria-controls="faqCollapseFive">
+                                    What safety measures are in place for travelers?
+                                </button>
+                            </h2>
+                            <div id="faqCollapseFive" class="accordion-collapse collapse" aria-labelledby="faqHeadingFive" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    We prioritize safety with certified guides, well-maintained vehicles, and adherence to local travel regulations. Your comfort and security are our top priorities.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- FAQ section ends -->
+
+    <!-- Contact section starts -->
+    <section id="contact" class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col d-flex flex-column align-items-center">
+                    <h2 class="heading text-center">Contact Us</h2>
+                    <p class="text-center mb-4">Ready to explore the beauty of Sri Lanka? Start your journey with Explore Vacations today <br> and let us help you plan an unforgettable adventure!</p>
+                    <a href="index.php?id=7" class="btn btn-primary">Get In Touch</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Contact section ends -->
+
+    <script>
+        const faqSwiper = new Swiper(\'.faq-swiper\', {
+            loop: true,
+            // spaceBetween: 20,
+            pagination: {
+                el: \'.swiper-pagination\',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: \'.swiper-button-next\',
+                prevEl: \'.swiper-button-prev\',
+            },
+            autoplay: {
+                delay: 2000,
+                disableOnInteraction: false,
+            },
+        });
+    </script>
 </body>
 <footer>
     <div class="container">
@@ -266,9 +543,13 @@
                         <img src="assets/images/icons/footer-phone.svg" alt="Explore Vacations | Footer Contact Icon" class="me-1">
                         <a href="tel:+94761414554">+94 76 1414 554</a>
                     </li>
-                    <li>
+                    <li class="d-flex align-items-center">
                         <img src="assets/images/icons/footer-email.svg" alt="Explore Vacations | Footer Contact Icon" class="me-1">
-                        <a href="mailto:info@explorevacations.lk">info@explorevacations.lk</a>
+                        <div class="d-inline-block">
+                            <a href="mailto:info@explorevacations.lk">info@explorevacations.lk</a> 
+                            <a href="mailto:reservations@explorevacations.lk">reservations@explorevacations.lk</a> 
+                            <a href="mailto:travels@explorevacations.lk">travels@explorevacations.lk</a>
+                        </div>
                     </li>
                     <li>
                         <img src="assets/images/icons/footer-location.svg" alt="Explore Vacations | Footer Contact Icon" class="me-1">
@@ -375,8 +656,39 @@
     <!-- Custom JS -->
     <script src="assets/js/script.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<!-- Scroll to Top Button -->
+<button id="scrollTopBtn" title="Go to top"><img src="assets/images/top-icon.png" alt="top-icon" class="img-fluid" style="
+    width: 20px;
+    height: 20px;
+    display: flex;
+"></button>
 
 </body>
+
+<script>
+//Get the button
+const scrollTopBtn = document.getElementById("scrollTopBtn");
+
+// Show button when user scrolls down 100px
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+    if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+        scrollTopBtn.style.display = "block";
+    } else {
+        scrollTopBtn.style.display = "none";
+    }
+}
+
+// Scroll to top smoothly when clicked
+scrollTopBtn.addEventListener(\'click\', () => {
+    window.scrollTo({
+        top: 0,
+        behavior: \'smooth\'
+    });
+});
+</script>
+
 </html>',
     '[[~2]]' => 'index.php?id=2',
     '[[~3]]' => 'index.php?id=3',
@@ -480,9 +792,13 @@
                         <img src="assets/images/icons/footer-phone.svg" alt="Explore Vacations | Footer Contact Icon" class="me-1">
                         <a href="tel:+94761414554">+94 76 1414 554</a>
                     </li>
-                    <li>
+                    <li class="d-flex align-items-center">
                         <img src="assets/images/icons/footer-email.svg" alt="Explore Vacations | Footer Contact Icon" class="me-1">
-                        <a href="mailto:info@explorevacations.lk">info@explorevacations.lk</a>
+                        <div class="d-inline-block">
+                            <a href="mailto:info@explorevacations.lk">info@explorevacations.lk</a> 
+                            <a href="mailto:reservations@explorevacations.lk">reservations@explorevacations.lk</a> 
+                            <a href="mailto:travels@explorevacations.lk">travels@explorevacations.lk</a>
+                        </div>
                     </li>
                     <li>
                         <img src="assets/images/icons/footer-location.svg" alt="Explore Vacations | Footer Contact Icon" class="me-1">
@@ -588,8 +904,39 @@
     <!-- Custom JS -->
     <script src="assets/js/script.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<!-- Scroll to Top Button -->
+<button id="scrollTopBtn" title="Go to top"><img src="assets/images/top-icon.png" alt="top-icon" class="img-fluid" style="
+    width: 20px;
+    height: 20px;
+    display: flex;
+"></button>
 
 </body>
+
+<script>
+//Get the button
+const scrollTopBtn = document.getElementById("scrollTopBtn");
+
+// Show button when user scrolls down 100px
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+    if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+        scrollTopBtn.style.display = "block";
+    } else {
+        scrollTopBtn.style.display = "none";
+    }
+}
+
+// Scroll to top smoothly when clicked
+scrollTopBtn.addEventListener(\'click\', () => {
+    window.scrollTo({
+        top: 0,
+        behavior: \'smooth\'
+    });
+});
+</script>
+
 </html>',
           'locked' => false,
           'properties' => 
@@ -646,8 +993,39 @@
     <!-- Custom JS -->
     <script src="assets/js/script.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<!-- Scroll to Top Button -->
+<button id="scrollTopBtn" title="Go to top"><img src="assets/images/top-icon.png" alt="top-icon" class="img-fluid" style="
+    width: 20px;
+    height: 20px;
+    display: flex;
+"></button>
 
 </body>
+
+<script>
+//Get the button
+const scrollTopBtn = document.getElementById("scrollTopBtn");
+
+// Show button when user scrolls down 100px
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+    if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+        scrollTopBtn.style.display = "block";
+    } else {
+        scrollTopBtn.style.display = "none";
+    }
+}
+
+// Scroll to top smoothly when clicked
+scrollTopBtn.addEventListener(\'click\', () => {
+    window.scrollTo({
+        top: 0,
+        behavior: \'smooth\'
+    });
+});
+</script>
+
 </html>',
         ),
         'policies' => 
@@ -854,9 +1232,13 @@
                         <img src="assets/images/icons/footer-phone.svg" alt="Explore Vacations | Footer Contact Icon" class="me-1">
                         <a href="tel:+94761414554">+94 76 1414 554</a>
                     </li>
-                    <li>
+                    <li class="d-flex align-items-center">
                         <img src="assets/images/icons/footer-email.svg" alt="Explore Vacations | Footer Contact Icon" class="me-1">
-                        <a href="mailto:info@explorevacations.lk">info@explorevacations.lk</a>
+                        <div class="d-inline-block">
+                            <a href="mailto:info@explorevacations.lk">info@explorevacations.lk</a> 
+                            <a href="mailto:reservations@explorevacations.lk">reservations@explorevacations.lk</a> 
+                            <a href="mailto:travels@explorevacations.lk">travels@explorevacations.lk</a>
+                        </div>
                     </li>
                     <li>
                         <img src="assets/images/icons/footer-location.svg" alt="Explore Vacations | Footer Contact Icon" class="me-1">
@@ -953,9 +1335,13 @@
                         <img src="assets/images/icons/footer-phone.svg" alt="Explore Vacations | Footer Contact Icon" class="me-1">
                         <a href="tel:+94761414554">+94 76 1414 554</a>
                     </li>
-                    <li>
+                    <li class="d-flex align-items-center">
                         <img src="assets/images/icons/footer-email.svg" alt="Explore Vacations | Footer Contact Icon" class="me-1">
-                        <a href="mailto:info@explorevacations.lk">info@explorevacations.lk</a>
+                        <div class="d-inline-block">
+                            <a href="mailto:info@explorevacations.lk">info@explorevacations.lk</a> 
+                            <a href="mailto:reservations@explorevacations.lk">reservations@explorevacations.lk</a> 
+                            <a href="mailto:travels@explorevacations.lk">travels@explorevacations.lk</a>
+                        </div>
                     </li>
                     <li>
                         <img src="assets/images/icons/footer-location.svg" alt="Explore Vacations | Footer Contact Icon" class="me-1">
@@ -1014,335 +1400,6 @@
     ),
     'MODX\\Revolution\\modSnippet' => 
     array (
-      'ContactUs' => 
-      array (
-        'fields' => 
-        array (
-          'id' => 4,
-          'source' => 1,
-          'property_preprocess' => false,
-          'name' => 'ContactUs',
-          'description' => '',
-          'editor_type' => 0,
-          'category' => 0,
-          'cache_type' => 0,
-          'snippet' => 'ob_start();
-
-include(\'config-details.php\');
-include(\'assets/classes/EmailSender.php\');
-
-$errors = [];
-$successMessage = \'\';
-$errorMessage = \'\';
-
-$name = $email = $phone = $message = \'\';
-$recaptcha_response = \'\';
-
-// Handle form submission
-if ($_SERVER[\'REQUEST_METHOD\'] === \'POST\') {
-
-    $name    = test_input($_POST[\'name\'] ?? \'\');
-    $email   = test_input($_POST[\'email\'] ?? \'\');
-    $phone   = preg_replace(\'/\\D+/\', \'\', $_POST[\'phone\'] ?? \'\');
-    $message = test_input($_POST[\'message\'] ?? \'\');
-    $recaptcha_response = $_POST[\'recaptchaResponse\'] ?? \'\';
-
-    if (!verifyRecaptcha($recaptcha_response)) {
-        $errors[\'recaptcha\'] = "reCAPTCHA validation failed.";
-    }
-
-    if (empty($name)) {
-        $errors[\'name\'] = "Name is required";
-    }
-
-    if (empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $errors[\'email\'] = "Enter a valid email address";
-    }
-
-    if (empty($phone)) {
-        $errors[\'phone\'] = "Contact number is required";
-    }
-
-    if (empty($message)) {
-        $errors[\'message\'] = "Message is required";
-    }
-
-    if (empty($errors)) {
-        $emailSender = new EmailSender();
-        $emailTo = SMTP_USERNAME;
-        $emailSubject = \'Contact Form Message\';
-
-        $emailContent = "
-            <table cellpadding=\'6\'>
-                <tr><td><b>Name</b></td><td>{$name}</td></tr>
-                <tr><td><b>Email</b></td><td>{$email}</td></tr>
-                <tr><td><b>Phone</b></td><td>{$phone}</td></tr>
-                <tr><td><b>Message</b></td><td>".nl2br($message)."</td></tr>
-            </table>
-        ";
-
-        if ($emailSender->sendEmail($emailTo, $emailSubject, $emailContent)) {
-            $successMessage = "Your message has been sent successfully!";
-            $name = $email = $phone = $message = \'\';
-        } else {
-            $errorMessage = "Sorry, there was an issue sending your message.";
-        }
-    }
-}
-?>
-
-<div class="row">
-
-    <!-- Success / Error Messages -->
-    <div class="col-12">
-        <?php if (!empty($successMessage)): ?>
-            <div class="alert alert-success alert-dismissible fade show text-center">
-                <?= $successMessage ?>
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-            </div>
-        <?php elseif (!empty($errorMessage)): ?>
-            <div class="alert alert-danger alert-dismissible fade show text-center">
-                <?= $errorMessage ?>
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-            </div>
-        <?php endif; ?>
-    </div>
-
-    <!-- Name -->
-    <div class="col-12 my-3">
-        <label class="form-label">Name<span class="text-danger">*</span></label>
-        <input type="text" name="name" class="form-control" value="<?= htmlspecialchars($name) ?>">
-        <?php if (!empty($errors[\'name\'])): ?>
-            <small class="text-danger"><?= $errors[\'name\'] ?></small>
-        <?php endif; ?>
-    </div>
-
-    <!-- Email -->
-    <div class="col-md-6 my-3">
-        <label class="form-label">Email<span class="text-danger">*</span></label>
-        <input type="email" name="email" class="form-control" value="<?= htmlspecialchars($email) ?>">
-        <?php if (!empty($errors[\'email\'])): ?>
-            <small class="text-danger"><?= $errors[\'email\'] ?></small>
-        <?php endif; ?>
-    </div>
-
-    <!-- Phone -->
-    <div class="col-md-6 my-3">
-        <label class="form-label">Phone<span class="text-danger">*</span></label>
-        <input type="tel" name="phone" class="form-control" value="<?= htmlspecialchars($phone) ?>">
-        <?php if (!empty($errors[\'phone\'])): ?>
-            <small class="text-danger"><?= $errors[\'phone\'] ?></small>
-        <?php endif; ?>
-    </div>
-
-    <!-- Message -->
-    <div class="col-12 my-3">
-        <label class="form-label">Message<span class="text-danger">*</span></label>
-        <textarea name="message" rows="5" class="form-control"><?= htmlspecialchars($message) ?></textarea>
-        <?php if (!empty($errors[\'message\'])): ?>
-            <small class="text-danger"><?= $errors[\'message\'] ?></small>
-        <?php endif; ?>
-    </div>
-
-    <!-- reCAPTCHA -->
-    <input type="hidden" name="recaptchaResponse" id="recaptchaResponse">
-    <?php if (!empty($errors[\'recaptcha\'])): ?>
-        <div class="col-12">
-            <small class="text-danger"><?= $errors[\'recaptcha\'] ?></small>
-        </div>
-    <?php endif; ?>
-
-    <!-- Submit -->
-    <div class="col-12 mt-4">
-        <input type="submit" name="submit" value="Send Message">
-    </div>
-</div>
-
-
-
-<!-- Google reCAPTCHA -->
-<script src="https://www.google.com/recaptcha/api.js?render=<?= GOOGLE_RECAPTCHA_SITE_KEY ?>"></script>
-<script>
-    grecaptcha.ready(function() {
-        grecaptcha.execute(\'<?= GOOGLE_RECAPTCHA_SITE_KEY ?>\', {action: \'submit\'}).then(function(token) {
-            document.getElementById(\'recaptchaResponse\').value = token;
-        });
-    });
-</script>
-
-
-<?php
-return ob_get_clean();',
-          'locked' => false,
-          'properties' => 
-          array (
-          ),
-          'moduleguid' => '',
-          'static' => false,
-          'static_file' => '',
-          'content' => 'ob_start();
-
-include(\'config-details.php\');
-include(\'assets/classes/EmailSender.php\');
-
-$errors = [];
-$successMessage = \'\';
-$errorMessage = \'\';
-
-$name = $email = $phone = $message = \'\';
-$recaptcha_response = \'\';
-
-// Handle form submission
-if ($_SERVER[\'REQUEST_METHOD\'] === \'POST\') {
-
-    $name    = test_input($_POST[\'name\'] ?? \'\');
-    $email   = test_input($_POST[\'email\'] ?? \'\');
-    $phone   = preg_replace(\'/\\D+/\', \'\', $_POST[\'phone\'] ?? \'\');
-    $message = test_input($_POST[\'message\'] ?? \'\');
-    $recaptcha_response = $_POST[\'recaptchaResponse\'] ?? \'\';
-
-    if (!verifyRecaptcha($recaptcha_response)) {
-        $errors[\'recaptcha\'] = "reCAPTCHA validation failed.";
-    }
-
-    if (empty($name)) {
-        $errors[\'name\'] = "Name is required";
-    }
-
-    if (empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $errors[\'email\'] = "Enter a valid email address";
-    }
-
-    if (empty($phone)) {
-        $errors[\'phone\'] = "Contact number is required";
-    }
-
-    if (empty($message)) {
-        $errors[\'message\'] = "Message is required";
-    }
-
-    if (empty($errors)) {
-        $emailSender = new EmailSender();
-        $emailTo = SMTP_USERNAME;
-        $emailSubject = \'Contact Form Message\';
-
-        $emailContent = "
-            <table cellpadding=\'6\'>
-                <tr><td><b>Name</b></td><td>{$name}</td></tr>
-                <tr><td><b>Email</b></td><td>{$email}</td></tr>
-                <tr><td><b>Phone</b></td><td>{$phone}</td></tr>
-                <tr><td><b>Message</b></td><td>".nl2br($message)."</td></tr>
-            </table>
-        ";
-
-        if ($emailSender->sendEmail($emailTo, $emailSubject, $emailContent)) {
-            $successMessage = "Your message has been sent successfully!";
-            $name = $email = $phone = $message = \'\';
-        } else {
-            $errorMessage = "Sorry, there was an issue sending your message.";
-        }
-    }
-}
-?>
-
-<div class="row">
-
-    <!-- Success / Error Messages -->
-    <div class="col-12">
-        <?php if (!empty($successMessage)): ?>
-            <div class="alert alert-success alert-dismissible fade show text-center">
-                <?= $successMessage ?>
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-            </div>
-        <?php elseif (!empty($errorMessage)): ?>
-            <div class="alert alert-danger alert-dismissible fade show text-center">
-                <?= $errorMessage ?>
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-            </div>
-        <?php endif; ?>
-    </div>
-
-    <!-- Name -->
-    <div class="col-12 my-3">
-        <label class="form-label">Name<span class="text-danger">*</span></label>
-        <input type="text" name="name" class="form-control" value="<?= htmlspecialchars($name) ?>">
-        <?php if (!empty($errors[\'name\'])): ?>
-            <small class="text-danger"><?= $errors[\'name\'] ?></small>
-        <?php endif; ?>
-    </div>
-
-    <!-- Email -->
-    <div class="col-md-6 my-3">
-        <label class="form-label">Email<span class="text-danger">*</span></label>
-        <input type="email" name="email" class="form-control" value="<?= htmlspecialchars($email) ?>">
-        <?php if (!empty($errors[\'email\'])): ?>
-            <small class="text-danger"><?= $errors[\'email\'] ?></small>
-        <?php endif; ?>
-    </div>
-
-    <!-- Phone -->
-    <div class="col-md-6 my-3">
-        <label class="form-label">Phone<span class="text-danger">*</span></label>
-        <input type="tel" name="phone" class="form-control" value="<?= htmlspecialchars($phone) ?>">
-        <?php if (!empty($errors[\'phone\'])): ?>
-            <small class="text-danger"><?= $errors[\'phone\'] ?></small>
-        <?php endif; ?>
-    </div>
-
-    <!-- Message -->
-    <div class="col-12 my-3">
-        <label class="form-label">Message<span class="text-danger">*</span></label>
-        <textarea name="message" rows="5" class="form-control"><?= htmlspecialchars($message) ?></textarea>
-        <?php if (!empty($errors[\'message\'])): ?>
-            <small class="text-danger"><?= $errors[\'message\'] ?></small>
-        <?php endif; ?>
-    </div>
-
-    <!-- reCAPTCHA -->
-    <input type="hidden" name="recaptchaResponse" id="recaptchaResponse">
-    <?php if (!empty($errors[\'recaptcha\'])): ?>
-        <div class="col-12">
-            <small class="text-danger"><?= $errors[\'recaptcha\'] ?></small>
-        </div>
-    <?php endif; ?>
-
-    <!-- Submit -->
-    <div class="col-12 mt-4">
-        <input type="submit" name="submit" value="Send Message">
-    </div>
-</div>
-
-
-
-<!-- Google reCAPTCHA -->
-<script src="https://www.google.com/recaptcha/api.js?render=<?= GOOGLE_RECAPTCHA_SITE_KEY ?>"></script>
-<script>
-    grecaptcha.ready(function() {
-        grecaptcha.execute(\'<?= GOOGLE_RECAPTCHA_SITE_KEY ?>\', {action: \'submit\'}).then(function(token) {
-            document.getElementById(\'recaptchaResponse\').value = token;
-        });
-    });
-</script>
-
-
-<?php
-return ob_get_clean();',
-        ),
-        'policies' => 
-        array (
-        ),
-        'source' => 
-        array (
-          'id' => 1,
-          'name' => 'Filesystem',
-          'description' => '',
-          'class_key' => 'MODX\\Revolution\\Sources\\modFileMediaSource',
-          'properties' => 
-          array (
-          ),
-          'is_stream' => true,
-        ),
-      ),
     ),
     'MODX\\Revolution\\modTemplateVar' => 
     array (

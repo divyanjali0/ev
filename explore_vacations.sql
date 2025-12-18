@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Dec 17, 2025 at 07:43 PM
+-- Generation Time: Dec 18, 2025 at 05:00 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -1605,7 +1605,8 @@ INSERT INTO `modx_manager_log` (`id`, `user`, `occurred`, `action`, `classKey`, 
 (246, 1, '2025-12-17 11:00:30', 'chunk_update', 'MODX\\Revolution\\modChunk', '2'),
 (247, 1, '2025-12-17 11:00:30', 'propertyset_update_from_element', 'MODX\\Revolution\\modPropertySet', 'MODX\\Revolution\\modChunk 2 Default'),
 (248, 1, '2025-12-17 11:01:13', 'chunk_update', 'MODX\\Revolution\\modChunk', '2'),
-(249, 1, '2025-12-17 11:01:14', 'propertyset_update_from_element', 'MODX\\Revolution\\modPropertySet', 'MODX\\Revolution\\modChunk 2 Default');
+(249, 1, '2025-12-17 11:01:14', 'propertyset_update_from_element', 'MODX\\Revolution\\modPropertySet', 'MODX\\Revolution\\modChunk 2 Default'),
+(250, 1, '2025-12-18 04:36:58', 'login', 'MODX\\Revolution\\modContext', 'mgr');
 
 -- --------------------------------------------------------
 
@@ -1812,6 +1813,13 @@ CREATE TABLE `modx_register_messages` (
   `kill` tinyint(1) UNSIGNED NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `modx_register_messages`
+--
+
+INSERT INTO `modx_register_messages` (`topic`, `id`, `created`, `valid`, `accessed`, `accesses`, `expires`, `payload`, `kill`) VALUES
+(1, 'c4ca4238a0b923820dcc509a6f75849b', '2025-12-18 04:37:24', '2025-12-18 04:37:24', NULL, 0, 1766029404, 'if (time() > 1766029404) return null;\nreturn 1;\n', 0);
+
 -- --------------------------------------------------------
 
 --
@@ -1875,6 +1883,7 @@ INSERT INTO `modx_session` (`id`, `access`, `data`) VALUES
 ('4vpqrlpuot4sligb140cpk6469', 1765901187, 'modx.user.0.resourceGroups|a:1:{s:3:\"web\";a:0:{}}modx.user.0.attributes|a:1:{s:3:\"web\";a:5:{s:32:\"MODX\\Revolution\\modAccessContext\";a:1:{s:3:\"web\";a:1:{i:0;a:3:{s:9:\"principal\";i:0;s:9:\"authority\";i:0;s:6:\"policy\";a:1:{s:4:\"load\";b:1;}}}}s:38:\"MODX\\Revolution\\modAccessResourceGroup\";a:0:{}s:33:\"MODX\\Revolution\\modAccessCategory\";a:0:{}s:44:\"MODX\\Revolution\\Sources\\modAccessMediaSource\";a:0:{}s:34:\"MODX\\Revolution\\modAccessNamespace\";a:0:{}}}modx.user.contextTokens|a:0:{}'),
 ('828vsosdfr6n3b1jdtfmg94loc', 1765965578, 'modx.user.contextTokens|a:0:{}'),
 ('9dhqm9rkqt1dgv4i1oeh4tocqg', 1765884536, 'modx.user.contextTokens|a:1:{s:3:\"mgr\";i:1;}manager_language|s:2:\"en\";modx.user.0.resourceGroups|a:1:{s:3:\"mgr\";a:0:{}}modx.user.0.attributes|a:1:{s:3:\"mgr\";a:5:{s:32:\"MODX\\Revolution\\modAccessContext\";a:1:{s:3:\"web\";a:1:{i:0;a:3:{s:9:\"principal\";i:0;s:9:\"authority\";i:0;s:6:\"policy\";a:1:{s:4:\"load\";b:1;}}}}s:38:\"MODX\\Revolution\\modAccessResourceGroup\";a:0:{}s:33:\"MODX\\Revolution\\modAccessCategory\";a:0:{}s:44:\"MODX\\Revolution\\Sources\\modAccessMediaSource\";a:0:{}s:34:\"MODX\\Revolution\\modAccessNamespace\";a:0:{}}}modx.mgr.user.token|s:52:\"modx694125ecad3793.81515359_16941263ad6c6b8.51278554\";modx.mgr.session.cookie.lifetime|i:0;modx.mgr.user.config|a:0:{}newResourceTokens|a:32:{i:0;s:23:\"69412764b7ed11.06970541\";i:1;s:23:\"694127a12ccd25.94320441\";i:2;s:23:\"69412804b7be98.61095157\";i:3;s:23:\"694128361e0832.81201434\";i:4;s:23:\"69412862eecfb1.36627473\";i:5;s:23:\"69412869777c79.05169848\";i:6;s:23:\"694128dd1dfab2.73319369\";i:7;s:23:\"6941290b474e21.07221251\";i:8;s:23:\"69412a448b51f6.52155162\";i:9;s:23:\"69412ac039bf07.27467755\";i:10;s:23:\"69412b957276e8.35740854\";i:11;s:23:\"69412c6b41b143.43282063\";i:12;s:23:\"69412c9a066bf4.07741484\";i:13;s:23:\"69412ce1dec025.64468201\";i:14;s:23:\"69412cfa4a15c3.61242355\";i:15;s:23:\"69412d6da0c552.82895509\";i:16;s:23:\"69412db99d5871.01587581\";i:17;s:23:\"69412e2ae67887.09640074\";i:18;s:23:\"69412e952ebcb9.75367534\";i:19;s:23:\"69412ec7df2a41.93094204\";i:20;s:23:\"69412edb70c331.00037315\";i:21;s:23:\"69412f029c5792.24115355\";i:22;s:23:\"69412f098240d4.90578803\";i:23;s:23:\"694134fc197990.00801207\";i:24;s:23:\"694135b19b1476.76645376\";i:25;s:23:\"69413607815048.19750451\";i:26;s:23:\"694136eacfb664.39997162\";i:27;s:23:\"69413769ebc5e5.55279303\";i:28;s:23:\"69413eabbef3a7.27167813\";i:29;s:23:\"69413ff2aa9d02.13702951\";i:30;s:23:\"6941401b43e672.80690016\";i:31;s:23:\"694142779d9b31.52601714\";}'),
+('be089eimbminnn3crqg1f7bqu2', 1766029046, 'modx.user.contextTokens|a:1:{s:3:\"mgr\";i:1;}manager_language|s:2:\"en\";modx.user.0.resourceGroups|a:1:{s:3:\"mgr\";a:0:{}}modx.user.0.attributes|a:1:{s:3:\"mgr\";a:5:{s:32:\"MODX\\Revolution\\modAccessContext\";a:1:{s:3:\"web\";a:1:{i:0;a:3:{s:9:\"principal\";i:0;s:9:\"authority\";i:0;s:6:\"policy\";a:1:{s:4:\"load\";b:1;}}}}s:38:\"MODX\\Revolution\\modAccessResourceGroup\";a:0:{}s:33:\"MODX\\Revolution\\modAccessCategory\";a:0:{}s:44:\"MODX\\Revolution\\Sources\\modAccessMediaSource\";a:0:{}s:34:\"MODX\\Revolution\\modAccessNamespace\";a:0:{}}}modx.mgr.user.token|s:52:\"modx694125ecad3793.81515359_1694376daa183c5.07723357\";modx.mgr.session.cookie.lifetime|i:0;modx.mgr.user.config|a:0:{}newResourceTokens|a:1:{i:0;s:23:\"694376f60173f7.95223171\";}'),
 ('dcb18cbvbg59qk2ra7cadbtn48', 1765908428, 'modx.user.contextTokens|a:1:{s:3:\"mgr\";i:1;}manager_language|s:2:\"en\";modx.user.0.resourceGroups|a:1:{s:3:\"mgr\";a:0:{}}modx.user.0.attributes|a:1:{s:3:\"mgr\";a:5:{s:32:\"MODX\\Revolution\\modAccessContext\";a:1:{s:3:\"web\";a:1:{i:0;a:3:{s:9:\"principal\";i:0;s:9:\"authority\";i:0;s:6:\"policy\";a:1:{s:4:\"load\";b:1;}}}}s:38:\"MODX\\Revolution\\modAccessResourceGroup\";a:0:{}s:33:\"MODX\\Revolution\\modAccessCategory\";a:0:{}s:44:\"MODX\\Revolution\\Sources\\modAccessMediaSource\";a:0:{}s:34:\"MODX\\Revolution\\modAccessNamespace\";a:0:{}}}login_failed|i:1;modx.mgr.user.token|s:52:\"modx694125ecad3793.81515359_16941837e9185e8.90418642\";modx.mgr.session.cookie.lifetime|i:0;modx.mgr.user.config|a:0:{}newResourceTokens|a:4:{i:0;s:23:\"69419259e259b8.20537702\";i:1;s:23:\"694194848716a3.92399540\";i:2;s:23:\"694194a8276502.82098358\";i:3;s:23:\"69419fcccb4e54.68433626\";}'),
 ('s1p08a62lgg43og34u7hn1dvvc', 1765996928, 'modx.user.0.resourceGroups|a:1:{s:3:\"web\";a:0:{}}modx.user.0.attributes|a:1:{s:3:\"web\";a:5:{s:32:\"MODX\\Revolution\\modAccessContext\";a:1:{s:3:\"web\";a:1:{i:0;a:3:{s:9:\"principal\";i:0;s:9:\"authority\";i:0;s:6:\"policy\";a:1:{s:4:\"load\";b:1;}}}}s:38:\"MODX\\Revolution\\modAccessResourceGroup\";a:0:{}s:33:\"MODX\\Revolution\\modAccessCategory\";a:0:{}s:44:\"MODX\\Revolution\\Sources\\modAccessMediaSource\";a:0:{}s:34:\"MODX\\Revolution\\modAccessNamespace\";a:0:{}}}modx.user.contextTokens|a:0:{}'),
 ('tkvpitbtd9uqp80sra4r2g2jln', 1765963490, 'modx.user.0.resourceGroups|a:1:{s:3:\"mgr\";a:0:{}}modx.user.0.attributes|a:1:{s:3:\"mgr\";a:5:{s:32:\"MODX\\Revolution\\modAccessContext\";a:1:{s:3:\"web\";a:1:{i:0;a:3:{s:9:\"principal\";i:0;s:9:\"authority\";i:0;s:6:\"policy\";a:1:{s:4:\"load\";b:1;}}}}s:38:\"MODX\\Revolution\\modAccessResourceGroup\";a:0:{}s:33:\"MODX\\Revolution\\modAccessCategory\";a:0:{}s:44:\"MODX\\Revolution\\Sources\\modAccessMediaSource\";a:0:{}s:34:\"MODX\\Revolution\\modAccessNamespace\";a:0:{}}}modx.user.contextTokens|a:1:{s:3:\"mgr\";i:1;}manager_language|s:2:\"en\";modx.mgr.user.token|s:52:\"modx694125ecad3793.81515359_16942287f16e196.46270737\";modx.mgr.session.cookie.lifetime|i:0;modx.mgr.user.config|a:0:{}newResourceTokens|a:4:{i:0;s:23:\"69422887883dc9.95313642\";i:1;s:23:\"69423009e121f1.85046145\";i:2;s:23:\"694275a17d80f0.65085246\";i:3;s:23:\"694276e26c6d89.11682085\";}');
@@ -2738,7 +2747,7 @@ CREATE TABLE `modx_user_attributes` (
 --
 
 INSERT INTO `modx_user_attributes` (`id`, `internalKey`, `fullname`, `email`, `phone`, `mobilephone`, `blocked`, `blockeduntil`, `blockedafter`, `logincount`, `lastlogin`, `thislogin`, `failedlogincount`, `sessionid`, `dob`, `gender`, `address`, `country`, `city`, `state`, `zip`, `fax`, `photo`, `comment`, `website`, `extended`) VALUES
-(1, 1, 'Default Admin User', 'navodyadivyanjali2@gmail.com', '', '', 0, 0, 0, 3, 1765901182, 1765943423, 0, '', 0, 0, '', '', '', '', '', '', '', '', '', NULL);
+(1, 1, 'Default Admin User', 'navodyadivyanjali2@gmail.com', '', '', 0, 0, 0, 4, 1765943423, 1766029018, 0, '', 0, 0, '', '', '', '', '', '', '', '', '', NULL);
 
 -- --------------------------------------------------------
 
@@ -3784,7 +3793,7 @@ ALTER TABLE `modx_lexicon_entries`
 -- AUTO_INCREMENT for table `modx_manager_log`
 --
 ALTER TABLE `modx_manager_log`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=250;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=251;
 
 --
 -- AUTO_INCREMENT for table `modx_media_sources`

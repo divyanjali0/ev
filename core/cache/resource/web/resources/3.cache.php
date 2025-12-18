@@ -154,8 +154,39 @@
     <!-- Custom JS -->
     <script src="assets/js/script.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<!-- Scroll to Top Button -->
+<button id="scrollTopBtn" title="Go to top"><img src="assets/images/top-icon.png" alt="top-icon" class="img-fluid" style="
+    width: 20px;
+    height: 20px;
+    display: flex;
+"></button>
 
 </body>
+
+<script>
+//Get the button
+const scrollTopBtn = document.getElementById("scrollTopBtn");
+
+// Show button when user scrolls down 100px
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+    if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+        scrollTopBtn.style.display = "block";
+    } else {
+        scrollTopBtn.style.display = "none";
+    }
+}
+
+// Scroll to top smoothly when clicked
+scrollTopBtn.addEventListener(\'click\', () => {
+    window.scrollTo({
+        top: 0,
+        behavior: \'smooth\'
+    });
+});
+</script>
+
 </html>
 <header>
     <!-- Navbar starts-->
@@ -318,9 +349,13 @@
                         <img src="assets/images/icons/footer-phone.svg" alt="Explore Vacations | Footer Contact Icon" class="me-1">
                         <a href="tel:+94761414554">+94 76 1414 554</a>
                     </li>
-                    <li>
+                    <li class="d-flex align-items-center">
                         <img src="assets/images/icons/footer-email.svg" alt="Explore Vacations | Footer Contact Icon" class="me-1">
-                        <a href="mailto:info@explorevacations.lk">info@explorevacations.lk</a>
+                        <div class="d-inline-block">
+                            <a href="mailto:info@explorevacations.lk">info@explorevacations.lk</a> 
+                            <a href="mailto:reservations@explorevacations.lk">reservations@explorevacations.lk</a> 
+                            <a href="mailto:travels@explorevacations.lk">travels@explorevacations.lk</a>
+                        </div>
                     </li>
                     <li>
                         <img src="assets/images/icons/footer-location.svg" alt="Explore Vacations | Footer Contact Icon" class="me-1">
@@ -427,8 +462,39 @@
     <!-- Custom JS -->
     <script src="assets/js/script.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<!-- Scroll to Top Button -->
+<button id="scrollTopBtn" title="Go to top"><img src="assets/images/top-icon.png" alt="top-icon" class="img-fluid" style="
+    width: 20px;
+    height: 20px;
+    display: flex;
+"></button>
 
 </body>
+
+<script>
+//Get the button
+const scrollTopBtn = document.getElementById("scrollTopBtn");
+
+// Show button when user scrolls down 100px
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+    if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+        scrollTopBtn.style.display = "block";
+    } else {
+        scrollTopBtn.style.display = "none";
+    }
+}
+
+// Scroll to top smoothly when clicked
+scrollTopBtn.addEventListener(\'click\', () => {
+    window.scrollTo({
+        top: 0,
+        behavior: \'smooth\'
+    });
+});
+</script>
+
 </html>',
     '[[~2]]' => 'index.php?id=2',
     '[[~3]]' => 'index.php?id=3',
@@ -533,9 +599,13 @@
                         <img src="assets/images/icons/footer-phone.svg" alt="Explore Vacations | Footer Contact Icon" class="me-1">
                         <a href="tel:+94761414554">+94 76 1414 554</a>
                     </li>
-                    <li>
+                    <li class="d-flex align-items-center">
                         <img src="assets/images/icons/footer-email.svg" alt="Explore Vacations | Footer Contact Icon" class="me-1">
-                        <a href="mailto:info@explorevacations.lk">info@explorevacations.lk</a>
+                        <div class="d-inline-block">
+                            <a href="mailto:info@explorevacations.lk">info@explorevacations.lk</a> 
+                            <a href="mailto:reservations@explorevacations.lk">reservations@explorevacations.lk</a> 
+                            <a href="mailto:travels@explorevacations.lk">travels@explorevacations.lk</a>
+                        </div>
                     </li>
                     <li>
                         <img src="assets/images/icons/footer-location.svg" alt="Explore Vacations | Footer Contact Icon" class="me-1">
@@ -641,8 +711,39 @@
     <!-- Custom JS -->
     <script src="assets/js/script.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<!-- Scroll to Top Button -->
+<button id="scrollTopBtn" title="Go to top"><img src="assets/images/top-icon.png" alt="top-icon" class="img-fluid" style="
+    width: 20px;
+    height: 20px;
+    display: flex;
+"></button>
 
 </body>
+
+<script>
+//Get the button
+const scrollTopBtn = document.getElementById("scrollTopBtn");
+
+// Show button when user scrolls down 100px
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+    if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+        scrollTopBtn.style.display = "block";
+    } else {
+        scrollTopBtn.style.display = "none";
+    }
+}
+
+// Scroll to top smoothly when clicked
+scrollTopBtn.addEventListener(\'click\', () => {
+    window.scrollTo({
+        top: 0,
+        behavior: \'smooth\'
+    });
+});
+</script>
+
 </html>',
           'locked' => false,
           'properties' => 
@@ -699,8 +800,39 @@
     <!-- Custom JS -->
     <script src="assets/js/script.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<!-- Scroll to Top Button -->
+<button id="scrollTopBtn" title="Go to top"><img src="assets/images/top-icon.png" alt="top-icon" class="img-fluid" style="
+    width: 20px;
+    height: 20px;
+    display: flex;
+"></button>
 
 </body>
+
+<script>
+//Get the button
+const scrollTopBtn = document.getElementById("scrollTopBtn");
+
+// Show button when user scrolls down 100px
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+    if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+        scrollTopBtn.style.display = "block";
+    } else {
+        scrollTopBtn.style.display = "none";
+    }
+}
+
+// Scroll to top smoothly when clicked
+scrollTopBtn.addEventListener(\'click\', () => {
+    window.scrollTo({
+        top: 0,
+        behavior: \'smooth\'
+    });
+});
+</script>
+
 </html>',
         ),
         'policies' => 
@@ -907,9 +1039,13 @@
                         <img src="assets/images/icons/footer-phone.svg" alt="Explore Vacations | Footer Contact Icon" class="me-1">
                         <a href="tel:+94761414554">+94 76 1414 554</a>
                     </li>
-                    <li>
+                    <li class="d-flex align-items-center">
                         <img src="assets/images/icons/footer-email.svg" alt="Explore Vacations | Footer Contact Icon" class="me-1">
-                        <a href="mailto:info@explorevacations.lk">info@explorevacations.lk</a>
+                        <div class="d-inline-block">
+                            <a href="mailto:info@explorevacations.lk">info@explorevacations.lk</a> 
+                            <a href="mailto:reservations@explorevacations.lk">reservations@explorevacations.lk</a> 
+                            <a href="mailto:travels@explorevacations.lk">travels@explorevacations.lk</a>
+                        </div>
                     </li>
                     <li>
                         <img src="assets/images/icons/footer-location.svg" alt="Explore Vacations | Footer Contact Icon" class="me-1">
@@ -1006,9 +1142,13 @@
                         <img src="assets/images/icons/footer-phone.svg" alt="Explore Vacations | Footer Contact Icon" class="me-1">
                         <a href="tel:+94761414554">+94 76 1414 554</a>
                     </li>
-                    <li>
+                    <li class="d-flex align-items-center">
                         <img src="assets/images/icons/footer-email.svg" alt="Explore Vacations | Footer Contact Icon" class="me-1">
-                        <a href="mailto:info@explorevacations.lk">info@explorevacations.lk</a>
+                        <div class="d-inline-block">
+                            <a href="mailto:info@explorevacations.lk">info@explorevacations.lk</a> 
+                            <a href="mailto:reservations@explorevacations.lk">reservations@explorevacations.lk</a> 
+                            <a href="mailto:travels@explorevacations.lk">travels@explorevacations.lk</a>
+                        </div>
                     </li>
                     <li>
                         <img src="assets/images/icons/footer-location.svg" alt="Explore Vacations | Footer Contact Icon" class="me-1">
