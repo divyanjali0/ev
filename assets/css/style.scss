@@ -604,24 +604,13 @@ header {
     }
   }
 
-  #our-businesses {
-    overflow: hidden;
-
-    .active::after {
-        border-bottom: 1px solid $color-white;
-    }
-
-    img {
-      height: 7rem;
-      object-fit: cover;
-    }
-
-    .carousel-indicators {
-      bottom: -42px;
-    }
-
-    .carousel-indicators [data-bs-target] {
-      background-color: rgb(4, 103, 131);
+  #company-tours {
+    h3 {
+      font-family: $font-handwriting;
+      font-weight: 600;
+      text-align: center;
+      font-size: 20px;
+      margin-bottom: 14px;
     }
   }
 }

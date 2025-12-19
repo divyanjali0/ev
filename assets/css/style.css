@@ -1105,3 +1105,26 @@ footer .row:last-child p a {
   background-color: #0254b5;
   border-color: #0254b5;
 }
+
+#company-tours h3 {
+  font-family: "Playfair Display", serif;
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.vehicle-card {
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    border: 2px solid transparent;
+}
+
+.vehicle-card:hover {
+    transform: scale(1.03);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.vehicle-card.selected {
+    border-color: #007bff;
+    box-shadow: 0 4px 12px rgba(0,123,255,0.4);
+}

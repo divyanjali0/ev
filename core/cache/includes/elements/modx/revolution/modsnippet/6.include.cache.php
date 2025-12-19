@@ -282,7 +282,9 @@ include ('config-details.php');
                         </div>
 
                         <?php if (!empty($selectedCities)): ?>
+                        
                         <hr>
+
                         <div class="row">
                             <!-- Selected Cities -->
                             <div class="col-md-6">
@@ -304,6 +306,7 @@ include ('config-details.php');
                                 <div id="map" style="height:200px;width:100%;"></div>
                             </div>
                         </div>
+
                         <?php endif; ?>
 
                         <hr>
@@ -343,6 +346,43 @@ include ('config-details.php');
                                     <input type="text" class="form-control" name="allergy_reason" placeholder="Please specify your allergy">
                                 </div>
                             </div>
+                        </div>
+
+                        <hr>
+
+                        <div class="row g-4">
+                            <label class="form-label fw-semibold d-block">Select Preferred Vehicle</label>
+
+                            <?php
+                            $stmt = $conn->prepare("SELECT * FROM vehicles ORDER BY id ASC");
+                            $stmt->execute();
+                            $vehicles = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+                            if (!empty($vehicles)):
+                                foreach ($vehicles as $v):
+                                    $id = (int)$v['id'];
+                                    $category = htmlspecialchars($v['category']);
+                                    $passengers = htmlspecialchars($v['passenger_count']);
+                                    $image = htmlspecialchars($v['image'] ?: 'assets/images/vehicles/default.jpg');
+                            ?>
+                            <div class="col-12 col-md-6 col-lg-3">
+                                <div class="card h-100 text-center shadow-sm vehicle-card" data-vehicle-id="<?= $id ?>">
+                                    <img src="<?= $image ?>" class="card-img-top img-fluid" alt="<?= $category ?>" style="height:10rem;object-fit:cover;">
+                                    <div class="card-body" style="padding:0;display: flex; flex-direction: column; justify-content: center;">
+                                        <h3><?= $category ?></h3>
+                                        <p class="card-text">Passengers: <?= $passengers ?></p>
+                                        <input class="form-check-input d-none" type="radio" name="vehicle_id" id="vehicle<?= $id ?>" value="<?= $id ?>" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <?php
+                                endforeach;
+                            else:
+                            ?>
+                            <div class="col">
+                                <p class="text-center">No vehicles found.</p>
+                            </div>
+                            <?php endif; ?>
                         </div>
 
                         <hr>
@@ -729,6 +769,22 @@ include ('config-details.php');
             });
         });
     </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const cards = document.querySelectorAll(".vehicle-card");
+
+            cards.forEach(card => {
+                card.addEventListener("click", function() {
+                    cards.forEach(c => c.classList.remove("selected"));
+                    this.classList.add("selected");
+                    const radio = this.querySelector('input[type="radio"]');
+                    if(radio) radio.checked = true;
+                });
+            });
+        });
+    </script>
+
 </body>
 
 <?php

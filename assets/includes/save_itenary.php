@@ -23,13 +23,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             adults, children_6_11, children_above_11, infants,
             hotel_rating, meal_plan, allergy_issues, allergy_reason,
             pickup_location, dropoff_location, title, full_name, email,
-            whatsapp_code, whatsapp, country, nationality, flight_number, remarks
+            whatsapp_code, whatsapp, country, nationality, flight_number, remarks, vehicle_id
         ) VALUES (
             :reference_no, :theme_ids, :city_ids, :start_date, :end_date, :nights,
             :adults, :children_6_11, :children_above_11, :infants,
             :hotel_rating, :meal_plan, :allergy_issues, :allergy_reason,
             :pickup_location, :dropoff_location, :title, :full_name, :email,
-            :whatsapp_code, :whatsapp, :country, :nationality, :flight_number, :remarks
+            :whatsapp_code, :whatsapp, :country, :nationality, :flight_number, :remarks, :vehicle_id
         )
     ");
 
@@ -58,7 +58,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ':country' => $_POST['country'],
         ':nationality' => $_POST['nationality'],
         ':flight_number' => $_POST['flightNumber'] ?? null,
-        ':remarks' => $_POST['remarks'] ?? null
+        ':remarks' => $_POST['remarks'] ?? null,
+        ':vehicle_id' => $_POST['vehicle_id']  
     ]);
 
     /* ============================
