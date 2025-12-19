@@ -87,6 +87,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $cities = [];
     }
 
+    // Fetch vehicle details for PDF
+    $vehicle = null;
+    if (!empty($_POST['vehicle_id'])) {
+        $stmt = $conn->prepare("SELECT category, passenger_count, image FROM vehicles WHERE id = ?");
+        $stmt->execute([$_POST['vehicle_id']]);
+        $vehicle = $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
     $themeList = !empty($themeNames) ? implode(', ', $themeNames) : 'N/A';
     $cityList  = !empty($cityNames) ? implode(', ', $cityNames) : 'N/A';
 
@@ -106,6 +114,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'dropoff' => $_POST['dropoffLocation']
     ];
 
+    $data['vehicle'] = $vehicle ? $vehicle['category'] : 'N/A';
+    $data['vehicle_passengers'] = $vehicle ? $vehicle['passenger_count'] : 0;
+    $data['image'] = $vehicle ? $vehicle['image'] : null;
+
+
     /* ============================
        GENERATE PDF
     ============================ */
@@ -120,6 +133,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     require_once __DIR__ . '/../../pdf/itinerary-summary.php';
     require_once __DIR__ . '/../../pdf/detailed-itinerary.php';
     require_once __DIR__ . '/../../pdf/map-page.php';
+    require_once __DIR__ . '/../../pdf/show-vehicle.php';
+    require_once __DIR__ . '/../../pdf/add-inclusions.php';
+    require_once __DIR__ . '/../../pdf/payment-methods.php';
     require_once __DIR__ . '/../../pdf/customer-details.php';
     require_once __DIR__ . '/../../pdf/footer-details.php';
 
