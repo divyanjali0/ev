@@ -41,9 +41,11 @@ header .navbar {
 header .navbar .navbar-brand {
   color: #ffffff;
 }
+
 header .navbar .navbar-brand img {
   width: 10%;
 }
+
 header .navbar .navbar-toggler {
   color: #ffffff;
 }
@@ -1127,4 +1129,38 @@ footer .row:last-child p a {
 .vehicle-card.selected {
     border-color: #007bff;
     box-shadow: 0 4px 12px rgba(0,123,255,0.4);
+}
+
+.navbar .btn-primary {
+  white-space: nowrap;
+  margin: 0px 11rem 0 0rem;
+  background-color: #00000000; 
+  border: 2px solid #0f4068;
+  border-radius: 0;
+  color: #ffffff; 
+  transition: background-color 0.3s, color 0.3s; 
+  font-weight: 600;
+}
+
+/* Hover state */
+.navbar .btn-primary:hover {
+  background-color: #0f4068; 
+  color: #ffffff; 
+}
+
+
+@media (min-width: 992px) {
+    header .navbar .navbar-brand img {
+        width: 45% !important;
+    }
+}
+
+@media (min-width: 1200px) {
+    header .navbar .navbar-brand img {
+        width: 68% !important;
+    }
+
+    .navbar .btn-primary {
+      margin: 0px 18rem !important;
+    }
 }

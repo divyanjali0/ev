@@ -1,18 +1,12 @@
 <?php  return 'include MODX_BASE_PATH . \'assets/includes/db_connect.php\';
 
-$apiKey  = "AIzaSyBl50Q8W4ZF2_EkOJ1lnRoVxO1IdjIupjM";
-$placeId = "ChIJpV-pH0vw4joREeE9so6gzEI";
+// Path to local JSON file with reviews
+$reviewsFile = MODX_BASE_PATH . \'assets/data/reviews.json\';
 
-$url = "https://maps.googleapis.com/maps/api/place/details/json"
-     . "?place_id={$placeId}"
-     . "&fields=rating,reviews.author_name,reviews.text,"
-     . "reviews.relative_time_description,reviews.profile_photo_url,"
-     . "reviews.rating"
-     . "&key={$apiKey}";
-
-$response = @file_get_contents($url);
-$data = $response ? json_decode($response, true) : [];
-$reviews = $data[\'result\'][\'reviews\'] ?? [];
+// Load JSON data
+$reviewsData = file_exists($reviewsFile) ? file_get_contents($reviewsFile) : \'{}\';
+$data = json_decode($reviewsData, true);
+$reviews = $data[\'reviews\'] ?? [];
 
 if (empty($reviews)) {
     return \'\';
@@ -27,9 +21,10 @@ $output .= \'<div class="carousel-inner">\';
 foreach ($chunks as $index => $chunk) {
     $output .= \'<div class="carousel-item\'.($index === 0 ? \' active\' : \'\').\'">
                     <div class="row justify-content-center g-4">\';
+
     foreach ($chunk as $review) {
 
-        $photo = htmlspecialchars($review[\'profile_photo_url\'] ?? \'\');
+        $photo = htmlspecialchars($review[\'profile_photo_url\'] ?? \'assets/images/default-user.png\');
         $name  = ucwords(strtolower($review[\'author_name\'] ?? \'\'));
         $time  = htmlspecialchars($review[\'relative_time_description\'] ?? \'\');
         $text  = trim($review[\'text\'] ?? \'\');
@@ -37,16 +32,16 @@ foreach ($chunks as $index => $chunk) {
         $short  = mb_substr($text, 0, 220);
         $isLong = mb_strlen($text) > 220;
 
-        $stars = \'\';
+        $rating = isset($review[\'rating\']) ? (int) round($review[\'rating\']) : 0;
+        $stars  = \'\';
         for ($i = 1; $i <= 5; $i++) {
-            $stars .= \'<span style="color:#cab449ff;">&#9733;</span>\';
+            $stars .= $i <= $rating ? \'<span style="color:#cab449ff;">&#9733;</span>\' : \'<span style="color:#ddd;">&#9733;</span>\';
         }
 
         $output .= \'<div class="col-12 col-lg-6">
                         <div class="review-card h-100 p-4 text-center">
 
-                            <img src="\'.$photo.\'" onerror="this.src=\\\'assets/images/default-user.png\\\';"
-                                 class="mb-3 rounded-circle" width="80" height="80" alt="User Photo">
+                            <img src="\'.$photo.\'" class="mb-3" width="100" height="80" alt="User Photo">
 
                             <div class="mb-2">\'.$stars.\'</div>
 

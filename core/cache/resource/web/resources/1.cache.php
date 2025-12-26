@@ -24,20 +24,20 @@
             <div class="swiper-wrapper">
                 <!-- Slide 1 -->
                 <div class="swiper-slide">
-                    <img src="assets/images/home-hero/img-1.jpg" alt="Explore Vacations"class="img-fluid d-none d-md-block">
-                    <img src="assets/images/home-hero/img-1-sm.jpg" alt="Explore Vacations" class="img-fluid d-md-none">
+                    <img src="assets/images/home-hero/img-1.webp" alt="Explore Vacations"class="img-fluid d-none d-md-block">
+                    <img src="assets/images/home-hero/img-1-sm.webp" alt="Explore Vacations" class="img-fluid d-md-none">
                 </div>
 
                 <!-- Slide 2 -->
                 <div class="swiper-slide">
-                    <img src="assets/images/home-hero/img-2.jpg" alt="Explore Vacations" class="img-fluid d-none d-md-block">
-                    <img src="assets/images/home-hero/img-2-sm.jpg" alt="Explore Vacations" class="img-fluid d-md-none">
+                    <img src="assets/images/home-hero/img-2.webp" alt="Explore Vacations" class="img-fluid d-none d-md-block">
+                    <img src="assets/images/home-hero/img-2-sm.webp" alt="Explore Vacations" class="img-fluid d-md-none">
                 </div>
 
                 <!-- Slide 3 -->
                 <div class="swiper-slide">
-                    <img src="assets/images/home-hero/img-3.jpg" alt="Explore Vacations" class="img-fluid d-none d-md-block">
-                    <img src="assets/images/home-hero/img-3-sm.jpg" alt="Explore Vacations" class="img-fluid d-md-none">
+                    <img src="assets/images/home-hero/img-3.webp" alt="Explore Vacations" class="img-fluid d-none d-md-block">
+                    <img src="assets/images/home-hero/img-3-sm.webp" alt="Explore Vacations" class="img-fluid d-md-none">
                 </div>
             </div>
         </div>
@@ -76,6 +76,36 @@
             </div>
         </div>
     </section>
+    <!-- Why choose us section ends -->
+
+    <!--Get in Touch section starts -->
+    <section id="get-in-touch" class="py-5">
+        <div class="container">
+            <div class="row">   
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row align-items-center">
+                                <div class="col-md-6 mb-4 mb-md-0" data-aos="fade-up" data-aos-duration="1000">
+                                    <h2 class="heading mb-3">Design Your Personalized Itinerary</h2>
+                                    <p class="supportive-text mb-4">
+                                            Use our itinerary builder to create your ideal travel plan exactly the way you want it. Once you’re happy with your plan, get in touch with us and we’ll make your dream trip a reality.
+                                    </p>
+                                    <a href="[[~7]]" class="btn btn-primary" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
+                                        Plan Now
+                                    </a>
+                                </div>
+                                <div class="col-md-6 text-center" data-aos="fade-left" data-aos-duration="1000">
+                                    <img src="assets/images/travel-cta.webp" alt="Travel" class="img-fluid hover-zoom">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--Get in Touch section ends -->
 
     <!-- Service Counter section starts -->
     <section id="service-counter" class="py-5">
@@ -325,36 +355,7 @@
     </section>
     <!-- Featured Trips section ends -->
 
-    <!--Get in Touch section starts -->
-    <section id="get-in-touch" class="py-5">
-        <div class="container">
-            <div class="row">   
-                <div class="col-12">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="row align-items-center">
-                                <div class="col-md-6 mb-4 mb-md-0" data-aos="fade-up" data-aos-duration="1000">
-                                    <h2 class="heading mb-3">Looking for a Personalized Trip or Tour ?</h2>
-                                    <p class="supportive-text mb-4">
-                                        Tell us about your travel plans, and we’ll create a custom trip just for you. From relaxing holidays to adventure tours, we handle all the details so you can enjoy a smooth and stress-free journey.
-                                    </p>
-                                    <a href="[[~7]]" class="btn btn-primary" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
-                                        Inquire Now
-                                    </a>
-                                </div>
-                                <div class="col-md-6 text-center" data-aos="fade-left" data-aos-duration="1000">
-                                    <img src="assets/images/travel-cta.png" alt="Travel" class="img-fluid hover-zoom">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!--Get in Touch section ends -->
-
-  <!-- Customer Reviews section starts -->
+    <!-- Customer Reviews section starts -->
     <section id="customer-reviews" class="pb-5">
         <div class="container text-center">
             <h2 class="heading">What Our Customers Say</h2>
@@ -376,7 +377,7 @@
                     <img src="assets/images/festivals/1.jpg" alt="Travel Articles" class="img-fluid">
                     <div class="card">
                         <div class="card-body">
-                            <p class="card-text">April 6 2024 | By Test</p>
+                            <p class="card-text">April 6 2024 | By Admin</p>
                             <h3 class="card-title">Festivals of Sri Lanka: When to Visit for Culture, Rituals & Local Life</h3>
                             <a href="[[~5]]" class="btn btn-primary">Read More</a>
                         </div>
@@ -386,7 +387,7 @@
                     <img src="assets/images/festivals/2.jpg" alt="Travel Articles" class="img-fluid">
                     <div class="card">
                         <div class="card-body">
-                            <p class="card-text">April 6 2024 | By Test</p>
+                            <p class="card-text">April 6 2024 | By Admin</p>
                             <h3 class="card-title">Hidden Cultural Gems: Temples, Forts & Ancient Cities Beyond the Usual</h3>
                             <a href="[[~5]]" class="btn btn-primary">Read More</a>
                         </div>
@@ -396,7 +397,7 @@
                     <img src="assets/images/festivals/3.jpg" alt="Travel Articles" class="img-fluid">
                     <div class="card">
                         <div class="card-body">
-                            <p class="card-text">April 6 2024 | By Test</p>
+                            <p class="card-text">April 6 2024 | By Admin</p>
                             <h3 class="card-title">Tea Country & Colonial Charm: Discovering Hill Country Heritage</h3>
                             <a href="[[~5]]" class="btn btn-primary">Read More</a>
                         </div>
@@ -406,7 +407,7 @@
                     <img src="assets/images/festivals/1.jpg" alt="Travel Articles" class="img-fluid">
                     <div class="card">
                         <div class="card-body">
-                            <p class="card-text">April 6 2024 | By Test</p>
+                            <p class="card-text">April 6 2024 | By Admin</p>
                             <h3 class="card-title">Festivals of Sri Lanka: When to Visit for Culture, Rituals & Local Life</h3>
                             <a href="[[~5]]" class="btn btn-primary">Read More</a>
                         </div>
@@ -506,7 +507,7 @@
     'createdby' => 1,
     'createdon' => 1765877278,
     'editedby' => 1,
-    'editedon' => 1766118243,
+    'editedon' => 1766727956,
     'deleted' => 0,
     'deletedon' => 0,
     'deletedby' => 0,
@@ -610,13 +611,19 @@ scrollTopBtn.addEventListener(\'click\', () => {
 <header>
     <!-- Navbar starts-->
     <nav class="navbar navbar-expand-lg p-lg-0">
-        <div class="container">
+        <div class="container d-flex align-items-center justify-content-between">
+            
+            <!-- Brand / Logo -->
             <a class="navbar-brand" href="./">
                 <img src="assets/images/logo.png" alt="Explore Vacations | Logo" class="d-none d-lg-inline">
-                <!-- <span>
-                    Explore Vacations
-                </span> -->
             </a>
+
+            <!-- Desktop: Get a Quote button (between logo and nav items) -->
+            <a href="index.php?id=3" class="btn btn-primary d-none d-lg-block">
+                Get a Quote
+            </a>
+
+            <!-- Navbar links and mobile toggle -->
             <button class="navbar-toggler border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-expanded="false" aria-label="Toggle navigation">
                 <i class="fa-solid fa-bars"></i>
             </button>
@@ -627,7 +634,7 @@ scrollTopBtn.addEventListener(\'click\', () => {
                     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
                 <div class="offcanvas-body">
-                    <ul class="navbar-nav ms-auto">
+                    <ul class="navbar-nav ms-auto align-items-lg-center">
                         <li class="nav-item">
                             <a class="nav-link active" href="./" page-name="home">Home</a>
                         </li>
@@ -646,13 +653,19 @@ scrollTopBtn.addEventListener(\'click\', () => {
                         <li class="nav-item">
                             <a class="nav-link" href="index.php?id=7" page-name="contact">Contact</a>
                         </li>
+                        <!-- Mobile: Get a Quote button inside offcanvas -->
+                        <li class="nav-item d-lg-none mt-3">
+                            <a class="btn btn-primary w-100" href="quote.php">Get a Quote</a>
+                        </li>
                     </ul>
                 </div>
             </div>
+
         </div>
     </nav>
     <!-- Navbar ends-->
 </header>
+
 
 
 <body id = "homePage">
@@ -662,20 +675,20 @@ scrollTopBtn.addEventListener(\'click\', () => {
             <div class="swiper-wrapper">
                 <!-- Slide 1 -->
                 <div class="swiper-slide">
-                    <img src="assets/images/home-hero/img-1.jpg" alt="Explore Vacations"class="img-fluid d-none d-md-block">
-                    <img src="assets/images/home-hero/img-1-sm.jpg" alt="Explore Vacations" class="img-fluid d-md-none">
+                    <img src="assets/images/home-hero/img-1.webp" alt="Explore Vacations"class="img-fluid d-none d-md-block">
+                    <img src="assets/images/home-hero/img-1-sm.webp" alt="Explore Vacations" class="img-fluid d-md-none">
                 </div>
 
                 <!-- Slide 2 -->
                 <div class="swiper-slide">
-                    <img src="assets/images/home-hero/img-2.jpg" alt="Explore Vacations" class="img-fluid d-none d-md-block">
-                    <img src="assets/images/home-hero/img-2-sm.jpg" alt="Explore Vacations" class="img-fluid d-md-none">
+                    <img src="assets/images/home-hero/img-2.webp" alt="Explore Vacations" class="img-fluid d-none d-md-block">
+                    <img src="assets/images/home-hero/img-2-sm.webp" alt="Explore Vacations" class="img-fluid d-md-none">
                 </div>
 
                 <!-- Slide 3 -->
                 <div class="swiper-slide">
-                    <img src="assets/images/home-hero/img-3.jpg" alt="Explore Vacations" class="img-fluid d-none d-md-block">
-                    <img src="assets/images/home-hero/img-3-sm.jpg" alt="Explore Vacations" class="img-fluid d-md-none">
+                    <img src="assets/images/home-hero/img-3.webp" alt="Explore Vacations" class="img-fluid d-none d-md-block">
+                    <img src="assets/images/home-hero/img-3-sm.webp" alt="Explore Vacations" class="img-fluid d-md-none">
                 </div>
             </div>
         </div>
@@ -714,6 +727,36 @@ scrollTopBtn.addEventListener(\'click\', () => {
             </div>
         </div>
     </section>
+    <!-- Why choose us section ends -->
+
+    <!--Get in Touch section starts -->
+    <section id="get-in-touch" class="py-5">
+        <div class="container">
+            <div class="row">   
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row align-items-center">
+                                <div class="col-md-6 mb-4 mb-md-0" data-aos="fade-up" data-aos-duration="1000">
+                                    <h2 class="heading mb-3">Design Your Personalized Itinerary</h2>
+                                    <p class="supportive-text mb-4">
+                                            Use our itinerary builder to create your ideal travel plan exactly the way you want it. Once you’re happy with your plan, get in touch with us and we’ll make your dream trip a reality.
+                                    </p>
+                                    <a href="index.php?id=7" class="btn btn-primary" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
+                                        Plan Now
+                                    </a>
+                                </div>
+                                <div class="col-md-6 text-center" data-aos="fade-left" data-aos-duration="1000">
+                                    <img src="assets/images/travel-cta.webp" alt="Travel" class="img-fluid hover-zoom">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--Get in Touch section ends -->
 
     <!-- Service Counter section starts -->
     <section id="service-counter" class="py-5">
@@ -963,36 +1006,7 @@ scrollTopBtn.addEventListener(\'click\', () => {
     </section>
     <!-- Featured Trips section ends -->
 
-    <!--Get in Touch section starts -->
-    <section id="get-in-touch" class="py-5">
-        <div class="container">
-            <div class="row">   
-                <div class="col-12">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="row align-items-center">
-                                <div class="col-md-6 mb-4 mb-md-0" data-aos="fade-up" data-aos-duration="1000">
-                                    <h2 class="heading mb-3">Looking for a Personalized Trip or Tour ?</h2>
-                                    <p class="supportive-text mb-4">
-                                        Tell us about your travel plans, and we’ll create a custom trip just for you. From relaxing holidays to adventure tours, we handle all the details so you can enjoy a smooth and stress-free journey.
-                                    </p>
-                                    <a href="index.php?id=7" class="btn btn-primary" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
-                                        Inquire Now
-                                    </a>
-                                </div>
-                                <div class="col-md-6 text-center" data-aos="fade-left" data-aos-duration="1000">
-                                    <img src="assets/images/travel-cta.png" alt="Travel" class="img-fluid hover-zoom">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!--Get in Touch section ends -->
-
-  <!-- Customer Reviews section starts -->
+    <!-- Customer Reviews section starts -->
     <section id="customer-reviews" class="pb-5">
         <div class="container text-center">
             <h2 class="heading">What Our Customers Say</h2>
@@ -1014,7 +1028,7 @@ scrollTopBtn.addEventListener(\'click\', () => {
                     <img src="assets/images/festivals/1.jpg" alt="Travel Articles" class="img-fluid">
                     <div class="card">
                         <div class="card-body">
-                            <p class="card-text">April 6 2024 | By Test</p>
+                            <p class="card-text">April 6 2024 | By Admin</p>
                             <h3 class="card-title">Festivals of Sri Lanka: When to Visit for Culture, Rituals & Local Life</h3>
                             <a href="index.php?id=5" class="btn btn-primary">Read More</a>
                         </div>
@@ -1024,7 +1038,7 @@ scrollTopBtn.addEventListener(\'click\', () => {
                     <img src="assets/images/festivals/2.jpg" alt="Travel Articles" class="img-fluid">
                     <div class="card">
                         <div class="card-body">
-                            <p class="card-text">April 6 2024 | By Test</p>
+                            <p class="card-text">April 6 2024 | By Admin</p>
                             <h3 class="card-title">Hidden Cultural Gems: Temples, Forts & Ancient Cities Beyond the Usual</h3>
                             <a href="index.php?id=5" class="btn btn-primary">Read More</a>
                         </div>
@@ -1034,7 +1048,7 @@ scrollTopBtn.addEventListener(\'click\', () => {
                     <img src="assets/images/festivals/3.jpg" alt="Travel Articles" class="img-fluid">
                     <div class="card">
                         <div class="card-body">
-                            <p class="card-text">April 6 2024 | By Test</p>
+                            <p class="card-text">April 6 2024 | By Admin</p>
                             <h3 class="card-title">Tea Country & Colonial Charm: Discovering Hill Country Heritage</h3>
                             <a href="index.php?id=5" class="btn btn-primary">Read More</a>
                         </div>
@@ -1044,7 +1058,7 @@ scrollTopBtn.addEventListener(\'click\', () => {
                     <img src="assets/images/festivals/1.jpg" alt="Travel Articles" class="img-fluid">
                     <div class="card">
                         <div class="card-body">
-                            <p class="card-text">April 6 2024 | By Test</p>
+                            <p class="card-text">April 6 2024 | By Admin</p>
                             <h3 class="card-title">Festivals of Sri Lanka: When to Visit for Culture, Rituals & Local Life</h3>
                             <a href="index.php?id=5" class="btn btn-primary">Read More</a>
                         </div>
@@ -1338,21 +1352,27 @@ scrollTopBtn.addEventListener(\'click\', () => {
 </script>
 
 </html>',
-    '[[~2]]' => 'index.php?id=2',
     '[[~3]]' => 'index.php?id=3',
+    '[[~2]]' => 'index.php?id=2',
     '[[~4]]' => 'index.php?id=4',
     '[[~5]]' => 'index.php?id=5',
     '[[~7]]' => 'index.php?id=7',
     '[[$navbar?]]' => '<header>
     <!-- Navbar starts-->
     <nav class="navbar navbar-expand-lg p-lg-0">
-        <div class="container">
+        <div class="container d-flex align-items-center justify-content-between">
+            
+            <!-- Brand / Logo -->
             <a class="navbar-brand" href="./">
                 <img src="assets/images/logo.png" alt="Explore Vacations | Logo" class="d-none d-lg-inline">
-                <!-- <span>
-                    Explore Vacations
-                </span> -->
             </a>
+
+            <!-- Desktop: Get a Quote button (between logo and nav items) -->
+            <a href="index.php?id=3" class="btn btn-primary d-none d-lg-block">
+                Get a Quote
+            </a>
+
+            <!-- Navbar links and mobile toggle -->
             <button class="navbar-toggler border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-expanded="false" aria-label="Toggle navigation">
                 <i class="fa-solid fa-bars"></i>
             </button>
@@ -1363,7 +1383,7 @@ scrollTopBtn.addEventListener(\'click\', () => {
                     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
                 <div class="offcanvas-body">
-                    <ul class="navbar-nav ms-auto">
+                    <ul class="navbar-nav ms-auto align-items-lg-center">
                         <li class="nav-item">
                             <a class="nav-link active" href="./" page-name="home">Home</a>
                         </li>
@@ -1382,13 +1402,19 @@ scrollTopBtn.addEventListener(\'click\', () => {
                         <li class="nav-item">
                             <a class="nav-link" href="index.php?id=7" page-name="contact">Contact</a>
                         </li>
+                        <!-- Mobile: Get a Quote button inside offcanvas -->
+                        <li class="nav-item d-lg-none mt-3">
+                            <a class="btn btn-primary w-100" href="quote.php">Get a Quote</a>
+                        </li>
                     </ul>
                 </div>
             </div>
+
         </div>
     </nav>
     <!-- Navbar ends-->
-</header>',
+</header>
+',
     '[[$footer?]]' => '<footer>
     <div class="container">
         <div class="row">
@@ -1682,9 +1708,6 @@ scrollTopBtn.addEventListener(\'click\', () => {
         ),
         'policies' => 
         array (
-          'web' => 
-          array (
-          ),
         ),
         'source' => 
         array (
@@ -1713,13 +1736,19 @@ scrollTopBtn.addEventListener(\'click\', () => {
           'snippet' => '<header>
     <!-- Navbar starts-->
     <nav class="navbar navbar-expand-lg p-lg-0">
-        <div class="container">
+        <div class="container d-flex align-items-center justify-content-between">
+            
+            <!-- Brand / Logo -->
             <a class="navbar-brand" href="./">
                 <img src="assets/images/logo.png" alt="Explore Vacations | Logo" class="d-none d-lg-inline">
-                <!-- <span>
-                    Explore Vacations
-                </span> -->
             </a>
+
+            <!-- Desktop: Get a Quote button (between logo and nav items) -->
+            <a href="[[~3]]" class="btn btn-primary d-none d-lg-block">
+                Get a Quote
+            </a>
+
+            <!-- Navbar links and mobile toggle -->
             <button class="navbar-toggler border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-expanded="false" aria-label="Toggle navigation">
                 <i class="fa-solid fa-bars"></i>
             </button>
@@ -1730,7 +1759,7 @@ scrollTopBtn.addEventListener(\'click\', () => {
                     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
                 <div class="offcanvas-body">
-                    <ul class="navbar-nav ms-auto">
+                    <ul class="navbar-nav ms-auto align-items-lg-center">
                         <li class="nav-item">
                             <a class="nav-link active" href="./" page-name="home">Home</a>
                         </li>
@@ -1749,13 +1778,19 @@ scrollTopBtn.addEventListener(\'click\', () => {
                         <li class="nav-item">
                             <a class="nav-link" href="[[~7]]" page-name="contact">Contact</a>
                         </li>
+                        <!-- Mobile: Get a Quote button inside offcanvas -->
+                        <li class="nav-item d-lg-none mt-3">
+                            <a class="btn btn-primary w-100" href="quote.php">Get a Quote</a>
+                        </li>
                     </ul>
                 </div>
             </div>
+
         </div>
     </nav>
     <!-- Navbar ends-->
-</header>',
+</header>
+',
           'locked' => false,
           'properties' => 
           array (
@@ -1765,13 +1800,19 @@ scrollTopBtn.addEventListener(\'click\', () => {
           'content' => '<header>
     <!-- Navbar starts-->
     <nav class="navbar navbar-expand-lg p-lg-0">
-        <div class="container">
+        <div class="container d-flex align-items-center justify-content-between">
+            
+            <!-- Brand / Logo -->
             <a class="navbar-brand" href="./">
                 <img src="assets/images/logo.png" alt="Explore Vacations | Logo" class="d-none d-lg-inline">
-                <!-- <span>
-                    Explore Vacations
-                </span> -->
             </a>
+
+            <!-- Desktop: Get a Quote button (between logo and nav items) -->
+            <a href="[[~3]]" class="btn btn-primary d-none d-lg-block">
+                Get a Quote
+            </a>
+
+            <!-- Navbar links and mobile toggle -->
             <button class="navbar-toggler border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-expanded="false" aria-label="Toggle navigation">
                 <i class="fa-solid fa-bars"></i>
             </button>
@@ -1782,7 +1823,7 @@ scrollTopBtn.addEventListener(\'click\', () => {
                     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
                 <div class="offcanvas-body">
-                    <ul class="navbar-nav ms-auto">
+                    <ul class="navbar-nav ms-auto align-items-lg-center">
                         <li class="nav-item">
                             <a class="nav-link active" href="./" page-name="home">Home</a>
                         </li>
@@ -1801,19 +1842,22 @@ scrollTopBtn.addEventListener(\'click\', () => {
                         <li class="nav-item">
                             <a class="nav-link" href="[[~7]]" page-name="contact">Contact</a>
                         </li>
+                        <!-- Mobile: Get a Quote button inside offcanvas -->
+                        <li class="nav-item d-lg-none mt-3">
+                            <a class="btn btn-primary w-100" href="quote.php">Get a Quote</a>
+                        </li>
                     </ul>
                 </div>
             </div>
+
         </div>
     </nav>
     <!-- Navbar ends-->
-</header>',
+</header>
+',
         ),
         'policies' => 
         array (
-          'web' => 
-          array (
-          ),
         ),
         'source' => 
         array (
@@ -2050,9 +2094,6 @@ scrollTopBtn.addEventListener(\'click\', () => {
         ),
         'policies' => 
         array (
-          'web' => 
-          array (
-          ),
         ),
         'source' => 
         array (
@@ -2195,9 +2236,6 @@ $tours = $stmt->fetchAll(PDO::FETCH_ASSOC);
         ),
         'policies' => 
         array (
-          'web' => 
-          array (
-          ),
         ),
         'source' => 
         array (
@@ -2225,19 +2263,13 @@ $tours = $stmt->fetchAll(PDO::FETCH_ASSOC);
           'cache_type' => 0,
           'snippet' => 'include MODX_BASE_PATH . \'assets/includes/db_connect.php\';
 
-$apiKey  = "AIzaSyBl50Q8W4ZF2_EkOJ1lnRoVxO1IdjIupjM";
-$placeId = "ChIJpV-pH0vw4joREeE9so6gzEI";
+// Path to local JSON file with reviews
+$reviewsFile = MODX_BASE_PATH . \'assets/data/reviews.json\';
 
-$url = "https://maps.googleapis.com/maps/api/place/details/json"
-     . "?place_id={$placeId}"
-     . "&fields=rating,reviews.author_name,reviews.text,"
-     . "reviews.relative_time_description,reviews.profile_photo_url,"
-     . "reviews.rating"
-     . "&key={$apiKey}";
-
-$response = @file_get_contents($url);
-$data = $response ? json_decode($response, true) : [];
-$reviews = $data[\'result\'][\'reviews\'] ?? [];
+// Load JSON data
+$reviewsData = file_exists($reviewsFile) ? file_get_contents($reviewsFile) : \'{}\';
+$data = json_decode($reviewsData, true);
+$reviews = $data[\'reviews\'] ?? [];
 
 if (empty($reviews)) {
     return \'\';
@@ -2252,9 +2284,10 @@ $output .= \'<div class="carousel-inner">\';
 foreach ($chunks as $index => $chunk) {
     $output .= \'<div class="carousel-item\'.($index === 0 ? \' active\' : \'\').\'">
                     <div class="row justify-content-center g-4">\';
+
     foreach ($chunk as $review) {
 
-        $photo = htmlspecialchars($review[\'profile_photo_url\'] ?? \'\');
+        $photo = htmlspecialchars($review[\'profile_photo_url\'] ?? \'assets/images/default-user.png\');
         $name  = ucwords(strtolower($review[\'author_name\'] ?? \'\'));
         $time  = htmlspecialchars($review[\'relative_time_description\'] ?? \'\');
         $text  = trim($review[\'text\'] ?? \'\');
@@ -2262,16 +2295,16 @@ foreach ($chunks as $index => $chunk) {
         $short  = mb_substr($text, 0, 220);
         $isLong = mb_strlen($text) > 220;
 
-        $stars = \'\';
+        $rating = isset($review[\'rating\']) ? (int) round($review[\'rating\']) : 0;
+        $stars  = \'\';
         for ($i = 1; $i <= 5; $i++) {
-            $stars .= \'<span style="color:#cab449ff;">&#9733;</span>\';
+            $stars .= $i <= $rating ? \'<span style="color:#cab449ff;">&#9733;</span>\' : \'<span style="color:#ddd;">&#9733;</span>\';
         }
 
         $output .= \'<div class="col-12 col-lg-6">
                         <div class="review-card h-100 p-4 text-center">
 
-                            <img src="\'.$photo.\'" onerror="this.src=\\\'assets/images/default-user.png\\\';"
-                                 class="mb-3 rounded-circle" width="80" height="80" alt="User Photo">
+                            <img src="\'.$photo.\'" class="mb-3" width="100" height="80" alt="User Photo">
 
                             <div class="mb-2">\'.$stars.\'</div>
 
@@ -2316,19 +2349,13 @@ return $output;',
           'static_file' => '',
           'content' => 'include MODX_BASE_PATH . \'assets/includes/db_connect.php\';
 
-$apiKey  = "AIzaSyBl50Q8W4ZF2_EkOJ1lnRoVxO1IdjIupjM";
-$placeId = "ChIJpV-pH0vw4joREeE9so6gzEI";
+// Path to local JSON file with reviews
+$reviewsFile = MODX_BASE_PATH . \'assets/data/reviews.json\';
 
-$url = "https://maps.googleapis.com/maps/api/place/details/json"
-     . "?place_id={$placeId}"
-     . "&fields=rating,reviews.author_name,reviews.text,"
-     . "reviews.relative_time_description,reviews.profile_photo_url,"
-     . "reviews.rating"
-     . "&key={$apiKey}";
-
-$response = @file_get_contents($url);
-$data = $response ? json_decode($response, true) : [];
-$reviews = $data[\'result\'][\'reviews\'] ?? [];
+// Load JSON data
+$reviewsData = file_exists($reviewsFile) ? file_get_contents($reviewsFile) : \'{}\';
+$data = json_decode($reviewsData, true);
+$reviews = $data[\'reviews\'] ?? [];
 
 if (empty($reviews)) {
     return \'\';
@@ -2343,9 +2370,10 @@ $output .= \'<div class="carousel-inner">\';
 foreach ($chunks as $index => $chunk) {
     $output .= \'<div class="carousel-item\'.($index === 0 ? \' active\' : \'\').\'">
                     <div class="row justify-content-center g-4">\';
+
     foreach ($chunk as $review) {
 
-        $photo = htmlspecialchars($review[\'profile_photo_url\'] ?? \'\');
+        $photo = htmlspecialchars($review[\'profile_photo_url\'] ?? \'assets/images/default-user.png\');
         $name  = ucwords(strtolower($review[\'author_name\'] ?? \'\'));
         $time  = htmlspecialchars($review[\'relative_time_description\'] ?? \'\');
         $text  = trim($review[\'text\'] ?? \'\');
@@ -2353,16 +2381,16 @@ foreach ($chunks as $index => $chunk) {
         $short  = mb_substr($text, 0, 220);
         $isLong = mb_strlen($text) > 220;
 
-        $stars = \'\';
+        $rating = isset($review[\'rating\']) ? (int) round($review[\'rating\']) : 0;
+        $stars  = \'\';
         for ($i = 1; $i <= 5; $i++) {
-            $stars .= \'<span style="color:#cab449ff;">&#9733;</span>\';
+            $stars .= $i <= $rating ? \'<span style="color:#cab449ff;">&#9733;</span>\' : \'<span style="color:#ddd;">&#9733;</span>\';
         }
 
         $output .= \'<div class="col-12 col-lg-6">
                         <div class="review-card h-100 p-4 text-center">
 
-                            <img src="\'.$photo.\'" onerror="this.src=\\\'assets/images/default-user.png\\\';"
-                                 class="mb-3 rounded-circle" width="80" height="80" alt="User Photo">
+                            <img src="\'.$photo.\'" class="mb-3" width="100" height="80" alt="User Photo">
 
                             <div class="mb-2">\'.$stars.\'</div>
 
@@ -2401,9 +2429,6 @@ return $output;',
         ),
         'policies' => 
         array (
-          'web' => 
-          array (
-          ),
         ),
         'source' => 
         array (

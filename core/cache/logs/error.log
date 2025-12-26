@@ -10,3 +10,34 @@
 [2025-12-19 12:09:53] (ERROR @ C:\xampp\htdocs\ev\assets\includes\save_itenary.php : 8) PHP warning: Undefined variable $pdf
 [2025-12-19 12:09:54] (ERROR @ C:\xampp\htdocs\ev\assets\includes\save_itenary.php : 8) PHP warning: Undefined variable $pdf
 [2025-12-19 12:09:54] (ERROR @ C:\xampp\htdocs\ev\assets\includes\save_itenary.php : 8) PHP warning: Undefined variable $pdf
+[2025-12-22 05:16:00] (ERROR @ C:\xampp\htdocs\ev\core\vendor\xpdo\xpdo\src\xPDO\Om\xPDOObject.php : 227) Error HY000 executing statement: 
+Array
+(
+    [0] => HY000
+    [1] => 2006
+    [2] => MySQL server has gone away
+)
+
+[2025-12-22 05:16:05] (ERROR @ C:\xampp\htdocs\ev\core\vendor\xpdo\xpdo\src\xPDO\Om\xPDOObject.php : 227) Error HY000 executing statement: 
+Array
+(
+    [0] => HY000
+    [1] => 2006
+    [2] => MySQL server has gone away
+)
+
+[2025-12-22 05:16:05] (ERROR @ C:\xampp\htdocs\ev\core\vendor\xpdo\xpdo\src\xPDO\Om\xPDOObject.php : 1447) Error HY000 executing statement:
+INSERT INTO `modx_session` (`id`, `access`, `data`) VALUES ('legenpbaoi1bkbhvlvei6slpve', 1766376965, '')
+Array
+(
+    [0] => HY000
+    [1] => 2006
+    [2] => MySQL server has gone away
+)
+
+[2025-12-22 05:16:05] (ERROR @ Unknown0) PHP warning: session_write_close(): Failed to write session data using user defined save handler. (session.save_path: C:\xampp\tmp, handler: MODX\Revolution\modSessionHandler::write)
+[2025-12-22 10:01:53] (ERROR @ C:\xampp\htdocs\ev\core\cache\includes\elements\modx\revolution\modsnippet\7.include.cache.php : 15) PHP warning: Undefined variable $result
+[2025-12-22 10:01:53] (ERROR @ C:\xampp\htdocs\ev\core\cache\includes\elements\modx\revolution\modsnippet\7.include.cache.php : 15) PHP warning: Attempt to read property "num_rows" on null
+[2025-12-22 10:02:40] (ERROR @ C:\xampp\htdocs\ev\core\cache\includes\elements\modx\revolution\modsnippet\7.include.cache.php : 17) PHP warning: Undefined property: PDOStatement::$num_rows
+[2025-12-22 10:03:04] (ERROR @ C:\xampp\htdocs\ev\core\cache\includes\elements\modx\revolution\modsnippet\7.include.cache.php : 17) PHP warning: Undefined property: PDOStatement::$num_rows
+[2025-12-22 05:48:30] (ERROR @ C:\xampp\htdocs\ev\core\src\Revolution\modMenu.php : 80) The menu cache key menus/usernav/en could not be written.

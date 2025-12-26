@@ -3,7 +3,9 @@
 /** @var array $cities */
 /** @var array $data */
 /** @var string $themeList */
-/** @var string $assetRoot */
+
+
+$assetRoot = realpath(__DIR__ . '/../assets') . DIRECTORY_SEPARATOR;
 
 require_once __DIR__ . '/footer-details.php';
 
