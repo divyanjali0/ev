@@ -609,31 +609,46 @@ scrollTopBtn.addEventListener(\'click\', () => {
 
 </html>
 <header>
-    <!-- Navbar starts-->
+
+    <!-- Top Info Bar -->
+    <div class="top-bar">
+        <div class="container d-flex justify-content-between align-items-center">
+            <div class="top-left">
+                <a href="https://wa.me/94761414554 " target="_blank" class="top-link">
+                    <i class="fa-brands fa-whatsapp fa-lg"></i> +94 76 1414 554 
+                </a>
+                <a href="mailto:info@explorevacations.lk" class="top-link">
+                    <i class="fa-regular fa-envelope fa-lg"></i> info@explorevacations.lk
+                </a>
+            </div>
+            <div class="top-right">
+                <a href="index.php?id=3" class="top-btn">
+                    Get a Quote
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg p-lg-0">
         <div class="container d-flex align-items-center justify-content-between">
-            
-            <!-- Brand / Logo -->
+
             <a class="navbar-brand" href="./">
-                <img src="assets/images/logo.png" alt="Explore Vacations | Logo" class="d-none d-lg-inline">
+                <img src="assets/images/logo.png" alt="Explore Vacations | Logo" class="img-fluid">
             </a>
 
-            <!-- Desktop: Get a Quote button (between logo and nav items) -->
-            <a href="index.php?id=3" class="btn btn-primary d-none d-lg-block">
-                Get a Quote
-            </a>
-
-            <!-- Navbar links and mobile toggle -->
-            <button class="navbar-toggler border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler border-0" type="button"
+                data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar">
                 <i class="fa-solid fa-bars"></i>
             </button>
 
             <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar">
                 <div class="offcanvas-header">
-                    <h5 class="offcanvas-title">Explore Vacations</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    <img src="assets/images/logo.png" alt="Explore Vacations | Logo" class="img-fluid" style="width: 50%;">
+
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
                 </div>
-                <div class="offcanvas-body">
+                <div class="offcanvas-body pt-0">
                     <ul class="navbar-nav ms-auto align-items-lg-center">
                         <li class="nav-item">
                             <a class="nav-link active" href="./" page-name="home">Home</a>
@@ -653,19 +668,26 @@ scrollTopBtn.addEventListener(\'click\', () => {
                         <li class="nav-item">
                             <a class="nav-link" href="index.php?id=7" page-name="contact">Contact</a>
                         </li>
-                        <!-- Mobile: Get a Quote button inside offcanvas -->
-                        <li class="nav-item d-lg-none mt-3">
-                            <a class="btn btn-primary w-100" href="quote.php">Get a Quote</a>
-                        </li>
                     </ul>
                 </div>
             </div>
 
         </div>
     </nav>
-    <!-- Navbar ends-->
+
 </header>
 
+<script>
+window.addEventListener("scroll", function () {
+    const navbar = document.querySelector(".navbar");
+
+    if (window.scrollY > 50) {
+        navbar.classList.add("scrolled");
+    } else {
+        navbar.classList.remove("scrolled");
+    }
+});
+</script>
 
 
 <body id = "homePage">
@@ -1358,31 +1380,46 @@ scrollTopBtn.addEventListener(\'click\', () => {
     '[[~5]]' => 'index.php?id=5',
     '[[~7]]' => 'index.php?id=7',
     '[[$navbar?]]' => '<header>
-    <!-- Navbar starts-->
+
+    <!-- Top Info Bar -->
+    <div class="top-bar">
+        <div class="container d-flex justify-content-between align-items-center">
+            <div class="top-left">
+                <a href="https://wa.me/94761414554 " target="_blank" class="top-link">
+                    <i class="fa-brands fa-whatsapp fa-lg"></i> +94 76 1414 554 
+                </a>
+                <a href="mailto:info@explorevacations.lk" class="top-link">
+                    <i class="fa-regular fa-envelope fa-lg"></i> info@explorevacations.lk
+                </a>
+            </div>
+            <div class="top-right">
+                <a href="index.php?id=3" class="top-btn">
+                    Get a Quote
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg p-lg-0">
         <div class="container d-flex align-items-center justify-content-between">
-            
-            <!-- Brand / Logo -->
+
             <a class="navbar-brand" href="./">
-                <img src="assets/images/logo.png" alt="Explore Vacations | Logo" class="d-none d-lg-inline">
+                <img src="assets/images/logo.png" alt="Explore Vacations | Logo" class="img-fluid">
             </a>
 
-            <!-- Desktop: Get a Quote button (between logo and nav items) -->
-            <a href="index.php?id=3" class="btn btn-primary d-none d-lg-block">
-                Get a Quote
-            </a>
-
-            <!-- Navbar links and mobile toggle -->
-            <button class="navbar-toggler border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler border-0" type="button"
+                data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar">
                 <i class="fa-solid fa-bars"></i>
             </button>
 
             <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar">
                 <div class="offcanvas-header">
-                    <h5 class="offcanvas-title">Explore Vacations</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    <img src="assets/images/logo.png" alt="Explore Vacations | Logo" class="img-fluid" style="width: 50%;">
+
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
                 </div>
-                <div class="offcanvas-body">
+                <div class="offcanvas-body pt-0">
                     <ul class="navbar-nav ms-auto align-items-lg-center">
                         <li class="nav-item">
                             <a class="nav-link active" href="./" page-name="home">Home</a>
@@ -1402,19 +1439,26 @@ scrollTopBtn.addEventListener(\'click\', () => {
                         <li class="nav-item">
                             <a class="nav-link" href="index.php?id=7" page-name="contact">Contact</a>
                         </li>
-                        <!-- Mobile: Get a Quote button inside offcanvas -->
-                        <li class="nav-item d-lg-none mt-3">
-                            <a class="btn btn-primary w-100" href="quote.php">Get a Quote</a>
-                        </li>
                     </ul>
                 </div>
             </div>
 
         </div>
     </nav>
-    <!-- Navbar ends-->
+
 </header>
-',
+
+<script>
+window.addEventListener("scroll", function () {
+    const navbar = document.querySelector(".navbar");
+
+    if (window.scrollY > 50) {
+        navbar.classList.add("scrolled");
+    } else {
+        navbar.classList.remove("scrolled");
+    }
+});
+</script>',
     '[[$footer?]]' => '<footer>
     <div class="container">
         <div class="row">
@@ -1734,31 +1778,46 @@ scrollTopBtn.addEventListener(\'click\', () => {
           'category' => 0,
           'cache_type' => 0,
           'snippet' => '<header>
-    <!-- Navbar starts-->
+
+    <!-- Top Info Bar -->
+    <div class="top-bar">
+        <div class="container d-flex justify-content-between align-items-center">
+            <div class="top-left">
+                <a href="https://wa.me/94761414554 " target="_blank" class="top-link">
+                    <i class="fa-brands fa-whatsapp fa-lg"></i> +94 76 1414 554 
+                </a>
+                <a href="mailto:info@explorevacations.lk" class="top-link">
+                    <i class="fa-regular fa-envelope fa-lg"></i> info@explorevacations.lk
+                </a>
+            </div>
+            <div class="top-right">
+                <a href="[[~3]]" class="top-btn">
+                    Get a Quote
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg p-lg-0">
         <div class="container d-flex align-items-center justify-content-between">
-            
-            <!-- Brand / Logo -->
+
             <a class="navbar-brand" href="./">
-                <img src="assets/images/logo.png" alt="Explore Vacations | Logo" class="d-none d-lg-inline">
+                <img src="assets/images/logo.png" alt="Explore Vacations | Logo" class="img-fluid">
             </a>
 
-            <!-- Desktop: Get a Quote button (between logo and nav items) -->
-            <a href="[[~3]]" class="btn btn-primary d-none d-lg-block">
-                Get a Quote
-            </a>
-
-            <!-- Navbar links and mobile toggle -->
-            <button class="navbar-toggler border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler border-0" type="button"
+                data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar">
                 <i class="fa-solid fa-bars"></i>
             </button>
 
             <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar">
                 <div class="offcanvas-header">
-                    <h5 class="offcanvas-title">Explore Vacations</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    <img src="assets/images/logo.png" alt="Explore Vacations | Logo" class="img-fluid" style="width: 50%;">
+
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
                 </div>
-                <div class="offcanvas-body">
+                <div class="offcanvas-body pt-0">
                     <ul class="navbar-nav ms-auto align-items-lg-center">
                         <li class="nav-item">
                             <a class="nav-link active" href="./" page-name="home">Home</a>
@@ -1778,19 +1837,26 @@ scrollTopBtn.addEventListener(\'click\', () => {
                         <li class="nav-item">
                             <a class="nav-link" href="[[~7]]" page-name="contact">Contact</a>
                         </li>
-                        <!-- Mobile: Get a Quote button inside offcanvas -->
-                        <li class="nav-item d-lg-none mt-3">
-                            <a class="btn btn-primary w-100" href="quote.php">Get a Quote</a>
-                        </li>
                     </ul>
                 </div>
             </div>
 
         </div>
     </nav>
-    <!-- Navbar ends-->
+
 </header>
-',
+
+<script>
+window.addEventListener("scroll", function () {
+    const navbar = document.querySelector(".navbar");
+
+    if (window.scrollY > 50) {
+        navbar.classList.add("scrolled");
+    } else {
+        navbar.classList.remove("scrolled");
+    }
+});
+</script>',
           'locked' => false,
           'properties' => 
           array (
@@ -1798,31 +1864,46 @@ scrollTopBtn.addEventListener(\'click\', () => {
           'static' => false,
           'static_file' => '',
           'content' => '<header>
-    <!-- Navbar starts-->
+
+    <!-- Top Info Bar -->
+    <div class="top-bar">
+        <div class="container d-flex justify-content-between align-items-center">
+            <div class="top-left">
+                <a href="https://wa.me/94761414554 " target="_blank" class="top-link">
+                    <i class="fa-brands fa-whatsapp fa-lg"></i> +94 76 1414 554 
+                </a>
+                <a href="mailto:info@explorevacations.lk" class="top-link">
+                    <i class="fa-regular fa-envelope fa-lg"></i> info@explorevacations.lk
+                </a>
+            </div>
+            <div class="top-right">
+                <a href="[[~3]]" class="top-btn">
+                    Get a Quote
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg p-lg-0">
         <div class="container d-flex align-items-center justify-content-between">
-            
-            <!-- Brand / Logo -->
+
             <a class="navbar-brand" href="./">
-                <img src="assets/images/logo.png" alt="Explore Vacations | Logo" class="d-none d-lg-inline">
+                <img src="assets/images/logo.png" alt="Explore Vacations | Logo" class="img-fluid">
             </a>
 
-            <!-- Desktop: Get a Quote button (between logo and nav items) -->
-            <a href="[[~3]]" class="btn btn-primary d-none d-lg-block">
-                Get a Quote
-            </a>
-
-            <!-- Navbar links and mobile toggle -->
-            <button class="navbar-toggler border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler border-0" type="button"
+                data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar">
                 <i class="fa-solid fa-bars"></i>
             </button>
 
             <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar">
                 <div class="offcanvas-header">
-                    <h5 class="offcanvas-title">Explore Vacations</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    <img src="assets/images/logo.png" alt="Explore Vacations | Logo" class="img-fluid" style="width: 50%;">
+
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
                 </div>
-                <div class="offcanvas-body">
+                <div class="offcanvas-body pt-0">
                     <ul class="navbar-nav ms-auto align-items-lg-center">
                         <li class="nav-item">
                             <a class="nav-link active" href="./" page-name="home">Home</a>
@@ -1842,19 +1923,26 @@ scrollTopBtn.addEventListener(\'click\', () => {
                         <li class="nav-item">
                             <a class="nav-link" href="[[~7]]" page-name="contact">Contact</a>
                         </li>
-                        <!-- Mobile: Get a Quote button inside offcanvas -->
-                        <li class="nav-item d-lg-none mt-3">
-                            <a class="btn btn-primary w-100" href="quote.php">Get a Quote</a>
-                        </li>
                     </ul>
                 </div>
             </div>
 
         </div>
     </nav>
-    <!-- Navbar ends-->
+
 </header>
-',
+
+<script>
+window.addEventListener("scroll", function () {
+    const navbar = document.querySelector(".navbar");
+
+    if (window.scrollY > 50) {
+        navbar.classList.add("scrolled");
+    } else {
+        navbar.classList.remove("scrolled");
+    }
+});
+</script>',
         ),
         'policies' => 
         array (
