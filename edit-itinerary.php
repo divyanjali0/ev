@@ -66,28 +66,62 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->execute(['id' => $id]);
         $nextVersion = $stmt->fetchColumn();
 
-        // Insert new version into history
-        $insertSql = "INSERT INTO itinerary_customer_history
-            (vehicle_id, reference_no, itinerary_id, edited_by, edit_reason, theme_ids, city_ids, start_date, end_date, nights, adults,
-             children_6_11, children_above_11, infants, hotel_rating, meal_plan, allergy_issues, allergy_reason,
-             title, full_name, email, whatsapp_code, whatsapp, country, nationality, flight_number,
-             pickup_location, dropoff_location, remarks, version_number)
-            VALUES
-            (:vehicle_id, :reference_no, :itinerary_id, :edited_by, :edit_reason, :theme_ids, :city_ids, :start_date, :end_date, :nights, :adults,
-             :children_6_11, :children_above_11, :infants, :hotel_rating, :meal_plan, :allergy_issues, :allergy_reason,
-             :title, :full_name, :email, :whatsapp_code, :whatsapp, :country, :nationality, :flight_number,
-             :pickup_location, :dropoff_location, :remarks, :version_number)";
+$dayCityDetails = [];
 
-        $stmtInsert = $conn->prepare($insertSql);
+if (!empty($_POST['day_city'])) {
+    foreach ($_POST['day_city'] as $dayNum => $cityId) {
+        if (empty($cityId)) continue;
+        $desc = $_POST['day_desc'][$dayNum] ?? '';
 
-        $params = array_merge($insertData, [
-            'itinerary_id'   => $id,
-            'edited_by'      => $_SESSION['user_id'],
-            'edit_reason'    => 'Edited via dashboard',
-            'version_number' => $nextVersion
-        ]);
+        $imagesArr = [];
+$uploadDir = __DIR__ . "/uploads/city_images/";
+if (!file_exists($uploadDir)) mkdir($uploadDir, 0777, true);
 
-        $stmtInsert->execute($params);
+if (!empty($_FILES['day_images']['name'][$dayNum])) {
+    foreach ($_FILES['day_images']['name'][$dayNum] as $key => $name) {
+        $tmp = $_FILES['day_images']['tmp_name'][$dayNum][$key];
+        if (is_uploaded_file($tmp)) { // check file uploaded
+            $ext = pathinfo($name, PATHINFO_EXTENSION);
+            $newName = uniqid('cityimg_') . '.' . $ext;
+            move_uploaded_file($tmp, $uploadDir . $newName);
+            $imagesArr[] = $newName;
+        }
+    }
+}
+
+
+        $dayCityDetails[] = [
+            'day' => $dayNum,
+            'city_id' => $cityId,
+            'description' => $desc,
+            'images' => $imagesArr
+        ];
+    }
+}
+
+$insertData['day_city_details'] = json_encode($dayCityDetails);
+
+// Then insert into itinerary_customer_history as before
+$insertSql = "INSERT INTO itinerary_customer_history
+    (vehicle_id, reference_no, itinerary_id, edited_by, edit_reason, theme_ids, city_ids, start_date, end_date, nights, adults,
+     children_6_11, children_above_11, infants, hotel_rating, meal_plan, allergy_issues, allergy_reason,
+     title, full_name, email, whatsapp_code, whatsapp, country, nationality, flight_number,
+     pickup_location, dropoff_location, remarks, day_city_details, version_number)
+    VALUES
+    (:vehicle_id, :reference_no, :itinerary_id, :edited_by, :edit_reason, :theme_ids, :city_ids, :start_date, :end_date, :nights, :adults,
+     :children_6_11, :children_above_11, :infants, :hotel_rating, :meal_plan, :allergy_issues, :allergy_reason,
+     :title, :full_name, :email, :whatsapp_code, :whatsapp, :country, :nationality, :flight_number,
+     :pickup_location, :dropoff_location, :remarks, :day_city_details, :version_number)";
+
+$stmtInsert = $conn->prepare($insertSql);
+$params = array_merge($insertData, [
+    'itinerary_id'   => $id,
+    'edited_by'      => $_SESSION['user_id'],
+    'edit_reason'    => 'Edited via dashboard',
+    'version_number' => $nextVersion
+]);
+$stmtInsert->execute($params);
+
 
         $conn->commit();
 
@@ -111,7 +145,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-    <style>.select2-container .select2-selection--multiple { height: auto; }</style>
+    <style>.select2-container .select2-selection--multiple { height: auto; }
+            body { font-family: "Cambria", sans-serif; background-color: #f4f6f8; font-size: 12px; }
+
+        .container { max-width: max-content; }
+
+        #dayDetailsContainer {
+    display: flex;
+}
+.day-block {
+    margin-bottom: 20px;
+}
+
+h5 {
+    font-weight: 600;
+}
+
+.day-block label {
+    font-weight: 500;
+}
+
+    </style>
 </head>
 <body>
 <div class="d-flex">
@@ -119,7 +173,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="flex-grow-1 container-fluid mt-4">
         <div class="card p-4">
             <h2 class="mb-4 text-center fw-bold">Edit Itinerary</h2>
-            <form method="POST">
+            <form method="POST" enctype="multipart/form-data">
                 <div class="accordion" id="editItineraryAccordion">
 
                     <!-- General Details -->
@@ -299,8 +353,54 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         </div>
                     </div>
 
-                </div>
+                    <!-- Day-wise City Details -->
+                    <div class="accordion-item mt-3">
+    <h2 class="accordion-header" id="headingCityDetails">
+        <button class="fw-bold accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCityDetails">
+            Day-wise City Details
+        </button>
+    </h2>
+    <div id="collapseCityDetails" class="accordion-collapse collapse">
+        <div class="accordion-body">
+            <div id="dayDetailsContainer" class="row g-3">
+                <!-- Day 1 -->
+                <div class="day-block col-md-6" data-day="1">
+                    <h5>Day 1</h5>
 
+                    <div class="mb-2">
+                        <label>Select City</label>
+                        <select name="day_city[1]" class="form-control">
+                            <option value="">-- Select City --</option>
+                            <?php foreach ($selectedCities as $cityId): 
+                                $cityName = array_values(array_filter($cities, fn($c) => $c['id'] == $cityId))[0]['name'] ?? '';
+                            ?>
+                            <option value="<?= $cityId; ?>"><?= htmlspecialchars($cityName); ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+
+                    <div class="mb-2">
+                        <label>Images</label>
+                        <input type="file" name="day_images[1][]" multiple class="form-control">
+                    </div>
+
+                    <div class="mb-2">
+                        <label>Description</label>
+                        <div id="descEditor1" class="quill-editor"></div>
+                        <input type="hidden" name="day_desc[1]" id="day_desc_1">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Add Day Button outside row -->
+            <div class="mt-3">
+                <button type="button" id="addDayBtn" class="btn btn-secondary btn-sm">Add Another Day</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+                </div>
                 <div class="text-center mt-3 d-flex justify-content-end gap-2">
                     <button type="submit" class="btn btn-success">Update Itinerary</button>
                     <a href="itenary-request.php" class="btn btn-secondary">Cancel</a>
@@ -313,14 +413,101 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+
 <script>
-$(document).ready(function() {
-    $('.select2').select2({
-        placeholder: "Select options",
-        allowClear: true,
-        width: '100%'
+    let dayCount = 1;
+    const quillEditors = {};
+
+    function initQuill(id) {
+        quillEditors[id] = new Quill(`#${id}`, { theme: 'snow' });
+    }
+
+    initQuill('descEditor1');
+
+    function getCurrentCities() {
+        // Returns array of city IDs from Tour Details multi-select
+        return $('select[name="city_ids[]"]').val() || [];
+    }
+
+    // Update all existing day dropdowns when Tour Details cities change
+    $('select[name="city_ids[]"]').on('change', function() {
+        const selectedCities = $(this).val() || [];
+        
+        $('#dayDetailsContainer select').each(function() {
+            const oldVal = $(this).val(); // previous selected city
+            $(this).html('<option value="">-- Select City --</option>'); // clear
+            selectedCities.forEach(function(id) {
+                const text = $('select[name="city_ids[]"] option[value="' + id + '"]').text();
+                $(this).append(`<option value="${id}">${text}</option>`);
+            }.bind(this));
+
+            // restore previous selection if still in selected cities
+            if (selectedCities.includes(oldVal)) {
+                $(this).val(oldVal);
+            }
+        });
     });
+
+$('#addDayBtn').click(function() {
+    dayCount++;
+    let cities = getCurrentCities(); // current selected cities
+    let optionsHtml = '<option value="">-- Select City --</option>';
+    cities.forEach(function(id) {
+        let text = $('select[name="city_ids[]"] option[value="' + id + '"]').text();
+        optionsHtml += `<option value="${id}">${text}</option>`;
+    });
+
+    let dayHtml = `
+    <div class="day-block col-md-6" data-day="${dayCount}">
+        <h5>Day ${dayCount}</h5>
+
+        <div class="mb-2">
+            <label>Select City</label>
+            <select name="day_city[${dayCount}]" class="form-control">
+                ${optionsHtml}
+            </select>
+        </div>
+
+        <div class="mb-2">
+            <label>Images</label>
+            <input type="file" name="day_images[${dayCount}][]" multiple class="form-control">
+        </div>
+
+        <div class="mb-2">
+            <label>Description</label>
+            <div id="descEditor${dayCount}" class="quill-editor"></div>
+            <input type="hidden" name="day_desc[${dayCount}]" id="day_desc_${dayCount}">
+        </div>
+    </div>
+    `;
+
+    $('#dayDetailsContainer').append(dayHtml);
+    initQuill(`descEditor${dayCount}`);
 });
+
+
+
+
+    // Copy Quill content to hidden inputs before submit
+    $('form').submit(function() {
+        for (let i = 1; i <= dayCount; i++) {
+            if (quillEditors[`descEditor${i}`]) {
+                $(`#day_desc_${i}`).val(quillEditors[`descEditor${i}`].root.innerHTML);
+            }
+        }
+    });
+</script>
+
+<script>
+    $(document).ready(function() {
+        $('.select2').select2({
+            placeholder: "Select options",
+            allowClear: true,
+            width: '100%'
+        });
+    });
 </script>
 </body>
 </html>
