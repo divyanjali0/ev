@@ -13,69 +13,86 @@ if (empty($reviews)) {
     return '';
 }
 
-// Chunk reviews into groups of 2 for slides
-$chunks = array_chunk($reviews, 2);
+// 2 testimonials per slide
+$chunks = array_chunk($reviews, 3);
 
-$output = '<div id="reviewCarousel" class="carousel slide" data-bs-ride="carousel">';
+$output  = '<div class="testimonial-section text-center">';
+$output .= '<div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">';
 $output .= '<div class="carousel-inner">';
 
 foreach ($chunks as $index => $chunk) {
-    $output .= '<div class="carousel-item'.($index === 0 ? ' active' : '').'">
+
+    $output .= '<div class="carousel-item' . ($index === 0 ? ' active' : '') . '">
                     <div class="row justify-content-center g-4">';
 
     foreach ($chunk as $review) {
 
-        $photo = htmlspecialchars($review['profile_photo_url'] ?? 'assets/images/default-user.png');
         $name  = ucwords(strtolower($review['author_name'] ?? ''));
         $time  = htmlspecialchars($review['relative_time_description'] ?? '');
         $text  = trim($review['text'] ?? '');
 
-        $short  = mb_substr($text, 0, 220);
-        $isLong = mb_strlen($text) > 220;
+        $short  = mb_substr($text, 0, 260);
+        $isLong = mb_strlen($text) > 260;
 
         $rating = isset($review['rating']) ? (int) round($review['rating']) : 0;
         $stars  = '';
+
         for ($i = 1; $i <= 5; $i++) {
-            $stars .= $i <= $rating ? '<span style="color:#cab449ff;">&#9733;</span>' : '<span style="color:#ddd;">&#9733;</span>';
+            $stars .= $i <= $rating
+                ? '<span style="color:#cab449ff;">&#9733;</span>'
+                : '<span style="color:#ddd;">&#9733;</span>';
         }
 
-        $output .= '<div class="col-12 col-lg-6">
-                        <div class="review-card h-100 p-4 text-center">
+        $output .= '
+            <div class="col-12 col-lg-4">
+                <div class="testimonial-card h-100 p-4">
 
-                            <img src="'.$photo.'" class="mb-3" width="100" height="80" alt="User Photo">
+                    <div class="testimonial-stars mb-2">
+                        ' . $stars . '
+                    </div>
 
-                            <div class="mb-2">'.$stars.'</div>
-
-                            <p class="review-text">
-                                <span class="short-text">'.htmlspecialchars($short.($isLong ? '...' : '')).'</span>';
+                    <p class="review-text">
+                        <span class="short-text">'
+                            . htmlspecialchars($short . ($isLong ? '...' : '')) .
+                        '</span>';
 
         if ($isLong) {
-            $output .= '<span class="full-text d-none">'.htmlspecialchars($text).'</span>
+            $output .= '
+                        <span class="full-text d-none">' . htmlspecialchars($text) . '</span>
                         <a href="#" class="read-more text-decoration-none ms-1">Read more</a>';
         }
 
-        $output .= '</p>
-                            <h5 class="mt-3 mb-0">'.$name.'</h5>
-                            <small class="text-muted">'.$time.'</small>
-                        </div>
-                    </div>';
+        $output .= '
+                    </p>
+
+                    <div class="testimonial-footer mt-3">
+                        <strong>' . $name . '</strong><br>
+                        <small class="text-muted">' . $time . '</small>
+                    </div>
+
+                </div>
+            </div>';
     }
-    $output .= '</div></div>'; // row + carousel-item
+
+    $output .= '</div></div>';
 }
 
 $output .= '</div>'; // carousel-inner
+$output .= '</div>'; // carousel
 
-// Carousel controls
-$output .= '<button class="carousel-control-prev" type="button" data-bs-target="#reviewCarousel" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#reviewCarousel" data-bs-slide="next">
-                <span class="carousel-control-next-icon"></span>
-                <span class="visually-hidden">Next</span>
-            </button>';
+$output .= '
+    <div class="mt-4">
+        <a href="https://www.google.com/search?sca_esv=7968779fbfd70ae6&biw=1920&bih=945&aic=0&si=AL3DRZEsmMGCryMMFSHJ3StBhOdZ2-6yYkXd_doETEE1OR-qOcH0eRgzMulOFty5HQHfaUzm95AD7Y8lRakJJ8dKpnLO8Kw6LDyN2QvTiSaYPWYW-vYp2uMbofRq0OzYN8awNPIFkmV2Q7ZSrkSyXWEY283PAj7Gqw%3D%3D&q=Explore+Vacations+Sri+Lanka+Reviews&sa=X&ved=2ahUKEwjPt5GUjfuRAxVaa2wGHRgzGawQ0bkNegQIGxAE"
+   class="btn btn-primary border-radius-0"
+   target="_blank"
+   rel="noopener noreferrer">
+    View all reviews
+</a>
 
-$output .= '</div>'; // reviewCarousel
+    </div>
+';
+
+$output .= '</div>'; // testimonial-section
 
 return $output;
 return;

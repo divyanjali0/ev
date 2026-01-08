@@ -1192,6 +1192,29 @@ footer .row:last-child p a {
   color: #ffffff;
 }
 
+
+.testimonial-card {
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 12px 30px rgba(0,0,0,.06);
+}
+
+.review-text {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: #444;
+}
+
+.testimonial-stars span {
+    font-size: 1rem;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    filter: invert(1);
+}
+
+
 @media (min-width: 1200px) {
   .navbar .btn-primary {
     margin: 0px 18rem !important;

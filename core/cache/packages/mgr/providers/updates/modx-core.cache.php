@@ -1,4 +1,4 @@
-<?php if(time() > 1766731497){return null;} return array (
+<?php if(time() > 1767849972){return null;} return array (
   'modx' => 
   array (
     'updateable' => 0,
