@@ -7,6 +7,18 @@ if (!isset($_SESSION['user_id'])) {
     header("Location: login.php");
     exit;
 }
+
+$itineraryCount = 0;
+$userCount = 0;
+
+// Itinerary count
+$stmt = $conn->query("SELECT COUNT(*) FROM itinerary_customer");
+$itineraryCount = $stmt->fetchColumn();
+
+// Users count
+$stmt = $conn->query("SELECT COUNT(*) FROM users");
+$userCount = $stmt->fetchColumn();
+
 ?>
 
 
@@ -31,13 +43,32 @@ if (!isset($_SESSION['user_id'])) {
 <div class="d-flex">
     <!-- Sidebar -->
     <?php include __DIR__ . '/assets/includes/sidebar.php'; ?>
-
     <!-- Main Content -->
     <div class="flex-grow-1">
         <div class="container dashboard-container">
             <h3 class="text-center fw-bold mb-4">📊 Dashboard</h3>
-
             <div class="row g-4">
+                <!-- Total Itineraries -->
+                <div class="col-md-6 col-lg-6">
+                    <div class="card text-center">
+                        <div class="icon text-primary">
+                            <i class="bi bi-map"></i>
+                        </div>
+                        <h5 class="fw-bold">Itineray Requests</h5>
+                        <h3><?php echo $itineraryCount; ?></h3>
+                    </div>
+                </div>
+
+                <!-- Total Users -->
+                <div class="col-md-6 col-lg-6">
+                    <div class="card text-center">
+                        <div class="icon text-success">
+                            <i class="bi bi-people"></i>
+                        </div>
+                        <h5 class="fw-bold">Total Users</h5>
+                        <h3><?php echo $userCount; ?></h3>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
