@@ -66,61 +66,65 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->execute(['id' => $id]);
         $nextVersion = $stmt->fetchColumn();
 
-$dayCityDetails = [];
+        $dayCityDetails = [];
 
-if (!empty($_POST['day_city'])) {
-    foreach ($_POST['day_city'] as $dayNum => $cityId) {
-        if (empty($cityId)) continue;
-        $desc = $_POST['day_desc'][$dayNum] ?? '';
+        if (!empty($_POST['day_city'])) {
+            foreach ($_POST['day_city'] as $dayNum => $cityId) {
+                if (empty($cityId)) continue;
 
-        $imagesArr = [];
-$uploadDir = __DIR__ . "/uploads/city_images/";
-if (!file_exists($uploadDir)) mkdir($uploadDir, 0777, true);
+                $desc = $_POST['day_desc'][$dayNum] ?? '';
+                $date = $_POST['day_date'][$dayNum] ?? '';
+                $meal = $_POST['day_meal'][$dayNum] ?? '';
 
-if (!empty($_FILES['day_images']['name'][$dayNum])) {
-    foreach ($_FILES['day_images']['name'][$dayNum] as $key => $name) {
-        $tmp = $_FILES['day_images']['tmp_name'][$dayNum][$key];
-        if (is_uploaded_file($tmp)) { // check file uploaded
-            $ext = pathinfo($name, PATHINFO_EXTENSION);
-            $newName = uniqid('cityimg_') . '.' . $ext;
-            move_uploaded_file($tmp, $uploadDir . $newName);
-            $imagesArr[] = $newName;
+                $imagesArr = [];
+                $uploadDir = __DIR__ . "/uploads/city_images/";
+                if (!file_exists($uploadDir)) mkdir($uploadDir, 0777, true);
+
+                if (!empty($_FILES['day_images']['name'][$dayNum])) {
+                    foreach ($_FILES['day_images']['name'][$dayNum] as $key => $name) {
+                        $tmp = $_FILES['day_images']['tmp_name'][$dayNum][$key];
+                        if (is_uploaded_file($tmp)) {
+                            $ext = pathinfo($name, PATHINFO_EXTENSION);
+                            $newName = uniqid('cityimg_') . '.' . $ext;
+                            move_uploaded_file($tmp, $uploadDir . $newName);
+                            $imagesArr[] = $newName;
+                        }
+                    }
+                }
+
+                $dayCityDetails[] = [
+                    'day' => $dayNum,
+                    'city_id' => $cityId,
+                    'date' => $date,
+                    'meal_plan' => $meal,
+                    'description' => $desc,
+                    'images' => $imagesArr
+                ];
+            }
         }
-    }
-}
 
+        $insertData['day_city_details'] = json_encode($dayCityDetails);
 
-        $dayCityDetails[] = [
-            'day' => $dayNum,
-            'city_id' => $cityId,
-            'description' => $desc,
-            'images' => $imagesArr
-        ];
-    }
-}
+        // Then insert into itinerary_customer_history as before
+        $insertSql = "INSERT INTO itinerary_customer_history
+            (vehicle_id, reference_no, itinerary_id, edited_by, edit_reason, theme_ids, city_ids, start_date, end_date, nights, adults,
+            children_6_11, children_above_11, infants, hotel_rating, meal_plan, allergy_issues, allergy_reason,
+            title, full_name, email, whatsapp_code, whatsapp, country, nationality, flight_number,
+            pickup_location, dropoff_location, remarks, day_city_details, version_number)
+            VALUES
+            (:vehicle_id, :reference_no, :itinerary_id, :edited_by, :edit_reason, :theme_ids, :city_ids, :start_date, :end_date, :nights, :adults,
+            :children_6_11, :children_above_11, :infants, :hotel_rating, :meal_plan, :allergy_issues, :allergy_reason,
+            :title, :full_name, :email, :whatsapp_code, :whatsapp, :country, :nationality, :flight_number,
+            :pickup_location, :dropoff_location, :remarks, :day_city_details, :version_number)";
 
-$insertData['day_city_details'] = json_encode($dayCityDetails);
-
-// Then insert into itinerary_customer_history as before
-$insertSql = "INSERT INTO itinerary_customer_history
-    (vehicle_id, reference_no, itinerary_id, edited_by, edit_reason, theme_ids, city_ids, start_date, end_date, nights, adults,
-     children_6_11, children_above_11, infants, hotel_rating, meal_plan, allergy_issues, allergy_reason,
-     title, full_name, email, whatsapp_code, whatsapp, country, nationality, flight_number,
-     pickup_location, dropoff_location, remarks, day_city_details, version_number)
-    VALUES
-    (:vehicle_id, :reference_no, :itinerary_id, :edited_by, :edit_reason, :theme_ids, :city_ids, :start_date, :end_date, :nights, :adults,
-     :children_6_11, :children_above_11, :infants, :hotel_rating, :meal_plan, :allergy_issues, :allergy_reason,
-     :title, :full_name, :email, :whatsapp_code, :whatsapp, :country, :nationality, :flight_number,
-     :pickup_location, :dropoff_location, :remarks, :day_city_details, :version_number)";
-
-$stmtInsert = $conn->prepare($insertSql);
-$params = array_merge($insertData, [
-    'itinerary_id'   => $id,
-    'edited_by'      => $_SESSION['user_id'],
-    'edit_reason'    => 'Edited via dashboard',
-    'version_number' => $nextVersion
-]);
-$stmtInsert->execute($params);
+        $stmtInsert = $conn->prepare($insertSql);
+        $params = array_merge($insertData, [
+            'itinerary_id'   => $id,
+            'edited_by'      => $_SESSION['user_id'],
+            'edit_reason'    => 'Edited via dashboard',
+            'version_number' => $nextVersion
+        ]);
+        $stmtInsert->execute($params);
 
 
         $conn->commit();
@@ -368,21 +372,40 @@ h5 {
                                         <h5>Day 1</h5>
                                         <button type="button" class="mb-2 btn btn-danger btn-sm float-end remove-day-btn"><i class="bi bi-trash"></i></button>
 
-                                        <div class="mb-2">
-                                            <label>Select City</label>
-                                            <select name="day_city[1]" class="form-control">
-                                                <option value="">-- Select City --</option>
-                                                <?php foreach ($selectedCities as $cityId): 
-                                                    $cityName = array_values(array_filter($cities, fn($c) => $c['id'] == $cityId))[0]['name'] ?? '';
-                                                ?>
-                                                <option value="<?= $cityId; ?>"><?= htmlspecialchars($cityName); ?></option>
-                                                <?php endforeach; ?>
-                                            </select>
+                                        <div class="mb-2 row">
+                                            <div class="col-md-6">
+                                                <label>Select City</label>
+                                                <select name="day_city[1]" class="form-control">
+                                                    <option value="">-- Select City --</option>
+                                                    <?php foreach ($selectedCities as $cityId): 
+                                                        $cityName = array_values(array_filter($cities, fn($c) => $c['id'] == $cityId))[0]['name'] ?? '';
+                                                    ?>
+                                                    <option value="<?= $cityId; ?>"><?= htmlspecialchars($cityName); ?></option>
+                                                    <?php endforeach; ?>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label>Date</label>
+                                                <input type="date" name="day_date[1]" class="form-control">
+                                            </div>
                                         </div>
 
-                                        <div class="mb-2">
-                                            <label>Images</label>
-                                            <input type="file" name="day_images[1][]" multiple class="form-control">
+                                        <div class="mb-2 row">
+                                            <div class="col-md-6">
+                                                <label>Images</label>
+                                                <input type="file" name="day_images[1][]" multiple class="form-control">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label>Meal Plan</label>
+                                                <select name="day_meal[1]" class="form-control">
+                                                    <option value="">-- Select Meal Plan --</option>
+                                                    <option value="Breakfast">Breakfast</option>
+                                                    <option value="Lunch">Lunch</option>
+                                                    <option value="Dinner">Dinner</option>
+                                                    <option value="Breakfast + Lunch">Breakfast + Lunch</option>
+                                                    <option value="All Meals">All Meals</option>
+                                                </select>
+                                            </div>
                                         </div>
 
                                         <div class="mb-2">
@@ -457,18 +480,37 @@ $('#addDayBtn').click(function() {
     let dayHtml = `
     <div class="day-block col-md-6" data-day="${dayCount}">
         <h5>Day ${dayCount}</h5>
-        <button type="button" class="btn btn-danger btn-sm float-end remove-day-btn">Remove</button>
+        <button type="button" class="btn btn-danger btn-sm float-end remove-day-btn"><i class="bi bi-trash"></i></button>
 
-        <div class="mb-2">
-            <label>Select City</label>
-            <select name="day_city[${dayCount}]" class="form-control">
-                ${optionsHtml}
-            </select>
+        <div class="mb-2 row">
+            <div class="col-md-6">
+                <label>Select City</label>
+                <select name="day_city[${dayCount}]" class="form-control">
+                    ${optionsHtml}
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label>Date</label>
+                <input type="date" name="day_date[${dayCount}]" class="form-control">
+            </div>
         </div>
 
-        <div class="mb-2">
-            <label>Images</label>
-            <input type="file" name="day_images[${dayCount}][]" multiple class="form-control">
+        <div class="mb-2 row">
+            <div class="col-md-6">
+                <label>Images</label>
+                <input type="file" name="day_images[${dayCount}][]" multiple class="form-control">
+            </div>
+            <div class="col-md-6">
+                <label>Meal Plan</label>
+                <select name="day_meal[${dayCount}]" class="form-control">
+                    <option value="">-- Select Meal Plan --</option>
+                    <option value="Breakfast">Breakfast</option>
+                    <option value="Lunch">Lunch</option>
+                    <option value="Dinner">Dinner</option>
+                    <option value="Breakfast + Lunch">Breakfast + Lunch</option>
+                    <option value="All Meals">All Meals</option>
+                </select>
+            </div>
         </div>
 
         <div class="mb-2">
@@ -482,6 +524,7 @@ $('#addDayBtn').click(function() {
     $('#dayDetailsContainer').append(dayHtml);
     initQuill(`descEditor${dayCount}`);
 });
+
 
 // Remove day
 $(document).on('click', '.remove-day-btn', function() {
