@@ -15,24 +15,30 @@ if (!isset($_GET['id']) || empty($_GET['id'])) {
 
 $id = $_GET['id'];
 
-// Fetch all themes and cities for dropdowns
+// Fetch all themes and cities
 $themes = $conn->query("SELECT id, theme_name FROM tour_themes ORDER BY theme_name")->fetchAll(PDO::FETCH_ASSOC);
 $cities = $conn->query("SELECT id, name FROM cities ORDER BY name")->fetchAll(PDO::FETCH_ASSOC);
 
-// Fetch itinerary data
-$sql = "SELECT * FROM itinerary_customer WHERE id = :id";
-$stmt = $conn->prepare($sql);
-$stmt->execute([':id' => $id]);
+// Fetch latest itinerary version from history or fallback to main table
+$stmt = $conn->prepare("SELECT * FROM itinerary_customer_history WHERE itinerary_id = :id ORDER BY version_number DESC LIMIT 1");
+$stmt->execute(['id' => $id]);
 $itinerary = $stmt->fetch(PDO::FETCH_ASSOC);
 
 if (!$itinerary) {
-    echo "Itinerary not found!";
-    exit;
+    // fallback to main table if no history exists
+    $stmt = $conn->prepare("SELECT * FROM itinerary_customer WHERE id = :id");
+    $stmt->execute(['id' => $id]);
+    $itinerary = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if (!$itinerary) {
+        echo "Itinerary not found!";
+        exit;
+    }
 }
 
-$selectedThemes = json_decode($itinerary['theme_ids'], true) ?: [];
-$selectedCities = json_decode($itinerary['city_ids'], true) ?: [];
-
+// Decode JSON arrays for dropdown pre-selection
+$selectedThemes = json_decode($itinerary['theme_ids'] ?? '[]', true) ?: [];
+$selectedCities = json_decode($itinerary['city_ids'] ?? '[]', true) ?: [];
 
 // Handle form submission
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -43,23 +49,55 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'country', 'nationality', 'flight_number', 'remarks', 'pickup_location', 'dropoff_location'
     ];
 
-    $updateData = [];
+    $insertData = [];
     foreach ($fields as $f) {
-        $updateData[$f] = $_POST[$f] ?? null;
+        $insertData[$f] = $_POST[$f] ?? null;
     }
 
-    // Handle theme_ids and city_ids from multi-select
-    $updateData['theme_ids'] = isset($_POST['theme_ids']) ? implode(',', $_POST['theme_ids']) : '';
-    $updateData['city_ids'] = isset($_POST['city_ids']) ? implode(',', $_POST['city_ids']) : '';
+    // Multi-select JSON fields
+    $insertData['theme_ids'] = isset($_POST['theme_ids']) ? json_encode($_POST['theme_ids']) : json_encode([]);
+    $insertData['city_ids']  = isset($_POST['city_ids']) ? json_encode($_POST['city_ids']) : json_encode([]);
 
-    $setSql = implode(", ", array_map(fn($f) => "$f = :$f", array_merge($fields, ['theme_ids','city_ids'])));
-    $updateSql = "UPDATE itinerary_customer SET $setSql, updated_at = NOW() WHERE id = :id";
-    $stmt = $conn->prepare($updateSql);
-    $updateData['id'] = $id;
-    $stmt->execute($updateData);
+    try {
+        $conn->beginTransaction();
 
-    header("Location: itenary-request.php?success=1");
-    exit;
+        // Determine next version number
+        $stmt = $conn->prepare("SELECT COALESCE(MAX(version_number),0) + 1 AS next_version FROM itinerary_customer_history WHERE itinerary_id = :id");
+        $stmt->execute(['id' => $id]);
+        $nextVersion = $stmt->fetchColumn();
+
+        // Insert new version into history
+        $insertSql = "INSERT INTO itinerary_customer_history
+            (vehicle_id, reference_no, itinerary_id, edited_by, edit_reason, theme_ids, city_ids, start_date, end_date, nights, adults,
+             children_6_11, children_above_11, infants, hotel_rating, meal_plan, allergy_issues, allergy_reason,
+             title, full_name, email, whatsapp_code, whatsapp, country, nationality, flight_number,
+             pickup_location, dropoff_location, remarks, version_number)
+            VALUES
+            (:vehicle_id, :reference_no, :itinerary_id, :edited_by, :edit_reason, :theme_ids, :city_ids, :start_date, :end_date, :nights, :adults,
+             :children_6_11, :children_above_11, :infants, :hotel_rating, :meal_plan, :allergy_issues, :allergy_reason,
+             :title, :full_name, :email, :whatsapp_code, :whatsapp, :country, :nationality, :flight_number,
+             :pickup_location, :dropoff_location, :remarks, :version_number)";
+
+        $stmtInsert = $conn->prepare($insertSql);
+
+        $params = array_merge($insertData, [
+            'itinerary_id'   => $id,
+            'edited_by'      => $_SESSION['user_id'],
+            'edit_reason'    => 'Edited via dashboard',
+            'version_number' => $nextVersion
+        ]);
+
+        $stmtInsert->execute($params);
+
+        $conn->commit();
+
+        header("Location: itenary-request.php?success=1");
+        exit;
+
+    } catch (Exception $e) {
+        $conn->rollBack();
+        echo "<pre>Error saving itinerary: " . $e->getMessage() . "</pre>";
+    }
 }
 ?>
 
@@ -69,42 +107,38 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <title>Edit Itinerary | Dashboard</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="assets/images/footer-logo.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-    <style>
-        .select2-container .select2-selection--multiple { height: auto; }
-    </style>
+    <style>.select2-container .select2-selection--multiple { height: auto; }</style>
 </head>
 <body>
 <div class="d-flex">
     <?php include __DIR__ . '/assets/includes/sidebar.php'; ?>
     <div class="flex-grow-1 container-fluid mt-4">
-
         <div class="card p-4">
             <h2 class="mb-4 text-center fw-bold">Edit Itinerary</h2>
+            <form method="POST">
+                <div class="accordion" id="editItineraryAccordion">
 
-            <div class="accordion" id="editItineraryAccordion">
-
-                <!-- Accordion 1: General & Trip Details -->
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="headingGeneral">
-                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseGeneral" aria-expanded="true" aria-controls="collapseGeneral">
-                            General & Trip Details
-                        </button>
-                    </h2>
-                    <div id="collapseGeneral" class="accordion-collapse collapse show" aria-labelledby="headingGeneral" data-bs-parent="#editItineraryAccordion">
-                        <div class="accordion-body">
-                            <form method="POST">
-
+                    <!-- General Details -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingGeneral">
+                            <button class="fw-bold accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseGeneral" aria-expanded="true">
+                                General Details
+                            </button>
+                        </h2>
+                        <div id="collapseGeneral" class="accordion-collapse collapse show">
+                            <div class="accordion-body">
                                 <!-- Reference & Vehicle -->
                                 <div class="row">
                                     <div class="col-md-6 mb-3">
-                                        <label class="form-label">Reference No</label>
+                                        <label>Reference No</label>
                                         <input type="text" name="reference_no" class="form-control" value="<?= htmlspecialchars($itinerary['reference_no']); ?>" required>
                                     </div>
                                     <div class="col-md-6 mb-3">
-                                        <label class="form-label">Vehicle ID</label>
+                                        <label>Vehicle ID</label>
                                         <input type="text" name="vehicle_id" class="form-control" value="<?= htmlspecialchars($itinerary['vehicle_id']); ?>">
                                     </div>
                                 </div>
@@ -112,15 +146,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 <!-- Dates & Nights -->
                                 <div class="row">
                                     <div class="col-md-4 mb-3">
-                                        <label class="form-label">Start Date</label>
+                                        <label>Start Date</label>
                                         <input type="date" name="start_date" class="form-control" value="<?= htmlspecialchars($itinerary['start_date']); ?>" required>
                                     </div>
                                     <div class="col-md-4 mb-3">
-                                        <label class="form-label">End Date</label>
+                                        <label>End Date</label>
                                         <input type="date" name="end_date" class="form-control" value="<?= htmlspecialchars($itinerary['end_date']); ?>" required>
                                     </div>
                                     <div class="col-md-4 mb-3">
-                                        <label class="form-label">Nights</label>
+                                        <label>Nights</label>
                                         <input type="number" name="nights" class="form-control" value="<?= htmlspecialchars($itinerary['nights']); ?>">
                                     </div>
                                 </div>
@@ -128,19 +162,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 <!-- Participants -->
                                 <div class="row">
                                     <div class="col-md-3 mb-3">
-                                        <label class="form-label">Adults</label>
+                                        <label>Adults</label>
                                         <input type="number" name="adults" class="form-control" value="<?= htmlspecialchars($itinerary['adults']); ?>">
                                     </div>
                                     <div class="col-md-3 mb-3">
-                                        <label class="form-label">Children 6-11</label>
+                                        <label>Children 6-11</label>
                                         <input type="number" name="children_6_11" class="form-control" value="<?= htmlspecialchars($itinerary['children_6_11']); ?>">
                                     </div>
                                     <div class="col-md-3 mb-3">
-                                        <label class="form-label">Children 12+</label>
+                                        <label>Children 12+</label>
                                         <input type="number" name="children_above_11" class="form-control" value="<?= htmlspecialchars($itinerary['children_above_11']); ?>">
                                     </div>
                                     <div class="col-md-3 mb-3">
-                                        <label class="form-label">Infants</label>
+                                        <label>Infants</label>
                                         <input type="number" name="infants" class="form-control" value="<?= htmlspecialchars($itinerary['infants']); ?>">
                                     </div>
                                 </div>
@@ -148,11 +182,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 <!-- Hotel & Meal -->
                                 <div class="row">
                                     <div class="col-md-6 mb-3">
-                                        <label class="form-label">Hotel Rating</label>
+                                        <label>Hotel Rating</label>
                                         <input type="text" name="hotel_rating" class="form-control" value="<?= htmlspecialchars($itinerary['hotel_rating']); ?>">
                                     </div>
                                     <div class="col-md-6 mb-3">
-                                        <label class="form-label">Meal Plan</label>
+                                        <label>Meal Plan</label>
                                         <input type="text" name="meal_plan" class="form-control" value="<?= htmlspecialchars($itinerary['meal_plan']); ?>">
                                     </div>
                                 </div>
@@ -160,11 +194,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 <!-- Allergies -->
                                 <div class="row">
                                     <div class="col-md-6 mb-3">
-                                        <label class="form-label">Allergy Issues</label>
+                                        <label>Allergy Issues</label>
                                         <input type="text" name="allergy_issues" class="form-control" value="<?= htmlspecialchars($itinerary['allergy_issues']); ?>">
                                     </div>
                                     <div class="col-md-6 mb-3">
-                                        <label class="form-label">Allergy Reason</label>
+                                        <label>Allergy Reason</label>
                                         <textarea name="allergy_reason" class="form-control"><?= htmlspecialchars($itinerary['allergy_reason']); ?></textarea>
                                     </div>
                                 </div>
@@ -172,15 +206,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 <!-- Personal Info -->
                                 <div class="row">
                                     <div class="col-md-4 mb-3">
-                                        <label class="form-label">Title</label>
+                                        <label>Title</label>
                                         <input type="text" name="title" class="form-control" value="<?= htmlspecialchars($itinerary['title']); ?>">
                                     </div>
                                     <div class="col-md-4 mb-3">
-                                        <label class="form-label">Full Name</label>
+                                        <label>Full Name</label>
                                         <input type="text" name="full_name" class="form-control" value="<?= htmlspecialchars($itinerary['full_name']); ?>" required>
                                     </div>
                                     <div class="col-md-4 mb-3">
-                                        <label class="form-label">Email</label>
+                                        <label>Email</label>
                                         <input type="email" name="email" class="form-control" value="<?= htmlspecialchars($itinerary['email']); ?>">
                                     </div>
                                 </div>
@@ -188,19 +222,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 <!-- WhatsApp & Contact -->
                                 <div class="row">
                                     <div class="col-md-3 mb-3">
-                                        <label class="form-label">WhatsApp Code</label>
+                                        <label>WhatsApp Code</label>
                                         <input type="text" name="whatsapp_code" class="form-control" value="<?= htmlspecialchars($itinerary['whatsapp_code']); ?>">
                                     </div>
                                     <div class="col-md-3 mb-3">
-                                        <label class="form-label">WhatsApp Number</label>
+                                        <label>WhatsApp Number</label>
                                         <input type="text" name="whatsapp" class="form-control" value="<?= htmlspecialchars($itinerary['whatsapp']); ?>">
                                     </div>
                                     <div class="col-md-3 mb-3">
-                                        <label class="form-label">Country</label>
+                                        <label>Country</label>
                                         <input type="text" name="country" class="form-control" value="<?= htmlspecialchars($itinerary['country']); ?>">
                                     </div>
                                     <div class="col-md-3 mb-3">
-                                        <label class="form-label">Nationality</label>
+                                        <label>Nationality</label>
                                         <input type="text" name="nationality" class="form-control" value="<?= htmlspecialchars($itinerary['nationality']); ?>">
                                     </div>
                                 </div>
@@ -208,92 +242,70 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 <!-- Flight & Locations -->
                                 <div class="row">
                                     <div class="col-md-4 mb-3">
-                                        <label class="form-label">Flight Number</label>
+                                        <label>Flight Number</label>
                                         <input type="text" name="flight_number" class="form-control" value="<?= htmlspecialchars($itinerary['flight_number']); ?>">
                                     </div>
                                     <div class="col-md-4 mb-3">
-                                        <label class="form-label">Pickup Location</label>
+                                        <label>Pickup Location</label>
                                         <input type="text" name="pickup_location" class="form-control" value="<?= htmlspecialchars($itinerary['pickup_location']); ?>">
                                     </div>
                                     <div class="col-md-4 mb-3">
-                                        <label class="form-label">Dropoff Location</label>
+                                        <label>Dropoff Location</label>
                                         <input type="text" name="dropoff_location" class="form-control" value="<?= htmlspecialchars($itinerary['dropoff_location']); ?>">
                                     </div>
                                 </div>
 
                                 <!-- Remarks -->
                                 <div class="mb-3">
-                                    <label class="form-label">Remarks</label>
+                                    <label>Remarks</label>
                                     <textarea name="remarks" class="form-control"><?= htmlspecialchars($itinerary['remarks']); ?></textarea>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Accordion 2: Themes & Cities -->
-                <div class="accordion-item mt-3">
-                    <h2 class="accordion-header" id="headingThemesCities">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThemesCities" aria-expanded="false" aria-controls="collapseThemesCities">
-                            Themes & Cities
-                        </button>
-                    </h2>
-                    <div id="collapseThemesCities" class="accordion-collapse collapse" aria-labelledby="headingThemesCities" data-bs-parent="#editItineraryAccordion">
-                        <div class="accordion-body">
-                            <div class="row">
-                                <div class="col-md-6 mb-3">
-                                    <label class="form-label">Themes</label>
-                                    <select name="theme_ids[]" class="form-control select2" multiple="multiple">
-                                        <?php foreach ($themes as $theme): ?>
-                                            <option value="<?= $theme['id']; ?>" <?= in_array((string)$theme['id'], $selectedThemes, true) ? 'selected' : '' ?>>
-                                                <?= htmlspecialchars($theme['theme_name']); ?>
-                                            </option>
-                                        <?php endforeach; ?>
-                                    </select>
-
-                                    <?php if (!empty($selectedThemes)): ?>
-                                        <div class="mt-2">
-                                            <strong>Selected Themes:</strong>
-                                            <?php foreach ($themes as $theme): ?>
-                                                <?php if (in_array((string)$theme['id'], $selectedThemes, true)): ?>
-                                                    <span class="badge bg-primary me-1"><?= htmlspecialchars($theme['theme_name']); ?></span>
-                                                <?php endif; ?>
-                                            <?php endforeach; ?>
-                                        </div>
-                                    <?php endif; ?>
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <label class="form-label">Cities</label>
-                                    <select name="city_ids[]" class="form-control select2" multiple="multiple">
-                                        <?php foreach ($cities as $city): ?>
-                                            <option value="<?= $city['id']; ?>" <?= in_array((string)$city['id'], $selectedCities, true) ? 'selected' : '' ?>>
-                                                <?= htmlspecialchars($city['name']); ?>
-                                            </option>
-                                        <?php endforeach; ?>
-                                    </select>
-
-                                    <?php if (!empty($selectedCities)): ?>
-                                        <div class="mt-2">
-                                            <strong>Selected Cities:</strong>
-                                            <?php foreach ($cities as $city): ?>
-                                                <?php if (in_array((string)$city['id'], $selectedCities, true)): ?>
-                                                    <span class="badge bg-success me-1"><?= htmlspecialchars($city['name']); ?></span>
-                                                <?php endif; ?>
-                                            <?php endforeach; ?>
-                                        </div>
-                                    <?php endif; ?>
                                 </div>
                             </div>
                         </div>
                     </div>
+
+                    <!-- Themes & Cities -->
+                    <div class="accordion-item mt-3">
+                        <h2 class="accordion-header" id="headingThemesCities">
+                            <button class="fw-bold accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThemesCities">
+                                Tour Details
+                            </button>
+                        </h2>
+                        <div id="collapseThemesCities" class="accordion-collapse collapse">
+                            <div class="accordion-body">
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label>Themes</label>
+                                        <select name="theme_ids[]" class="form-control select2" multiple="multiple">
+                                            <?php foreach ($themes as $theme): ?>
+                                                <option value="<?= $theme['id']; ?>" <?= in_array((string)$theme['id'], $selectedThemes, true) ? 'selected' : '' ?>>
+                                                    <?= htmlspecialchars($theme['theme_name']); ?>
+                                                </option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label>Cities</label>
+                                        <select name="city_ids[]" class="form-control select2" multiple="multiple">
+                                            <?php foreach ($cities as $city): ?>
+                                                <option value="<?= $city['id']; ?>" <?= in_array((string)$city['id'], $selectedCities, true) ? 'selected' : '' ?>>
+                                                    <?= htmlspecialchars($city['name']); ?>
+                                                </option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
-            </div>
 
-            <div class="text-center mt-3 d-flex justify-content-end gap-2">
-                <button type="submit" class="btn btn-success">Update Itinerary</button>
-                <a href="itenary-request.php" class="btn btn-secondary">Cancel</a>
-            </div>
-
+                <div class="text-center mt-3 d-flex justify-content-end gap-2">
+                    <button type="submit" class="btn btn-success">Update Itinerary</button>
+                    <a href="itenary-request.php" class="btn btn-secondary">Cancel</a>
+                </div>
+            </form>
         </div>
     </div>
 </div>
@@ -301,7 +313,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-
 <script>
 $(document).ready(function() {
     $('.select2').select2({
