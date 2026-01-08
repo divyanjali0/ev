@@ -206,8 +206,8 @@ $insertData['cover_page'] = json_encode($coverData);
 
         $conn->commit();
 
-        header("Location: itenary-request.php?success=1");
-        exit;
+header("Location: generate-itinerary-pdf.php?id=" . $id);
+exit;
 
     } catch (Exception $e) {
         $conn->rollBack();
