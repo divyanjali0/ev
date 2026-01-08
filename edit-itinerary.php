@@ -40,6 +40,14 @@ if (!$itinerary) {
 $selectedThemes = json_decode($itinerary['theme_ids'] ?? '[]', true) ?: [];
 $selectedCities = json_decode($itinerary['city_ids'] ?? '[]', true) ?: [];
 
+
+$existingDayCity   = json_decode($itinerary['day_city_details'] ?? '[]', true);
+$existingHotels    = json_decode($itinerary['hotels'] ?? '[]', true);
+$existingCost      = json_decode($itinerary['tour_cost'] ?? '[]', true);
+$existingTerms     = json_decode($itinerary['terms_conditions'] ?? '[]', true);
+$existingCover     = json_decode($itinerary['cover_page'] ?? '[]', true);
+
+
 // Handle form submission
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $fields = [
@@ -66,9 +74,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->execute(['id' => $id]);
         $nextVersion = $stmt->fetchColumn();
 
-        $dayCityDetails = [];
+$dayCityDetails = $existingDayCity;
 
         if (!empty($_POST['day_city'])) {
+                $dayCityDetails = []; // reset ONLY if new data sent
+
             foreach ($_POST['day_city'] as $dayNum => $cityId) {
                 if (empty($cityId)) continue;
 
@@ -106,10 +116,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $insertData['day_city_details'] = json_encode($dayCityDetails);
 
 
-$hotelsData = [];
+$hotelsData = $existingHotels;
 
 if (!empty($_POST['hotels'])) {
+    $hotelsData = []; // reset only if new data is submitted
     foreach ($_POST['hotels'] as $dayNum => $hotelInfo) {
+
         if (!empty($hotelInfo['name'])) {
             $hotelsData[$dayNum] = [
                 'name' => $hotelInfo['name'],
@@ -122,7 +134,7 @@ if (!empty($_POST['hotels'])) {
 $insertData['hotels'] = json_encode($hotelsData);
 
 
-$costData = [];
+$costData = $existingCost;
 
 if (!empty($_POST['cost'])) {
     $costData = [
@@ -137,11 +149,11 @@ if (!empty($_POST['cost'])) {
     ];
 }
 
+
 $insertData['tour_cost'] = json_encode($costData);
 
 
-$termsData = [];
-
+$termsData = $existingTerms;
 if (!empty($_POST['terms'])) {
     $termsData = [
         'includes' => $_POST['terms']['includes'] ?? '',
@@ -155,16 +167,16 @@ if (!empty($_POST['terms'])) {
 
 $insertData['terms_conditions'] = json_encode($termsData);
 
-$coverData = [];
+$coverData = $existingCover;
+
 
 if (!empty($_POST['cover'])) {
-    $coverData = [
-        'trip_name' => $_POST['cover']['trip_name'] ?? '',
-        'heading' => $_POST['cover']['heading'] ?? '',
-        'sub_heading' => $_POST['cover']['sub_heading'] ?? '',
-        'description' => $_POST['cover']['description'] ?? ''
-    ];
+    $coverData['trip_name'] = $_POST['cover']['trip_name'] ?? $coverData['trip_name'] ?? '';
+    $coverData['heading'] = $_POST['cover']['heading'] ?? $coverData['heading'] ?? '';
+    $coverData['sub_heading'] = $_POST['cover']['sub_heading'] ?? $coverData['sub_heading'] ?? '';
+    $coverData['description'] = $_POST['cover']['description'] ?? $coverData['description'] ?? '';
 }
+
 
 // Image Upload
 if (!empty($_FILES['cover_image']['name'])) {
@@ -177,6 +189,9 @@ if (!empty($_FILES['cover_image']['name'])) {
 
     $coverData['image'] = $newName;
 }
+
+
+
 
 $insertData['cover_page'] = json_encode($coverData);
 
