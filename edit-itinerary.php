@@ -355,51 +355,51 @@ h5 {
 
                     <!-- Day-wise City Details -->
                     <div class="accordion-item mt-3">
-    <h2 class="accordion-header" id="headingCityDetails">
-        <button class="fw-bold accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCityDetails">
-            Day-wise City Details
-        </button>
-    </h2>
-    <div id="collapseCityDetails" class="accordion-collapse collapse">
-        <div class="accordion-body">
-            <div id="dayDetailsContainer" class="row g-3">
-                <!-- Day 1 -->
-                <div class="day-block col-md-6" data-day="1">
-                    <h5>Day 1</h5>
+                        <h2 class="accordion-header" id="headingCityDetails">
+                            <button class="fw-bold accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCityDetails">
+                                Day-wise City Details
+                            </button>
+                        </h2>
+                        <div id="collapseCityDetails" class="accordion-collapse collapse">
+                            <div class="accordion-body">
+                                <div id="dayDetailsContainer" class="row g-3">
+                                    <!-- Day 1 -->
+                                    <div class="day-block col-md-6" data-day="1">
+                                        <h5>Day 1</h5>
+                                        <button type="button" class="mb-2 btn btn-danger btn-sm float-end remove-day-btn"><i class="bi bi-trash"></i></button>
 
-                    <div class="mb-2">
-                        <label>Select City</label>
-                        <select name="day_city[1]" class="form-control">
-                            <option value="">-- Select City --</option>
-                            <?php foreach ($selectedCities as $cityId): 
-                                $cityName = array_values(array_filter($cities, fn($c) => $c['id'] == $cityId))[0]['name'] ?? '';
-                            ?>
-                            <option value="<?= $cityId; ?>"><?= htmlspecialchars($cityName); ?></option>
-                            <?php endforeach; ?>
-                        </select>
+                                        <div class="mb-2">
+                                            <label>Select City</label>
+                                            <select name="day_city[1]" class="form-control">
+                                                <option value="">-- Select City --</option>
+                                                <?php foreach ($selectedCities as $cityId): 
+                                                    $cityName = array_values(array_filter($cities, fn($c) => $c['id'] == $cityId))[0]['name'] ?? '';
+                                                ?>
+                                                <option value="<?= $cityId; ?>"><?= htmlspecialchars($cityName); ?></option>
+                                                <?php endforeach; ?>
+                                            </select>
+                                        </div>
+
+                                        <div class="mb-2">
+                                            <label>Images</label>
+                                            <input type="file" name="day_images[1][]" multiple class="form-control">
+                                        </div>
+
+                                        <div class="mb-2">
+                                            <label>Description</label>
+                                            <div id="descEditor1" class="quill-editor"></div>
+                                            <input type="hidden" name="day_desc[1]" id="day_desc_1">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Add Day Button -->
+                                <div class="mt-3">
+                                    <button type="button" id="addDayBtn" class="btn btn-secondary btn-sm">Add Another Day</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-
-                    <div class="mb-2">
-                        <label>Images</label>
-                        <input type="file" name="day_images[1][]" multiple class="form-control">
-                    </div>
-
-                    <div class="mb-2">
-                        <label>Description</label>
-                        <div id="descEditor1" class="quill-editor"></div>
-                        <input type="hidden" name="day_desc[1]" id="day_desc_1">
-                    </div>
-                </div>
-            </div>
-
-            <!-- Add Day Button outside row -->
-            <div class="mt-3">
-                <button type="button" id="addDayBtn" class="btn btn-secondary btn-sm">Add Another Day</button>
-            </div>
-        </div>
-    </div>
-</div>
-
                 </div>
                 <div class="text-center mt-3 d-flex justify-content-end gap-2">
                     <button type="submit" class="btn btn-success">Update Itinerary</button>
@@ -417,42 +417,37 @@ h5 {
 <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
 
 <script>
-    let dayCount = 1;
-    const quillEditors = {};
+let dayCount = 1;
+const quillEditors = {};
 
-    function initQuill(id) {
-        quillEditors[id] = new Quill(`#${id}`, { theme: 'snow' });
-    }
+function initQuill(id) {
+    quillEditors[id] = new Quill(`#${id}`, { theme: 'snow' });
+}
 
-    initQuill('descEditor1');
+initQuill('descEditor1');
 
-    function getCurrentCities() {
-        // Returns array of city IDs from Tour Details multi-select
-        return $('select[name="city_ids[]"]').val() || [];
-    }
+function getCurrentCities() {
+    return $('select[name="city_ids[]"]').val() || [];
+}
 
-    // Update all existing day dropdowns when Tour Details cities change
-    $('select[name="city_ids[]"]').on('change', function() {
-        const selectedCities = $(this).val() || [];
-        
-        $('#dayDetailsContainer select').each(function() {
-            const oldVal = $(this).val(); // previous selected city
-            $(this).html('<option value="">-- Select City --</option>'); // clear
-            selectedCities.forEach(function(id) {
-                const text = $('select[name="city_ids[]"] option[value="' + id + '"]').text();
-                $(this).append(`<option value="${id}">${text}</option>`);
-            }.bind(this));
-
-            // restore previous selection if still in selected cities
-            if (selectedCities.includes(oldVal)) {
-                $(this).val(oldVal);
-            }
-        });
+// Update day dropdowns when cities change
+$('select[name="city_ids[]"]').on('change', function() {
+    const selectedCities = $(this).val() || [];
+    $('#dayDetailsContainer select').each(function() {
+        const oldVal = $(this).val();
+        $(this).html('<option value="">-- Select City --</option>');
+        selectedCities.forEach(function(id) {
+            const text = $('select[name="city_ids[]"] option[value="' + id + '"]').text();
+            $(this).append(`<option value="${id}">${text}</option>`);
+        }.bind(this));
+        if (selectedCities.includes(oldVal)) $(this).val(oldVal);
     });
+});
 
+// Add new day
 $('#addDayBtn').click(function() {
     dayCount++;
-    let cities = getCurrentCities(); // current selected cities
+    let cities = getCurrentCities();
     let optionsHtml = '<option value="">-- Select City --</option>';
     cities.forEach(function(id) {
         let text = $('select[name="city_ids[]"] option[value="' + id + '"]').text();
@@ -462,6 +457,7 @@ $('#addDayBtn').click(function() {
     let dayHtml = `
     <div class="day-block col-md-6" data-day="${dayCount}">
         <h5>Day ${dayCount}</h5>
+        <button type="button" class="btn btn-danger btn-sm float-end remove-day-btn">Remove</button>
 
         <div class="mb-2">
             <label>Select City</label>
@@ -487,17 +483,27 @@ $('#addDayBtn').click(function() {
     initQuill(`descEditor${dayCount}`);
 });
 
+// Remove day
+$(document).on('click', '.remove-day-btn', function() {
+    const dayBlock = $(this).closest('.day-block');
+    const dayId = dayBlock.data('day');
 
+    // Remove Quill editor instance
+    if (quillEditors[`descEditor${dayId}`]) {
+        delete quillEditors[`descEditor${dayId}`];
+    }
 
+    dayBlock.remove();
+});
 
-    // Copy Quill content to hidden inputs before submit
-    $('form').submit(function() {
-        for (let i = 1; i <= dayCount; i++) {
-            if (quillEditors[`descEditor${i}`]) {
-                $(`#day_desc_${i}`).val(quillEditors[`descEditor${i}`].root.innerHTML);
-            }
+// Copy Quill content before form submit
+$('form').submit(function() {
+    for (let i = 1; i <= dayCount; i++) {
+        if (quillEditors[`descEditor${i}`]) {
+            $(`#day_desc_${i}`).val(quillEditors[`descEditor${i}`].root.innerHTML);
         }
-    });
+    }
+});
 </script>
 
 <script>
