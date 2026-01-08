@@ -101,6 +101,6 @@ $update->execute([
     'vid' => $data['history_id']
 ]);
 
-// Redirect
+// Redirectw
 header("Location: revised-itenary.php?pdf=created");
 exit;
