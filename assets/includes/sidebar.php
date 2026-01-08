@@ -25,18 +25,8 @@
             </a>
         </li>
         <li class="nav-item">
-            <a href="./reservations.php" class="nav-link text-white <?= $currentPage === 'reservations.php' ? 'active' : '' ?>" aria-current="page">
-                <i class="bi bi-calendar-check me-2"></i> Reservations
-            </a>
-        </li>
-        <li class="nav-item">
-            <a href="./expenses.php" class="nav-link text-white <?= $currentPage === 'expenses.php' ? 'active' : '' ?>" aria-current="page">
-                <i class="bi bi-cash-stack me-2"></i> Expenses
-            </a>
-        </li>
-        <li class="nav-item">
-            <a href="./trashed.php" class="nav-link text-white <?= $currentPage === 'trashed.php' ? 'active' : '' ?>" aria-current="page">
-                <i class="bi bi-trash3 me-2"></i> Trashed Reservations
+            <a href="./itenary-request.php" class="nav-link text-white <?= $currentPage === 'itenary-request.php' ? 'active' : '' ?>" aria-current="page">
+                <i class="bi bi-calendar-check me-2"></i> Itenaries
             </a>
         </li>
         <?php if (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'admin'): ?>

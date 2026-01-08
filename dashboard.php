@@ -50,23 +50,25 @@ $userCount = $stmt->fetchColumn();
             <div class="row g-4">
                 <!-- Total Itineraries -->
                 <div class="col-md-6 col-lg-6">
-                    <div class="card text-center">
+                    <div class="card text-center d-flex flex-column align-items-center">
                         <div class="icon text-primary">
                             <i class="bi bi-map"></i>
                         </div>
                         <h5 class="fw-bold">Itineray Requests</h5>
                         <h3><?php echo $itineraryCount; ?></h3>
+                        <button class="btn btn-primary mt-3 w-50"><a href="itenary-request.php" class="text-white text-decoration-none">View Itineraries</a></button>
                     </div>
                 </div>
 
                 <!-- Total Users -->
                 <div class="col-md-6 col-lg-6">
-                    <div class="card text-center">
+                    <div class="card text-center d-flex flex-column align-items-center">
                         <div class="icon text-success">
                             <i class="bi bi-people"></i>
                         </div>
                         <h5 class="fw-bold">Total Users</h5>
                         <h3><?php echo $userCount; ?></h3>
+                        <button class="btn btn-primary mt-3 w-50"><a href="users.php" class="text-white text-decoration-none">View Users</a></button>
                     </div>
                 </div>
             </div>
