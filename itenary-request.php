@@ -60,12 +60,12 @@
                                         <td><?= htmlspecialchars($row['full_name']); ?></td>
                                         <td><?= htmlspecialchars($row['whatsapp_code'] . ' ' . $row['whatsapp']); ?></td>
                                         <td>
-                                            <a href="view-itinerary.php?id=<?= $row['id']; ?>" class="btn btn-sm btn-primary">
-                                                View
+                                            <a href="edit-itinerary.php?id=<?= $row['id']; ?>" class="btn btn-sm btn-primary">
+                                                Edit
                                             </a>
-                                            <a href="delete-itinerary.php?id=<?= $row['id']; ?>" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?');">
+                                            <!-- <a href="delete-itinerary.php?id=<?= $row['id']; ?>" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?');">
                                                 Delete
-                                            </a>
+                                            </a> -->
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>
