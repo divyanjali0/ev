@@ -122,18 +122,77 @@ if (!empty($_POST['hotels'])) {
 $insertData['hotels'] = json_encode($hotelsData);
 
 
+$costData = [];
+
+if (!empty($_POST['cost'])) {
+    $costData = [
+        'title' => $_POST['cost']['title'] ?? '',
+        'pax' => $_POST['cost']['pax'] ?? '',
+        'vehicle' => $_POST['cost']['vehicle'] ?? '',
+        'meal_plan' => $_POST['cost']['meal_plan'] ?? '',
+        'hotel_category' => $_POST['cost']['hotel_category'] ?? '',
+        'room_type' => $_POST['cost']['room_type'] ?? '',
+        'currency' => $_POST['cost']['currency'] ?? '',
+        'total' => $_POST['cost']['total'] ?? ''
+    ];
+}
+
+$insertData['tour_cost'] = json_encode($costData);
+
+
+$termsData = [];
+
+if (!empty($_POST['terms'])) {
+    $termsData = [
+        'includes' => $_POST['terms']['includes'] ?? '',
+        'excludes' => $_POST['terms']['excludes'] ?? '',
+        'foc' => $_POST['terms']['foc'] ?? '',
+        'ps' => $_POST['terms']['ps'] ?? '',
+        'dress_code' => $_POST['terms']['dress_code'] ?? '',
+        'notice' => $_POST['terms']['notice'] ?? ''
+    ];
+}
+
+$insertData['terms_conditions'] = json_encode($termsData);
+
+$coverData = [];
+
+if (!empty($_POST['cover'])) {
+    $coverData = [
+        'trip_name' => $_POST['cover']['trip_name'] ?? '',
+        'heading' => $_POST['cover']['heading'] ?? '',
+        'sub_heading' => $_POST['cover']['sub_heading'] ?? '',
+        'description' => $_POST['cover']['description'] ?? ''
+    ];
+}
+
+// Image Upload
+if (!empty($_FILES['cover_image']['name'])) {
+    $uploadDir = __DIR__ . "/uploads/cover_images/";
+    if (!file_exists($uploadDir)) mkdir($uploadDir, 0777, true);
+
+    $ext = pathinfo($_FILES['cover_image']['name'], PATHINFO_EXTENSION);
+    $newName = uniqid('cover_') . '.' . $ext;
+    move_uploaded_file($_FILES['cover_image']['tmp_name'], $uploadDir . $newName);
+
+    $coverData['image'] = $newName;
+}
+
+$insertData['cover_page'] = json_encode($coverData);
+
+
 
         // Then insert into itinerary_customer_history as before
         $insertSql = "INSERT INTO itinerary_customer_history
             (vehicle_id, reference_no, itinerary_id, edited_by, edit_reason, theme_ids, city_ids, start_date, end_date, nights, adults,
             children_6_11, children_above_11, infants, hotel_rating, meal_plan, allergy_issues, allergy_reason,
             title, full_name, email, whatsapp_code, whatsapp, country, nationality, flight_number,
-            pickup_location, dropoff_location, remarks, day_city_details, hotels, version_number)
+            pickup_location, dropoff_location, remarks, day_city_details, hotels, tour_cost, terms_conditions, cover_page, version_number)
             VALUES
             (:vehicle_id, :reference_no, :itinerary_id, :edited_by, :edit_reason, :theme_ids, :city_ids, :start_date, :end_date, :nights, :adults,
             :children_6_11, :children_above_11, :infants, :hotel_rating, :meal_plan, :allergy_issues, :allergy_reason,
             :title, :full_name, :email, :whatsapp_code, :whatsapp, :country, :nationality, :flight_number,
-            :pickup_location, :dropoff_location, :remarks, :day_city_details,:hotels, :version_number)";
+            :pickup_location, :dropoff_location, :remarks, :day_city_details,:hotels,:tour_cost,:terms_conditions,:cover_page, :version_number)";
 
         $stmtInsert = $conn->prepare($insertSql);
         $params = array_merge($insertData, [
@@ -375,6 +434,46 @@ h5 {
                         </div>
                     </div>
 
+                    <div class="accordion-item mt-3">
+                        <h2 class="accordion-header" id="headingCover">
+                            <button class="fw-bold accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCover">
+                                Cover Page Details
+                            </button>
+                        </h2>
+                        <div id="collapseCover" class="accordion-collapse collapse">
+                            <div class="accordion-body">
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label>Trip Name</label>
+                                        <input type="text" name="cover[trip_name]" class="form-control" placeholder="Trip Name">
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <label>Heading</label>
+                                        <input type="text" name="cover[heading]" class="form-control" placeholder="Main Heading">
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <label>Sub Heading</label>
+                                        <input type="text" name="cover[sub_heading]" class="form-control" placeholder="Sub Heading">
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <label>Cover Image</label>
+                                        <input type="file" name="cover_image" class="form-control">
+                                    </div>
+                                </div>
+
+                                <div class="my-3">
+                                    <label>Description</label>
+                                    <div id="coverDescEditor" class="quill-editor"></div>
+                                    <input type="hidden" name="cover[description]" id="cover_description">
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
                     <!-- Day-wise City Details -->
                     <div class="accordion-item mt-3">
                         <h2 class="accordion-header" id="headingCityDetails">
@@ -456,8 +555,113 @@ h5 {
                                 </div>
 
                                 <div class="mt-3">
-                                    <button type="button" id="addHotelDayBtn" class="btn btn-secondary btn-sm">Add Hotel for Next Day</button>
+                                    <button type="button" id="addHotelDayBtn" class="btn btn-secondary btn-sm">Add Hotels</button>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item mt-3">
+                        <h2 class="accordion-header" id="headingCost">
+                            <button class="fw-bold accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCost">
+                                Tour Cost
+                            </button>
+                        </h2>
+                        <div id="collapseCost" class="accordion-collapse collapse">
+                            <div class="accordion-body">
+
+                                <div class="mb-3">
+                                    <label>Cost Title</label>
+                                    <input type="text" name="cost[title]" class="form-control" 
+                                        placeholder="TOUR COST FOR THE FAMILY: Travelling Together">
+                                </div>
+
+                                <div class="row g-3">
+                                    <div class="col-md-4">
+                                        <label>No of Pax</label>
+                                        <input type="text" name="cost[pax]" class="form-control" placeholder="04 Pax">
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <label>Vehicle</label>
+                                        <input type="text" name="cost[vehicle]" class="form-control" placeholder="A/C Van">
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <label>Meal Plan</label>
+                                        <input type="text" name="cost[meal_plan]" class="form-control" placeholder="HB Basis (Breakfast & Dinner)">
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <label>Hotel Category</label>
+                                        <input type="text" name="cost[hotel_category]" class="form-control" placeholder="3 – 4 Star Hotels">
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <label>Room Type</label>
+                                        <input type="text" name="cost[room_type]" class="form-control" placeholder="Sharing Double Room">
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <label>Currency</label>
+                                        <input type="text" name="cost[currency]" class="form-control" placeholder="USD">
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <label>Total Tour Cost</label>
+                                        <input type="text" name="cost[total]" class="form-control" placeholder="Enter amount">
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item mt-3">
+                        <h2 class="accordion-header" id="headingTerms">
+                            <button class="fw-bold accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTerms">
+                                Terms, Conditions & Notices
+                            </button>
+                        </h2>
+                        <div id="collapseTerms" class="accordion-collapse collapse">
+                            <div class="accordion-body">
+
+                                <div class="mb-3">
+                                    <label>Cost Includes</label>
+                                    <div id="includesEditor" class="quill-editor"></div>
+                                    <input type="hidden" name="terms[includes]" id="terms_includes">
+                                </div>
+
+                                <div class="mb-3">
+                                    <label>Cost Excludes</label>
+                                    <div id="excludesEditor" class="quill-editor"></div>
+                                    <input type="hidden" name="terms[excludes]" id="terms_excludes">
+                                </div>
+
+                                <div class="mb-3">
+                                    <label>Complimentary Services (FOC)</label>
+                                    <div id="focEditor" class="quill-editor"></div>
+                                    <input type="hidden" name="terms[foc]" id="terms_foc">
+                                </div>
+
+                                <div class="mb-3">
+                                    <label>P.S / Please Note</label>
+                                    <div id="psEditor" class="quill-editor"></div>
+                                    <input type="hidden" name="terms[ps]" id="terms_ps">
+                                </div>
+
+                                <div class="mb-3">
+                                    <label>Dress Code for Temples and Religious Places</label>
+                                    <div id="dressCodeEditor" class="quill-editor"></div>
+                                    <input type="hidden" name="terms[dress_code]" id="terms_dress_code">
+                                </div>
+
+                                <div class="mb-3">
+                                    <label>Points to Notice</label>
+                                    <div id="noticeEditor" class="quill-editor"></div>
+                                    <input type="hidden" name="terms[notice]" id="terms_notice">
+                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -486,6 +690,13 @@ function initQuill(id) {
 }
 
 initQuill('descEditor1');
+initQuill('includesEditor');
+initQuill('excludesEditor');
+initQuill('focEditor');
+initQuill('psEditor');
+initQuill('dressCodeEditor');
+initQuill('noticeEditor');
+initQuill('coverDescEditor');
 
 function getCurrentCities() {
     return $('select[name="city_ids[]"]').val() || [];
@@ -611,13 +822,32 @@ $(document).on('click', '.remove-hotel-day-btn', function() {
 
 
 // Copy Quill content before form submit
+// $('form').submit(function() {
+//     for (let i = 1; i <= dayCount; i++) {
+//         if (quillEditors[`descEditor${i}`]) {
+//             $(`#day_desc_${i}`).val(quillEditors[`descEditor${i}`].root.innerHTML);
+//         }
+//     }
+// });
+
+
 $('form').submit(function() {
     for (let i = 1; i <= dayCount; i++) {
         if (quillEditors[`descEditor${i}`]) {
             $(`#day_desc_${i}`).val(quillEditors[`descEditor${i}`].root.innerHTML);
         }
     }
+
+    $('#terms_includes').val(quillEditors['includesEditor'].root.innerHTML);
+    $('#terms_excludes').val(quillEditors['excludesEditor'].root.innerHTML);
+    $('#terms_foc').val(quillEditors['focEditor'].root.innerHTML);
+    $('#terms_ps').val(quillEditors['psEditor'].root.innerHTML);
+    $('#terms_dress_code').val(quillEditors['dressCodeEditor'].root.innerHTML);
+    $('#terms_notice').val(quillEditors['noticeEditor'].root.innerHTML);
+    $('#cover_description').val(quillEditors['coverDescEditor'].root.innerHTML);
+
 });
+
 </script>
 
 <script>
