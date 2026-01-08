@@ -105,17 +105,35 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $insertData['day_city_details'] = json_encode($dayCityDetails);
 
+
+$hotelsData = [];
+
+if (!empty($_POST['hotels'])) {
+    foreach ($_POST['hotels'] as $dayNum => $hotelInfo) {
+        if (!empty($hotelInfo['name'])) {
+            $hotelsData[$dayNum] = [
+                'name' => $hotelInfo['name'],
+                'link' => $hotelInfo['link'] ?? ''
+            ];
+        }
+    }
+}
+
+$insertData['hotels'] = json_encode($hotelsData);
+
+
+
         // Then insert into itinerary_customer_history as before
         $insertSql = "INSERT INTO itinerary_customer_history
             (vehicle_id, reference_no, itinerary_id, edited_by, edit_reason, theme_ids, city_ids, start_date, end_date, nights, adults,
             children_6_11, children_above_11, infants, hotel_rating, meal_plan, allergy_issues, allergy_reason,
             title, full_name, email, whatsapp_code, whatsapp, country, nationality, flight_number,
-            pickup_location, dropoff_location, remarks, day_city_details, version_number)
+            pickup_location, dropoff_location, remarks, day_city_details, hotels, version_number)
             VALUES
             (:vehicle_id, :reference_no, :itinerary_id, :edited_by, :edit_reason, :theme_ids, :city_ids, :start_date, :end_date, :nights, :adults,
             :children_6_11, :children_above_11, :infants, :hotel_rating, :meal_plan, :allergy_issues, :allergy_reason,
             :title, :full_name, :email, :whatsapp_code, :whatsapp, :country, :nationality, :flight_number,
-            :pickup_location, :dropoff_location, :remarks, :day_city_details, :version_number)";
+            :pickup_location, :dropoff_location, :remarks, :day_city_details,:hotels, :version_number)";
 
         $stmtInsert = $conn->prepare($insertSql);
         $params = array_merge($insertData, [
@@ -423,6 +441,26 @@ h5 {
                             </div>
                         </div>
                     </div>
+
+                    <!-- Day-wise Hotel Details -->
+                    <div class="accordion-item mt-3">
+                        <h2 class="accordion-header" id="headingHotels">
+                            <button class="fw-bold accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHotels">
+                                Day-wise Hotels
+                            </button>
+                        </h2>
+                        <div id="collapseHotels" class="accordion-collapse collapse">
+                            <div class="accordion-body">
+                                <div id="hotelContainer" class="row g-3">
+                                    <!-- Hotel days will be appended here dynamically -->
+                                </div>
+
+                                <div class="mt-3">
+                                    <button type="button" id="addHotelDayBtn" class="btn btn-secondary btn-sm">Add Hotel for Next Day</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="text-center mt-3 d-flex justify-content-end gap-2">
                     <button type="submit" class="btn btn-success">Update Itinerary</button>
@@ -538,6 +576,39 @@ $(document).on('click', '.remove-day-btn', function() {
 
     dayBlock.remove();
 });
+
+let hotelDayCount = 0;
+
+$('#addHotelDayBtn').click(function() {
+    hotelDayCount++;
+    
+    let hotelHtml = `
+    <div class="hotel-block col-md-12" data-day="${hotelDayCount}">
+        <button type="button" class="btn btn-danger btn-sm float-end remove-hotel-day-btn"><i class="bi bi-trash"></i></button>
+
+        <div class="row">
+
+            <div class="col-md-2 d-flex align-items-center">
+                <h5>Day ${hotelDayCount} Hotel</h5>
+            </div>
+            <div class="col-md-5">
+                <input type="text" name="hotels[${hotelDayCount}][name]" class="form-control" placeholder="Hotel Name">
+            </div>
+            <div class="col-md-5">
+                <input type="url" name="hotels[${hotelDayCount}][link]" class="form-control" placeholder="Hotel Website">
+            </div>
+        </div>
+    </div>
+    `;
+    $('#hotelContainer').append(hotelHtml);
+});
+
+// Remove hotel day
+$(document).on('click', '.remove-hotel-day-btn', function() {
+    $(this).closest('.hotel-block').remove();
+});
+
+
 
 // Copy Quill content before form submit
 $('form').submit(function() {
