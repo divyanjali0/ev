@@ -29,6 +29,11 @@
                 <i class="bi bi-calendar-check me-2"></i> Itenaries
             </a>
         </li>
+        <li class="nav-item">
+            <a href="./revised-itenary.php" class="nav-link text-white <?= $currentPage === 'revised-itenary.php' ? 'active' : '' ?>" aria-current="page">
+                <i class="bi bi-calendar-check me-2"></i> Revised Itenary
+            </a>
+        </li>
         <?php if (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'admin'): ?>
             <li>
                 <a href="./users.php" class="nav-link text-white <?= $currentPage === 'users.php' ? 'active' : '' ?>">

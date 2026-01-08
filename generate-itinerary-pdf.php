@@ -102,5 +102,5 @@ $update->execute([
 ]);
 
 // Redirect
-header("Location: itenary-request.php?pdf=created");
+header("Location: revised-itenary.php?pdf=created");
 exit;
