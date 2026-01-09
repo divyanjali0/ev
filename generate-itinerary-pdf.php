@@ -1,12 +1,10 @@
 <?php
 require_once __DIR__ . '/assets/includes/db_connect.php';
-require_once __DIR__ . '/vendor/autoload.php'; // mPDF
+require_once __DIR__ . '/vendor/autoload.php';
 
 if (!isset($_GET['id'])) exit('Missing ID');
-
 $id = $_GET['id'];
 
-// Fetch latest version
 $stmt = $conn->prepare("
     SELECT * FROM itinerary_customer_history 
     WHERE itinerary_id = :id 
@@ -31,50 +29,41 @@ $mpdf = new \Mpdf\Mpdf([
     'margin_bottom' => 5
 ]);
 
-// --- Footer for all pages ---
+function loadPage($file, $vars = []) {
+    extract($vars);
+    ob_start();
+    include $file;
+    return ob_get_clean();
+}
+
+// Footer
 $mpdf->SetHTMLFooter('
 <div style="text-align:center; font-size:10px;">
 No. 371/5, Negombo Road, Seeduwa, Sri Lanka | Tel: +94 761 414 552 | Email: info@explorevacations.lk | Web: www.explorevacations.lk
 </div>
 ');
 
-// --- HTML template ---
+// Main HTML wrapper
 $html = '
 <html>
 <head>
 <style>
-@page {
-    margin: 10mm;
-}
+@page { margin: 10mm; }
 
-/* Full page border */
 .full-page-border {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
     border: 1.5px solid #000;
     box-sizing: border-box;
     z-index: -1;
 }
 
-/* Page content: leave space for footer and logo */
-.page-content {
-    padding: 8mm 8mm 20mm 8mm; /* top padding for logo, bottom padding for footer */
-    box-sizing: border-box;
-}
+.page-content { padding: 8mm 8mm 20mm 8mm; }
 
-/* Company logo on top of every page */
-.page-logo {
-    text-align: center;
-    margin-bottom: 10px;
-}
-.page-logo img {
-    height: 30px;
-}
+.page-logo { text-align: center; margin-bottom: 10px; }
+.page-logo img { height: 30px; }
 
-/* Cover Page specific */
 .cover-title { text-align: center; font-size: 28px; font-weight: bold; margin-top: 18px; }
 .cover-heading { text-align: center; font-size: 18px; font-weight: bold; margin-top: 3px; }
 .cover-subheading { text-align: center; font-size: 14px; font-style: italic; margin-top: 8px; }
@@ -82,186 +71,28 @@ $html = '
 .cover-image img { width: 70%; height: auto; }
 .cover-description { margin-top: 14px; font-size: 14px; text-align: justify; line-height: 22px; }
 
-/* Section titles */
 .section-title { font-size: 20px; font-weight: bold; margin-top: 10px; margin-bottom: 8px; color: #09498eff; }
 
-/* Table styling */
-table { 
-    border-collapse: collapse; 
-    width: 100%; 
-    font-size: 16px; 
-    margin-bottom: 8px; 
-}
-
-table, th, td { 
-    border: 1px solid black; 
-    padding: 3px; 
-    text-align: left; 
-    line-height: 1.4; /* adds spacing between lines */
-}
-
-
+table { border-collapse: collapse; width: 100%; font-size: 16px; margin-bottom: 8px; }
+table, th, td { border: 1px solid black; padding: 3px; text-align: left; line-height: 1.4; }
 </style>
 </head>
 <body>
-<div class="full-page-border"></div>
-<div class="page-content">
 
-<!-- Company logo -->
+<!-- Common logo for all pages -->
 <div class="page-logo">
     <img src="'. __DIR__ . '/assets/images/pdf-logo.png" />
 </div>
+';
 
-<!-- Cover Page -->
-<div class="cover-title">'. ($cover['trip_name'] ?? '') .'</div>
-<div class="cover-heading">'. ($cover['heading'] ?? '') .'</div>
-<div class="cover-subheading">'. ($cover['sub_heading'] ?? '') .'</div>';
+$html .= loadPage(__DIR__ . '/pdf-pages/cover.php', compact('cover'));
+// $html .= loadPage(__DIR__ . '/pdf-pages/destinations.php', compact('days'));
+// $html .= loadPage(__DIR__ . '/pdf-pages/hotels.php', compact('hotels'));
+// $html .= loadPage(__DIR__ . '/pdf-pages/cost.php', compact('cost'));
+// $html .= loadPage(__DIR__ . '/pdf-pages/terms.php', compact('terms'));
 
-if (!empty($cover['image']) && file_exists(__DIR__ . '/uploads/cover_images/' . $cover['image'])) {
-    $html .= '<div class="cover-image">
-        <img src="'. __DIR__ . '/uploads/cover_images/' . $cover['image'] .'" />
-    </div>';
-}
+$html .= '</body></html>';
 
-$html .= '<div class="cover-description">'. ($cover['description'] ?? '') .'</div>';
-
-$html .= '</div>'; 
-
-// --- Destinations ---
-$html .= '<pagebreak />
-<div class="full-page-border"></div>
-<div class="page-content">
-<div class="page-logo">
-    <img src="'. __DIR__ . '/assets/images/pdf-logo.png" />
-</div>
-<div class="section-title">Destinations</div>';
-
-foreach ($days as $day) {
-    $dayNumber = $day['day'] ?? '';
-    $date = $day['date'] ?? '';
-    $mealPlan = $day['meal_plan'] ?? '';
-
-    // Display Day : Date : Meal Plan
-    $html .= '<div style="font-weight:bold; margin-bottom:5px;">Day '. $dayNumber .' : '. $date .' : '. $mealPlan .'</div>';
-
-    // Description
-    $description = $day['description'] ?? '';
-    $html .= '<div style="margin-bottom:10px; font-size:12px;">'. $description .'</div>';
-
-    // Images in 3x3 grid
-    if (!empty($day['images'])) {
-        $html .= '<div style="width:100%; overflow:hidden; text-align:center; margin-bottom:10px;">';
-        foreach ($day['images'] as $img) {
-            $imgPath = __DIR__ . '/uploads/city_images/' . $img;
-            if (file_exists($imgPath)) {
-                $html .= '<div style="float:left; width:33.33%; text-align:center; margin:0; padding:0; display:flex; justify-content:center; align-items:center; height:120px;">
-                    <img src="'. $imgPath .'" style="max-width:100%; max-height:100%; display:block; margin:0; padding:0; object-fit:cover;" />
-                </div>';
-            }
-        }
-        $html .= '<div style="clear:both;"></div>'; // clear float
-        $html .= '</div>'; // end images container
-    }
-}
-
-$html .= '</div>'; // end page-content for destinations
-
-// --- Hotels ---
-$html .= '<pagebreak />
-<div class="full-page-border"></div>
-<div class="page-content">
-<div class="page-logo">
-    <img src="'. __DIR__ . '/assets/images/pdf-logo.png" />
-</div>
-<div class="mt-4 section-title" style="margin: 20px 0;">Hotels</div>';
-
-// Start table
-$html .= '<table class="mt-4">
-<tr>
-    <th>Day</th>
-    <th>Hotel Name</th>
-    <th>Link</th>
-</tr>';
-
-// Loop through hotels and fill table rows
-foreach ($hotels as $day_num => $hotel) {
-    $hotelName = $hotel['name'] ?? '';
-    $hotelLink = $hotel['link'] ?? '';
-
-    $html .= '<tr>
-        <td>'. $day_num .'</td>
-        <td>'. $hotelName .'</td>
-        <td><a href="'. $hotelLink .'">'. $hotelLink .'</a></td>
-    </tr>';
-}
-
-$html .= '</table>';
-
-$html .= '</div>'; // end page-content for hotels
-
-
-// --- Tour Cost ---
-$html .= '<pagebreak />
-<div class="full-page-border"></div>
-<div class="page-content">
-<div class="page-logo">
-    <img src="'. __DIR__ . '/assets/images/pdf-logo.png" />
-</div>
-<div class="section-title" style="margin: 20px 0;">Tour Cost : '. ($cost['title'] ?? '') .'</div>
-
-<!-- Two-column layout for details -->
-<table class="mt-4">
-<tr>
-    <th>No of Pax</th>
-    <td>'. ($cost['pax'] ?? '') .' Pax</td>
-</tr>
-<tr>
-    <th>Vehicle</th>
-    <td>'. ($cost['vehicle'] ?? '') .'</td>
-</tr>
-<tr>
-    <th>Meal Plan</th>
-    <td>'. ($cost['meal_plan'] ?? '') .'</td>
-</tr>
-<tr>
-    <th>Hotel Type</th>
-    <td>'. ($cost['hotel_category'] ?? '') .'</td>
-</tr>
-<tr>
-    <th>Room Type</th>
-    <td>'. ($cost['room_type'] ?? '') .'</td>
-</tr>
-<tr>
-    <th>Total Tour Cost</th>
-    <td>
-        '. ($cost['currency'] ?? '') .' '. ($cost['total'] ?? '') .'
-    </td>
-</tr>
-</table>
-</div>'; // end page-content for tour cost
-
-
-// --- Terms & Conditions ---
-$html .= '<pagebreak />
-<div class="full-page-border"></div>
-<div class="page-content">
-<div class="page-logo">
-    <img src="'. __DIR__ . '/assets/images/pdf-logo.png" />
-</div>
-<div class="section-title">Cost Includes</div>
-<div>'. ($terms['includes'] ?? '') .'</div>
-
-<div class="section-title">Cost Excludes</div>
-<div>'. ($terms['excludes'] ?? '') .'</div>
-
-<div class="section-title">Additional Info</div>
-<div>'. ($terms['ps'] ?? '') .'</div>
-<div>'. ($terms['dress_code'] ?? '') .'</div>
-<div>'. ($terms['notice'] ?? '') .'</div>
-
-</div>'; // end page-content for terms
-
-// Write PDF
 $mpdf->WriteHTML($html);
 
 // Save PDF
