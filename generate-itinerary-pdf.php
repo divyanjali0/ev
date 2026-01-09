@@ -83,11 +83,23 @@ $html = '
 .cover-description { margin-top: 14px; font-size: 14px; text-align: justify; line-height: 22px; }
 
 /* Section titles */
-.section-title { font-size: 16px; font-weight: bold; margin-top: 10px; margin-bottom: 8px; color: #09498eff; }
+.section-title { font-size: 20px; font-weight: bold; margin-top: 10px; margin-bottom: 8px; color: #09498eff; }
 
 /* Table styling */
-table { border-collapse: collapse; width: 100%; font-size: 12px; margin-bottom: 8px; }
-table, th, td { border: 1px solid black; padding: 3px; text-align: left; }
+table { 
+    border-collapse: collapse; 
+    width: 100%; 
+    font-size: 16px; 
+    margin-bottom: 8px; 
+}
+
+table, th, td { 
+    border: 1px solid black; 
+    padding: 3px; 
+    text-align: left; 
+    line-height: 1.4; /* adds spacing between lines */
+}
+
 
 </style>
 </head>
@@ -161,13 +173,32 @@ $html .= '<pagebreak />
 <div class="page-logo">
     <img src="'. __DIR__ . '/assets/images/pdf-logo.png" />
 </div>
-<div class="section-title">Hotels</div>';
+<div class="mt-4 section-title" style="margin: 20px 0;">Hotels</div>';
 
+// Start table
+$html .= '<table class="mt-4">
+<tr>
+    <th>Day</th>
+    <th>Hotel Name</th>
+    <th>Link</th>
+</tr>';
+
+// Loop through hotels and fill table rows
 foreach ($hotels as $day_num => $hotel) {
-    $html .= '<div>Day '. $day_num . ': ' . $hotel['name'] . ' - ' . $hotel['link'] . '</div>';
+    $hotelName = $hotel['name'] ?? '';
+    $hotelLink = $hotel['link'] ?? '';
+
+    $html .= '<tr>
+        <td>'. $day_num .'</td>
+        <td>'. $hotelName .'</td>
+        <td><a href="'. $hotelLink .'">'. $hotelLink .'</a></td>
+    </tr>';
 }
 
+$html .= '</table>';
+
 $html .= '</div>'; // end page-content for hotels
+
 
 // --- Tour Cost ---
 $html .= '<pagebreak />
@@ -176,23 +207,39 @@ $html .= '<pagebreak />
 <div class="page-logo">
     <img src="'. __DIR__ . '/assets/images/pdf-logo.png" />
 </div>
-<div class="section-title">Tour Cost</div>
-<table>
+<div class="section-title" style="margin: 20px 0;">Tour Cost : '. ($cost['title'] ?? '') .'</div>
+
+<!-- Two-column layout for details -->
+<table class="mt-4">
 <tr>
-<th>Title</th><th>Pax</th><th>Vehicle</th><th>Meal Plan</th><th>Hotel Category</th><th>Room Type</th><th>Currency</th><th>Total</th>
+    <th>No of Pax</th>
+    <td>'. ($cost['pax'] ?? '') .' Pax</td>
 </tr>
 <tr>
-<td>'. $cost['title'] .'</td>
-<td>'. $cost['pax'] .'</td>
-<td>'. $cost['vehicle'] .'</td>
-<td>'. $cost['meal_plan'] .'</td>
-<td>'. $cost['hotel_category'] .'</td>
-<td>'. $cost['room_type'] .'</td>
-<td>'. $cost['currency'] .'</td>
-<td>'. $cost['total'] .'</td>
+    <th>Vehicle</th>
+    <td>'. ($cost['vehicle'] ?? '') .'</td>
+</tr>
+<tr>
+    <th>Meal Plan</th>
+    <td>'. ($cost['meal_plan'] ?? '') .'</td>
+</tr>
+<tr>
+    <th>Hotel Type</th>
+    <td>'. ($cost['hotel_category'] ?? '') .'</td>
+</tr>
+<tr>
+    <th>Room Type</th>
+    <td>'. ($cost['room_type'] ?? '') .'</td>
+</tr>
+<tr>
+    <th>Total Tour Cost</th>
+    <td>
+        '. ($cost['currency'] ?? '') .' '. ($cost['total'] ?? '') .'
+    </td>
 </tr>
 </table>
 </div>'; // end page-content for tour cost
+
 
 // --- Terms & Conditions ---
 $html .= '<pagebreak />
