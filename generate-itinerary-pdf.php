@@ -83,7 +83,7 @@ $html = '
 .cover-description { margin-top: 14px; font-size: 14px; text-align: justify; line-height: 22px; }
 
 /* Section titles */
-.section-title { font-size: 16px; font-weight: bold; margin-top: 10px; margin-bottom: 6px; }
+.section-title { font-size: 16px; font-weight: bold; margin-top: 10px; margin-bottom: 8px; color: #09498eff; }
 
 /* Table styling */
 table { border-collapse: collapse; width: 100%; font-size: 12px; margin-bottom: 8px; }
@@ -113,7 +113,7 @@ if (!empty($cover['image']) && file_exists(__DIR__ . '/uploads/cover_images/' . 
 
 $html .= '<div class="cover-description">'. ($cover['description'] ?? '') .'</div>';
 
-$html .= '</div>'; // end page-content for cover
+$html .= '</div>'; 
 
 // --- Destinations ---
 $html .= '<pagebreak />
@@ -125,18 +125,30 @@ $html .= '<pagebreak />
 <div class="section-title">Destinations</div>';
 
 foreach ($days as $day) {
-    $html .= '<div><strong>Day '. $day['day'] . ': ' . ($day['city_name'] ?? '') . '</strong></div>';
-    $html .= '<div style="margin-bottom:10px;">'. ($day['description'] ?? '') .'</div>';
-    
+    $dayNumber = $day['day'] ?? '';
+    $date = $day['date'] ?? '';
+    $mealPlan = $day['meal_plan'] ?? '';
+
+    // Display Day : Date : Meal Plan
+    $html .= '<div style="font-weight:bold; margin-bottom:5px;">Day '. $dayNumber .' : '. $date .' : '. $mealPlan .'</div>';
+
+    // Description
+    $description = $day['description'] ?? '';
+    $html .= '<div style="margin-bottom:10px; font-size:12px;">'. $description .'</div>';
+
+    // Images in 3x3 grid
     if (!empty($day['images'])) {
+        $html .= '<div style="width:100%; overflow:hidden; text-align:center; margin-bottom:10px;">';
         foreach ($day['images'] as $img) {
             $imgPath = __DIR__ . '/uploads/city_images/' . $img;
             if (file_exists($imgPath)) {
-                $html .= '<div style="text-align:center; margin-bottom:10px;">
-                    <img src="'. $imgPath .'" style="width:60%; height:auto;" />
+                $html .= '<div style="float:left; width:33.33%; text-align:center; margin:0; padding:0; display:flex; justify-content:center; align-items:center; height:120px;">
+                    <img src="'. $imgPath .'" style="max-width:100%; max-height:100%; display:block; margin:0; padding:0; object-fit:cover;" />
                 </div>';
             }
         }
+        $html .= '<div style="clear:both;"></div>'; // clear float
+        $html .= '</div>'; // end images container
     }
 }
 
