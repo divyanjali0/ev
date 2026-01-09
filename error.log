@@ -1,2 +1,0 @@
-[08-Jan-2026 11:28:07 Europe/Berlin] Error in fetch_itinerary_history.php: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'u.full_name' in 'field list'
-[08-Jan-2026 11:28:44 Europe/Berlin] Error in fetch_itinerary_history.php: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'u.full_name' in 'field list'
