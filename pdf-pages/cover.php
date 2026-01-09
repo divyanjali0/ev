@@ -53,15 +53,15 @@ function generateCoverPage($pdf, $cover = [])
     $pdf->SetFont('times', 'I', 28);
     $pdf->SetTextColor(0, 0, 0);
     $pdf->SetXY(20, 35);
-    $pdf->Cell(0, 12, $cover['trip_name'] ?? 'Explore', 0, 1, 'L');
+    $pdf->Cell(0, 12, $cover['heading'] ?? 'Explore', 0, 1, 'L');
 
     // --- MAIN TITLE ---
-    $pdf->SetFont('times', 'B', 56);
-    $pdf->SetXY(20, 50);
-    $pdf->Cell(0, 22, strtoupper($cover['heading'] ?? 'OSAKA'), 0, 1, 'L');
+    $pdf->SetFont('times', 'B', 36);
+    $pdf->SetXY(16, 50);
+    $pdf->Cell(0, 22, strtoupper($cover['trip_name'] ?? 'OSAKA'), 0, 1, 'L');
 
     // --- SUB TITLE ---
-    $pdf->SetFont('times', 'I', 26);
+    $pdf->SetFont('times', 'I', 20);
     $pdf->SetXY(20, 80);
     $pdf->Cell(0, 12, $cover['sub_heading'] ?? 'In 4 Days', 0, 1, 'L');
 }

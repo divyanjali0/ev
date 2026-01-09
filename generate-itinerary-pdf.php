@@ -46,7 +46,7 @@ $summaryDays = json_decode($data['day_city_details'], true);
 
 // ================= CREATE PDF =================
 $pdf = new TCPDF('P', 'mm', 'A4', true, 'UTF-8', false);
-$pdf->SetMargins(0, 0, 0);
+// $pdf->SetMargins(0, 0, 0);
 $pdf->SetAutoPageBreak(false);
 
 // ================= GENERATE COVER PAGE =================

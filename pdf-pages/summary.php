@@ -31,26 +31,29 @@ function addSummaryPage($pdf, $days, $overlayText = 'Your Trip Adventure', $city
 
         $startY = $pdf->GetY();
 
-        // Day Box
+        // ---------------- Day Box ----------------
         $pdf->SetFillColor(0, 102, 204);
         $pdf->SetTextColor(255, 255, 255);
         $pdf->SetFont('roboto', 'B', 14);
         $pdf->MultiCell(15, 15, "Day {$dayNumber}", 1, 'C', 1, 0);
 
-        // Details next to box
-        $pdf->SetTextColor(0, 0, 0);
-        $pdf->SetFont('roboto', '', 12);
+        // ---------------- Details ----------------
         $pdf->SetXY($margin + 20, $startY);
 
-        // Date and City Name
-        $pdf->MultiCell($leftWidth - 25, 6, "{$date} - {$cityName}", 0, 'L', 0, 1);
+        // Date bold - City italic
+        $pdf->SetTextColor(0, 0, 0);
+        $pdf->SetFont('roboto', 'B', 12);
+        $pdf->Write(6, $date);
+        $pdf->SetFont('roboto', 'I', 12);
+        $pdf->Write(6, " - {$cityName}");
+        $pdf->Ln(7);
 
         // Meal plan
         if ($mealPlan !== '') {
             $pdf->SetFont('roboto', '', 11);
-            $pdf->SetX($margin + 25);
-            $pdf->Cell(3, 5, "•", 0, 0, '', false, '', 0, false, 'T', 'M'); 
+            $pdf->Cell(3, 5, "•", 0, 0, '', false, '', 0, false, 'T', 'M');
             $pdf->MultiCell(0, 5, " Meal Plan: {$mealPlan}", 0, 'L', 0, 1);
+            $pdf->Ln(2);
         }
 
         // Description
@@ -58,35 +61,41 @@ function addSummaryPage($pdf, $days, $overlayText = 'Your Trip Adventure', $city
             $descriptionText = strip_tags(
                 str_replace(['<li>', '</li>', '<ul>', '</ul>'], ["\n - ", "\n", "", ""], $descriptionHtml)
             );
-            $pdf->Ln(2);
             $pdf->SetFont('roboto', '', 11);
             $pdf->MultiCell($leftWidth - 25, 5, trim($descriptionText), 0, 'L', 0, 1);
+            $pdf->Ln(2);
         }
 
-        // ---------------- Day Images Thumbnails ----------------
+        // ---------------- Images (max 3, 2 per row, left aligned) ----------------
         if (!empty($images)) {
-            $thumbX = $margin + 25;
+            $thumbWidth = 45;
+            $thumbHeight = 30;
+            $thumbX = $margin + 20;
             $thumbY = $pdf->GetY() + 2;
-            $thumbWidth = 30;
-            $thumbHeight = 20;
+            $count = 0;
+
             foreach ($images as $img) {
-                $imgPath = __DIR__ . '/../assets/images/' . $img;
+                if ($count >= 3) break;
+                $imgPath = __DIR__ . '/../uploads/city_images/' . $img;
                 if (file_exists($imgPath)) {
                     $pdf->Image($imgPath, $thumbX, $thumbY, $thumbWidth, $thumbHeight);
-                    $thumbX += $thumbWidth + 5; // spacing between images
-                    if ($thumbX + $thumbWidth > $leftWidth + $margin) {
-                        $thumbX = $margin + 25;
+                    $count++;
+                    // Two per row
+                    if ($count % 2 == 0) {
+                        $thumbX = $margin + 20;
                         $thumbY += $thumbHeight + 5;
+                    } else {
+                        $thumbX += $thumbWidth + 5;
                     }
                 }
             }
             $pdf->SetY($thumbY + $thumbHeight + 2);
         }
 
-        $pdf->Ln(8); // space before next day
+        $pdf->Ln(8); // Space before next day
     }
 
-    // ---------------- RIGHT COLUMN (Image + Overlay + Logo) ----------------
+    // ---------------- RIGHT COLUMN (Background + Overlay + Logo) ----------------
     $rightX = $leftWidth;
     $rightY = 0;
 
