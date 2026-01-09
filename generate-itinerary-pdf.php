@@ -26,25 +26,23 @@ if (!$data) {
     exit('No itinerary found');
 }
 
-
-// fetch city names once (pass $dbConn as your PDO/MySQLi connection)
+// ================= FETCH CITY NAMES =================
 function getCityNames($conn) {
     $sql = "SELECT id, name FROM cities";
     $stmt = $conn->query($sql);
     $cities = [];
     if ($stmt) {
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            $cities[$row['id']] = $row['name'];
+            $cities[(string)$row['id']] = $row['name']; // cast to string
         }
     }
     return $cities;
 }
+$cityNames = getCityNames($conn);
 
-
-
-// Decode JSON data
+// ================= DECODE JSON =================
 $cover = json_decode($data['cover_page'], true);
-$summaryDays = json_decode($data['day_city_details'], true); // Make sure your DB has a 'days' JSON column
+$summaryDays = json_decode($data['day_city_details'], true); 
 
 // ================= CREATE PDF =================
 $pdf = new TCPDF('P', 'mm', 'A4', true, 'UTF-8', false);
@@ -58,18 +56,11 @@ try {
     exit('Error generating cover page: ' . $e->getMessage());
 }
 
-
 // ================= GENERATE SUMMARY PAGE =================
 if ($summaryDays && is_array($summaryDays)) {
-$cityNames = getCityNames($conn);
-addSummaryPage($pdf, $days, $overlayText, $cityNames);}
-
-// ================= ADD OTHER ITINERARY PAGES HERE =================
-// You can add more pages here, e.g., day-by-day itinerary, maps, etc.
-// Example:
-// foreach ($itineraryPages as $page) {
-//     addItineraryPage($pdf, $page);
-// }
+    $overlayText = "Your Trip Adventure";
+    addSummaryPage($pdf, $summaryDays, $overlayText, $cityNames);
+}
 
 // ================= SAVE PDF =================
 $pdfDir = __DIR__ . '/uploads/pdfs/';
@@ -79,7 +70,6 @@ if (!file_exists($pdfDir)) {
 
 $fileName = 'itinerary_' . $id . '_v' . $data['version_number'] . '.pdf';
 $filePath = $pdfDir . $fileName;
-
 $pdf->Output($filePath, 'F');
 
 // ================= UPDATE DATABASE =================
