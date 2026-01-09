@@ -2,6 +2,10 @@
 require_once __DIR__ . '/assets/includes/db_connect.php';
 require_once __DIR__ . '/assets/libs/tcpdf/tcpdf.php';
 
+// Include modular PDF page functions
+require_once __DIR__ . '/pdf-pages/cover.php';
+require_once __DIR__ . '/pdf-pages/summary.php';
+
 if (!isset($_GET['id'])) {
     exit('Missing itinerary ID');
 }
@@ -22,72 +26,50 @@ if (!$data) {
     exit('No itinerary found');
 }
 
-$cover = json_decode($data['cover_page'], true);
 
-// ================= COVER IMAGE =================
-$imagePath = !empty($cover['image'])
-    ? __DIR__ . '/uploads/cover_images/' . $cover['image']
-    : __DIR__ . '/assets/images/default-cover.jpg';
-
-if (!file_exists($imagePath)) {
-    exit('Cover image not found');
+// fetch city names once (pass $dbConn as your PDO/MySQLi connection)
+function getCityNames($conn) {
+    $sql = "SELECT id, name FROM cities";
+    $stmt = $conn->query($sql);
+    $cities = [];
+    if ($stmt) {
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $cities[$row['id']] = $row['name'];
+        }
+    }
+    return $cities;
 }
+
+
+
+// Decode JSON data
+$cover = json_decode($data['cover_page'], true);
+$summaryDays = json_decode($data['day_city_details'], true); // Make sure your DB has a 'days' JSON column
 
 // ================= CREATE PDF =================
 $pdf = new TCPDF('P', 'mm', 'A4', true, 'UTF-8', false);
 $pdf->SetMargins(0, 0, 0);
 $pdf->SetAutoPageBreak(false);
-$pdf->AddPage();
 
-// ================= FULL SCREEN IMAGE =================
-$pdf->Image(
-    $imagePath,
-    0,
-    0,
-    210,
-    297,
-    '',
-    '',
-    '',
-    false,
-    300
-);
-
-// ================= LOGO (TOP RIGHT) =================
-$logoPath = __DIR__ . '/assets/images/logo.png';
-if (file_exists($logoPath)) {
-    $pdf->Image($logoPath, 165, 15, 30);
+// ================= GENERATE COVER PAGE =================
+try {
+    generateCoverPage($pdf, $cover);
+} catch (Exception $e) {
+    exit('Error generating cover page: ' . $e->getMessage());
 }
 
-// --- Explore ---
-$pdf->SetFont('times', 'I', 28);
-$pdf->SetTextColor(0, 0, 0);
-$pdf->SetXY(20, 35);
-$pdf->Cell(0, 12, $cover['trip_name'] ?? 'Explore', 0, 1, 'L');
 
-// --- MAIN TITLE ---
-$pdf->SetFont('times', 'B', 56);
-$pdf->SetXY(20, 50);
-$pdf->Cell(
-    0,
-    22,
-    strtoupper($cover['heading'] ?? 'OSAKA'),
-    0,
-    1,
-    'L'
-);
+// ================= GENERATE SUMMARY PAGE =================
+if ($summaryDays && is_array($summaryDays)) {
+$cityNames = getCityNames($conn);
+addSummaryPage($pdf, $days, $overlayText, $cityNames);}
 
-// --- SUB TITLE ---
-$pdf->SetFont('times', 'I', 26);
-$pdf->SetXY(20, 80);
-$pdf->Cell(
-    0,
-    12,
-    $cover['sub_heading'] ?? 'In 4 Days',
-    0,
-    1,
-    'L'
-);
+// ================= ADD OTHER ITINERARY PAGES HERE =================
+// You can add more pages here, e.g., day-by-day itinerary, maps, etc.
+// Example:
+// foreach ($itineraryPages as $page) {
+//     addItineraryPage($pdf, $page);
+// }
 
 // ================= SAVE PDF =================
 $pdfDir = __DIR__ . '/uploads/pdfs/';
