@@ -87,7 +87,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $oldDay = array_filter($dayCityDetails, fn($d) => $d['day'] == $dayNum);
                 $oldDay = $oldDay ? array_values($oldDay)[0] : [];
 
-                $desc = $_POST['day_desc'][$dayNum] ?? ($oldDay['description'] ?? '');
+                $desc = $_POST['description'][$dayNum] ?? ($oldDay['description'] ?? '');
                 $date = $_POST['day_date'][$dayNum] ?? ($oldDay['date'] ?? '');
                 $meal = $_POST['day_meal'][$dayNum] ?? ($oldDay['meal_plan'] ?? '');
                 $imagesArr = $oldDay['images'] ?? [];
@@ -488,54 +488,76 @@ h5 {
                         </h2>
                         <div id="collapseCityDetails" class="accordion-collapse collapse">
                             <div class="accordion-body">
-                                <div id="dayDetailsContainer" class="row g-3">
-                                    <!-- Day 1 -->
-                                    <div class="day-block col-md-6" data-day="1">
-                                        <h5>Day 1</h5>
-                                        <button type="button" class="mb-2 btn btn-danger btn-sm float-end remove-day-btn"><i class="bi bi-trash"></i></button>
+                              <div id="dayDetailsContainer" class="row g-3">
+                                <?php
+                                $dayCount = 0;
+                                foreach ($existingDayCity as $day) {
+                                    $dayCount++;
+                                    $dayNum = $dayCount;
+                                    $cityOptions = '<option value="">-- Select City --</option>';
 
-                                        <div class="mb-2 row">
-                                            <div class="col-md-6">
-                                                <label>Select City</label>
-                                                <select name="day_city[1]" class="form-control">
-                                                    <option value="">-- Select City --</option>
-                                                    <?php foreach ($selectedCities as $cityId): 
-                                                        $cityName = array_values(array_filter($cities, fn($c) => $c['id'] == $cityId))[0]['name'] ?? '';
-                                                    ?>
-                                                    <option value="<?= $cityId; ?>"><?= htmlspecialchars($cityName); ?></option>
-                                                    <?php endforeach; ?>
-                                                </select>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label>Date</label>
-                                                <input type="date" name="day_date[1]" class="form-control">
-                                            </div>
+                                    foreach ($selectedCities as $cityId) {
+                                        $cityName = array_values(array_filter($cities, fn($c) => $c['id'] == $cityId))[0]['name'] ?? '';
+                                        $selected = ($cityId == $day['city_id']) ? 'selected' : '';
+                                        $cityOptions .= "<option value='$cityId' $selected>$cityName</option>";
+                                    }
+
+                                    $dayDate = $day['date'] ?? '';
+                                    $dayMeal = $day['meal_plan'] ?? '';
+                                    $dayDesc = $day['description'] ?? '';
+                                    $dayImages = $day['images'] ?? [];
+                                ?>
+                                <div class="day-block col-md-6" data-day="<?= $dayNum; ?>">
+                                    <h5>Day <?= $dayNum; ?></h5>
+                                    <button type="button" class="mb-2 btn btn-danger btn-sm float-end remove-day-btn"><i class="bi bi-trash"></i></button>
+
+                                    <div class="mb-2 row">
+                                        <div class="col-md-6">
+                                            <label>Select City</label>
+                                            <select name="day_city[<?= $dayNum; ?>]" class="form-control">
+                                                <?= $cityOptions; ?>
+                                            </select>
                                         </div>
-
-                                        <div class="mb-2 row">
-                                            <div class="col-md-6">
-                                                <label>Images</label>
-                                                <input type="file" name="day_images[1][]" multiple class="form-control">
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label>Meal Plan</label>
-                                                <select name="day_meal[1]" class="form-control">
-                                                    <option value="">-- Select Meal Plan --</option>
-                                                    <option value="Breakfast">Breakfast</option>
-                                                    <option value="Lunch">Lunch</option>
-                                                    <option value="Dinner">Dinner</option>
-                                                    <option value="Breakfast + Lunch">Breakfast + Lunch</option>
-                                                    <option value="All Meals">All Meals</option>
-                                                </select>
-                                            </div>
-                                        </div>
-
-                                        <div class="mb-2">
-                                            <label>Description</label>
-                                            <div id="descEditor1" class="quill-editor"></div>
-                                            <input type="hidden" name="day_desc[1]" id="day_desc_1">
+                                        <div class="col-md-6">
+                                            <label>Date</label>
+                                            <input type="date" name="day_date[<?= $dayNum; ?>]" class="form-control" value="<?= htmlspecialchars($dayDate); ?>">
                                         </div>
                                     </div>
+
+                                    <div class="mb-2 row">
+                                        <div class="col-md-6">
+                                            <label>Images</label>
+                                            <input type="file" name="day_images[<?= $dayNum; ?>][]" multiple class="form-control">
+                                            <?php if (!empty($dayImages)): ?>
+                                                <div class="mt-1">
+                                                <?php foreach ($dayImages as $img): ?>
+                                                    <img src="uploads/city_images/<?= htmlspecialchars($img); ?>" width="50" class="me-1 mb-1">
+                                                <?php endforeach; ?>
+                                                </div>
+                                            <?php endif; ?>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label>Meal Plan</label>
+                                            <select name="day_meal[<?= $dayNum; ?>]" class="form-control">
+                                                <option value="">-- Select Meal Plan --</option>
+                                                <?php
+                                                $meals = ['Breakfast','Lunch','Dinner','Breakfast + Lunch','All Meals'];
+                                                foreach ($meals as $meal) {
+                                                    $selected = ($meal == $dayMeal) ? 'selected' : '';
+                                                    echo "<option value='$meal' $selected>$meal</option>";
+                                                }
+                                                ?>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-2">
+                                        <label>Description</label>
+                                        <div id="descEditor<?= $dayNum; ?>" class="quill-editor"><?= $dayDesc; ?></div>
+                                        <input type="hidden" name="description[<?= $dayNum; ?>]" id="description_<?= $dayNum; ?>">
+                                    </div>
+                                </div>
+                                <?php } ?>
                                 </div>
 
                                 <!-- Add Day Button -->
@@ -687,160 +709,160 @@ h5 {
 <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
 
 <script>
-let dayCount = 1;
-const quillEditors = {};
+    let dayCount = 1;
+    const quillEditors = {};
 
-function initQuill(id) {
-    quillEditors[id] = new Quill(`#${id}`, { theme: 'snow' });
-}
-
-initQuill('descEditor1');
-initQuill('includesEditor');
-initQuill('excludesEditor');
-initQuill('focEditor');
-initQuill('psEditor');
-initQuill('dressCodeEditor');
-initQuill('noticeEditor');
-initQuill('coverDescEditor');
-
-function getCurrentCities() {
-    return $('select[name="city_ids[]"]').val() || [];
-}
-
-// Update day dropdowns when cities change
-$('select[name="city_ids[]"]').on('change', function() {
-    const selectedCities = $(this).val() || [];
-    $('#dayDetailsContainer select').each(function() {
-        const oldVal = $(this).val();
-        $(this).html('<option value="">-- Select City --</option>');
-        selectedCities.forEach(function(id) {
-            const text = $('select[name="city_ids[]"] option[value="' + id + '"]').text();
-            $(this).append(`<option value="${id}">${text}</option>`);
-        }.bind(this));
-        if (selectedCities.includes(oldVal)) $(this).val(oldVal);
-    });
-});
-
-// Add new day
-$('#addDayBtn').click(function() {
-    dayCount++;
-    let cities = getCurrentCities();
-    let optionsHtml = '<option value="">-- Select City --</option>';
-    cities.forEach(function(id) {
-        let text = $('select[name="city_ids[]"] option[value="' + id + '"]').text();
-        optionsHtml += `<option value="${id}">${text}</option>`;
-    });
-
-    let dayHtml = `
-    <div class="day-block col-md-6" data-day="${dayCount}">
-        <h5>Day ${dayCount}</h5>
-        <button type="button" class="btn btn-danger btn-sm float-end remove-day-btn"><i class="bi bi-trash"></i></button>
-
-        <div class="mb-2 row">
-            <div class="col-md-6">
-                <label>Select City</label>
-                <select name="day_city[${dayCount}]" class="form-control">
-                    ${optionsHtml}
-                </select>
-            </div>
-            <div class="col-md-6">
-                <label>Date</label>
-                <input type="date" name="day_date[${dayCount}]" class="form-control">
-            </div>
-        </div>
-
-        <div class="mb-2 row">
-            <div class="col-md-6">
-                <label>Images</label>
-                <input type="file" name="day_images[${dayCount}][]" multiple class="form-control">
-            </div>
-            <div class="col-md-6">
-                <label>Meal Plan</label>
-                <select name="day_meal[${dayCount}]" class="form-control">
-                    <option value="">-- Select Meal Plan --</option>
-                    <option value="Breakfast">Breakfast</option>
-                    <option value="Lunch">Lunch</option>
-                    <option value="Dinner">Dinner</option>
-                    <option value="Breakfast + Lunch">Breakfast + Lunch</option>
-                    <option value="All Meals">All Meals</option>
-                </select>
-            </div>
-        </div>
-
-        <div class="mb-2">
-            <label>Description</label>
-            <div id="descEditor${dayCount}" class="quill-editor"></div>
-            <input type="hidden" name="day_desc[${dayCount}]" id="day_desc_${dayCount}">
-        </div>
-    </div>
-    `;
-
-    $('#dayDetailsContainer').append(dayHtml);
-    initQuill(`descEditor${dayCount}`);
-});
-
-
-// Remove day
-$(document).on('click', '.remove-day-btn', function() {
-    const dayBlock = $(this).closest('.day-block');
-    const dayId = dayBlock.data('day');
-
-    // Remove Quill editor instance
-    if (quillEditors[`descEditor${dayId}`]) {
-        delete quillEditors[`descEditor${dayId}`];
+    function initQuill(id) {
+        quillEditors[id] = new Quill(`#${id}`, { theme: 'snow' });
     }
 
-    dayBlock.remove();
-});
+    initQuill('descEditor1');
+    initQuill('includesEditor');
+    initQuill('excludesEditor');
+    initQuill('focEditor');
+    initQuill('psEditor');
+    initQuill('dressCodeEditor');
+    initQuill('noticeEditor');
+    initQuill('coverDescEditor');
 
-let hotelDayCount = 0;
+    function getCurrentCities() {
+        return $('select[name="city_ids[]"]').val() || [];
+    }
 
-$('#addHotelDayBtn').click(function() {
-    hotelDayCount++;
-    
-    let hotelHtml = `
-    <div class="hotel-block col-md-12" data-day="${hotelDayCount}">
-        <button type="button" class="btn btn-danger btn-sm float-end remove-hotel-day-btn"><i class="bi bi-trash"></i></button>
+    // Update day dropdowns when cities change
+    $('select[name="city_ids[]"]').on('change', function() {
+        const selectedCities = $(this).val() || [];
+        $('#dayDetailsContainer select').each(function() {
+            const oldVal = $(this).val();
+            $(this).html('<option value="">-- Select City --</option>');
+            selectedCities.forEach(function(id) {
+                const text = $('select[name="city_ids[]"] option[value="' + id + '"]').text();
+                $(this).append(`<option value="${id}">${text}</option>`);
+            }.bind(this));
+            if (selectedCities.includes(oldVal)) $(this).val(oldVal);
+        });
+    });
 
-        <div class="row">
+    // Add new day
+    $('#addDayBtn').click(function() {
+        dayCount++;
+        let cities = getCurrentCities();
+        let optionsHtml = '<option value="">-- Select City --</option>';
+        cities.forEach(function(id) {
+            let text = $('select[name="city_ids[]"] option[value="' + id + '"]').text();
+            optionsHtml += `<option value="${id}">${text}</option>`;
+        });
 
-            <div class="col-md-2 d-flex align-items-center">
-                <h5>Day ${hotelDayCount} Hotel</h5>
+        let dayHtml = `
+        <div class="day-block col-md-6" data-day="${dayCount}">
+            <h5>Day ${dayCount}</h5>
+            <button type="button" class="btn btn-danger btn-sm float-end remove-day-btn"><i class="bi bi-trash"></i></button>
+
+            <div class="mb-2 row">
+                <div class="col-md-6">
+                    <label>Select City</label>
+                    <select name="day_city[${dayCount}]" class="form-control">
+                        ${optionsHtml}
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label>Date</label>
+                    <input type="date" name="day_date[${dayCount}]" class="form-control">
+                </div>
             </div>
-            <div class="col-md-5">
-                <input type="text" name="hotels[${hotelDayCount}][name]" class="form-control" placeholder="Hotel Name">
+
+            <div class="mb-2 row">
+                <div class="col-md-6">
+                    <label>Images</label>
+                    <input type="file" name="day_images[${dayCount}][]" multiple class="form-control">
+                </div>
+                <div class="col-md-6">
+                    <label>Meal Plan</label>
+                    <select name="day_meal[${dayCount}]" class="form-control">
+                        <option value="">-- Select Meal Plan --</option>
+                        <option value="Breakfast">Breakfast</option>
+                        <option value="Lunch">Lunch</option>
+                        <option value="Dinner">Dinner</option>
+                        <option value="Breakfast + Lunch">Breakfast + Lunch</option>
+                        <option value="All Meals">All Meals</option>
+                    </select>
+                </div>
             </div>
-            <div class="col-md-5">
-                <input type="url" name="hotels[${hotelDayCount}][link]" class="form-control" placeholder="Hotel Website">
+
+            <div class="mb-2">
+                <label>Description</label>
+                <div id="descEditor${dayCount}" class="quill-editor"></div>
+                <input type="hidden" name="description[${dayCount}]" id="description_${dayCount}">
             </div>
         </div>
-    </div>
-    `;
-    $('#hotelContainer').append(hotelHtml);
-});
+        `;
 
-// Remove hotel day
-$(document).on('click', '.remove-hotel-day-btn', function() {
-    $(this).closest('.hotel-block').remove();
-});
+        $('#dayDetailsContainer').append(dayHtml);
+        for (let i = 1; i <= dayCount; i++) {
+            initQuill(`descEditor${i}`);
+        }   
+      });
+    // Remove day
+    $(document).on('click', '.remove-day-btn', function() {
+        const dayBlock = $(this).closest('.day-block');
+        const dayId = dayBlock.data('day');
 
-
-$('form').submit(function() {
-    for (let i = 1; i <= dayCount; i++) {
-        if (quillEditors[`descEditor${i}`]) {
-            $(`#day_desc_${i}`).val(quillEditors[`descEditor${i}`].root.innerHTML);
+        // Remove Quill editor instance
+        if (quillEditors[`descEditor${dayId}`]) {
+            delete quillEditors[`descEditor${dayId}`];
         }
-    }
 
-    $('#terms_includes').val(quillEditors['includesEditor'].root.innerHTML);
-    $('#terms_excludes').val(quillEditors['excludesEditor'].root.innerHTML);
-    $('#terms_foc').val(quillEditors['focEditor'].root.innerHTML);
-    $('#terms_ps').val(quillEditors['psEditor'].root.innerHTML);
-    $('#terms_dress_code').val(quillEditors['dressCodeEditor'].root.innerHTML);
-    $('#terms_notice').val(quillEditors['noticeEditor'].root.innerHTML);
-    $('#cover_description').val(quillEditors['coverDescEditor'].root.innerHTML);
+        dayBlock.remove();
+    });
 
-});
+    let hotelDayCount = 0;
+
+    $('#addHotelDayBtn').click(function() {
+        hotelDayCount++;
+        
+        let hotelHtml = `
+        <div class="hotel-block col-md-12" data-day="${hotelDayCount}">
+            <button type="button" class="btn btn-danger btn-sm float-end remove-hotel-day-btn"><i class="bi bi-trash"></i></button>
+
+            <div class="row">
+
+                <div class="col-md-2 d-flex align-items-center">
+                    <h5>Day ${hotelDayCount} Hotel</h5>
+                </div>
+                <div class="col-md-5">
+                    <input type="text" name="hotels[${hotelDayCount}][name]" class="form-control" placeholder="Hotel Name">
+                </div>
+                <div class="col-md-5">
+                    <input type="url" name="hotels[${hotelDayCount}][link]" class="form-control" placeholder="Hotel Website">
+                </div>
+            </div>
+        </div>
+        `;
+        $('#hotelContainer').append(hotelHtml);
+    });
+
+    // Remove hotel day
+    $(document).on('click', '.remove-hotel-day-btn', function() {
+        $(this).closest('.hotel-block').remove();
+    });
+
+
+    $('form').submit(function() {
+        for (let i = 1; i <= dayCount; i++) {
+            if (quillEditors[`descEditor${i}`]) {
+                $(`#description_${i}`).val(quillEditors[`descEditor${i}`].root.innerHTML);
+            }
+        }
+
+        $('#terms_includes').val(quillEditors['includesEditor'].root.innerHTML);
+        $('#terms_excludes').val(quillEditors['excludesEditor'].root.innerHTML);
+        $('#terms_foc').val(quillEditors['focEditor'].root.innerHTML);
+        $('#terms_ps').val(quillEditors['psEditor'].root.innerHTML);
+        $('#terms_dress_code').val(quillEditors['dressCodeEditor'].root.innerHTML);
+        $('#terms_notice').val(quillEditors['noticeEditor'].root.innerHTML);
+        $('#cover_description').val(quillEditors['coverDescEditor'].root.innerHTML);
+
+    });
 
 </script>
 
