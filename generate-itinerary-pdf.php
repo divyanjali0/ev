@@ -1,12 +1,11 @@
 <?php
 require_once __DIR__ . '/assets/includes/db_connect.php';
-require_once __DIR__ . '/vendor/autoload.php'; // mPDF
+require_once __DIR__ . '/vendor/autoload.php'; // TCPDF
 
 if (!isset($_GET['id'])) exit('Missing ID');
-
 $id = $_GET['id'];
 
-// Fetch latest version
+/* Fetch latest version */
 $stmt = $conn->prepare("
     SELECT * FROM itinerary_customer_history 
     WHERE itinerary_id = :id 
@@ -17,207 +16,217 @@ $stmt->execute(['id' => $id]);
 $data = $stmt->fetch(PDO::FETCH_ASSOC);
 if (!$data) exit("No data found");
 
-// Decode JSON
+/* Decode JSON */
 $days   = json_decode($data['day_city_details'], true);
 $hotels = json_decode($data['hotels'], true);
 $cost   = json_decode($data['tour_cost'], true);
 $terms  = json_decode($data['terms_conditions'], true);
 $cover  = json_decode($data['cover_page'], true);
 
-$mpdf = new \Mpdf\Mpdf([
-    'margin_left' => 5,
-    'margin_right' => 5,
-    'margin_top' => 5,
-    'margin_bottom' => 5
-]);
+/* =========================================
+   INIT TCPDF
+========================================= */
 
-// --- Footer for all pages ---
-$mpdf->SetHTMLFooter('
-<div style="text-align:center; font-size:10px;">
-No. 371/5, Negombo Road, Seeduwa, Sri Lanka | Tel: +94 761 414 552 | Email: info@explorevacations.lk | Web: www.explorevacations.lk
-</div>
-');
+$pdf = new TCPDF('P', 'mm', 'A4', true, 'UTF-8', false);
+$pdf->SetCreator('Explore Vacations');
+$pdf->SetAuthor('Explore Vacations');
+$pdf->SetTitle('Itinerary');
 
-// --- HTML template ---
-$html = '
-<html>
-<head>
-<style>
-@page {
-    margin: 10mm;
+/* Disable default header */
+$pdf->setPrintHeader(false);
+
+/* Footer */
+$pdf->setPrintFooter(true);
+$pdf->setFooterFont(['helvetica', '', 8]);
+$pdf->setFooterMargin(10);
+
+/* =========================================
+   COVER PAGE – FULL BLEED
+========================================= */
+
+/* ZERO margins */
+$pdf->SetMargins(0, 0, 0);
+$pdf->SetAutoPageBreak(false, 0);
+$pdf->AddPage();
+
+/* Full-page background image */
+if (!empty($cover['image'])) {
+    $imgPath = __DIR__ . '/uploads/cover_images/' . $cover['image'];
+    if (file_exists($imgPath)) {
+        $pdf->Image(
+            $imgPath,
+            0,
+            0,
+            210,
+            297,
+            '',
+            '',
+            '',
+            false,
+            300,
+            '',
+            false,
+            false,
+            0
+        );
+    }
 }
 
-/* Full page border */
-.full-page-border {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border: 1.5px solid #000;
-    box-sizing: border-box;
-    z-index: -1;
-}
+/* LOGO */
+$pdf->Image(
+    __DIR__ . '/assets/images/pdf-logo.png',
+    160,
+    15,
+    35
+);
 
-/* Page content: leave space for footer and logo */
-.page-content {
-    padding: 8mm 8mm 20mm 8mm; /* top padding for logo, bottom padding for footer */
-    box-sizing: border-box;
-}
+/* TEXT */
+$pdf->SetTextColor(255, 255, 255);
+$pdf->SetFont('helvetica', 'B', 20);
+$pdf->SetXY(20, 30);
+$pdf->Cell(0, 10, $cover['trip_name'] ?? '', 0, 1);
 
-/* Company logo on top of every page */
-.page-logo {
-    text-align: center;
-    margin-bottom: 10px;
-}
-.page-logo img {
-    height: 30px;
-}
+$pdf->SetFont('helvetica', 'B', 14);
+$pdf->SetX(20);
+$pdf->Cell(0, 8, $cover['heading'] ?? '', 0, 1);
 
-/* Cover Page specific */
-.cover-title { text-align: center; font-size: 28px; font-weight: bold; margin-top: 18px; }
-.cover-heading { text-align: center; font-size: 18px; font-weight: bold; margin-top: 3px; }
-.cover-subheading { text-align: center; font-size: 14px; font-style: italic; margin-top: 8px; }
-.cover-image { text-align: center; margin-top: 30px; }
-.cover-image img { width: 70%; height: auto; }
-.cover-description { margin-top: 14px; font-size: 14px; text-align: justify; line-height: 22px; }
+$pdf->SetFont('helvetica', 'I', 11);
+$pdf->SetX(20);
+$pdf->Cell(0, 8, $cover['sub_heading'] ?? '', 0, 1);
 
-/* Section titles */
-.section-title { font-size: 16px; font-weight: bold; margin-top: 10px; margin-bottom: 6px; }
+/* DESCRIPTION */
+$pdf->SetFont('helvetica', '', 11);
+$pdf->SetXY(20, 240);
+$pdf->MultiCell(170, 0, $cover['description'] ?? '', 0);
 
-/* Table styling */
-table { border-collapse: collapse; width: 100%; font-size: 12px; margin-bottom: 8px; }
-table, th, td { border: 1px solid black; padding: 3px; text-align: left; }
+/* =========================================
+   RESTORE NORMAL PAGES
+========================================= */
 
-</style>
-</head>
-<body>
-<div class="full-page-border"></div>
-<div class="page-content">
+$pdf->SetMargins(10, 15, 10);
+$pdf->SetAutoPageBreak(true, 15);
+$pdf->SetTextColor(0, 0, 0);
 
-<!-- Company logo -->
-<div class="page-logo">
-    <img src="'. __DIR__ . '/assets/images/pdf-logo.png" />
-</div>
+/* =========================================
+   DESTINATIONS
+========================================= */
 
-<!-- Cover Page -->
-<div class="cover-title">'. ($cover['trip_name'] ?? '') .'</div>
-<div class="cover-heading">'. ($cover['heading'] ?? '') .'</div>
-<div class="cover-subheading">'. ($cover['sub_heading'] ?? '') .'</div>';
+$pdf->AddPage();
+$pdf->SetFont('helvetica', 'B', 16);
+$pdf->Cell(0, 10, 'Destinations', 0, 1);
 
-if (!empty($cover['image']) && file_exists(__DIR__ . '/uploads/cover_images/' . $cover['image'])) {
-    $html .= '<div class="cover-image">
-        <img src="'. __DIR__ . '/uploads/cover_images/' . $cover['image'] .'" />
-    </div>';
-}
-
-$html .= '<div class="cover-description">'. ($cover['description'] ?? '') .'</div>';
-
-$html .= '</div>'; // end page-content for cover
-
-// --- Destinations ---
-$html .= '<pagebreak />
-<div class="full-page-border"></div>
-<div class="page-content">
-<div class="page-logo">
-    <img src="'. __DIR__ . '/assets/images/pdf-logo.png" />
-</div>
-<div class="section-title">Destinations</div>';
+$pdf->SetFont('helvetica', '', 11);
 
 foreach ($days as $day) {
-    $html .= '<div><strong>Day '. $day['day'] . ': ' . ($day['city_name'] ?? '') . '</strong></div>';
-    $html .= '<div style="margin-bottom:10px;">'. ($day['description'] ?? '') .'</div>';
-    
+    $pdf->Ln(2);
+    $pdf->SetFont('helvetica', 'B', 12);
+    $pdf->Cell(0, 8, 'Day '.$day['day'].': '.$day['city_name'], 0, 1);
+
+    $pdf->SetFont('helvetica', '', 11);
+    $pdf->MultiCell(0, 6, $day['description'], 0);
+
     if (!empty($day['images'])) {
         foreach ($day['images'] as $img) {
             $imgPath = __DIR__ . '/uploads/city_images/' . $img;
             if (file_exists($imgPath)) {
-                $html .= '<div style="text-align:center; margin-bottom:10px;">
-                    <img src="'. $imgPath .'" style="width:60%; height:auto;" />
-                </div>';
+                $pdf->Ln(2);
+                $pdf->Image($imgPath, '', '', 120);
+                $pdf->Ln(5);
             }
         }
     }
 }
 
-$html .= '</div>'; // end page-content for destinations
+/* =========================================
+   HOTELS
+========================================= */
 
-// --- Hotels ---
-$html .= '<pagebreak />
-<div class="full-page-border"></div>
-<div class="page-content">
-<div class="page-logo">
-    <img src="'. __DIR__ . '/assets/images/pdf-logo.png" />
-</div>
-<div class="section-title">Hotels</div>';
+$pdf->AddPage();
+$pdf->SetFont('helvetica', 'B', 16);
+$pdf->Cell(0, 10, 'Hotels', 0, 1);
 
-foreach ($hotels as $day_num => $hotel) {
-    $html .= '<div>Day '. $day_num . ': ' . $hotel['name'] . ' - ' . $hotel['link'] . '</div>';
+$pdf->SetFont('helvetica', '', 11);
+
+foreach ($hotels as $day => $hotel) {
+    $pdf->Cell(0, 7, "Day $day: {$hotel['name']} - {$hotel['link']}", 0, 1);
 }
 
-$html .= '</div>'; // end page-content for hotels
+/* =========================================
+   TOUR COST
+========================================= */
 
-// --- Tour Cost ---
-$html .= '<pagebreak />
-<div class="full-page-border"></div>
-<div class="page-content">
-<div class="page-logo">
-    <img src="'. __DIR__ . '/assets/images/pdf-logo.png" />
-</div>
-<div class="section-title">Tour Cost</div>
-<table>
+$pdf->AddPage();
+$pdf->SetFont('helvetica', 'B', 16);
+$pdf->Cell(0, 10, 'Tour Cost', 0, 1);
+
+$pdf->SetFont('helvetica', '', 11);
+
+$html = '
+<table border="1" cellpadding="6">
 <tr>
-<th>Title</th><th>Pax</th><th>Vehicle</th><th>Meal Plan</th><th>Hotel Category</th><th>Room Type</th><th>Currency</th><th>Total</th>
+<th>Title</th><th>Pax</th><th>Vehicle</th><th>Meal</th>
+<th>Hotel</th><th>Room</th><th>Currency</th><th>Total</th>
 </tr>
 <tr>
-<td>'. $cost['title'] .'</td>
-<td>'. $cost['pax'] .'</td>
-<td>'. $cost['vehicle'] .'</td>
-<td>'. $cost['meal_plan'] .'</td>
-<td>'. $cost['hotel_category'] .'</td>
-<td>'. $cost['room_type'] .'</td>
-<td>'. $cost['currency'] .'</td>
-<td>'. $cost['total'] .'</td>
+<td>'.$cost['title'].'</td>
+<td>'.$cost['pax'].'</td>
+<td>'.$cost['vehicle'].'</td>
+<td>'.$cost['meal_plan'].'</td>
+<td>'.$cost['hotel_category'].'</td>
+<td>'.$cost['room_type'].'</td>
+<td>'.$cost['currency'].'</td>
+<td>'.$cost['total'].'</td>
 </tr>
-</table>
-</div>'; // end page-content for tour cost
+</table>';
 
-// --- Terms & Conditions ---
-$html .= '<pagebreak />
-<div class="full-page-border"></div>
-<div class="page-content">
-<div class="page-logo">
-    <img src="'. __DIR__ . '/assets/images/pdf-logo.png" />
-</div>
-<div class="section-title">Cost Includes</div>
-<div>'. ($terms['includes'] ?? '') .'</div>
+$pdf->writeHTML($html);
 
-<div class="section-title">Cost Excludes</div>
-<div>'. ($terms['excludes'] ?? '') .'</div>
+/* =========================================
+   TERMS & CONDITIONS
+========================================= */
 
-<div class="section-title">Additional Info</div>
-<div>'. ($terms['ps'] ?? '') .'</div>
-<div>'. ($terms['dress_code'] ?? '') .'</div>
-<div>'. ($terms['notice'] ?? '') .'</div>
+$pdf->AddPage();
+$pdf->SetFont('helvetica', 'B', 16);
+$pdf->Cell(0, 10, 'Cost Includes', 0, 1);
+$pdf->SetFont('helvetica', '', 11);
+$pdf->writeHTML($terms['includes'] ?? '');
 
-</div>'; // end page-content for terms
+$pdf->Ln(5);
+$pdf->SetFont('helvetica', 'B', 16);
+$pdf->Cell(0, 10, 'Cost Excludes', 0, 1);
+$pdf->SetFont('helvetica', '', 11);
+$pdf->writeHTML($terms['excludes'] ?? '');
 
-// Write PDF
-$mpdf->WriteHTML($html);
+$pdf->Ln(5);
+$pdf->SetFont('helvetica', 'B', 16);
+$pdf->Cell(0, 10, 'Additional Info', 0, 1);
+$pdf->SetFont('helvetica', '', 11);
+$pdf->writeHTML(
+    ($terms['ps'] ?? '') .
+    ($terms['dress_code'] ?? '') .
+    ($terms['notice'] ?? '')
+);
 
-// Save PDF
+/* =========================================
+   SAVE PDF
+========================================= */
+
 $dir = __DIR__ . '/uploads/pdfs/';
 if (!file_exists($dir)) mkdir($dir, 0777, true);
 
-$fileName = 'itinerary_' . $id . '_v' . $data['version_number'] . '.pdf';
-$filePath = $dir . $fileName;
+$fileName = 'itinerary_'.$id.'_v'.$data['version_number'].'.pdf';
+$filePath = $dir.$fileName;
 
-$mpdf->Output($filePath, 'F');
+$pdf->Output($filePath, 'F');
 
-// Update DB
-$update = $conn->prepare("UPDATE itinerary_customer_history SET pdf_path = :pdf WHERE history_id = :vid");
+/* Update DB */
+$update = $conn->prepare("
+    UPDATE itinerary_customer_history 
+    SET pdf_path = :pdf 
+    WHERE history_id = :vid
+");
 $update->execute([
-    'pdf' => 'uploads/pdfs/' . $fileName,
+    'pdf' => 'uploads/pdfs/'.$fileName,
     'vid' => $data['history_id']
 ]);
 
