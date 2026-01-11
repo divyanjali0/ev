@@ -577,9 +577,36 @@ h5 {
                         </h2>
                         <div id="collapseHotels" class="accordion-collapse collapse">
                             <div class="accordion-body">
-                                <div id="hotelContainer" class="row g-3">
-                                    <!-- Hotel days will be appended here dynamically -->
-                                </div>
+                              <div id="hotelContainer" class="row g-3">
+                                    <?php
+                                    $hotelDayCount = 0;
+                                    if (!empty($existingHotels)) {
+                                        foreach ($existingHotels as $dayNum => $hotelInfo) {
+                                            $hotelDayCount++;
+                                            $hotelName = $hotelInfo['name'] ?? '';
+                                            $hotelLink = $hotelInfo['link'] ?? '';
+                                    ?>
+                                    <div class="hotel-block col-md-12" data-day="<?= $dayNum; ?>">
+                                        <button type="button" class="btn btn-danger btn-sm float-end remove-hotel-day-btn"><i class="bi bi-trash"></i></button>
+
+                                        <div class="row">
+                                            <div class="col-md-2 d-flex align-items-center">
+                                                <h5>Day <?= $dayNum; ?> Hotel</h5>
+                                            </div>
+                                            <div class="col-md-5">
+                                                <input type="text" name="hotels[<?= $dayNum; ?>][name]" class="form-control" placeholder="Hotel Name" value="<?= htmlspecialchars($hotelName); ?>">
+                                            </div>
+                                            <div class="col-md-5">
+                                                <input type="url" name="hotels[<?= $dayNum; ?>][link]" class="form-control" placeholder="Hotel Website" value="<?= htmlspecialchars($hotelLink); ?>">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <?php
+                                        }
+                                    }
+                                    ?>
+                                    </div>
+
 
                                 <div class="mt-3">
                                     <button type="button" id="addHotelDayBtn" class="btn btn-secondary btn-sm">Add Hotels</button>
@@ -600,43 +627,51 @@ h5 {
                                 <div class="mb-3">
                                     <label>Cost Title</label>
                                     <input type="text" name="cost[title]" class="form-control" 
-                                        placeholder="TOUR COST FOR THE FAMILY: Travelling Together">
+                                        placeholder="TOUR COST FOR THE FAMILY: Travelling Together"
+                                        value="<?= htmlspecialchars($existingCost['title'] ?? ''); ?>">
                                 </div>
 
                                 <div class="row g-3">
                                     <div class="col-md-4">
                                         <label>No of Pax</label>
-                                        <input type="text" name="cost[pax]" class="form-control" placeholder="04 Pax">
+                                        <input type="text" name="cost[pax]" class="form-control" placeholder="04 Pax"
+                                            value="<?= htmlspecialchars($existingCost['pax'] ?? ''); ?>">
                                     </div>
 
                                     <div class="col-md-4">
                                         <label>Vehicle</label>
-                                        <input type="text" name="cost[vehicle]" class="form-control" placeholder="A/C Van">
+                                        <input type="text" name="cost[vehicle]" class="form-control" placeholder="A/C Van"
+                                            value="<?= htmlspecialchars($existingCost['vehicle'] ?? ''); ?>">
                                     </div>
 
                                     <div class="col-md-4">
                                         <label>Meal Plan</label>
-                                        <input type="text" name="cost[meal_plan]" class="form-control" placeholder="HB Basis (Breakfast & Dinner)">
+                                        <input type="text" name="cost[meal_plan]" class="form-control" placeholder="HB Basis (Breakfast & Dinner)"
+                                            value="<?= htmlspecialchars($existingCost['meal_plan'] ?? ''); ?>">
                                     </div>
 
                                     <div class="col-md-6">
                                         <label>Hotel Category</label>
-                                        <input type="text" name="cost[hotel_category]" class="form-control" placeholder="3 – 4 Star Hotels">
+                                        <input type="text" name="cost[hotel_category]" class="form-control" placeholder="3 – 4 Star Hotels"
+                                            value="<?= htmlspecialchars($existingCost['hotel_category'] ?? ''); ?>">
                                     </div>
 
                                     <div class="col-md-6">
                                         <label>Room Type</label>
-                                        <input type="text" name="cost[room_type]" class="form-control" placeholder="Sharing Double Room">
+                                        <input type="text" name="cost[room_type]" class="form-control" placeholder="Sharing Double Room"
+                                            value="<?= htmlspecialchars($existingCost['room_type'] ?? ''); ?>">
                                     </div>
 
                                     <div class="col-md-6">
                                         <label>Currency</label>
-                                        <input type="text" name="cost[currency]" class="form-control" placeholder="USD">
+                                        <input type="text" name="cost[currency]" class="form-control" placeholder="USD"
+                                            value="<?= htmlspecialchars($existingCost['currency'] ?? ''); ?>">
                                     </div>
 
                                     <div class="col-md-6">
                                         <label>Total Tour Cost</label>
-                                        <input type="text" name="cost[total]" class="form-control" placeholder="Enter amount">
+                                        <input type="text" name="cost[total]" class="form-control" placeholder="Enter amount"
+                                            value="<?= htmlspecialchars($existingCost['total'] ?? ''); ?>">
                                     </div>
                                 </div>
 
@@ -650,43 +685,43 @@ h5 {
                                 Terms, Conditions & Notices
                             </button>
                         </h2>
-                        <div id="collapseTerms" class="accordion-collapse collapse">
+                       <div id="collapseTerms" class="accordion-collapse collapse">
                             <div class="accordion-body">
 
                                 <div class="mb-3">
                                     <label>Cost Includes</label>
                                     <div id="includesEditor" class="quill-editor"></div>
-                                    <input type="hidden" name="terms[includes]" id="terms_includes">
+                                    <input type="hidden" name="terms[includes]" id="terms_includes" value="<?= htmlspecialchars($existingTerms['includes'] ?? ''); ?>">
                                 </div>
 
                                 <div class="mb-3">
                                     <label>Cost Excludes</label>
                                     <div id="excludesEditor" class="quill-editor"></div>
-                                    <input type="hidden" name="terms[excludes]" id="terms_excludes">
+                                    <input type="hidden" name="terms[excludes]" id="terms_excludes" value="<?= htmlspecialchars($existingTerms['excludes'] ?? ''); ?>">
                                 </div>
 
                                 <div class="mb-3">
                                     <label>Complimentary Services (FOC)</label>
                                     <div id="focEditor" class="quill-editor"></div>
-                                    <input type="hidden" name="terms[foc]" id="terms_foc">
+                                    <input type="hidden" name="terms[foc]" id="terms_foc" value="<?= htmlspecialchars($existingTerms['foc'] ?? ''); ?>">
                                 </div>
 
                                 <div class="mb-3">
                                     <label>P.S / Please Note</label>
                                     <div id="psEditor" class="quill-editor"></div>
-                                    <input type="hidden" name="terms[ps]" id="terms_ps">
+                                    <input type="hidden" name="terms[ps]" id="terms_ps" value="<?= htmlspecialchars($existingTerms['ps'] ?? ''); ?>">
                                 </div>
 
                                 <div class="mb-3">
                                     <label>Dress Code for Temples and Religious Places</label>
                                     <div id="dressCodeEditor" class="quill-editor"></div>
-                                    <input type="hidden" name="terms[dress_code]" id="terms_dress_code">
+                                    <input type="hidden" name="terms[dress_code]" id="terms_dress_code" value="<?= htmlspecialchars($existingTerms['dress_code'] ?? ''); ?>">
                                 </div>
 
                                 <div class="mb-3">
                                     <label>Points to Notice</label>
                                     <div id="noticeEditor" class="quill-editor"></div>
-                                    <input type="hidden" name="terms[notice]" id="terms_notice">
+                                    <input type="hidden" name="terms[notice]" id="terms_notice" value="<?= htmlspecialchars($existingTerms['notice'] ?? ''); ?>">
                                 </div>
 
                             </div>
@@ -709,164 +744,180 @@ h5 {
 <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
 
 <script>
-    let dayCount = 1;
-    const quillEditors = {};
-
-    function initQuill(id) {
-        quillEditors[id] = new Quill(`#${id}`, { theme: 'snow' });
-    }
-
-    initQuill('descEditor1');
-    initQuill('includesEditor');
-    initQuill('excludesEditor');
-    initQuill('focEditor');
-    initQuill('psEditor');
-    initQuill('dressCodeEditor');
-    initQuill('noticeEditor');
-    initQuill('coverDescEditor');
-
-    function getCurrentCities() {
-        return $('select[name="city_ids[]"]').val() || [];
-    }
-
-    // Update day dropdowns when cities change
-    $('select[name="city_ids[]"]').on('change', function() {
-        const selectedCities = $(this).val() || [];
-        $('#dayDetailsContainer select').each(function() {
-            const oldVal = $(this).val();
-            $(this).html('<option value="">-- Select City --</option>');
-            selectedCities.forEach(function(id) {
-                const text = $('select[name="city_ids[]"] option[value="' + id + '"]').text();
-                $(this).append(`<option value="${id}">${text}</option>`);
-            }.bind(this));
-            if (selectedCities.includes(oldVal)) $(this).val(oldVal);
-        });
-    });
-
-    // Add new day
-    $('#addDayBtn').click(function() {
-        dayCount++;
-        let cities = getCurrentCities();
-        let optionsHtml = '<option value="">-- Select City --</option>';
-        cities.forEach(function(id) {
-            let text = $('select[name="city_ids[]"] option[value="' + id + '"]').text();
-            optionsHtml += `<option value="${id}">${text}</option>`;
+    $(document).ready(function() {
+        // ---------- Initialize Select2 ----------
+        $('.select2').select2({
+            placeholder: "Select options",
+            allowClear: true,
+            width: '100%'
         });
 
-        let dayHtml = `
-        <div class="day-block col-md-6" data-day="${dayCount}">
-            <h5>Day ${dayCount}</h5>
-            <button type="button" class="btn btn-danger btn-sm float-end remove-day-btn"><i class="bi bi-trash"></i></button>
+        // ---------- Quill Editors ----------
+        const quillEditors = {};
+        let dayCount = <?= count($existingDayCity) ?: 1 ?>;
+        let hotelDayCount = <?= $hotelDayCount ?? 0 ?>;
 
-            <div class="mb-2 row">
-                <div class="col-md-6">
-                    <label>Select City</label>
-                    <select name="day_city[${dayCount}]" class="form-control">
-                        ${optionsHtml}
-                    </select>
-                </div>
-                <div class="col-md-6">
-                    <label>Date</label>
-                    <input type="date" name="day_date[${dayCount}]" class="form-control">
-                </div>
-            </div>
-
-            <div class="mb-2 row">
-                <div class="col-md-6">
-                    <label>Images</label>
-                    <input type="file" name="day_images[${dayCount}][]" multiple class="form-control">
-                </div>
-                <div class="col-md-6">
-                    <label>Meal Plan</label>
-                    <select name="day_meal[${dayCount}]" class="form-control">
-                        <option value="">-- Select Meal Plan --</option>
-                        <option value="Breakfast">Breakfast</option>
-                        <option value="Lunch">Lunch</option>
-                        <option value="Dinner">Dinner</option>
-                        <option value="Breakfast + Lunch">Breakfast + Lunch</option>
-                        <option value="All Meals">All Meals</option>
-                    </select>
-                </div>
-            </div>
-
-            <div class="mb-2">
-                <label>Description</label>
-                <div id="descEditor${dayCount}" class="quill-editor"></div>
-                <input type="hidden" name="description[${dayCount}]" id="description_${dayCount}">
-            </div>
-        </div>
-        `;
-
-        $('#dayDetailsContainer').append(dayHtml);
-        for (let i = 1; i <= dayCount; i++) {
-            initQuill(`descEditor${i}`);
-        }   
-      });
-    // Remove day
-    $(document).on('click', '.remove-day-btn', function() {
-        const dayBlock = $(this).closest('.day-block');
-        const dayId = dayBlock.data('day');
-
-        // Remove Quill editor instance
-        if (quillEditors[`descEditor${dayId}`]) {
-            delete quillEditors[`descEditor${dayId}`];
+        function initQuill(id, content = '') {
+            if (!document.getElementById(id)) return;
+            quillEditors[id] = new Quill(`#${id}`, { theme: 'snow' });
+            if (content) quillEditors[id].root.innerHTML = content;
         }
 
-        dayBlock.remove();
-    });
+        // Initialize existing day description editors
+        <?php foreach ($existingDayCity as $index => $day): ?>
+            initQuill('descEditor<?= $index+1 ?>', <?= json_encode($day['description'] ?? '') ?>);
+        <?php endforeach; ?>
 
-    let hotelDayCount = 0;
+        // Initialize Terms & Cover page editors
+        initQuill('includesEditor', <?= json_encode($existingTerms['includes'] ?? '') ?>);
+        initQuill('excludesEditor', <?= json_encode($existingTerms['excludes'] ?? '') ?>);
+        initQuill('focEditor', <?= json_encode($existingTerms['foc'] ?? '') ?>);
+        initQuill('psEditor', <?= json_encode($existingTerms['ps'] ?? '') ?>);
+        initQuill('dressCodeEditor', <?= json_encode($existingTerms['dress_code'] ?? '') ?>);
+        initQuill('noticeEditor', <?= json_encode($existingTerms['notice'] ?? '') ?>);
+        initQuill('coverDescEditor', <?= json_encode($existingCover['description'] ?? '') ?>);
 
-    $('#addHotelDayBtn').click(function() {
-        hotelDayCount++;
-        
-        let hotelHtml = `
-        <div class="hotel-block col-md-12" data-day="${hotelDayCount}">
-            <button type="button" class="btn btn-danger btn-sm float-end remove-hotel-day-btn"><i class="bi bi-trash"></i></button>
-
-            <div class="row">
-
-                <div class="col-md-2 d-flex align-items-center">
-                    <h5>Day ${hotelDayCount} Hotel</h5>
-                </div>
-                <div class="col-md-5">
-                    <input type="text" name="hotels[${hotelDayCount}][name]" class="form-control" placeholder="Hotel Name">
-                </div>
-                <div class="col-md-5">
-                    <input type="url" name="hotels[${hotelDayCount}][link]" class="form-control" placeholder="Hotel Website">
-                </div>
-            </div>
-        </div>
-        `;
-        $('#hotelContainer').append(hotelHtml);
-    });
-
-    // Remove hotel day
-    $(document).on('click', '.remove-hotel-day-btn', function() {
-        $(this).closest('.hotel-block').remove();
-    });
-
-
-    $('form').submit(function() {
-        for (let i = 1; i <= dayCount; i++) {
-            if (quillEditors[`descEditor${i}`]) {
-                $(`#description_${i}`).val(quillEditors[`descEditor${i}`].root.innerHTML);
+        // ---------- Copy Quill Content on Form Submit ----------
+        $('form').submit(function() {
+            // Day descriptions
+            for (let i = 1; i <= dayCount; i++) {
+                if (quillEditors[`descEditor${i}`]) {
+                    $(`#description_${i}`).val(quillEditors[`descEditor${i}`].root.innerHTML);
+                }
             }
+
+            // Terms & Conditions
+            $('#terms_includes').val(quillEditors['includesEditor'].root.innerHTML);
+            $('#terms_excludes').val(quillEditors['excludesEditor'].root.innerHTML);
+            $('#terms_foc').val(quillEditors['focEditor'].root.innerHTML);
+            $('#terms_ps').val(quillEditors['psEditor'].root.innerHTML);
+            $('#terms_dress_code').val(quillEditors['dressCodeEditor'].root.innerHTML);
+            $('#terms_notice').val(quillEditors['noticeEditor'].root.innerHTML);
+
+            // Cover description
+            $('#cover_description').val(quillEditors['coverDescEditor'].root.innerHTML);
+        });
+
+        // ---------- Handle Cities Change for Day Dropdowns ----------
+        function getCurrentCities() {
+            return $('select[name="city_ids[]"]').val() || [];
         }
 
-        $('#terms_includes').val(quillEditors['includesEditor'].root.innerHTML);
-        $('#terms_excludes').val(quillEditors['excludesEditor'].root.innerHTML);
-        $('#terms_foc').val(quillEditors['focEditor'].root.innerHTML);
-        $('#terms_ps').val(quillEditors['psEditor'].root.innerHTML);
-        $('#terms_dress_code').val(quillEditors['dressCodeEditor'].root.innerHTML);
-        $('#terms_notice').val(quillEditors['noticeEditor'].root.innerHTML);
-        $('#cover_description').val(quillEditors['coverDescEditor'].root.innerHTML);
+        $('select[name="city_ids[]"]').on('change', function() {
+            const selectedCities = getCurrentCities();
+            $('#dayDetailsContainer select').each(function() {
+                const oldVal = $(this).val();
+                $(this).html('<option value="">-- Select City --</option>');
+                selectedCities.forEach(function(id) {
+                    const text = $('select[name="city_ids[]"] option[value="' + id + '"]').text();
+                    $(this).append(`<option value="${id}">${text}</option>`);
+                }.bind(this));
+                if (selectedCities.includes(oldVal)) $(this).val(oldVal);
+            });
+        });
 
+        // ---------- Add Day ----------
+        $('#addDayBtn').click(function() {
+            dayCount++;
+            let cities = getCurrentCities();
+            let optionsHtml = '<option value="">-- Select City --</option>';
+            cities.forEach(function(id) {
+                let text = $('select[name="city_ids[]"] option[value="' + id + '"]').text();
+                optionsHtml += `<option value="${id}">${text}</option>`;
+            });
+
+            let dayHtml = `
+            <div class="day-block col-md-6" data-day="${dayCount}">
+                <h5>Day ${dayCount}</h5>
+                <button type="button" class="btn btn-danger btn-sm float-end remove-day-btn"><i class="bi bi-trash"></i></button>
+
+                <div class="mb-2 row">
+                    <div class="col-md-6">
+                        <label>Select City</label>
+                        <select name="day_city[${dayCount}]" class="form-control">
+                            ${optionsHtml}
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label>Date</label>
+                        <input type="date" name="day_date[${dayCount}]" class="form-control">
+                    </div>
+                </div>
+
+                <div class="mb-2 row">
+                    <div class="col-md-6">
+                        <label>Images</label>
+                        <input type="file" name="day_images[${dayCount}][]" multiple class="form-control">
+                    </div>
+                    <div class="col-md-6">
+                        <label>Meal Plan</label>
+                        <select name="day_meal[${dayCount}]" class="form-control">
+                            <option value="">-- Select Meal Plan --</option>
+                            <option value="Breakfast">Breakfast</option>
+                            <option value="Lunch">Lunch</option>
+                            <option value="Dinner">Dinner</option>
+                            <option value="Breakfast + Lunch">Breakfast + Lunch</option>
+                            <option value="All Meals">All Meals</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="mb-2">
+                    <label>Description</label>
+                    <div id="descEditor${dayCount}" class="quill-editor"></div>
+                    <input type="hidden" name="description[${dayCount}]" id="description_${dayCount}">
+                </div>
+            </div>
+            `;
+
+            $('#dayDetailsContainer').append(dayHtml);
+            initQuill(`descEditor${dayCount}`); // initialize Quill for the new day
+        });
+
+        // ---------- Remove Day ----------
+        $(document).on('click', '.remove-day-btn', function() {
+            const dayBlock = $(this).closest('.day-block');
+            const dayId = dayBlock.data('day');
+
+            // Remove Quill editor instance
+            if (quillEditors[`descEditor${dayId}`]) {
+                delete quillEditors[`descEditor${dayId}`];
+            }
+
+            dayBlock.remove();
+        });
+
+        // ---------- Add Hotel Day ----------
+        $('#addHotelDayBtn').click(function() {
+            hotelDayCount++;
+
+            let hotelHtml = `
+            <div class="hotel-block col-md-12" data-day="${hotelDayCount}">
+                <button type="button" class="btn btn-danger btn-sm float-end remove-hotel-day-btn"><i class="bi bi-trash"></i></button>
+                <div class="row">
+                    <div class="col-md-2 d-flex align-items-center">
+                        <h5>Day ${hotelDayCount} Hotel</h5>
+                    </div>
+                    <div class="col-md-5">
+                        <input type="text" name="hotels[${hotelDayCount}][name]" class="form-control" placeholder="Hotel Name">
+                    </div>
+                    <div class="col-md-5">
+                        <input type="url" name="hotels[${hotelDayCount}][link]" class="form-control" placeholder="Hotel Website">
+                    </div>
+                </div>
+            </div>
+            `;
+            $('#hotelContainer').append(hotelHtml);
+        });
+
+        // ---------- Remove Hotel Day ----------
+        $(document).on('click', '.remove-hotel-day-btn', function() {
+            $(this).closest('.hotel-block').remove();
+        });
     });
-
 </script>
 
-<script>
+<!-- <script>
     $(document).ready(function() {
         $('.select2').select2({
             placeholder: "Select options",
@@ -874,6 +925,6 @@ h5 {
             width: '100%'
         });
     });
-</script>
+</script> -->
 </body>
 </html>
