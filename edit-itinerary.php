@@ -447,30 +447,33 @@ h5 {
                                 <div class="row g-3">
                                     <div class="col-md-6">
                                         <label>Trip Name</label>
-                                        <input type="text" name="cover[trip_name]" class="form-control" placeholder="Trip Name">
+                                        <input type="text" name="cover[trip_name]" class="form-control" value="<?= htmlspecialchars($existingCover['trip_name'] ?? ''); ?>" placeholder="Trip Name">
                                     </div>
 
                                     <div class="col-md-6">
                                         <label>Heading</label>
-                                        <input type="text" name="cover[heading]" class="form-control" placeholder="Main Heading">
+                                        <input type="text" name="cover[heading]" class="form-control" value="<?= htmlspecialchars($existingCover['heading'] ?? ''); ?>" placeholder="Main Heading">
                                     </div>
 
                                     <div class="col-md-6">
                                         <label>Sub Heading</label>
-                                        <input type="text" name="cover[sub_heading]" class="form-control" placeholder="Sub Heading">
+                                        <input type="text" name="cover[sub_heading]" class="form-control" value="<?= htmlspecialchars($existingCover['sub_heading'] ?? ''); ?>" placeholder="Sub Heading">
                                     </div>
 
                                     <div class="col-md-6">
                                         <label>Cover Image</label>
+                                        <?php if(!empty($existingCover['image'])): ?>
+                                            <div class="mb-2"><img src="uploads/cover_images/<?= htmlspecialchars($existingCover['image']); ?>" width="100"></div>
+                                        <?php endif; ?>
                                         <input type="file" name="cover_image" class="form-control">
                                     </div>
-                                </div>
 
-                                <div class="my-3">
-                                    <label>Description</label>
-                                    <div id="coverDescEditor" class="quill-editor"></div>
-                                    <input type="hidden" name="cover[description]" id="cover_description">
-                                </div>
+                                    <div class="my-3">
+                                        <label>Description</label>
+                                        <div id="coverDescEditor" class="quill-editor"><?= $existingCover['description'] ?? ''; ?></div>
+                                        <input type="hidden" name="cover[description]" id="cover_description">
+                                    </div>
+
 
                             </div>
                         </div>
@@ -820,17 +823,6 @@ $('#addHotelDayBtn').click(function() {
 $(document).on('click', '.remove-hotel-day-btn', function() {
     $(this).closest('.hotel-block').remove();
 });
-
-
-
-// Copy Quill content before form submit
-// $('form').submit(function() {
-//     for (let i = 1; i <= dayCount; i++) {
-//         if (quillEditors[`descEditor${i}`]) {
-//             $(`#day_desc_${i}`).val(quillEditors[`descEditor${i}`].root.innerHTML);
-//         }
-//     }
-// });
 
 
 $('form').submit(function() {
