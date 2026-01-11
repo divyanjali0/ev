@@ -8,7 +8,9 @@
     }
 
     $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? "https" : "http";
-    $baseUrl = $protocol . "://" . $_SERVER['HTTP_HOST'];
+    $projectRoot = rtrim(dirname($_SERVER['SCRIPT_NAME']), '/'); 
+    $baseUrl = $protocol . "://" . $_SERVER['HTTP_HOST'] . $projectRoot;
+
     $itineraries = $conn->query("
         SELECT ic.id as itinerary_id, ic.reference_no, ic.full_name, ic.email,
             ich.pdf_path
@@ -99,31 +101,31 @@
 
     <!-- Modal -->
     <div class="modal fade" id="historyModal" tabindex="-1" aria-labelledby="historyModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title fw-bold" id="historyModalLabel">Itinerary History</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title fw-bold" id="historyModalLabel">Itinerary History</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-bordered" id="historyTable">
+                        <thead>
+                            <tr>
+                                <th>Version</th>
+                                <th>Edited By</th>
+                                <th>Edit Reason</th>
+                                <th>Edited At</th>
+                                <th>PDF</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
         </div>
-        <div class="modal-body">
-            <table class="table table-bordered" id="historyTable">
-                <thead>
-                    <tr>
-                        <th>Version</th>
-                        <th>Edited By</th>
-                        <th>Edit Reason</th>
-                        <th>Edited At</th>
-                        <th>PDF</th>
-                    </tr>
-                </thead>
-                <tbody></tbody>
-            </table>
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        </div>
-        </div>
-    </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdn.datatables.net/2.1.2/js/dataTables.js"></script>
