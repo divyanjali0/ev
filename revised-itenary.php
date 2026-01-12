@@ -74,6 +74,9 @@
                                         "If you have any questions or need further assistance, feel free to reach out. We're happy to help!"
                                     )
                                     : '#';
+
+                                    $pdfLink = $it['pdf_path'] ? $baseUrl . '/' . $it['pdf_path'] : '#';
+
                                 ?>
                             <tr>
                                 <td><?= $index + 1 ?></td>

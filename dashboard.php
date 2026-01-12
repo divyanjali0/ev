@@ -56,7 +56,7 @@ $userCount = $stmt->fetchColumn();
                         </div>
                         <h5 class="fw-bold">Itineray Requests</h5>
                         <h3><?php echo $itineraryCount; ?></h3>
-                        <button class="btn btn-primary mt-3 w-50"><a href="itenary-request.php" class="text-white text-decoration-none">View Itineraries</a></button>
+                        <a href="itenary-request.php" class="w-100 text-white text-decoration-none"><button class="btn btn-primary mt-3 w-50">View Itineraries</button></a>
                     </div>
                 </div>
 
@@ -68,7 +68,7 @@ $userCount = $stmt->fetchColumn();
                         </div>
                         <h5 class="fw-bold">Total Users</h5>
                         <h3><?php echo $userCount; ?></h3>
-                        <button class="btn btn-primary mt-3 w-50"><a href="users.php" class="text-white text-decoration-none">View Users</a></button>
+                        <a href="users.php" class="w-100 text-white text-decoration-none"><button class="btn btn-primary mt-3 w-50">View Users</button></a>
                     </div>
                 </div>
             </div>

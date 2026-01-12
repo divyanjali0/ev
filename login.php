@@ -43,7 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     body {
         background: 
             linear-gradient(310deg, rgb(49 49 49 / 36%), rgb(2 47 85 / 60%)),
-            url('assets/images/bg-login.png') no-repeat center center fixed;
+            url('assets/images/bg-login.webp') no-repeat center center fixed;
         background-size: cover;
         display: flex;
         justify-content: center;
@@ -116,7 +116,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 <div class="login-card">
     <img src="assets/images/footer-logo.png" alt="Logo">
-    <h4 class="text-center mb-4 text-dark fw-bold">Explore Vacations Login</h4>
+    <!-- <h4 class="text-center mb-4 text-dark fw-bold">Explore Vacations Login</h4> -->
 
     <!-- Session Messages -->
     <?php if (isset($_GET['timeout'])): ?>

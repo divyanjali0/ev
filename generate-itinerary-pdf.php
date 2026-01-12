@@ -148,28 +148,29 @@ foreach ($days as $day) {
 /* =========================
    HOTELS TABLE
 ========================= */
+/* =========================
+   HOTELS TABLE
+========================= */
 $pdf->AddPage();
 $pdf->SetX($marginLeft);
 $pdf->SetFont('helvetica', 'B', 11);
 $pdf->Cell(0, 14, 'Hotels', 0, 1);
 
-$html = '<table border="1" cellpadding="6" width="100%" style="border-collapse: collapse;">';
+$html = '<table border="1" cellpadding="6" width="100%" style="border-collapse: collapse;">
+<tr>
+    <th width="15%" style="font-weight:bold;">Day</th>
+    <th width="45%" style="font-weight:bold;">Hotel Name</th>
+    <th width="40%" style="font-weight:bold;">Website</th>
+</tr>';
 
-$costItems = [
-    'Title'          => $cost['title'] ?? '',
-    'Pax'            => $cost['pax'] ?? '',
-    'Vehicle'        => $cost['vehicle'] ?? '',
-    'Meal Plan'      => $cost['meal_plan'] ?? '',
-    'Hotel Category' => $cost['hotel_category'] ?? '',
-    'Room Type'      => $cost['room_type'] ?? '',
-    'Currency'       => $cost['currency'] ?? '',
-    'Total'          => $cost['total'] ?? ''
-];
+foreach ($hotels as $dayNumber => $hotel) {
+    $name = htmlspecialchars($hotel['name'] ?? '');
+    $link = htmlspecialchars($hotel['link'] ?? '');
 
-foreach ($costItems as $label => $value) {
     $html .= '<tr>
-        <th width="40%" style="text-align:left; font-weight:bold;">'.$label.'</th>
-        <td width="60%" style="text-align:left; font-weight:normal;">'.$value.'</td>
+        <td>Day ' . htmlspecialchars($dayNumber) . '</td>
+        <td>' . $name . '</td>
+        <td>' . ($link ? '<a href="' . $link . '">' . $link . '</a>' : '') . '</td>
     </tr>';
 }
 
