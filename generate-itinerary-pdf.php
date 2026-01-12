@@ -40,12 +40,13 @@ class PDF extends TCPDF {
     }
 
     public function Header() {
-        // Skip header on cover page (page 1)
         if ($this->page > 1) {
-            // Thin page border
-            $this->Rect(7, 7, 196, 283);
+            $this->SetDrawColor(32, 72, 154); 
+            $this->Rect(5, 5, 200, 287); 
 
-            // Logo top-right
+            $this->SetDrawColor(76, 135, 100); 
+            $this->Rect(7, 7, 196, 283); 
+
             $this->Image(__DIR__ . '/assets/images/pdf-logo.png', 175, 10, 25);
         }
     }
@@ -150,21 +151,29 @@ $pdf->SetX($marginLeft);
 $pdf->SetFont('helvetica', 'B', 11);
 $pdf->Cell(0, 14, 'Hotels', 0, 1);
 
-$html = '<table border="1" cellpadding="6" width="100%">
-<tr style="font-weight:bold;">
-<th width="15%">Day</th>
-<th width="45%">Hotel Name</th>
-<th width="40%">Website</th>
-</tr>';
+$html = '<table border="1" cellpadding="6" width="100%" style="border-collapse: collapse;">';
 
-foreach ($hotels as $day => $hotel) {
+$costItems = [
+    'Title'          => $cost['title'] ?? '',
+    'Pax'            => $cost['pax'] ?? '',
+    'Vehicle'        => $cost['vehicle'] ?? '',
+    'Meal Plan'      => $cost['meal_plan'] ?? '',
+    'Hotel Category' => $cost['hotel_category'] ?? '',
+    'Room Type'      => $cost['room_type'] ?? '',
+    'Currency'       => $cost['currency'] ?? '',
+    'Total'          => $cost['total'] ?? ''
+];
+
+foreach ($costItems as $label => $value) {
     $html .= '<tr>
-        <td>Day '.$day.'</td>
-        <td>'.$hotel['name'].'</td>
-        <td>'.$hotel['link'].'</td>
+        <th width="40%" style="text-align:left; font-weight:bold;">'.$label.'</th>
+        <td width="60%" style="text-align:left; font-weight:normal;">'.$value.'</td>
     </tr>';
 }
+
 $html .= '</table>';
+
+// Render table
 $pdf->SetX($marginLeft);
 $pdf->writeHTML($html, true, false, true, false, '');
 
