@@ -77,10 +77,11 @@ if (!empty($cover['image'])) {
     }
 }
 
-// Light overlay for readability
-$pdf->SetAlpha(0.25);
-$pdf->Rect(0, 0, 210, 297, 'F');
-$pdf->SetAlpha(1);
+// Dark overlay for readability
+$pdf->SetAlpha(0.5); // 50% opacity
+$pdf->SetFillColor(0, 0, 0); // Black color
+$pdf->Rect(0, 0, 210, 297, 'F'); // F = fill
+$pdf->SetAlpha(1); // Reset alpha to 100%
 
 // Logo top-right
 $pdf->Image(__DIR__ . '/assets/images/pdf-logo.png', 170, 15, 30);
@@ -100,6 +101,7 @@ $pdf->Cell(0, 10, $cover['heading'] ?? '', 0, 1);
 $pdf->SetFont('helvetica', 'I', 12);
 $pdf->SetX(20);
 $pdf->Cell(0, 10, $cover['sub_heading'] ?? '', 0, 1);
+
 
 /* =========================
    NORMAL PAGES
