@@ -274,10 +274,10 @@ h5 {
                                         <label>Reference No</label>
                                         <input type="text" name="reference_no" class="form-control" value="<?= htmlspecialchars($itinerary['reference_no']); ?>" required>
                                     </div>
-                                    <div class="col-md-6 mb-3">
+                                    <!-- <div class="col-md-6 mb-3">
                                         <label>Vehicle ID</label>
                                         <input type="text" name="vehicle_id" class="form-control" value="<?= htmlspecialchars($itinerary['vehicle_id']); ?>">
-                                    </div>
+                                    </div> -->
                                 </div>
 
                                 <!-- Dates & Nights -->

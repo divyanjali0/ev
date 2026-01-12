@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__ . '/assets/includes/db_connect.php';
-require_once __DIR__ . '/vendor/autoload.php'; // TCPDF
+require_once __DIR__ . '/vendor/autoload.php'; 
 
 if (!isset($_GET['id'])) exit('Missing ID');
 $id = $_GET['id'];
@@ -29,20 +29,24 @@ $cover  = json_decode($data['cover_page'], true);
 class PDF extends TCPDF {
 
     public function Footer() {
-        $this->SetY(-10);
-        $this->SetFont('helvetica', '', 8);
-        $this->Cell(0, 5,
-            'No. 371/5, Negombo Road, Seeduwa, Sri Lanka | Tel: +94 761 414 552 | www.explorevacations.lk',
-            0, 0, 'C'
-        );
+        if ($this->page > 1) {
+            $this->SetY(-15); 
+            $this->SetFont('helvetica', '', 8);
+            $this->Cell(0, 5,
+                'No. 371/5, Negombo Road, Seeduwa, Sri Lanka | Tel: +94 761 414 552 | www.explorevacations.lk',
+                0, 0, 'C'
+            );
+        }
     }
 
     public function Header() {
+        // Skip header on cover page (page 1)
         if ($this->page > 1) {
-            // Logo top-right
-            $this->Image(__DIR__ . '/assets/images/pdf-logo.png', 175, 10, 25);
             // Thin page border
             $this->Rect(7, 7, 196, 283);
+
+            // Logo top-right
+            $this->Image(__DIR__ . '/assets/images/pdf-logo.png', 175, 10, 25);
         }
     }
 }
@@ -64,7 +68,7 @@ $pdf->SetMargins(0, 0, 0);
 $pdf->SetAutoPageBreak(false, 0);
 $pdf->AddPage();
 
-// Full page image
+// Full page background image
 if (!empty($cover['image'])) {
     $imgPath = __DIR__ . '/uploads/cover_images/' . $cover['image'];
     if (file_exists($imgPath)) {
@@ -72,28 +76,28 @@ if (!empty($cover['image'])) {
     }
 }
 
-// Light dark overlay for readability
-$pdf->SetAlpha(0.35);
+// Light overlay for readability
+$pdf->SetAlpha(0.25);
 $pdf->Rect(0, 0, 210, 297, 'F');
 $pdf->SetAlpha(1);
 
 // Logo top-right
-$pdf->Image(__DIR__ . '/assets/images/pdf-logo.png', 110, 20, 35);
+$pdf->Image(__DIR__ . '/assets/images/pdf-logo.png', 170, 15, 30);
 
-// Text
-$pdf->SetTextColor(255);
-$pdf->SetFont('helvetica', 'B', 24);
-$pdf->SetXY(20, 40);
-$pdf->Cell(0, 12, $cover['trip_name'] ?? '', 0, 1); // 1 = move to next line
+// Trip title (different font)
+$pdf->SetTextColor(255); // White text
+$pdf->SetFont('times', 'B', 28); // Bold Times New Roman
+$pdf->SetXY(20, 60); // Position below logo
+$pdf->Cell(0, 12, $cover['trip_name'] ?? '', 0, 1);
 
-// Heading with left margin
-$pdf->SetFont('helvetica', 'B', 11);
-$pdf->SetX(30); // 30mm from left
+// Heading
+$pdf->SetFont('helvetica', 'B', 14);
+$pdf->SetX(20);
 $pdf->Cell(0, 10, $cover['heading'] ?? '', 0, 1);
 
-// Subheading with same left margin
+// Subheading
 $pdf->SetFont('helvetica', 'I', 12);
-$pdf->SetX(30); // same left margin
+$pdf->SetX(20);
 $pdf->Cell(0, 10, $cover['sub_heading'] ?? '', 0, 1);
 
 /* =========================
@@ -114,7 +118,7 @@ $pdf->SetTextColor(0);
 $pdf->AddPage();
 $pdf->SetX($marginLeft);
 $pdf->SetFont('helvetica', 'B', 11);
-$pdf->Cell(0, 12, 'Destinations', 0, 1);
+$pdf->Cell(0, 14, 'Destinations', 0, 1);
 
 foreach ($days as $day) {
     $pdf->SetX($marginLeft);
@@ -144,7 +148,7 @@ foreach ($days as $day) {
 $pdf->AddPage();
 $pdf->SetX($marginLeft);
 $pdf->SetFont('helvetica', 'B', 11);
-$pdf->Cell(0, 11, 'Hotels', 0, 1);
+$pdf->Cell(0, 14, 'Hotels', 0, 1);
 
 $html = '<table border="1" cellpadding="6" width="100%">
 <tr style="font-weight:bold;">
@@ -165,31 +169,40 @@ $pdf->SetX($marginLeft);
 $pdf->writeHTML($html, true, false, true, false, '');
 
 /* =========================
-   TOUR COST
+   TOUR COST (Two-column Table)
 ========================= */
 $pdf->AddPage();
 $pdf->SetX($marginLeft);
 $pdf->SetFont('helvetica', 'B', 11);
-$pdf->Cell(0, 11, 'Tour Cost', 0, 1);
+$pdf->Cell(0, 14, 'Tour Cost', 0, 1);
 
-$html = '<table border="1" cellpadding="6" width="100%">
-<tr style="font-weight:bold;">
-<th>Title</th><th>Pax</th><th>Vehicle</th><th>Meal</th>
-<th>Hotel</th><th>Room</th><th>Currency</th><th>Total</th>
-</tr>
-<tr>
-<td>'.$cost['title'].'</td>
-<td>'.$cost['pax'].'</td>
-<td>'.$cost['vehicle'].'</td>
-<td>'.$cost['meal_plan'].'</td>
-<td>'.$cost['hotel_category'].'</td>
-<td>'.$cost['room_type'].'</td>
-<td>'.$cost['currency'].'</td>
-<td>'.$cost['total'].'</td>
-</tr>
-</table>';
+// Table HTML: label → value
+$html = '<table border="1" cellpadding="6" width="100%" style="border-collapse: collapse;">';
+
+$costItems = [
+    'Title'          => $cost['title'] ?? '',
+    'Pax'            => $cost['pax'] ?? '',
+    'Vehicle'        => $cost['vehicle'] ?? '',
+    'Meal Plan'      => $cost['meal_plan'] ?? '',
+    'Hotel Category' => $cost['hotel_category'] ?? '',
+    'Room Type'      => $cost['room_type'] ?? '',
+    'Currency'       => $cost['currency'] ?? '',
+    'Total'          => $cost['total'] ?? ''
+];
+
+foreach ($costItems as $label => $value) {
+    $html .= '<tr>
+        <th width="40%" style="text-align:left;">'.$label.'</th>
+        <td width="60%">'.$value.'</td>
+    </tr>';
+}
+
+$html .= '</table>';
+
+// Render table
 $pdf->SetX($marginLeft);
 $pdf->writeHTML($html, true, false, true, false, '');
+
 
 /* =========================
    TERMS & CONDITIONS
