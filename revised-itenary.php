@@ -13,6 +13,7 @@
 
     $itineraries = $conn->query("
         SELECT ic.id as itinerary_id, ic.reference_no, ic.full_name, ic.email,
+            ic.whatsapp_code, ic.whatsapp, 
             ich.pdf_path
         FROM itinerary_customer ic
         LEFT JOIN itinerary_customer_history ich
@@ -24,6 +25,7 @@
             )
         ORDER BY ic.id DESC
     ")->fetchAll(PDO::FETCH_ASSOC);
+
 ?>
 
 <!DOCTYPE html>
@@ -64,11 +66,15 @@
                     <tbody>
                         <?php foreach ($itineraries as $index => $it): ?>
                             <?php
-                                $pdfLink = $it['pdf_path'] ?? '#';
-                                $whatsappLink = $it['pdf_path'] 
-                                    ? 'https://api.whatsapp.com/send?text=' . urlencode("Check this Itinerary PDF: " . $baseUrl . '/' . $it['pdf_path'])
+                                $whatsappLink = ($it['pdf_path'] && $it['whatsapp']) 
+                                    ? 'https://api.whatsapp.com/send?phone=' . urlencode($it['whatsapp_code'] . $it['whatsapp']) . 
+                                    '&text=' . urlencode(
+                                        "Hello " . $it['full_name'] . ",\n\n" .
+                                        "Your personalized itinerary is ready! You can view it here: " . $baseUrl . '/' . $it['pdf_path'] . "\n\n" .
+                                        "If you have any questions or need further assistance, feel free to reach out. We're happy to help!"
+                                    )
                                     : '#';
-                            ?>
+                                ?>
                             <tr>
                                 <td><?= $index + 1 ?></td>
                                 <td><?= htmlspecialchars($it['reference_no']); ?></td>
@@ -157,8 +163,13 @@
                             let rows = '';
                             response.forEach(function(item) {
                                 const pdfLink = item.pdf_path ? baseUrl + '/' + item.pdf_path : '#';
-                                const whatsappLink = item.pdf_path 
-                                    ? 'https://api.whatsapp.com/send?text=' + encodeURIComponent('Check this Itinerary PDF: ' + pdfLink)
+                                const whatsappLink = item.pdf_path && item.whatsapp 
+                                    ? 'https://api.whatsapp.com/send?phone=' + encodeURIComponent(item.whatsapp_code + item.whatsapp) +
+                                    '&text=' + encodeURIComponent(
+                                        'Hello ' + (item.full_name || '') + ',\n\n' +
+                                        'Your personalized itinerary is ready! You can view it here: ' + pdfLink + '\n\n' +
+                                        'If you have any questions or need further assistance, feel free to reach out. We\'re happy to help!'
+                                    )
                                     : '#';
 
                                 rows += `
