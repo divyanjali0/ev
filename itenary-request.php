@@ -38,7 +38,12 @@
 
             <div class="container-fluid mt-4">
                 <div class="card dashboard-card">
-                    <h2 class="text-center mb-4 fw-bold">Itinerary Requests</h2>
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h2 class="text-center fw-bold">Itinerary Requests</h2>
+                        <a href="add-tour.php" class="btn btn-success">
+                            <i class="bi bi-plus-lg me-1"></i> Add Tour
+                        </a>
+                    </div>
                     <div class="table-responsive">
                         <table id="itineraryTable" class="table table-striped table-bordered">
                             <thead>
