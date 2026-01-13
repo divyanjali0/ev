@@ -7,20 +7,20 @@
             <div class="swiper-wrapper">
                 <!-- Slide 1 -->
                 <div class="swiper-slide">
-                    <img src="assets/images/home-hero/img-1.jpg" alt="Explore Vacations"class="img-fluid d-none d-md-block">
-                    <img src="assets/images/home-hero/img-1-sm.jpg" alt="Explore Vacations" class="img-fluid d-md-none">
+                    <img src="assets/images/home-hero/img-1.webp" alt="Explore Vacations"class="img-fluid d-none d-md-block">
+                    <img src="assets/images/home-hero/img-1-sm.webp" alt="Explore Vacations" class="img-fluid d-md-none">
                 </div>
 
                 <!-- Slide 2 -->
                 <div class="swiper-slide">
-                    <img src="assets/images/home-hero/img-2.jpg" alt="Explore Vacations" class="img-fluid d-none d-md-block">
-                    <img src="assets/images/home-hero/img-2-sm.jpg" alt="Explore Vacations" class="img-fluid d-md-none">
+                    <img src="assets/images/home-hero/img-2.webp" alt="Explore Vacations" class="img-fluid d-none d-md-block">
+                    <img src="assets/images/home-hero/img-2-sm.webp" alt="Explore Vacations" class="img-fluid d-md-none">
                 </div>
 
                 <!-- Slide 3 -->
                 <div class="swiper-slide">
-                    <img src="assets/images/home-hero/img-3.jpg" alt="Explore Vacations" class="img-fluid d-none d-md-block">
-                    <img src="assets/images/home-hero/img-3-sm.jpg" alt="Explore Vacations" class="img-fluid d-md-none">
+                    <img src="assets/images/home-hero/img-3.webp" alt="Explore Vacations" class="img-fluid d-none d-md-block">
+                    <img src="assets/images/home-hero/img-3-sm.webp" alt="Explore Vacations" class="img-fluid d-md-none">
                 </div>
             </div>
         </div>
@@ -59,6 +59,36 @@
             </div>
         </div>
     </section>
+    <!-- Why choose us section ends -->
+
+    <!--Get in Touch section starts -->
+    <section id="get-in-touch" class="py-5">
+        <div class="container">
+            <div class="row">   
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row align-items-center">
+                                <div class="col-md-6 mb-4 mb-md-0" data-aos="fade-up" data-aos-duration="1000">
+                                    <h2 class="heading mb-3">Design Your Personalized Itinerary</h2>
+                                    <p class="supportive-text mb-4">
+                                            Use our itinerary builder to create your ideal travel plan exactly the way you want it. Once you’re happy with your plan, get in touch with us and we’ll make your dream trip a reality.
+                                    </p>
+                                    <a href="[[~3]]" class="btn btn-primary" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
+                                        Plan Now
+                                    </a>
+                                </div>
+                                <div class="col-md-6 text-center" data-aos="fade-left" data-aos-duration="1000">
+                                    <img src="assets/images/travel-cta.webp" alt="Travel" class="img-fluid hover-zoom">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--Get in Touch section ends -->
 
     <!-- Service Counter section starts -->
     <section id="service-counter" class="py-5">
@@ -308,44 +338,6 @@
     </section>
     <!-- Featured Trips section ends -->
 
-    <!--Get in Touch section starts -->
-    <section id="get-in-touch" class="py-5">
-        <div class="container">
-            <div class="row">   
-                <div class="col-12">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="row align-items-center">
-                                <div class="col-md-6 mb-4 mb-md-0" data-aos="fade-up" data-aos-duration="1000">
-                                    <h2 class="heading mb-3">Looking for a Personalized Trip or Tour ?</h2>
-                                    <p class="supportive-text mb-4">
-                                        Tell us about your travel plans, and we’ll create a custom trip just for you. From relaxing holidays to adventure tours, we handle all the details so you can enjoy a smooth and stress-free journey.
-                                    </p>
-                                    <a href="[[~7]]" class="btn btn-primary" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
-                                        Inquire Now
-                                    </a>
-                                </div>
-                                <div class="col-md-6 text-center" data-aos="fade-left" data-aos-duration="1000">
-                                    <img src="assets/images/travel-cta.png" alt="Travel" class="img-fluid hover-zoom">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!--Get in Touch section ends -->
-
-  <!-- Customer Reviews section starts -->
-    <section id="customer-reviews" class="pb-5">
-        <div class="container text-center">
-            <h2 class="heading">What Our Customers Say</h2>
-            [[!GoogleReviews]]
-        </div>
-    </section>
-    <!-- Customer Reviews section ends -->
-
     <!-- Travel Articles section starts -->
     <section id="travel-articles" class="pb-5">
         <div class="container">
@@ -354,10 +346,60 @@
                     <h2 class="heading text-center">Travel Articles</h2>
                 </div>
             </div>
-            [[!Blogs]]
+            <div class="row mt-4 g-4">
+                <div class="col-12 col-md-6 col-lg-3">
+                    <img src="assets/images/festivals/1.jpg" alt="Travel Articles" class="img-fluid">
+                    <div class="card">
+                        <div class="card-body">
+                            <p class="card-text">November 6 2025 | By Admin</p>
+                            <h3 class="card-title">Festivals of Sri Lanka: When to Visit for Culture, Rituals & Local Life</h3>
+                            <a href="[[~5]]" class="btn btn-primary">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-3">
+                    <img src="assets/images/festivals/2.jpg" alt="Travel Articles" class="img-fluid">
+                    <div class="card">
+                        <div class="card-body">
+                            <p class="card-text">July 7 2025 | By Admin</p>
+                            <h3 class="card-title">Hidden Cultural Gems: Temples, Forts & Ancient Cities Beyond the Usual</h3>
+                            <a href="[[~5]]" class="btn btn-primary">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-3">
+                    <img src="assets/images/festivals/3.jpg" alt="Travel Articles" class="img-fluid">
+                    <div class="card">
+                        <div class="card-body">
+                            <p class="card-text">April 16 2025 | By Admin</p>
+                            <h3 class="card-title">Tea Country & Colonial Charm: Discovering Hill Country Heritage</h3>
+                            <a href="[[~5]]" class="btn btn-primary">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-3">
+                    <img src="assets/images/festivals/1.jpg" alt="Travel Articles" class="img-fluid">
+                    <div class="card">
+                        <div class="card-body">
+                            <p class="card-text">March 6 2025 | By Admin</p>
+                            <h3 class="card-title">Festivals of Sri Lanka: When to Visit for Culture, Rituals & Local Life</h3>
+                            <a href="[[~5]]" class="btn btn-primary">Read More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
     <!-- Travel Articles section ends -->
+
+    <!-- Customer Reviews section starts -->
+    <section id="customer-reviews" class="py-5">
+        <div class="container text-center">
+            <h2 class="heading">What Our Customers Say</h2>
+            [[!GoogleReviews]]
+        </div>
+    </section>
+    <!-- Customer Reviews section ends -->
 
     <script>
         const heroSwiper = new Swiper(".homeHeroSwiper", {

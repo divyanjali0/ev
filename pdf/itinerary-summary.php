@@ -3,7 +3,8 @@
 /** @var array $cities */
 /** @var array $data */
 /** @var string $themeList */
-/** @var string $assetRoot */
+
+$assetRoot = realpath(__DIR__ . '/../assets') . DIRECTORY_SEPARATOR;
 
 require_once __DIR__ . '/footer-details.php';
 
@@ -15,7 +16,7 @@ $pageWidth = $pdf->getPageWidth();
 /* ======================
    Logo on top-right
 ====================== */
-$logoPath = 'C:/xampp/htdocs/ev/assets/images/logo.png';
+$logoPath = 'assets/images/logo.png';
 $logoWidth = 20;
 $logoHeight = 0;
 if (file_exists($logoPath)) {
@@ -35,7 +36,7 @@ $pdf->Cell(0, 12, 'Tour Summary', 0, 1, 'L');
 ====================== */
 $pdf->SetFont('helvetica', '', 11);
 $pdf->SetTextColor(60,60,60);
-$pdf->Cell(0, 8, "{$data['start']} → {$data['end']}   |   {$data['nights']} Nights / {$data['days']} Days", 0, 1, 'L');
+$pdf->Cell(0, 8, "{$data['start']} - {$data['end']}   |   {$data['nights']} Nights / {$data['days']} Days", 0, 1, 'L');
 $pdf->Ln(4);
 
 /* ======================
@@ -43,7 +44,7 @@ $pdf->Ln(4);
 ====================== */
 $pdf->SetFont('helvetica', 'B', 11);
 $pdf->SetTextColor(44,93,153);
-$pdf->Cell(0, 8, 'Themes', 0, 1, 'L');
+$pdf->Cell(0, 8, 'Theme', 0, 1, 'L');
 
 $pdf->SetFont('helvetica', '', 11);
 $pdf->SetTextColor(70,70,70);
@@ -53,8 +54,7 @@ $pdf->Ln(6);
 /* ======================
    Cities Section with Images & Activities
 ====================== */
-$day = 1;
-$assetRoot = 'C:/xampp/htdocs/ev/assets/';
+// $assetRoot = 'C:/xampp/htdocs/ev/assets/';
 $imgW = 40;
 $imgH = 35;
 $gap = 6;
@@ -76,6 +76,15 @@ foreach ($cities as $city) {
     $startX = 15;
     $startY = $pdf->GetY();
 
+    // Estimate the height needed for this city block
+    $estimatedHeight = max($imgH, 8 + 6 * (substr_count($activitiesText, "\n") + 1)) + 8; // 8 = extra gap
+
+    // Check if enough space left on page
+    if ($startY + $estimatedHeight > $pdf->getPageHeight() - $pdf->getBreakMargin()) {
+        $pdf->AddPage();
+        $startY = $pdf->GetY(); // reset startY after new page
+    }
+
     // Draw image or placeholder
     if ($imagePath && file_exists($imagePath)) {
         $pdf->Image($imagePath, $startX, $startY, $imgW, $imgH);
@@ -92,7 +101,7 @@ foreach ($cities as $city) {
     $cityX = $startX + $imgW + $gap;
     $cityY = $startY;
     $pdf->SetXY($cityX, $cityY);
-    $pdf->Cell(0, 6, "Day {$day} - {$city['name']}", 0, 1, 'L');
+    $pdf->Cell(0, 6, "{$city['name']}", 0, 1, 'L');
 
     $pdf->SetFont('helvetica', '', 11);
     $pdf->SetTextColor(60,60,60);
@@ -101,9 +110,13 @@ foreach ($cities as $city) {
 
     // Move Y to below the taller of image or activities
     $pdf->SetY(max($startY + $imgH, $pdf->GetY()) + 8);
-
-    $day++;
 }
+
+
+$pdf->Ln(4);
+$pdf->SetFont('helvetica', 'I', 10);
+$pdf->SetTextColor(200,0,0);
+$pdf->MultiCell(0, 6, "**Just a heads-up: The places and images above are for reference only. One of our team member will get in touch with you soon to help finalize your trip!!", 0, 'L');
 
 addFooter(
     $pdf,'+94 76 1414 554','info@explorevacations.lk','explore.vacations'

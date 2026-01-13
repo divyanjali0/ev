@@ -4,7 +4,6 @@
 /** @var array $data */
 /** @var string $themeList */
 
-
 $assetRoot = realpath(__DIR__ . '/../assets') . DIRECTORY_SEPARATOR;
 
 require_once __DIR__ . '/footer-details.php';
@@ -17,7 +16,7 @@ $pageWidth = $pdf->getPageWidth();
 /* ======================
    Logo on top-right
 ====================== */
-$logoPath = 'C:/xampp/htdocs/ev/assets/images/logo.png';
+$logoPath = 'assets/images/logo.png';
 $logoWidth = 20;
 $logoHeight = 0;
 if (file_exists($logoPath)) {
@@ -71,12 +70,20 @@ if (!empty($data['vehicle'])) {
     $textY = $yStart;
     $pdf->SetXY($textX, $textY);
 
-    $pdf->Cell(0, 6, "Category: {$data['vehicle']}", 0, 1);
+    $pdf->Cell(0, 6, "Vehicle Category: {$data['vehicle']}", 0, 1);
     $pdf->SetX($textX);
     $pdf->Cell(0, 6, "Seats: {$data['vehicle_passengers']}", 0, 1);
 
     // Move Y below the taller of image or text
     $pdf->SetY($yStart + max($imgHeightActual, 24) + 8); 
+
+    // ======================
+    // Vehicle Note
+    // ======================
+    $pdf->SetFont('helvetica', 'I', 10);
+    $pdf->SetTextColor(200,0,0);
+    $pdf->MultiCell(0, 6, "**The vehicle details above are for reference only and might change. One of our team member will confirm the final vehicle with you...", 0, 'L');
+    $pdf->Ln(8); // space after note
 
 } else {
     $pdf->Cell(0, 6, 'No vehicle selected.', 0, 1);

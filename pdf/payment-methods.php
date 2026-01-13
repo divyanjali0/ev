@@ -1,7 +1,8 @@
 <?php
 /** @var TCPDF $pdf */
 /** @var array $data */
-/** @var string $assetRoot */
+
+$assetRoot = realpath(__DIR__ . '/../assets') . DIRECTORY_SEPARATOR;
 
 require_once __DIR__ . '/footer-details.php';
 
@@ -12,7 +13,7 @@ $pageWidth = $pdf->getPageWidth();
 $marginLeft = 15;   
 $gap = 10;          
 
-$logoPath = $assetRoot . 'images/logo.png';
+$logoPath = 'assets/images/logo.png';
 $logoWidth = 20;
 $logoHeight = 0;
 if (file_exists($logoPath)) {

@@ -84,23 +84,22 @@ $pdf->SetFont('roboto', '', 11);
 $pdf->SetTextColor(70,70,70);
 $pdf->SetX($marginX);
 
-$description = "Beautiful beaches, lush forests, mountains and a land blessed with a rich and vibrant culture that dates back thousands of years. This would be a good way to describe Sri Lanka, the paradise isle. That and so much more. Rated by Lonely Planet as the number one travel destination for 2019, Sri Lanka is truly a paradise like no other. Home to some of the world's most beautiful beaches, as well as both rainforests and dry zone forests and majestic mountain ranges, not forgetting the historical world heritage sites.";
+$description = "Beautiful beaches, lush forests, mountains and a land blessed with a rich and vibrant culture that dates back thousands of years. This would be a good way to describe Sri Lanka, the paradise isle. That and so much more. Rated by Lonely Planet as the number one travel destination for 2019, Sri Lanka is truly a paradise like no other. Home to some of the world's most beautiful beaches, as well as both rainforests and dry zone forests and majestic mountain ranges, not forgetting the historical heritages.";
 
 // Disable page break so image stays at bottom
 $autoPageBreak = $pdf->getAutoPageBreak();
 $breakMargin   = $pdf->getBreakMargin();
 $pdf->SetAutoPageBreak(false, 0);
 
-// Increased line height from 6 → 7.5
 $pdf->MultiCell(
     $pageWidth - ($marginX * 2),
     8,
     $description,
     0,
-    'L'
+    'J'
 );
 
-$pdf->Ln(10); // more space below paragraph
+$pdf->Ln(10); 
 
 /* ======================
    DID YOU KNOW Box

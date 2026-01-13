@@ -14,6 +14,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $themeIds = array_filter(explode(',', $_GET['themes'] ?? ''));
     $cityIds  = array_filter(explode(',', $_GET['cities'] ?? ''));
 
+    $bedTypes = isset($_POST['bed_types']) ? $_POST['bed_types'] : [];
+    $bedTypesJson = json_encode($bedTypes);
+
+
     /* ============================
        SAVE TO DATABASE
     ============================ */
@@ -23,13 +27,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             adults, children_6_11, children_above_11, infants,
             hotel_rating, meal_plan, allergy_issues, allergy_reason,
             pickup_location, dropoff_location, title, full_name, email,
-            whatsapp_code, whatsapp, country, nationality, flight_number, remarks, vehicle_id
+            whatsapp_code, whatsapp, country, flight_number, remarks, vehicle_id, bed_types
         ) VALUES (
             :reference_no, :theme_ids, :city_ids, :start_date, :end_date, :nights,
             :adults, :children_6_11, :children_above_11, :infants,
             :hotel_rating, :meal_plan, :allergy_issues, :allergy_reason,
             :pickup_location, :dropoff_location, :title, :full_name, :email,
-            :whatsapp_code, :whatsapp, :country, :nationality, :flight_number, :remarks, :vehicle_id
+            :whatsapp_code, :whatsapp, :country, :flight_number, :remarks, :vehicle_id, :bed_types
         )
     ");
 
@@ -56,10 +60,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ':whatsapp_code' => $_POST['whatsappCode'],
         ':whatsapp' => $_POST['whatsapp'],
         ':country' => $_POST['country'],
-        ':nationality' => $_POST['nationality'],
         ':flight_number' => $_POST['flightNumber'] ?? null,
         ':remarks' => $_POST['remarks'] ?? null,
-        ':vehicle_id' => $_POST['vehicle_id']  
+        ':vehicle_id' => $_POST['vehicle_id'] ?? null,
+        ':bed_types' => $bedTypesJson ?? null,  
     ]);
 
     /* ============================
@@ -131,10 +135,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     require_once __DIR__ . '/../../pdf/itinerary-style.php';
     require_once __DIR__ . '/../../pdf/itinerary-cover.php';
     require_once __DIR__ . '/../../pdf/itinerary-summary.php';
-    require_once __DIR__ . '/../../pdf/detailed-itinerary.php';
+    // require_once __DIR__ . '/../../pdf/detailed-itinerary.php';
     require_once __DIR__ . '/../../pdf/map-page.php';
     require_once __DIR__ . '/../../pdf/show-vehicle.php';
-    require_once __DIR__ . '/../../pdf/add-inclusions.php';
+    // require_once __DIR__ . '/../../pdf/add-inclusions.php';
     require_once __DIR__ . '/../../pdf/customer-details.php';
     require_once __DIR__ . '/../../pdf/footer-details.php';
 

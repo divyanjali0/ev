@@ -66,34 +66,7 @@ include ('config-details.php');
 ?>
 
 <head>
-
-        <style>
-.vehicle-card {
-    position: relative;
-    cursor: pointer;
-    border: 1px solid #ddd;
-    transition: border 0.3s, box-shadow 0.3s;
-}
-
-.vehicle-card::after {
-    content: '→ Not Selected';
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    font-weight: bold;
-    color: #aaa;
-}
-
-.vehicle-card.selected {
-    border-color: #0d6efd;
-    box-shadow: 0 0 10px rgba(13,110,253,0.3);
-}
-
-.vehicle-card.selected::after {
-    content: '→ Selected';
-    color: #0d6efd;
-}
-
+    <style>
 
 .is-invalid {
     border-color: #dc3545;
@@ -199,7 +172,7 @@ include ('config-details.php');
 
             <hr>
 
-            <div id="customizeForm">
+           <div id="customizeForm">
                 <div class="intro row align-items-center mt-4">
                     <div class="col">
                         <p class="mb-0">
@@ -346,11 +319,38 @@ include ('config-details.php');
                                         <input type="text" class="form-control" name="allergy_reason" placeholder="Please specify your allergy">
                                     </div>
                                 </div>
+                                <div>
+                                    <label class="form-label fw-semibold d-block">Bed Types & Quantity</label>
+
+                                    <div class="col-12 d-flex flex-column flex-sm-row gap-3">
+
+                                        <div class="d-flex justify-content-between align-items-center mb-2 w-100">
+                                            <span>Single Room</span>
+                                            <input type="number" name="bed_types[single]" class="form-control w-25 pe-0" min="0" placeholder="0">
+                                        </div>
+
+                                        <div class="d-flex justify-content-between align-items-center mb-2 w-100">
+                                            <span>Double Room</span>
+                                            <input type="number" name="bed_types[double]" class="form-control w-25 pe-0" min="0" placeholder="0">
+                                        </div>
+
+                                        <div class="d-flex justify-content-between align-items-center mb-2 w-100">
+                                            <span>Twin Room</span>
+                                            <input type="number" name="bed_types[twin]" class="form-control w-25 pe-0" min="0" placeholder="0">
+                                        </div>
+
+                                        <div class="d-flex justify-content-between align-items-center mb-2 w-100">
+                                            <span>Triple Room</span>
+                                            <input type="number" name="bed_types[triple]" class="form-control w-25 pe-0" min="0" placeholder="0">
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
+
+                            <hr>
 
                             <!-- Personal Info & Submit -->
                             <div class="row g-3 mb-4">
-                                
                                 <div class="col-md-2">
                                     <label for="title" class="form-label fw-semibold small">Title<span class="text-danger">*</span></label>
                                     <select class="form-select" id="title" name="title" required>
@@ -374,7 +374,7 @@ include ('config-details.php');
                                 </div>
 
                                 <div class="col-md-3">
-                                    <label for="whatsappCode" class="form-label fw-semibold small">Code<span class="text-danger">*</span></label>
+                                    <label for="whatsappCode" class="form-label fw-semibold small mt-2">Code<span class="text-danger">*</span></label>
                                     <select class="form-select" id="whatsappCode" name="whatsappCode" required>
                                         <option value="" selected disabled>Select</option>
                                         <?php foreach($countryCodes as $c): ?>
@@ -398,7 +398,7 @@ include ('config-details.php');
                                         <?php endforeach; ?>
                                     </select> -->
                                     <label for="whatsapp" class="form-label fw-semibold mt-2">WhatsApp Number<span class="text-danger">*</span></label>
-                                    <input type="phone" class="form-control" id="whatsapp" name="whatsapp" placeholder="Enter WhatsApp number" required>
+                                    <input type="phone" class="form-control" id="whatsapp" name="whatsapp" placeholder="Enter WhatsApp" required>
                                 </div>
 
                                 <div class="col-md-6">
@@ -409,36 +409,24 @@ include ('config-details.php');
                                 </div>
 
                                 <div class="col-md-6">
-                                    <label for="nationality" class="form-label fw-semibold">Nationality<span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="nationality" name="nationality" placeholder="Enter your Nationality" required>
-                                </div>
-
-                                <div class="col-md-6">
                                     <label for="flightNumber" class="form-label fw-semibold">Flight Number</label>
                                     <input type="text" class="form-control" id="flightNumber" name="flightNumber" placeholder="Enter flight number">
                                 </div>
 
                                 <div class="col-12">
                                     <label for="remarks" class="form-label fw-semibold">Remarks</label>
-                                    <textarea class="form-control" id="remarks" name="remarks" rows="4" placeholder="Any remarks or requests"></textarea>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-12">
-                                    <div id="formError" class="alert alert-danger d-none"></div>
-                                </div>
-                                <div class="col d-flex justify-content-end">
-                                    <button type="submit" class="btn btn-primary submit-button">Submit</button>
+                                    <textarea class="form-control" id="remarks" name="remarks" rows="4" placeholder="Please specify any additional requirements or information not covered above."></textarea>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Left Column -->
-                        <div class="col-lg-5">
+                        <div class="col-lg-5 border-start ps-4">
                             <!-- Vehicle Selection -->
                             <div class="mb-4">
-                                <h3>Select Preferred Vehicle</h3>
+                                <h3 name="vehicleId">Select Preferred Vehicle</h3>
+                                <small class="text-danger d-block mb-3">**For indicative purposes only</small>
+
                                 <div class="row g-4">
                                     <?php
                                     $stmt = $conn->prepare("SELECT * FROM vehicles ORDER BY id ASC");
@@ -452,16 +440,15 @@ include ('config-details.php');
                                             $image = htmlspecialchars($v['image'] ?: 'assets/images/vehicles/default.jpg');
                                     ?>
                                     <div class="col-12 col-md-6 col-lg-6">
-    <div class="card h-100 text-center shadow-sm vehicle-card" data-vehicle-id="<?= $id ?>">
-        <img src="<?= $image ?>" class="card-img-top img-fluid" alt="<?= $category ?>" style="height:10rem;object-fit:cover;">
-        <div class="card-body d-flex flex-column justify-content-center" style="padding:0;">
-            <h3><?= $category ?></h3>
-            <p class="card-text">Passengers: <?= $passengers ?></p>
-            <input class="form-check-input d-none" type="radio" name="vehicle_id" id="vehicle<?= $id ?>" value="<?= $id ?>" required>
-        </div>
-    </div>
-</div>
-
+                                        <div class="card h-100 text-center shadow-sm vehicle-card" data-vehicle-id="<?= $id ?>">
+                                            <img src="<?= $image ?>" class="card-img-top img-fluid" alt="<?= $category ?>" style="height:10rem;object-fit:cover;">
+                                            <div class="card-body d-flex flex-column justify-content-center" style="padding:0;">
+                                                <h3><?= $category ?></h3>
+                                                <p class="card-text">Passengers: <?= $passengers ?></p>
+                                                <input class="form-check-input d-none" type="radio" name="vehicle_id" id="vehicle<?= $id ?>" value="<?= $id ?>">
+                                            </div>
+                                        </div>
+                                    </div>
                                     <?php
                                         endforeach;
                                     else:
@@ -472,6 +459,7 @@ include ('config-details.php');
                                     <?php endif; ?>
                                 </div>
                             </div>
+
                             <?php if (!empty($selectedCities)): ?>
                             <!-- Selected Cities -->
                             <div class="mb-4">
@@ -495,26 +483,22 @@ include ('config-details.php');
                             <?php endif; ?>
                         </div>
                     </div>
+                    <div class="row mt-3">
+                        <div class="col-12">
+                            <div id="formError" class="alert alert-danger d-none"></div>
+                        </div>
+                        <div class="col d-flex justify-content-end">
+                            <button type="submit" class="btn btn-primary submit-button">Submit</button>
+                        </div>
+                    </div>
                 </form>
             </div>
+
         </div>
     </section>
     <!-- Customize Tours section ends -->
 
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBl50Q8W4ZF2_EkOJ1lnRoVxO1IdjIupjM&libraries=places&callback=initMap" async defer></script>
-
-    <script>
-document.querySelectorAll('.vehicle-card').forEach(card => {
-    card.addEventListener('click', function() {
-        // Remove selected from all cards
-        document.querySelectorAll('.vehicle-card').forEach(c => c.classList.remove('selected'));
-        // Add selected to clicked card
-        this.classList.add('selected');
-        // Check the hidden radio input
-        this.querySelector('input[type="radio"]').checked = true;
-    });
-});
-</script>
 
     <script>
         const btn = document.getElementById('guestDropdownButton');
@@ -734,7 +718,6 @@ document.querySelectorAll('.vehicle-card').forEach(card => {
                     { id: "whatsappCode", label: "WhatsApp Code" },
                     { id: "whatsapp", label: "WhatsApp Number" },
                     { id: "country", label: "Country" },
-                    { id: "nationality", label: "Nationality" }
                 ];
 
                 requiredFields.forEach(field => {
@@ -771,6 +754,14 @@ document.querySelectorAll('.vehicle-card').forEach(card => {
                 if (!document.querySelector('input[name="mealPlan"]:checked')) {
                     errors.push("Meal Plan");
                 }
+
+                // ======================
+                // Vehicle
+                // ======================
+                if (!document.querySelector('input[name="vehicle_id"]:checked')) {
+                    errors.push("Select Preferred Vehicle");
+                }
+
 
                 // ======================
                 // Allergy issues

@@ -77,9 +77,12 @@ header .navbar {
   align-items: center;
   justify-content: space-between;
   transition: all 0.3s ease;
-  background-color: rgba(255, 255, 255, 0.8705882353);
+  <!-- background-color: rgb(1 1 1 / 31%); -->
   padding: 0.5rem 15px;
 }
+
+
+
 header .navbar .navbar-brand {
   display: flex;
   align-items: center;
@@ -100,9 +103,15 @@ header .navbar .navbar-toggler {
   font-size: 1.25rem;
 }
 header .navbar .nav-link {
-  color: #000000 !important;
+  color: #000000;
   text-transform: uppercase;
   font-weight: 600;
+}
+
+@media (min-width: 992px) {
+  header .navbar .nav-link {
+    color: #fff !important;
+  }
 }
 header .navbar.scrolled {
   background-color: rgba(255, 255, 255, 0.8705882353);
@@ -161,6 +170,7 @@ header .navbar.scrolled .logo-dark {
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
+z-index: 10;
 }
 #hero h1 {
   color: #ffffff;
@@ -176,6 +186,7 @@ header .navbar.scrolled .logo-dark {
 #homeHero {
   position: relative;
   height: 50vh;
+overflow: hidden;
   /* Overlay */
 }
 #hero img,
@@ -184,17 +195,19 @@ header .navbar.scrolled .logo-dark {
      object-fit: cover;
   height: 100%;
   width: 100%;
+   position: relative;
+    z-index: 1;
 }
 #hero::before,
 #homeHero::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
   background-color: rgba(0, 0, 0, 0.4);
-  z-index: 0;
+    z-index: 2;
 }
 
 #homePage #homeHero {
@@ -582,7 +595,7 @@ header .navbar.scrolled .logo-dark {
      object-fit: cover;
 }
 #aboutPage #company-tours h3 {
-  font-family: "Shantell Sans", cursive;
+  font-family: 'Cambria';
   font-weight: 600;
   text-align: center;
   font-size: 20px;
@@ -1192,31 +1205,33 @@ footer .row:last-child p a {
   color: #ffffff;
 }
 
-
-.testimonial-card {
-    background: #fff;
-    border-radius: 14px;
-    box-shadow: 0 12px 30px rgba(0,0,0,.06);
-}
-
-.review-text {
-    font-size: 0.95rem;
-    line-height: 1.7;
-    color: #444;
-}
-
-.testimonial-stars span {
-    font-size: 1rem;
-}
-
-.carousel-control-prev-icon,
-.carousel-control-next-icon {
-    filter: invert(1);
-}
-
-
 @media (min-width: 1200px) {
   .navbar .btn-primary {
     margin: 0px 18rem !important;
   }
 }/*# sourceMappingURL=style.css.map */
+
+
+
+
+
+
+
+/* Base logo styles */
+.navbar-brand .logo {
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Initial state */
+.navbar-brand .logo-scrolled {
+    display: none;
+}
+
+/* When navbar is scrolled */
+header .navbar.scrolled .logo-default {
+    display: none;
+}
+
+header .navbar.scrolled .logo-scrolled {
+    display: inline-block;
+}

@@ -18,7 +18,7 @@ addNewStyledPage($pdf);
 // ======================
 // Logo top-right
 // ======================
-$logoPath = $assetRoot . 'images/logo.png';
+$logoPath = 'assets/images/logo.png';
 $logoWidth = 25;
 if (file_exists($logoPath)) {
     $pdf->Image($logoPath, $pageWidth - $marginRight - $logoWidth, 10, $logoWidth, 0);
@@ -80,6 +80,25 @@ $pdf->SetFont('helvetica', 'BI', 12);
 $pdf->SetTextColor(50, 50, 50);             
 $pdf->MultiCell(0, 8, "Thank you for choosing Explore Vacations! We look forward to making your trip unforgettable.", 0, 'C');
 
+$pdf->Ln(6); // small space before note
+
+$pdf->SetFont('helvetica', 'I', 10);
+$pdf->SetTextColor(200,0,0);
+$pdf->SetFillColor(245, 245, 245); 
+$pdf->SetDrawColor(200,200,200);  
+$pdf->SetLineWidth(0.2);
+
+$pdf->MultiCell(
+    0,          
+    8,         
+    "**Please Note : The images and locations mentioned above are for reference only and might vary. One of our team member will contact you shortly to confirm the details.", 
+    1,         
+    'C',        
+    1,        
+    1           
+);
+
+$pdf->Ln(4); 
 
 addFooter(
     $pdf,'+94 76 1414 554','info@explorevacations.lk','explore.vacations'

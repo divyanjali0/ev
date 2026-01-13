@@ -1,7 +1,8 @@
 <?php
 /** @var TCPDF $pdf */
 /** @var array $cities */
-/** @var string $assetRoot */
+
+$assetRoot = realpath(__DIR__ . '/../assets') . DIRECTORY_SEPARATOR;
 
 require_once __DIR__ . '/footer-details.php';
 
@@ -9,7 +10,7 @@ $pageWidth = $pdf->getPageWidth();
 $marginLeft = 15;
 $marginRight = 15;
 $contentWidth = $pageWidth - $marginLeft - $marginRight;
-$logoPath = $assetRoot . 'images/logo.png';
+$logoPath = 'assets/images/logo.png';
 $logoWidth = 20; // logo width
 
 foreach ($cities as $city) {

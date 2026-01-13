@@ -13,7 +13,7 @@ $marginLeft = 15;
 $gap = 10;          
 
 
-$logoPath = $assetRoot . 'images/logo.png';
+$logoPath = 'assets/images/logo.png';
 $logoWidth = 20;
 $logoHeight = 0;
 if (file_exists($logoPath)) {
