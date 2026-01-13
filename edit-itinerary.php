@@ -274,10 +274,6 @@ h5 {
                                         <label>Reference No</label>
                                         <input type="text" name="reference_no" class="form-control" value="<?= htmlspecialchars($itinerary['reference_no']); ?>" required>
                                     </div>
-                                    <!-- <div class="col-md-6 mb-3">
-                                        <label>Vehicle ID</label>
-                                        <input type="text" name="vehicle_id" class="form-control" value="<?= htmlspecialchars($itinerary['vehicle_id']); ?>">
-                                    </div> -->
                                 </div>
 
                                 <!-- Dates & Nights -->
@@ -369,10 +365,6 @@ h5 {
                                     <div class="col-md-3 mb-3">
                                         <label>Country</label>
                                         <input type="text" name="country" class="form-control" value="<?= htmlspecialchars($itinerary['country']); ?>">
-                                    </div>
-                                    <div class="col-md-3 mb-3">
-                                        <label>Nationality</label>
-                                        <input type="text" name="nationality" class="form-control" value="<?= htmlspecialchars($itinerary['nationality']); ?>">
                                     </div>
                                 </div>
 
@@ -473,8 +465,7 @@ h5 {
                                         <div id="coverDescEditor" class="quill-editor"><?= $existingCover['description'] ?? ''; ?></div>
                                         <input type="hidden" name="cover[description]" id="cover_description">
                                     </div>
-
-
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -615,6 +606,7 @@ h5 {
                         </div>
                     </div>
 
+                    <!-- Tour Cost Details -->
                     <div class="accordion-item mt-3">
                         <h2 class="accordion-header" id="headingCost">
                             <button class="fw-bold accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCost">
@@ -679,6 +671,7 @@ h5 {
                         </div>
                     </div>
 
+                    <!-- Terms Conditions Details -->
                     <div class="accordion-item mt-3">
                         <h2 class="accordion-header" id="headingTerms">
                             <button class="fw-bold accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTerms">
@@ -818,7 +811,9 @@ h5 {
 
         // ---------- Add Day ----------
         $('#addDayBtn').click(function() {
-            dayCount++;
+            // Count existing day blocks
+            dayCount = $('#dayDetailsContainer .day-block').length + 1;
+
             let cities = getCurrentCities();
             let optionsHtml = '<option value="">-- Select City --</option>';
             cities.forEach(function(id) {
@@ -871,8 +866,9 @@ h5 {
             `;
 
             $('#dayDetailsContainer').append(dayHtml);
-            initQuill(`descEditor${dayCount}`); // initialize Quill for the new day
+            initQuill(`descEditor${dayCount}`);
         });
+
 
         // ---------- Remove Day ----------
         $(document).on('click', '.remove-day-btn', function() {
@@ -880,16 +876,35 @@ h5 {
             const dayId = dayBlock.data('day');
 
             // Remove Quill editor instance
-            if (quillEditors[`descEditor${dayId}`]) {
-                delete quillEditors[`descEditor${dayId}`];
-            }
+            delete quillEditors[`descEditor${dayId}`];
 
+            // Remove the day block
             dayBlock.remove();
+
+            // Renumber remaining days and update names/ids
+            $('#dayDetailsContainer .day-block').each(function(i) {
+                const newDay = i + 1;
+                $(this).attr('data-day', newDay)
+                    .find('h5').text('Day ' + newDay);
+
+                // Update names and ids
+                $(this).find('select, input, div.quill-editor, input[type="hidden"]').each(function() {
+                    const name = $(this).attr('name');
+                    const id = $(this).attr('id');
+                    if (name) $(this).attr('name', name.replace(/\[\d+\]/, `[${newDay}]`));
+                    if (id) $(this).attr('id', id.replace(/\d+$/, newDay));
+                });
+
+                // Re-init Quill editor
+                const quillId = `descEditor${newDay}`;
+                if (!quillEditors[quillId]) initQuill(quillId, $(this).find('input[type="hidden"]').val());
+            });
         });
 
         // ---------- Add Hotel Day ----------
         $('#addHotelDayBtn').click(function() {
-            hotelDayCount++;
+            // Count current hotel blocks
+            hotelDayCount = $('#hotelContainer .hotel-block').length + 1;
 
             let hotelHtml = `
             <div class="hotel-block col-md-12" data-day="${hotelDayCount}">
@@ -913,18 +928,24 @@ h5 {
         // ---------- Remove Hotel Day ----------
         $(document).on('click', '.remove-hotel-day-btn', function() {
             $(this).closest('.hotel-block').remove();
+
+            // Renumber remaining hotel days
+            $('#hotelContainer .hotel-block').each(function(i) {
+                const newDay = i + 1;
+                $(this).attr('data-day', newDay)
+                    .find('h5').text('Day ' + newDay + ' Hotel');
+
+                $(this).find('input').each(function() {
+                    const name = $(this).attr('name');
+                    if (name) $(this).attr('name', name.replace(/\[\d+\]/, `[${newDay}]`));
+                });
+            });
+
+            // Update hotelDayCount
+            hotelDayCount = $('#hotelContainer .hotel-block').length;
         });
+
     });
 </script>
-
-<!-- <script>
-    $(document).ready(function() {
-        $('.select2').select2({
-            placeholder: "Select options",
-            allowClear: true,
-            width: '100%'
-        });
-    });
-</script> -->
 </body>
 </html>
