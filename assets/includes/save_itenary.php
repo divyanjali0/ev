@@ -152,10 +152,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $pdfPathServer = $pdfDir . $referenceNo . '.pdf';
     $pdf->Output($pdfPathServer, 'F');
-
+    $protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http";
+    $host = $_SERVER['HTTP_HOST'];
     $baseUrl = rtrim(dirname($_SERVER['SCRIPT_NAME']), '/');
-    $_SESSION['pdf_to_download'] = $baseUrl . '/uploads/itineraries/' . $referenceNo . '.pdf';
+    $pdfFullUrl = $protocol . '://' . $host . $baseUrl . '/uploads/itineraries/' . $referenceNo . '.pdf';
+
+    $stmt = $conn->prepare("UPDATE itinerary_customer SET pdf = :pdf WHERE reference_no = :reference_no");
+    $stmt->execute([
+        ':pdf' => $pdfFullUrl,
+        ':reference_no' => $referenceNo
+    ]);
+
+    $_SESSION['pdf_to_download'] = $pdfFullUrl;
     $_SESSION['itinerary_success'] = true;
+
 
     header("Location: " . $_SERVER['REQUEST_URI']);
     exit;
