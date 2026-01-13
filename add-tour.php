@@ -8,13 +8,13 @@
     }
 
     // Fetch Tour Themes
-$themes = $conn->query("SELECT id, theme_name FROM tour_themes ORDER BY theme_name")->fetchAll(PDO::FETCH_ASSOC);
+    $themes = $conn->query("SELECT id, theme_name FROM tour_themes ORDER BY theme_name")->fetchAll(PDO::FETCH_ASSOC);
 
-// Fetch Cities
-$cities = $conn->query("SELECT id, name FROM cities ORDER BY name")->fetchAll(PDO::FETCH_ASSOC);
+    // Fetch Cities
+    $cities = $conn->query("SELECT id, name FROM cities ORDER BY name")->fetchAll(PDO::FETCH_ASSOC);
 
-// Fetch Country Codes
-$countryCodes = $conn->query("SELECT id, country_name, country_code FROM country_codes ORDER BY country_name")->fetchAll(PDO::FETCH_ASSOC);
+    // Fetch Country Codes
+    $countryCodes = $conn->query("SELECT id, country_name, country_code FROM country_codes ORDER BY country_name")->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -28,6 +28,10 @@ $countryCodes = $conn->query("SELECT id, country_name, country_code FROM country
     <link rel="stylesheet" href="https://cdn.datatables.net/2.1.2/css/dataTables.bootstrap5.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.1/css/buttons.bootstrap5.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
 </head>
 <style>
      body { font-family: "Cambria", sans-serif; background-color: #f4f6f8; font-size: 12px; }
@@ -59,16 +63,14 @@ $countryCodes = $conn->query("SELECT id, country_name, country_code FROM country
 
                             <div class="col-md-4">
                                 <label class="form-label">Cities</label>
-                                <select name="city_ids[]" class="form-select" multiple required>
+                                <select name="city_ids[]" class="form-select select2" multiple required>
                                     <?php foreach ($cities as $city): ?>
                                         <option value="<?= $city['id'] ?>">
                                             <?= htmlspecialchars($city['name']) ?>
                                         </option>
                                     <?php endforeach; ?>
                                 </select>
-                                <small class="text-muted">Hold Ctrl (Windows) or Cmd (Mac) to select multiple</small>
                             </div>
-
                         </div>
 
                         <hr>
@@ -167,7 +169,7 @@ $countryCodes = $conn->query("SELECT id, country_name, country_code FROM country
                         <div class="row g-3 mt-2">
                             <div class="col-md-4">
                                 <label class="form-label">WhatsApp Code</label>
-                                <select name="whatsapp_code" class="form-select" required>
+                                <select name="whatsapp_code" class="form-select select2" required>
                                     <option value="">Select Code</option>
                                     <?php foreach ($countryCodes as $code): ?>
                                         <option value="<?= $code['country_code'] ?>">
@@ -176,7 +178,6 @@ $countryCodes = $conn->query("SELECT id, country_name, country_code FROM country
                                     <?php endforeach; ?>
                                 </select>
                             </div>
-
 
                             <div class="col-md-4">
                                 <label class="form-label">WhatsApp Number</label>
@@ -237,6 +238,17 @@ $countryCodes = $conn->query("SELECT id, country_name, country_code FROM country
             </div>
         </div>
     </div>
+
+    <script>
+        $(document).ready(function() {
+            $('.select2').select2({
+                placeholder: "Select an option",
+                allowClear: true,
+                width: '100%'
+            });
+        });
+    </script>
+
 </body>
 
 </html>
