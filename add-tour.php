@@ -43,7 +43,7 @@
     <div class="d-flex">
         <?php include __DIR__ . '/assets/includes/sidebar.php'; ?>
         <div class="flex-grow-1">
-            <div class="container">
+            <div class="container-fluid">
                 <div class="dashboard-card">
                     <h4 class="mb-4 fw-bold">Add Tour</h4>
                     <form action="" method="POST">
@@ -61,7 +61,7 @@
                                 </select>
                             </div>
 
-                            <div class="col-md-4">
+                            <div class="col-md-8">
                                 <label class="form-label">Cities</label>
                                 <select name="city_ids[]" class="form-select select2" multiple required>
                                     <?php foreach ($cities as $city): ?>
