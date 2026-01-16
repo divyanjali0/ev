@@ -408,7 +408,7 @@ h5 {
                                     Proceed to calculate tour costing based on selected cities, dates, hotels, and passengers.
                                 </p>
 
-                                <a href="calculate-costing.php" class="btn btn-primary btn-lg">
+                                <a href="calculate-costing.php?id=<?= htmlspecialchars($id); ?>" class="btn btn-primary btn-lg">
                                     <i class="bi bi-calculator"></i> Calculate Costing
                                 </a>
                             </div>
