@@ -7,6 +7,110 @@
         exit;
     }
 
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+        // Generate reference number
+        $referenceNo = 'EV-' . strtoupper(uniqid());
+
+        // Sanitize & prepare arrays
+        $themeIds = !empty($_POST['theme_ids']) ? [(int)$_POST['theme_ids']] : [];
+        $cityIds  = $_POST['city_ids'] ?? [];
+
+        $themeIdsJson = json_encode($themeIds);
+        $cityIdsJson  = json_encode(array_map('intval', $cityIds));
+
+        // Bed types (store as JSON for future flexibility)
+        $bedTypesJson = json_encode($_POST['bed_types'] ?? []);
+
+        $stmt = $conn->prepare("
+            INSERT INTO itinerary_customer (
+                reference_no,
+                theme_ids,
+                city_ids,
+                start_date,
+                end_date,
+                nights,
+                adults,
+                children_6_11,
+                children_above_11,
+                infants,
+                hotel_rating,
+                meal_plan,
+                allergy_issues,
+                allergy_reason,
+                pickup_location,
+                dropoff_location,
+                title,
+                full_name,
+                email,
+                whatsapp_code,
+                whatsapp,
+                country,
+                flight_number,
+                remarks,
+                bed_types
+            ) VALUES (
+                :reference_no,
+                :theme_ids,
+                :city_ids,
+                :start_date,
+                :end_date,
+                :nights,
+                :adults,
+                :children_6_11,
+                :children_above_11,
+                :infants,
+                :hotel_rating,
+                :meal_plan,
+                :allergy_issues,
+                :allergy_reason,
+                :pickup_location,
+                :dropoff_location,
+                :title,
+                :full_name,
+                :email,
+                :whatsapp_code,
+                :whatsapp,
+                :country,
+                :flight_number,
+                :remarks,
+                :bed_types
+            )
+        ");
+
+        $stmt->execute([
+            ':reference_no'        => $referenceNo,
+            ':theme_ids'           => $themeIdsJson,
+            ':city_ids'            => $cityIdsJson,
+            ':start_date'          => $_POST['start_date'] ?? null,
+            ':end_date'            => $_POST['end_date'] ?? null,
+            ':nights'              => $_POST['nights'] ?? 0,
+            ':adults'              => $_POST['adults'] ?? 0,
+            ':children_6_11'       => $_POST['children_6_11'] ?? 0,
+            ':children_above_11'   => $_POST['children_above_11'] ?? 0,
+            ':infants'             => $_POST['infants'] ?? 0,
+            ':hotel_rating'        => $_POST['hotel_rating'] ?? null,
+            ':meal_plan'           => $_POST['meal_plan'] ?? null,
+            ':allergy_issues'      => $_POST['allergy_issues'] ?? 'No',
+            ':allergy_reason'      => $_POST['allergy_reason'] ?? null,
+            ':pickup_location'     => $_POST['pickup_location'] ?? null,
+            ':dropoff_location'    => $_POST['dropoff_location'] ?? null,
+            ':title'               => $_POST['title'] ?? null,
+            ':full_name'           => $_POST['full_name'] ?? null,
+            ':email'               => $_POST['email'] ?? null,
+            ':whatsapp_code'       => $_POST['whatsapp_code'] ?? null,
+            ':whatsapp'            => $_POST['whatsapp'] ?? null,
+            ':country'             => $_POST['country'] ?? null,
+            ':flight_number'       => $_POST['flight_number'] ?? null,
+            ':remarks'             => $_POST['remarks'] ?? null,
+            ':bed_types'           => $bedTypesJson
+        ]);
+
+        $_SESSION['success_message'] = "Tour saved successfully!";
+        header("Location: itenary-request.php");
+        exit;
+    }
+
     // Fetch Tour Themes
     $themes = $conn->query("SELECT id, theme_name FROM tour_themes ORDER BY theme_name")->fetchAll(PDO::FETCH_ASSOC);
 
@@ -50,7 +154,7 @@
                         <!-- Row 1 -->
                         <div class="row g-3">
                             <div class="col-md-4">
-                                <label class="form-label">Tour Theme</label>
+                                <label class="form-label">Tour Theme <span class="text-danger">*</span></label>
                                 <select name="theme_ids" class="form-select" required>
                                     <option value="">Select Theme</option>
                                     <?php foreach ($themes as $theme): ?>
@@ -62,7 +166,7 @@
                             </div>
 
                             <div class="col-md-8">
-                                <label class="form-label">Cities</label>
+                                <label class="form-label">Cities <span class="text-danger">*</span></label>
                                 <select name="city_ids[]" class="form-select select2" multiple required>
                                     <?php foreach ($cities as $city): ?>
                                         <option value="<?= $city['id'] ?>">
@@ -78,25 +182,25 @@
                         <!-- Row 2 -->
                         <div class="row g-3 mt-2">
                             <div class="col-md-4">
-                                <label class="form-label">Start Date</label>
-                                <input type="date" name="start_date" class="form-control">
+                                <label class="form-label">Start Date <span class="text-danger">*</span></label>
+                                <input type="date" name="start_date" class="form-control" required>
                             </div>
 
                             <div class="col-md-4">
-                                <label class="form-label">End Date</label>
-                                <input type="date" name="end_date" class="form-control">
+                                <label class="form-label">End Date <span class="text-danger">*</span></label>
+                                <input type="date" name="end_date" class="form-control" required>
                             </div>
                             <div class="col-md-4">
                                 <label class="form-label">Nights</label>
-                                <input type="number" name="nights" class="form-control">
+                                <input type="number" name="nights" id="nights" class="form-control" readonly>
                             </div>
                         </div>
 
                         <!-- Row 3 -->
                         <div class="row g-3 mt-2">
                             <div class="col-md-3">
-                                <label class="form-label">Adults</label>
-                                <input type="number" name="adults" class="form-control">
+                                <label class="form-label">Adults <span class="text-danger">*</span></label>
+                                <input type="number" name="adults" class="form-control" required>
                             </div>
 
                             <div class="col-md-3">
@@ -116,8 +220,8 @@
                         <!-- Row 4 -->
                         <div class="row g-3 mt-2">
                             <div class="col-md-3">
-                                <label class="form-label">Hotel Rating</label>
-                                <select name="hotel_rating" class="form-select">
+                                <label class="form-label">Hotel Rating <span class="text-danger">*</span></label>
+                                <select name="hotel_rating" class="form-select" require>
                                     <option value="">Select</option>
                                     <option>3 Star</option>
                                     <option>4 Star</option>
@@ -125,12 +229,12 @@
                                 </select>
                             </div>
                             <div class="col-md-3">
-                                <label class="form-label">Meal Plan</label>
-                                <input type="text" name="meal_plan" class="form-control">
+                                <label class="form-label">Meal Plan <span class="text-danger">*</span></label>
+                                <input type="text" name="meal_plan" class="form-control" required>
                             </div>
                             <div class="col-md-3">
-                                <label class="form-label">Allergy Issues</label>
-                                <select name="allergy_issues" class="form-select">
+                                <label class="form-label">Allergy Issues <span class="text-danger">*</span> </label>
+                                <select name="allergy_issues" class="form-select" required>
                                     <option value="No">No</option>
                                     <option value="Yes">Yes</option>
                                 </select>
@@ -146,8 +250,8 @@
                         <!-- Row 6 -->
                         <div class="row g-3 mt-2">
                             <div class="col-md-4">
-                                <label class="form-label">Title</label>
-                                <select name="title" class="form-select">
+                                <label class="form-label">Title <span class="text-danger">*</span></label>
+                                <select name="title" class="form-select" required>
                                     <option>Mr</option>
                                     <option>Mrs</option>
                                     <option>Ms</option>
@@ -155,20 +259,20 @@
                             </div>
 
                             <div class="col-md-4">
-                                <label class="form-label">Full Name</label>
-                                <input type="text" name="full_name" class="form-control">
+                                <label class="form-label">Full Name <span class="text-danger">*</span></label>
+                                <input type="text" name="full_name" class="form-control" required>
                             </div>
 
                             <div class="col-md-4">
-                                <label class="form-label">Email</label>
-                                <input type="email" name="email" class="form-control">
+                                <label class="form-label">Email <span class="text-danger">*</span></label>
+                                <input type="email" name="email" class="form-control" required>
                             </div>
                         </div>
 
                         <!-- Row 7 -->
                         <div class="row g-3 mt-2">
                             <div class="col-md-4">
-                                <label class="form-label">WhatsApp Code</label>
+                                <label class="form-label">WhatsApp Code <span class="text-danger">*</span></label>
                                 <select name="whatsapp_code" class="form-select select2" required>
                                     <option value="">Select Code</option>
                                     <?php foreach ($countryCodes as $code): ?>
@@ -180,13 +284,13 @@
                             </div>
 
                             <div class="col-md-4">
-                                <label class="form-label">WhatsApp Number</label>
-                                <input type="text" name="whatsapp" class="form-control">
+                                <label class="form-label">WhatsApp Number <span class="text-danger">*</span></label>
+                                <input type="text" name="whatsapp" class="form-control" required>
                             </div>
 
                             <div class="col-md-4">
-                                <label class="form-label">Country</label>
-                                <input type="text" name="country" class="form-control">
+                                <label class="form-label">Country <span class="text-danger">*</span></label>
+                                <input type="text" name="country" class="form-control" required>
                             </div>
                         </div>
 
@@ -212,7 +316,7 @@
                         <div class="row g-3 mt-2">
                             <div class="col-md-4">
                                 <label class="form-label">Bed Types</label>
-                                <input type="text" name="bed_types" class="form-control">
+                                <input type="text" name="bed_types[]" class="form-control" placeholder="e.g. King, Twin">
                             </div>
                         </div>
 
@@ -249,6 +353,28 @@
         });
     </script>
 
+    <script>
+        function calculateNights() {
+            const start = document.querySelector('input[name="start_date"]').value;
+            const end   = document.querySelector('input[name="end_date"]').value;
+            const nightsInput = document.getElementById('nights');
+
+            if (start && end) {
+                const startDate = new Date(start);
+                const endDate   = new Date(end);
+
+                const diffTime = endDate - startDate;
+                const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+
+                nightsInput.value = diffDays > 0 ? diffDays : 0;
+            } else {
+                nightsInput.value = '';
+            }
+        }
+
+        document.querySelector('input[name="start_date"]').addEventListener('change', calculateNights);
+        document.querySelector('input[name="end_date"]').addEventListener('change', calculateNights);
+    </script>
 </body>
 
 </html>

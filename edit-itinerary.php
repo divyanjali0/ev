@@ -393,6 +393,28 @@ h5 {
                         </div>
                     </div>
 
+                    <!-- Costing Calculator -->
+                    <div class="accordion-item mt-3">
+                        <h2 class="accordion-header" id="headingCosting">
+                            <button class="fw-bold accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCosting">
+                                Costing & Pricing
+                            </button>
+                        </h2>
+
+                        <div id="collapseCosting" class="accordion-collapse collapse">
+                            <div class="accordion-body text-center">
+
+                                <p class="mb-3 text-muted">
+                                    Proceed to calculate tour costing based on selected cities, dates, hotels, and passengers.
+                                </p>
+
+                                <a href="calculate-costing.php" class="btn btn-primary btn-lg">
+                                    <i class="bi bi-calculator"></i> Calculate Costing
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
                     <!-- Themes & Cities -->
                     <div class="accordion-item mt-3">
                         <h2 class="accordion-header" id="headingThemesCities">
