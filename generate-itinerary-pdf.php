@@ -103,6 +103,7 @@ $pdf->SetX(20);
 $pdf->Cell(0, 10, $cover['sub_heading'] ?? '', 0, 1);
 
 
+
 /* =========================
    NORMAL PAGES
 ========================= */
@@ -126,7 +127,8 @@ $pdf->Cell(0, 14, 'Destinations', 0, 1);
 foreach ($days as $day) {
     $pdf->SetX($marginLeft);
     $pdf->SetFont('helvetica', 'B', 12);
-    $pdf->Cell(0, 8, 'Day '.$day['day'].' – '.$day['city_name'], 0, 1);
+    $cityName = $cityMap[$day['city_id']] ?? 'Unknown City';
+    $pdf->Cell(0, 8, 'Day '.$day['day'].' – '.$cityName, 0, 1);
 
     $pdf->SetX($marginLeft);
     $pdf->SetFont('helvetica', '', 11);
@@ -248,14 +250,16 @@ $pdf->Output($dir.$fileName, 'F');
 
 /* Update DB */
 $update = $conn->prepare("
-    UPDATE itinerary_customer_history 
-    SET pdf_path = :pdf 
-    WHERE history_id = :vid
+    UPDATE itinerary_customer_history
+    SET pdf_path = :pdf
+    WHERE id = :vid
 ");
+
 $update->execute([
-    'pdf' => 'uploads/pdfs/'.$fileName,
-    'vid' => $data['history_id']
+    'pdf' => 'uploads/pdfs/' . $fileName,
+    'vid' => $data['id']
 ]);
+
 
 header("Location: revised-itenary.php?pdf=created");
 exit;

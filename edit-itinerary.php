@@ -140,6 +140,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
         $insertData['hotels'] = json_encode($hotelsData);
 
+
+        $cityMap = [];
+        $stmt = $conn->query("SELECT id, name FROM cities");
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $cityMap[$row['id']] = $row['name'];
+        }
+
+
         /*** TOUR COST ***/
         $costData = $existingCost ?: ['title'=>'','pax'=>'','vehicle'=>'','meal_plan'=>'','hotel_category'=>'','room_type'=>'','currency'=>'','total'=>''];
         if (!empty($_POST['cost'])) {
