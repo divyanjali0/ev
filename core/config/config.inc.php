@@ -6,10 +6,10 @@ $database_type = 'mysql';
 $database_server = 'localhost';
 $database_connection_charset = 'utf8mb4';
 $table_prefix = 'modx_';
-$dbase = 'explore_vacations';
+$dbase = 'explore-vacations';
 $database_user = 'root';
 $database_password = '';
-$database_dsn = 'mysql:host=localhost;dbname=explore_vacations;charset=utf8mb4';
+$database_dsn = 'mysql:host=localhost;dbname=explore-vacations;charset=utf8mb4';
 $config_options = array (
 );
 $driver_options = array (

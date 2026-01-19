@@ -187,12 +187,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         /*** INSERT INTO HISTORY ***/
         $insertSql = "INSERT INTO itinerary_customer_history
-            (vehicle_id, reference_no, itinerary_id, edited_by, edit_reason, theme_ids, city_ids, start_date, end_date, nights, adults,
+            (vehicle_id, reference_no, itinerary_id, edited_by, edit_reason,edited_at, theme_ids, city_ids, start_date, end_date, nights, adults,
             children_6_11, children_above_11, infants, hotel_rating, meal_plan, allergy_issues, allergy_reason,
             title, full_name, email, whatsapp_code, whatsapp, country, nationality, flight_number,
             pickup_location, dropoff_location, remarks, day_city_details, hotels, tour_cost, terms_conditions, cover_page, version_number)
             VALUES
-            (:vehicle_id, :reference_no, :itinerary_id, :edited_by, :edit_reason, :theme_ids, :city_ids, :start_date, :end_date, :nights, :adults,
+            (:vehicle_id, :reference_no, :itinerary_id, :edited_by, :edit_reason,:edited_at,:theme_ids,:city_ids,:start_date,:end_date,:nights,:adults,
             :children_6_11, :children_above_11, :infants, :hotel_rating, :meal_plan, :allergy_issues, :allergy_reason,
             :title, :full_name, :email, :whatsapp_code, :whatsapp, :country, :nationality, :flight_number,
             :pickup_location, :dropoff_location, :remarks, :day_city_details, :hotels, :tour_cost, :terms_conditions, :cover_page, :version_number)";
@@ -202,7 +202,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'itinerary_id'   => $id,
             'edited_by'      => $_SESSION['user_id'],
             'edit_reason'    => 'Edited via dashboard',
-            'version_number' => $nextVersion
+            'version_number' => $nextVersion,
+            'edited_at'      => date('Y-m-d H:i:s')
         ]);
         $stmtInsert->execute($params);
 

@@ -1,6 +1,6 @@
 <?php
     $host = "localhost";      
-    $db_name = "explore_vacations"; 
+    $db_name = "explore-vacations"; 
     $username = "root";       
     $password = "";          
 
