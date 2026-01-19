@@ -191,85 +191,109 @@ if (!empty($itinerary['city_ids'])) {
             ?>
             <div class="card p-3 mb-5">
                 <div class="mb-3 d-flex justify-content-between align-items-center">
-                <h5 class="fw-bold mb-0">Cost Details</h5>
-                    <button type="button" class="btn btn-sm btn-primary mt-2" id="addRowBtn">Add Row</button>
-                        </div>
+                    <h5 class="fw-bold mb-0">Cost Details</h5>
+                    <div>
+                        <button type="button" class="btn btn-sm btn-primary" id="addRowBtn">Add Row</button>
+                        <button type="button" class="btn btn-sm btn-secondary" id="addColBtn">Add Column</button>
+                    </div>
+                </div>
+
                 <div class="table-responsive">
                     <table class="table table-bordered text-center align-middle" id="costTable">
                         <thead class="table-light">
-                            <tr>
+                            <tr id="tableHead">
                                 <th>No</th>
                                 <th>Date</th>
                                 <th>Hotel</th>
                                 <th>Room Category</th>
                                 <th>Meal Plan</th>
                                 <th>Double</th>
-                                <th>Single</th>
-                                <th>Child</th>
-                                <th>Notes</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <?php
-                            $rowCount = max($numDays, 6); // show at least 6 rows
-                            for ($i = 0; $i < $rowCount; $i++):
-                                $dateValue = $dates[$i] ?? '';
-                            ?>
+                            <?php foreach ($dates as $index => $dateValue): ?>
                             <tr>
-                                <th scope="row"><?= $i + 1 ?></th>
+                                <th scope="row"><?= $index + 1 ?></th>
                                 <td><input type="date" class="form-control" value="<?= $dateValue ?>"></td>
                                 <td><input type="text" class="form-control" placeholder="Hotel Name"></td>
                                 <td><input type="text" class="form-control" placeholder="Room Category"></td>
                                 <td><input type="text" class="form-control" placeholder="Meal Plan"></td>
                                 <td><input type="number" class="form-control" placeholder="Double"></td>
-                                <td><input type="number" class="form-control" placeholder="Single"></td>
-                                <td><input type="number" class="form-control" placeholder="Child"></td>
-                                <td><input type="text" class="form-control" placeholder="Notes"></td>
                                 <td><button type="button" class="btn btn-sm btn-danger remove-row">Remove</button></td>
                             </tr>
-                            <?php endfor; ?>
+                            <?php endforeach; ?>
                         </tbody>
                     </table>
                 </div>
             </div>
+
         </div>
     </div>
 </div>
 
 <script>
-    // Add new row dynamically
-    document.getElementById('addRowBtn').addEventListener('click', function() {
-        const table = document.getElementById('costTable').getElementsByTagName('tbody')[0];
-        const rowCount = table.rows.length;
-        const row = table.insertRow();
-        row.innerHTML = `
-            <th scope="row">${rowCount + 1}</th>
-            <td><input type="date" class="form-control"></td>
-            <td><input type="text" class="form-control" placeholder="Hotel Name"></td>
-            <td><input type="text" class="form-control" placeholder="Room Category"></td>
-            <td><input type="text" class="form-control" placeholder="Meal Plan"></td>
-            <td><input type="number" class="form-control" placeholder="Double"></td>
-            <td><input type="number" class="form-control" placeholder="Single"></td>
-            <td><input type="number" class="form-control" placeholder="Child"></td>
-            <td><input type="text" class="form-control" placeholder="Notes"></td>
-            <td><button type="button" class="btn btn-sm btn-danger remove-row">Remove</button></td>
-        `;
+    const costTable = document.getElementById('costTable');
+    const tableHead = document.getElementById('tableHead');
+    let newColCount = 0;
+
+    // Add new column
+    document.getElementById('addColBtn').addEventListener('click', () => {
+        const colName = prompt('Enter column heading:', 'Extra ' + (++newColCount));
+        if (!colName) return;
+
+        tableHead.insertBefore(createCell(colName, 'th'), tableHead.lastElementChild);
+        costTable.querySelectorAll('tbody tr').forEach(row => {
+            row.insertBefore(createCell('', 'td', `<input type="text" class="form-control" placeholder="${colName}">`), row.lastElementChild);
+        });
+    });
+
+    // Add new row
+    document.getElementById('addRowBtn').addEventListener('click', () => {
+        const tbody = costTable.querySelector('tbody');
+        const row = tbody.insertRow();
+        const defaultCols = ['','', '', '', '', '']; 
+
+        defaultCols.forEach(val => row.insertCell().innerHTML = `<input type="text" class="form-control">`);
+
+        // Extra dynamic columns
+        const extraCols = tableHead.children.length - defaultCols.length - 2;
+        for (let i = 0; i < extraCols; i++) {
+            const colHeading = tableHead.children[defaultCols.length + i + 1].textContent;
+            row.insertCell().innerHTML = `<input type="text" class="form-control" placeholder="${colHeading}">`;
+        }
+
+        row.insertCell().innerHTML = '<button type="button" class="btn btn-sm btn-danger remove-row">Remove</button>';
+        updateRowNumbers();
     });
 
     // Remove row
-    document.addEventListener('click', function(e){
-        if(e.target && e.target.classList.contains('remove-row')){
-            const row = e.target.closest('tr');
-            row.remove();
-
-            // Re-number rows
-            const rows = document.querySelectorAll('#costTable tbody tr');
-            rows.forEach((tr, index) => {
-                tr.querySelector('th').textContent = index + 1;
-            });
+    document.addEventListener('click', e => {
+        if (e.target.classList.contains('remove-row')) {
+            e.target.closest('tr').remove();
+            updateRowNumbers();
         }
     });
+
+    // Update row numbers
+    function updateRowNumbers() {
+        costTable.querySelectorAll('tbody tr').forEach((tr, i) => tr.querySelector('th').textContent = i + 1);
+    }
+
+    function createCell(text, type = 'td', html = '') {
+        const cell = document.createElement(type);
+        if (html) cell.innerHTML = html;
+        else cell.textContent = text;
+        return cell;
+    }
+
+    function sortTableByDate() {
+        const tbody = costTable.querySelector('tbody');
+        Array.from(tbody.rows)
+            .sort((a, b) => new Date(a.cells[1].querySelector('input').value) - new Date(b.cells[1].querySelector('input').value))
+            .forEach(row => tbody.appendChild(row));
+        updateRowNumbers();
+    }
 </script>
 </body>
 </html>
