@@ -251,7 +251,7 @@ if (!empty($itinerary['city_ids'])) {
                             <tr style="background-color:#cce5ff; font-weight:bold;">
                                 <td colspan="5" class="text-start">Grand Total</td>
                                 <td id="grandTotal" style="background-color:#99ccff;">0</td>
-                                <td></td>
+                                <!-- <td></td> -->
                             </tr>
                         </tfoot>
                         <div class="table-responsive">
@@ -262,15 +262,15 @@ if (!empty($itinerary['city_ids'])) {
                                         <td><input type="number" id="dblRoomCost" class="form-control" value="0"></td>
                                     </tr>
                                     <tr>
-                                        <td colspan="5" class="text-start">Entrance Tickets</td>
+                                        <td colspan="9" class="text-start">Entrance Tickets</td>
                                         <td><input type="number" id="entranceTickets" class="form-control" value="0"></td>
                                     </tr>
                                     <tr>
-                                        <td  colspan="5" class="text-start">Lunches & Dinners</td>
+                                        <td  colspan="9" class="text-start">Lunches & Dinners</td>
                                         <td><input type="number" id="lunchesDinners" class="form-control" value="0"></td>
                                     </tr>
                                     <tr style="background-color:#cce5ff; font-weight:bold;">
-                                        <td colspan="5"  class="text-start">Cost Per Pax - IN USD</td>
+                                        <td colspan="9"  class="text-start">Cost Per Pax - IN USD</td>
                                         <td id="costPerPax" style="background-color:#99ccff;">0</td>
                                     </tr>
                                 </tbody>
@@ -307,7 +307,7 @@ if (!empty($itinerary['city_ids'])) {
                                             <td><input type="number" class="form-control days" value="0"></td>
                                             <td><input type="number" class="form-control batta" value="0"></td>
                                             <td class="transportRs">0</td>
-                                            <td><input type="number" class="form-control transportUsd" value="0"></td>
+                                            <td><input type="number" class="form-control transportUsd" value="0" readonly></td>
                                             <td><input type="number" class="form-control lGuideUsd" value="0"></td>
                                             <td class="totalCost">0</td>
                                             <td class="costPP">0</td>
@@ -373,14 +373,15 @@ if (!empty($itinerary['city_ids'])) {
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td>Transport: IN USD (Total * Pax)</td>
+                                        <td>Sub Total</td>
                                         <td id="transportTotalUSD">0</td>
                                     </tr>
+
                                     <tr>
                                         <td>10% Discount</td>
                                         <td id="discountAmount">0</td>
                                     </tr>
-                                    <tr style="font-weight:bold; background-color:#ffe699;">
+                                    <tr style="font-weight:bold; background-color:#ffe699; font-size: 18px;">
                                         <td>Cost for the Trip</td>
                                         <td id="tripCost">0</td>
                                     </tr>
@@ -495,7 +496,7 @@ if (!empty($itinerary['city_ids'])) {
         const lunches = parseFloat(document.getElementById('lunchesDinners').value) || 0;
 
         // Cost Per Pax = grandTotal + dblRoom + entrance + lunches
-        const costPerPax = grandTotal + dblRoom + entrance + lunches;
+        const costPerPax = grandTotal + entrance + lunches;
         document.getElementById('costPerPax').textContent = costPerPax.toFixed(2);
     }
 
@@ -516,7 +517,8 @@ if (!empty($itinerary['city_ids'])) {
     // Initial total calculation
     updateTotals();
 
-    function updateTransportTotals() {
+function updateTransportTotals() {
+    const exchangeRate = parseFloat(document.getElementById('exchange_rate').value) || 1; // get exchange rate
     const rows = document.querySelectorAll('#transportTable tbody tr');
 
     rows.forEach(tr => {
@@ -524,23 +526,34 @@ if (!empty($itinerary['city_ids'])) {
         const km = parseFloat(tr.querySelector('.km').value) || 0;
         const days = parseFloat(tr.querySelector('.days').value) || 0;
         const batta = parseFloat(tr.querySelector('.batta').value) || 0;
-        const transportUsd = parseFloat(tr.querySelector('.transportUsd').value) || 0;
         const lGuideUsd = parseFloat(tr.querySelector('.lGuideUsd').value) || 0;
 
         // Calculated fields
         const totalRs = rsPerKm * km;
         const transportRs = totalRs + batta;
-        const totalCost = transportRs + transportUsd + lGuideUsd;
+
+        // Transport USD = Transport Rs. / Exchange Rate
+        const transportUsd = transportRs / exchangeRate;
+
+        const totalCost = transportUsd + lGuideUsd;
+
         let pax = tr.cells[0].textContent.split('-');
         let paxCount = pax.length === 2 ? (parseInt(pax[1]) + parseInt(pax[0])) / 2 : parseInt(pax[0]); // approximate if range
         const costPP = paxCount ? totalCost / paxCount : totalCost;
 
         tr.querySelector('.totalRs').textContent = totalRs.toFixed(2);
         tr.querySelector('.transportRs').textContent = transportRs.toFixed(2);
+        tr.querySelector('.transportUsd').value = transportUsd.toFixed(2); // updated
         tr.querySelector('.totalCost').textContent = totalCost.toFixed(2);
         tr.querySelector('.costPP').textContent = costPP.toFixed(2);
     });
 }
+
+document.getElementById('exchange_rate').addEventListener('input', () => {
+    updateTransportTotals();
+    updateTransportSummary();
+});
+
 
 // Recalculate on input
 document.querySelectorAll('#transportTable input').forEach(input => {
@@ -557,21 +570,24 @@ function updateTransportSummary() {
         totalTransportUSD += parseFloat(tr.querySelector('.totalCost').textContent) || 0;
     });
 
-    // Get total pax from itinerary (sum adults + children + infants)
-    const adults = parseInt("<?= $itinerary['adults'] ?? 0 ?>");
-    const children_6_11 = parseInt("<?= $itinerary['children_6_11'] ?? 0 ?>");
-    const children_above_11 = parseInt("<?= $itinerary['children_above_11'] ?? 0 ?>");
-    const infants = parseInt("<?= $itinerary['infants'] ?? 0 ?>");
-    const totalPax = adults + children_6_11 + children_above_11 + infants;
+    // Get Cost Per Pax
+    const costPerPax = parseFloat(document.getElementById('costPerPax').textContent) || 0;
 
-    const transportUSDTotal = totalTransportUSD * totalPax;
-    const discount = transportUSDTotal * 0.10; // 10%
-    const tripCost = transportUSDTotal - discount;
+    // Sub Total = Transport Total + Cost Per Pax * 2
+    const subTotal = ( totalTransportUSD + costPerPax ) * 2;
 
-    document.getElementById('transportTotalUSD').textContent = transportUSDTotal.toFixed(2);
+    // 10% Discount
+    const discount = subTotal * 0.10;
+
+    // Cost for Trip
+    const tripCost = subTotal - discount;
+
+    // Update values
+    document.getElementById('transportTotalUSD').textContent = subTotal.toFixed(2);
     document.getElementById('discountAmount').textContent = discount.toFixed(2);
     document.getElementById('tripCost').textContent = tripCost.toFixed(2);
 }
+
 
 // Call this function whenever Transport Chart changes
 document.querySelectorAll('#transportTable input').forEach(input => {
