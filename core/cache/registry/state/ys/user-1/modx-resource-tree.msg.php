@@ -6,4 +6,7 @@ return array (
   3 => '/root/web_0/web_3',
   4 => '/root/web_0/web_7',
   5 => '/root/web_0/web_8',
+  6 => '/root/web_0/web_11',
+  7 => '/root/zh_0/zh_10',
+  8 => '/root/zh_0',
 );

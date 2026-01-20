@@ -1,229 +1,248 @@
 <?php
-session_start();
-require_once __DIR__ . '/assets/includes/db_connect.php';
+    session_start();
+    require_once __DIR__ . '/assets/includes/db_connect.php';
 
-if (!isset($_SESSION['user_id'])) {
-    header("Location: login.php");
-    exit;
-}
+    if (!isset($_SESSION['user_id'])) {
+        header("Location: login.php");
+        exit;
+    }
 
-// Get itinerary ID
-if (!isset($_GET['id']) || empty($_GET['id'])) {
-    header("Location: itenary-request.php");
-    exit;
-}
+    // Get itinerary ID
+    if (!isset($_GET['id']) || empty($_GET['id'])) {
+        header("Location: itenary-request.php");
+        exit;
+    }
 
-$id = $_GET['id'];
+    $id = $_GET['id'];
 
-// Fetch all themes and cities
-$themes = $conn->query("SELECT id, theme_name FROM tour_themes ORDER BY theme_name")->fetchAll(PDO::FETCH_ASSOC);
-$cities = $conn->query("SELECT id, name FROM cities ORDER BY name")->fetchAll(PDO::FETCH_ASSOC);
+    // Fetch all themes and cities
+    $themes = $conn->query("SELECT id, theme_name FROM tour_themes ORDER BY theme_name")->fetchAll(PDO::FETCH_ASSOC);
+    $cities = $conn->query("SELECT id, name FROM cities ORDER BY name")->fetchAll(PDO::FETCH_ASSOC);
 
-// Fetch latest itinerary version from history or fallback to main table
-$stmt = $conn->prepare("SELECT * FROM itinerary_customer_history WHERE itinerary_id = :id ORDER BY version_number DESC LIMIT 1");
-$stmt->execute(['id' => $id]);
-$itinerary = $stmt->fetch(PDO::FETCH_ASSOC);
-
-if (!$itinerary) {
-    // fallback to main table if no history exists
-    $stmt = $conn->prepare("SELECT * FROM itinerary_customer WHERE id = :id");
+    // Fetch latest itinerary version from history or fallback to main table
+    $stmt = $conn->prepare("SELECT * FROM itinerary_customer_history WHERE itinerary_id = :id ORDER BY version_number DESC LIMIT 1");
     $stmt->execute(['id' => $id]);
     $itinerary = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if (!$itinerary) {
-        echo "Itinerary not found!";
-        exit;
-    }
-}
-
-// Decode JSON arrays for dropdown pre-selection
-$selectedThemes = json_decode($itinerary['theme_ids'] ?? '[]', true) ?: [];
-$selectedCities = json_decode($itinerary['city_ids'] ?? '[]', true) ?: [];
-
-
-$existingDayCity   = json_decode($itinerary['day_city_details'] ?? '[]', true);
-$existingHotels    = json_decode($itinerary['hotels'] ?? '[]', true);
-$existingCost      = json_decode($itinerary['tour_cost'] ?? '[]', true);
-$existingTerms     = json_decode($itinerary['terms_conditions'] ?? '[]', true);
-$existingCover     = json_decode($itinerary['cover_page'] ?? '[]', true);
-
-
-// Handle form submission
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $fields = [
-        'vehicle_id', 'reference_no', 'start_date', 'end_date', 'nights',
-        'adults', 'children_6_11', 'children_above_11', 'infants', 'hotel_rating', 'meal_plan',
-        'allergy_issues', 'allergy_reason', 'title', 'full_name', 'email', 'whatsapp_code', 'whatsapp',
-        'country', 'nationality', 'flight_number', 'remarks', 'pickup_location', 'dropoff_location'
-    ];
-
-    $insertData = [];
-    foreach ($fields as $f) {
-        $insertData[$f] = $_POST[$f] ?? ($itinerary[$f] ?? null);
-    }
-
-    // Multi-select JSON fields
-    $insertData['theme_ids'] = isset($_POST['theme_ids']) ? json_encode($_POST['theme_ids']) : json_encode($selectedThemes);
-    $insertData['city_ids']  = isset($_POST['city_ids']) ? json_encode($_POST['city_ids']) : json_encode($selectedCities);
-
-    try {
-        $conn->beginTransaction();
-
-        // Determine next version number
-        $stmt = $conn->prepare("SELECT COALESCE(MAX(version_number),0) + 1 AS next_version 
-                                FROM itinerary_customer_history 
-                                WHERE itinerary_id = :id");
+        // fallback to main table if no history exists
+        $stmt = $conn->prepare("SELECT * FROM itinerary_customer WHERE id = :id");
         $stmt->execute(['id' => $id]);
-        $nextVersion = $stmt->fetchColumn();
+        $itinerary = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        /*** DAY CITY DETAILS ***/
-        $dayCityDetails = $existingDayCity ?: []; 
+        if (!$itinerary) {
+            echo "Itinerary not found!";
+            exit;
+        }
+    }
 
-        if (!empty($_POST['day_city'])) {
-            foreach ($_POST['day_city'] as $dayNum => $cityId) {
-                if (empty($cityId)) continue;
+    // Decode JSON arrays for dropdown pre-selection
+    $selectedThemes = json_decode($itinerary['theme_ids'] ?? '[]', true) ?: [];
+    $selectedCities = json_decode($itinerary['city_ids'] ?? '[]', true) ?: [];
 
-                // find old data for this day if exists
-                $oldDay = array_filter($dayCityDetails, fn($d) => $d['day'] == $dayNum);
-                $oldDay = $oldDay ? array_values($oldDay)[0] : [];
 
-                $desc = $_POST['description'][$dayNum] ?? ($oldDay['description'] ?? '');
-                $date = $_POST['day_date'][$dayNum] ?? ($oldDay['date'] ?? '');
-                $meal = $_POST['day_meal'][$dayNum] ?? ($oldDay['meal_plan'] ?? '');
-                $imagesArr = $oldDay['images'] ?? [];
+    $existingDayCity   = json_decode($itinerary['day_city_details'] ?? '[]', true);
+    $existingHotels    = json_decode($itinerary['hotels'] ?? '[]', true);
+    $existingCost      = json_decode($itinerary['tour_cost'] ?? '[]', true);
+    $existingTerms     = json_decode($itinerary['terms_conditions'] ?? '[]', true);
+    $existingCover     = json_decode($itinerary['cover_page'] ?? '[]', true);
 
-                $uploadDir = __DIR__ . "/uploads/city_images/";
-                if (!file_exists($uploadDir)) mkdir($uploadDir, 0777, true);
 
-                if (!empty($_FILES['day_images']['name'][$dayNum])) {
-                    foreach ($_FILES['day_images']['name'][$dayNum] as $key => $name) {
-                        $tmp = $_FILES['day_images']['tmp_name'][$dayNum][$key];
-                        if (is_uploaded_file($tmp)) {
-                            $ext = pathinfo($name, PATHINFO_EXTENSION);
-                            $newName = uniqid('cityimg_') . '.' . $ext;
-                            move_uploaded_file($tmp, $uploadDir . $newName);
-                            $imagesArr[] = $newName; // append new images
+    // Handle form submission
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $fields = [
+            'vehicle_id', 'reference_no', 'start_date', 'end_date', 'nights',
+            'adults', 'children_6_11', 'children_above_11', 'infants', 'hotel_rating', 'meal_plan',
+            'allergy_issues', 'allergy_reason', 'title', 'full_name', 'email', 'whatsapp_code', 'whatsapp',
+            'country', 'nationality', 'flight_number', 'remarks', 'pickup_location', 'dropoff_location'
+        ];
+
+        $insertData = [];
+        foreach ($fields as $f) {
+            $insertData[$f] = $_POST[$f] ?? ($itinerary[$f] ?? null);
+        }
+
+        // Multi-select JSON fields
+        $insertData['theme_ids'] = isset($_POST['theme_ids']) ? json_encode($_POST['theme_ids']) : json_encode($selectedThemes);
+        $insertData['city_ids']  = isset($_POST['city_ids']) ? json_encode($_POST['city_ids']) : json_encode($selectedCities);
+
+        try {
+            $conn->beginTransaction();
+
+            // Determine next version number
+            $stmt = $conn->prepare("SELECT COALESCE(MAX(version_number),0) + 1 AS next_version 
+                                    FROM itinerary_customer_history 
+                                    WHERE itinerary_id = :id");
+            $stmt->execute(['id' => $id]);
+            $nextVersion = $stmt->fetchColumn();
+
+            /*** DAY CITY DETAILS ***/
+            $dayCityDetails = $existingDayCity ?: []; 
+
+            if (!empty($_POST['day_city'])) {
+                foreach ($_POST['day_city'] as $dayNum => $cityId) {
+                    if (empty($cityId)) continue;
+
+                    // find old data for this day if exists
+                    $oldDay = array_filter($dayCityDetails, fn($d) => $d['day'] == $dayNum);
+                    $oldDay = $oldDay ? array_values($oldDay)[0] : [];
+
+                    $desc = $_POST['description'][$dayNum] ?? ($oldDay['description'] ?? '');
+                    $date = $_POST['day_date'][$dayNum] ?? ($oldDay['date'] ?? '');
+                    $meal = $_POST['day_meal'][$dayNum] ?? ($oldDay['meal_plan'] ?? '');
+                    $imagesArr = $oldDay['images'] ?? [];
+
+                    $uploadDir = __DIR__ . "/uploads/city_images/";
+                    if (!file_exists($uploadDir)) mkdir($uploadDir, 0777, true);
+
+                    if (!empty($_FILES['day_images']['name'][$dayNum])) {
+                        foreach ($_FILES['day_images']['name'][$dayNum] as $key => $name) {
+                            $tmp = $_FILES['day_images']['tmp_name'][$dayNum][$key];
+                            if (is_uploaded_file($tmp)) {
+                                $ext = pathinfo($name, PATHINFO_EXTENSION);
+                                $newName = uniqid('cityimg_') . '.' . $ext;
+                                move_uploaded_file($tmp, $uploadDir . $newName);
+                                $imagesArr[] = $newName; // append new images
+                            }
                         }
                     }
+
+                    // remove old entry for this day
+                    $dayCityDetails = array_filter($dayCityDetails, fn($d) => $d['day'] != $dayNum);
+
+                    // add/update this day
+                    $dayCityDetails[] = [
+                        'day' => $dayNum,
+                        'city_id' => $cityId,
+                        'date' => $date,
+                        'meal_plan' => $meal,
+                        'description' => $desc,
+                        'images' => $imagesArr
+                    ];
                 }
 
-                // remove old entry for this day
-                $dayCityDetails = array_filter($dayCityDetails, fn($d) => $d['day'] != $dayNum);
-
-                // add/update this day
-                $dayCityDetails[] = [
-                    'day' => $dayNum,
-                    'city_id' => $cityId,
-                    'date' => $date,
-                    'meal_plan' => $meal,
-                    'description' => $desc,
-                    'images' => $imagesArr
-                ];
+                // re-index array to avoid gaps in numeric keys
+                $dayCityDetails = array_values($dayCityDetails);
             }
 
-            // re-index array to avoid gaps in numeric keys
-            $dayCityDetails = array_values($dayCityDetails);
-        }
-
-        $insertData['day_city_details'] = json_encode($dayCityDetails);
+            $insertData['day_city_details'] = json_encode($dayCityDetails);
 
 
-        /*** HOTELS ***/
-        $hotelsData = $existingHotels ?: [];
-        if (!empty($_POST['hotels'])) {
-            foreach ($_POST['hotels'] as $dayNum => $hotelInfo) {
-                foreach (['name','link'] as $key) {
-                    $hotelInfo[$key] = $hotelInfo[$key] ?? ($hotelsData[$dayNum][$key] ?? '');
-                }
-                $hotelsData[$dayNum] = $hotelInfo;
-            }
-        }
-        $insertData['hotels'] = json_encode($hotelsData);
-
-
-        $cityMap = [];
-        $stmt = $conn->query("SELECT id, name FROM cities");
-        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            $cityMap[$row['id']] = $row['name'];
-        }
-
-
-        /*** TOUR COST ***/
-        $costData = $existingCost ?: ['title'=>'','pax'=>'','vehicle'=>'','meal_plan'=>'','hotel_category'=>'','room_type'=>'','currency'=>'','total'=>''];
-        if (!empty($_POST['cost'])) {
-            foreach ($_POST['cost'] as $key => $value) {
-                if (trim($value) !== '') {
-                    $costData[$key] = $value;
+            /*** HOTELS ***/
+            $hotelsData = $existingHotels ?: [];
+            if (!empty($_POST['hotels'])) {
+                foreach ($_POST['hotels'] as $dayNum => $hotelInfo) {
+                    foreach (['name','link'] as $key) {
+                        $hotelInfo[$key] = $hotelInfo[$key] ?? ($hotelsData[$dayNum][$key] ?? '');
+                    }
+                    $hotelsData[$dayNum] = $hotelInfo;
                 }
             }
-        }
-        $insertData['tour_cost'] = json_encode($costData);
+            $insertData['hotels'] = json_encode($hotelsData);
 
-        /*** TERMS & CONDITIONS ***/
-        $termsData = $existingTerms ?: ['includes'=>'','excludes'=>'','foc'=>'','ps'=>'','dress_code'=>'','notice'=>''];
-        if (!empty($_POST['terms'])) {
-            foreach ($_POST['terms'] as $key => $value) {
-                if (trim($value) !== '' && $value !== '<p><br></p>') {
-                    $termsData[$key] = $value;
+
+            $cityMap = [];
+            $stmt = $conn->query("SELECT id, name FROM cities");
+            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                $cityMap[$row['id']] = $row['name'];
+            }
+
+
+            /*** TOUR COST ***/
+            $costData = $existingCost ?: ['title'=>'','pax'=>'','vehicle'=>'','meal_plan'=>'','hotel_category'=>'','room_type'=>'','currency'=>'','total'=>''];
+            if (!empty($_POST['cost'])) {
+                foreach ($_POST['cost'] as $key => $value) {
+                    if (trim($value) !== '') {
+                        $costData[$key] = $value;
+                    }
                 }
             }
-        }
-        $insertData['terms_conditions'] = json_encode($termsData);
+            $insertData['tour_cost'] = json_encode($costData);
 
-        /*** COVER PAGE ***/
-        $coverData = $existingCover ?: ['trip_name'=>'','heading'=>'','sub_heading'=>'','description'=>'','image'=>''];
-        if (!empty($_POST['cover'])) {
-            foreach ($_POST['cover'] as $key => $value) {
-                if (trim($value) !== '') {
-                    $coverData[$key] = $value;
+            /*** TERMS & CONDITIONS ***/
+            $termsData = $existingTerms ?: ['includes'=>'','excludes'=>'','foc'=>'','ps'=>'','dress_code'=>'','notice'=>''];
+            if (!empty($_POST['terms'])) {
+                foreach ($_POST['terms'] as $key => $value) {
+                    if (trim($value) !== '' && $value !== '<p><br></p>') {
+                        $termsData[$key] = $value;
+                    }
                 }
             }
+            $insertData['terms_conditions'] = json_encode($termsData);
+
+            /*** COVER PAGE ***/
+            $coverData = $existingCover ?: ['trip_name'=>'','heading'=>'','sub_heading'=>'','description'=>'','image'=>''];
+            if (!empty($_POST['cover'])) {
+                foreach ($_POST['cover'] as $key => $value) {
+                    if (trim($value) !== '') {
+                        $coverData[$key] = $value;
+                    }
+                }
+            }
+
+            // Image upload
+            if (!empty($_FILES['cover_image']['name'])) {
+                $uploadDir = __DIR__ . "/uploads/cover_images/";
+                if (!file_exists($uploadDir)) mkdir($uploadDir, 0777, true);
+
+                $ext = pathinfo($_FILES['cover_image']['name'], PATHINFO_EXTENSION);
+                $newName = uniqid('cover_') . '.' . $ext;
+                move_uploaded_file($_FILES['cover_image']['tmp_name'], $uploadDir . $newName);
+                $coverData['image'] = $newName;
+            }
+
+            $insertData['cover_page'] = json_encode($coverData);
+
+            /*** INSERT INTO HISTORY ***/
+            $insertSql = "INSERT INTO itinerary_customer_history
+                (vehicle_id, reference_no, itinerary_id, edited_by, edit_reason,edited_at, theme_ids, city_ids, start_date, end_date, nights, adults,
+                children_6_11, children_above_11, infants, hotel_rating, meal_plan, allergy_issues, allergy_reason,
+                title, full_name, email, whatsapp_code, whatsapp, country, nationality, flight_number,
+                pickup_location, dropoff_location, remarks, day_city_details, hotels, tour_cost, terms_conditions, cover_page, version_number)
+                VALUES
+                (:vehicle_id, :reference_no, :itinerary_id, :edited_by, :edit_reason,:edited_at,:theme_ids,:city_ids,:start_date,:end_date,:nights,:adults,
+                :children_6_11, :children_above_11, :infants, :hotel_rating, :meal_plan, :allergy_issues, :allergy_reason,
+                :title, :full_name, :email, :whatsapp_code, :whatsapp, :country, :nationality, :flight_number,
+                :pickup_location, :dropoff_location, :remarks, :day_city_details, :hotels, :tour_cost, :terms_conditions, :cover_page, :version_number)";
+
+            $stmtInsert = $conn->prepare($insertSql);
+            $params = array_merge($insertData, [
+                'itinerary_id'   => $id,
+                'edited_by'      => $_SESSION['user_id'],
+                'edit_reason'    => 'Edited via dashboard',
+                'version_number' => $nextVersion,
+                'edited_at'      => date('Y-m-d H:i:s')
+            ]);
+            $stmtInsert->execute($params);
+
+            $conn->commit();
+            header("Location: generate-itinerary-pdf.php?id=" . $id);
+            exit;
+
+        } catch (Exception $e) {
+            $conn->rollBack();
+            echo "<pre>Error saving itinerary: " . $e->getMessage() . "</pre>";
         }
-
-        // Image upload
-        if (!empty($_FILES['cover_image']['name'])) {
-            $uploadDir = __DIR__ . "/uploads/cover_images/";
-            if (!file_exists($uploadDir)) mkdir($uploadDir, 0777, true);
-
-            $ext = pathinfo($_FILES['cover_image']['name'], PATHINFO_EXTENSION);
-            $newName = uniqid('cover_') . '.' . $ext;
-            move_uploaded_file($_FILES['cover_image']['tmp_name'], $uploadDir . $newName);
-            $coverData['image'] = $newName;
-        }
-
-        $insertData['cover_page'] = json_encode($coverData);
-
-        /*** INSERT INTO HISTORY ***/
-        $insertSql = "INSERT INTO itinerary_customer_history
-            (vehicle_id, reference_no, itinerary_id, edited_by, edit_reason,edited_at, theme_ids, city_ids, start_date, end_date, nights, adults,
-            children_6_11, children_above_11, infants, hotel_rating, meal_plan, allergy_issues, allergy_reason,
-            title, full_name, email, whatsapp_code, whatsapp, country, nationality, flight_number,
-            pickup_location, dropoff_location, remarks, day_city_details, hotels, tour_cost, terms_conditions, cover_page, version_number)
-            VALUES
-            (:vehicle_id, :reference_no, :itinerary_id, :edited_by, :edit_reason,:edited_at,:theme_ids,:city_ids,:start_date,:end_date,:nights,:adults,
-            :children_6_11, :children_above_11, :infants, :hotel_rating, :meal_plan, :allergy_issues, :allergy_reason,
-            :title, :full_name, :email, :whatsapp_code, :whatsapp, :country, :nationality, :flight_number,
-            :pickup_location, :dropoff_location, :remarks, :day_city_details, :hotels, :tour_cost, :terms_conditions, :cover_page, :version_number)";
-
-        $stmtInsert = $conn->prepare($insertSql);
-        $params = array_merge($insertData, [
-            'itinerary_id'   => $id,
-            'edited_by'      => $_SESSION['user_id'],
-            'edit_reason'    => 'Edited via dashboard',
-            'version_number' => $nextVersion,
-            'edited_at'      => date('Y-m-d H:i:s')
-        ]);
-        $stmtInsert->execute($params);
-
-        $conn->commit();
-        header("Location: generate-itinerary-pdf.php?id=" . $id);
-        exit;
-
-    } catch (Exception $e) {
-        $conn->rollBack();
-        echo "<pre>Error saving itinerary: " . $e->getMessage() . "</pre>";
     }
+
+// Fetch latest costing for this itinerary
+$stmt = $conn->prepare("
+    SELECT cost_sheet 
+    FROM costing 
+    WHERE itinerary_id = :id 
+    ORDER BY version DESC 
+    LIMIT 1
+");
+$stmt->execute(['id' => $id]);
+$latestCosting = $stmt->fetch(PDO::FETCH_ASSOC);
+
+// Decode cost_sheet JSON
+$existingHotels = [];
+if (!empty($latestCosting['cost_sheet'])) {
+    $existingHotels = json_decode($latestCosting['cost_sheet'], true);
 }
+
+
 
 ?>
 
@@ -590,6 +609,8 @@ h5 {
                         </div>
                     </div>
 
+                    
+
                     <!-- Day-wise Hotel Details -->
                     <div class="accordion-item mt-3">
                         <h2 class="accordion-header" id="headingHotels">
@@ -599,41 +620,46 @@ h5 {
                         </h2>
                         <div id="collapseHotels" class="accordion-collapse collapse">
                             <div class="accordion-body">
-                              <div id="hotelContainer" class="row g-3">
-                                    <?php
-                                    $hotelDayCount = 0;
-                                    if (!empty($existingHotels)) {
-                                        foreach ($existingHotels as $dayNum => $hotelInfo) {
-                                            $hotelDayCount++;
-                                            $hotelName = $hotelInfo['name'] ?? '';
-                                            $hotelLink = $hotelInfo['link'] ?? '';
-                                    ?>
-                                    <div class="hotel-block col-md-12" data-day="<?= $dayNum; ?>">
-                                        <button type="button" class="btn btn-danger btn-sm float-end remove-hotel-day-btn"><i class="bi bi-trash"></i></button>
+                           <div id="hotelContainer" class="row g-3">
+    <?php
+    if (!empty($existingHotels)) {
+        foreach ($existingHotels as $dayNum => $hotelInfo) {
+            // Assign values from cost_sheet array
+            $hotelName     = $hotelInfo['hotel'] ?? '';
+            $mealPlan      = $hotelInfo['meal_plan'] ?? '';
+            $doublePrice   = $hotelInfo['double_price'] ?? 0;
+            $date          = $hotelInfo['date'] ?? '';
+    ?>
+    <div class="hotel-block col-md-12" data-day="<?= $dayNum; ?>">
+        <button type="button" class="btn btn-danger btn-sm float-end remove-hotel-day-btn"><i class="bi bi-trash"></i></button>
 
-                                        <div class="row">
-                                            <div class="col-md-2 d-flex align-items-center">
-                                                <h5>Day <?= $dayNum; ?> Hotel</h5>
-                                            </div>
-                                            <div class="col-md-5">
-                                                <input type="text" name="hotels[<?= $dayNum; ?>][name]" class="form-control" placeholder="Hotel Name" value="<?= htmlspecialchars($hotelName); ?>">
-                                            </div>
-                                            <div class="col-md-5">
-                                                <input type="url" name="hotels[<?= $dayNum; ?>][link]" class="form-control" placeholder="Hotel Website" value="<?= htmlspecialchars($hotelLink); ?>">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <?php
-                                        }
-                                    }
-                                    ?>
-                                    </div>
+        <div class="row">
+            <div class="col-md-2 d-flex align-items-center">
+                <h5>Day <?= $dayNum; ?> Hotel</h5>
+            </div>
+            <div class="col-md-4">
+                <input type="text" name="hotels[<?= $dayNum; ?>][name]" class="form-control" placeholder="Hotel Name" value="<?= htmlspecialchars($hotelName); ?>">
+            </div>
+            <div class="col-md-3">
+                <input type="url" name="hotels[<?= $dayNum; ?>][link]" class="form-control" placeholder="Hotel Website">
+            </div>
+            <div class="col-md-3">
+                <select name="hotels[<?= $dayNum; ?>][meal_plan]" class="form-control">
+                    <option value="">Select Meal Plan</option>
+                    <option value="Breakfast Only" <?= $mealPlan=='Breakfast Only' ? 'selected' : '' ?>>Breakfast Only</option>
+                    <option value="Half Board" <?= $mealPlan=='Half Board' ? 'selected' : '' ?>>Half Board</option>
+                    <option value="Full Board" <?= $mealPlan=='Full Board' ? 'selected' : '' ?>>Full Board</option>
+                    <option value="All Inclusive" <?= $mealPlan=='All Inclusive' ? 'selected' : '' ?>>All Inclusive</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <?php
+        }
+    }
+    ?>
+</div>
 
-
-                                <div class="mt-3">
-                                    <button type="button" id="addHotelDayBtn" class="btn btn-secondary btn-sm">Add Hotels</button>
-                                </div>
-                            </div>
                         </div>
                     </div>
 

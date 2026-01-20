@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 4.5.5, created on 2025-12-22 05:29:33
+/* Smarty version 4.5.5, created on 2026-01-20 11:12:35
   from 'C:\xampp\htdocs\ev\manager\templates\default\resource\sections\tvs.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.5.5',
-  'unifunc' => 'content_6948c92ddd0a97_36623426',
+  'unifunc' => 'content_696f55137947a7_81706605',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6948c92ddd0a97_36623426 (Smarty_Internal_Template $_smarty_tpl) {
+function content_696f55137947a7_81706605 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'C:\\xampp\\htdocs\\ev\\core\\vendor\\smarty\\smarty\\libs\\plugins\\function.cycle.php','function'=>'smarty_function_cycle',),));
 echo $_smarty_tpl->tpl_vars['OnResourceTVFormPrerender']->value;?>
 

@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 4.5.5, created on 2025-12-22 05:29:29
+/* Smarty version 4.5.5, created on 2026-01-20 12:19:11
   from 'C:\xampp\htdocs\ev\manager\templates\default\dashboard\recentlyeditedresources.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.5.5',
-  'unifunc' => 'content_6948c929d887a9_63211278',
+  'unifunc' => 'content_696f64af9a30f0_63269833',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6948c929d887a9_63211278 (Smarty_Internal_Template $_smarty_tpl) {
+function content_696f64af9a30f0_63269833 (Smarty_Internal_Template $_smarty_tpl) {
 ?><p><?php echo $_smarty_tpl->tpl_vars['_lang']->value['activity_message'];?>
 </p>
 <br/>

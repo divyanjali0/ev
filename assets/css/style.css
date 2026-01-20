@@ -1235,3 +1235,89 @@ header .navbar.scrolled .logo-default {
 header .navbar.scrolled .logo-scrolled {
     display: inline-block;
 }
+
+
+
+/* Dropdown container */
+.lang-dropdown {
+    position: relative; /* Needed so the dropdown ul is positioned correctly */
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* Selected language box */
+.lang-selected {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.3rem 0.5rem;
+    background-color: #fff;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+    transition: background 0.2s;
+}
+
+.lang-selected:hover {
+    background-color: #f0f0f0;
+}
+
+/* Dropdown arrow */
+.lang-selected i {
+    font-size: 0.8rem;
+    color: black;
+}
+
+/* Dropdown options */
+.lang-options {
+    display: none;
+    position: absolute;
+    top: 100%; /* Place below the selected box */
+    right: 0;  /* Align right edge with container */
+    background: #fff;
+    list-style: none;
+    padding: 0.3rem 0;
+    margin: 0;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    min-width: 120px; /* Optional: set width */
+    z-index: 1000;
+}
+
+/* Show dropdown */
+.lang-options.show {
+    display: block;
+}
+
+/* Individual options */
+.lang-options li {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.4rem 0.8rem;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.lang-options li:hover {
+    background-color: #f0f0f0;
+}
+
+/* Images in dropdown */
+.lang-options img, .lang-selected img {
+    width: 20px;
+    height: auto;
+    display: block;
+}
+
+/* Text style */
+.lang-options span, .lang-selected span {
+    font-size: 0.9rem;
+    color: #333;
+}
+
+/* Remove underline from links inside li */
+.lang-options a {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
