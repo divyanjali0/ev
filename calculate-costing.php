@@ -408,11 +408,14 @@ if (!empty($itinerary['city_ids'])) {
                 </div>
             </div>
 
-            
+            <div class="text-end mb-5">
+    <button class="btn btn-success" id="saveCosting">Save Costing</button>
+</div>
         </div>
     </div>
 </div>
 
+<!-- Entrance Fees Modal -->
 <!-- Entrance Fees Modal -->
 <div class="modal fade" id="entranceModal" tabindex="-1" aria-labelledby="entranceModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg modal-dialog-centered">
@@ -428,14 +431,17 @@ if (!empty($itinerary['city_ids'])) {
               <tr>
                 <th>Select</th>
                 <th>Entrance Tickets</th>
-                <th>Price PP (USD) </th>
+                <th>Price PP (USD)</th>
               </tr>
             </thead>
             <tbody>
               <?php foreach($entranceFees as $fee): ?>
                 <tr>
-                  <td><input type="checkbox" class="entrance-checkbox" data-price="<?= $fee['price_usd'] ?>"></td>
-                  <td class="text-left"><?= htmlspecialchars($fee['name']) ?></td>
+                  <!-- Add data-id for checkbox -->
+                  <td>
+                    <input type="checkbox" class="entrance-checkbox" data-id="<?= $fee['id'] ?>" data-price="<?= $fee['price_usd'] ?>">
+                  </td>
+                  <td class="text-start"><?= htmlspecialchars($fee['name']) ?></td>
                   <td>$ <?= number_format($fee['price_usd'], 2) ?></td>
                 </tr>
               <?php endforeach; ?>
@@ -457,32 +463,64 @@ if (!empty($itinerary['city_ids'])) {
 
 
 
+
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
-  const entranceCheckboxes = document.querySelectorAll('.entrance-checkbox');
-  const entranceTotal = document.getElementById('entranceTotal');
-  const mainEntranceInput = document.getElementById('entranceTickets');
+const entranceCheckboxes = document.querySelectorAll('.entrance-checkbox');
+const entranceTotal = document.getElementById('entranceTotal');
+const mainEntranceInput = document.getElementById('entranceTickets');
 
-  function calculateEntranceTotal() {
+function calculateEntranceTotal() {
     let total = 0;
     entranceCheckboxes.forEach(cb => {
-      if (cb.checked) {
-        total += parseFloat(cb.dataset.price) || 0;
-      }
+        if(cb.checked){
+            total += parseFloat(cb.dataset.price) || 0;
+        }
     });
     entranceTotal.textContent = '$' + total.toFixed(2);
     return total;
-  }
+}
 
-  entranceCheckboxes.forEach(cb => cb.addEventListener('change', calculateEntranceTotal));
+entranceCheckboxes.forEach(cb => cb.addEventListener('change', calculateEntranceTotal));
 
-  document.getElementById('saveEntranceFees').addEventListener('click', () => {
+document.getElementById('saveEntranceFees').addEventListener('click', () => {
     const total = calculateEntranceTotal();
+
+    // Build array of selected entrances with id, name, price
+    const selectedEntrances = [];
+    entranceCheckboxes.forEach(cb => {
+        if(cb.checked){
+            const tr = cb.closest('tr');
+            const name = tr.cells[1].textContent.trim();
+            selectedEntrances.push({
+                id: parseInt(cb.dataset.id),
+                name: name,
+                price: parseFloat(cb.dataset.price)
+            });
+        }
+    });
+
+    // Save total to main input
     mainEntranceInput.value = total.toFixed(2);
+
+    // Store JSON string in a hidden input for sending to server
+    let hiddenInput = document.getElementById('entranceJson');
+    if(!hiddenInput){
+        hiddenInput = document.createElement('input');
+        hiddenInput.type = 'hidden';
+        hiddenInput.id = 'entranceJson';
+        hiddenInput.name = 'entranceJson';
+        document.getElementById('entranceFeesForm').appendChild(hiddenInput);
+    }
+    hiddenInput.value = JSON.stringify(selectedEntrances);
+
+    // Close modal
     const modal = bootstrap.Modal.getInstance(document.getElementById('entranceModal'));
     modal.hide();
-  });
+});
+
 
   // Initialize total
   calculateEntranceTotal();
@@ -689,6 +727,112 @@ document.querySelectorAll('#transportTable input').forEach(input => {
 
 // Initial calculation
 updateTransportSummary();
+
+
+document.getElementById('saveCosting').addEventListener('click', () => {
+    const itineraryId = <?= $itinerary['id']; ?>;
+
+    const agentName = document.getElementById('agent_name').value;
+    const groupName = document.getElementById('group_name').value;
+    const costingBy = document.getElementById('costing_by').value;
+    const costingDate = document.getElementById('costing_date').value;
+    const exchangeRate = parseFloat(document.getElementById('exchange_rate').value) || 1;
+
+    // Entrance Fees
+    const selectedEntrance = [];
+    document.querySelectorAll('.entrance-checkbox').forEach(cb => {
+        if(cb.checked) {
+            selectedEntrance.push({id: cb.dataset.id, price: parseFloat(cb.dataset.price)});
+        }
+    });
+
+    // Cost Sheet Table
+    const costSheet = [];
+    document.querySelectorAll('#costTable tbody tr').forEach(tr => {
+        const cells = tr.querySelectorAll('input, select');
+        if(cells.length > 0){
+            costSheet.push({
+                date: cells[0].value,
+                hotel: cells[1].value,
+                room_category: cells[2].value,
+                meal_plan: cells[3].value,
+                double_price: parseFloat(cells[4].value) || 0
+            });
+        }
+    });
+
+    // Transport Table
+    const transportData = [];
+    document.querySelectorAll('#transportTable tbody tr').forEach(tr => {
+        const inputs = tr.querySelectorAll('input');
+        transportData.push({
+            pax: tr.cells[0].textContent,
+            vehicle: tr.cells[1].textContent,
+            rsPerKm: parseFloat(inputs[0].value) || 0,
+            km: parseFloat(inputs[1].value) || 0,
+            totalRs: parseFloat(tr.querySelector('.totalRs').textContent) || 0,
+            days: parseFloat(inputs[2].value) || 0,
+            batta: parseFloat(inputs[3].value) || 0,
+            transportRs: parseFloat(tr.querySelector('.transportRs').textContent) || 0,
+            transportUsd: parseFloat(inputs[4].value) || 0,
+            lGuideUsd: parseFloat(inputs[5].value) || 0,
+            totalCost: parseFloat(tr.querySelector('.totalCost').textContent) || 0,
+            costPP: parseFloat(tr.querySelector('.costPP').textContent) || 0
+        });
+    });
+
+    // Totals
+    const hotelTotal = parseFloat(document.getElementById('totalDouble').textContent) || 0;
+    const exploreCommission = parseFloat(document.getElementById('exploreCommission').value) || 0;
+    const grandTotal = parseFloat(document.getElementById('grandTotal').textContent) || 0;
+    const entranceTotal = parseFloat(document.getElementById('entranceTickets').value) || 0;
+    const lunchDinner = parseFloat(document.getElementById('lunchesDinners').value) || 0;
+    const costPerPax = parseFloat(document.getElementById('costPerPax').textContent) || 0;
+    const transportTotal = parseFloat(document.getElementById('transportTotalUSD').textContent) || 0;
+    const discount = parseFloat(document.getElementById('discountAmount').textContent) || 0;
+    const tripFullTotal = parseFloat(document.getElementById('tripCost').textContent) || 0;
+
+    // Prepare payload
+    const payload = {
+        itinerary_id: itineraryId,
+        agent_name: agentName,
+        group_name: groupName,
+        costing_by: costingBy,
+        costing_date: costingDate,
+        exchange_rate: exchangeRate,
+        entrance_fees: selectedEntrance,
+        cost_sheet: costSheet,
+        hotel_total: hotelTotal,
+        explore_commission: exploreCommission,
+        grand_total: grandTotal,
+        lunch_dinner: lunchDinner,
+        cost_per_pax: costPerPax,
+        transport_json: transportData,
+        transport_total: transportTotal,
+        discount: discount,
+        trip_full_total: tripFullTotal
+    };
+
+    // AJAX call to save
+    fetch('save_costing.php', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(payload)
+    })
+    .then(res => res.json())
+    .then(data => {
+        if(data.success){
+            alert('Costing saved successfully!');
+            // Redirect to same page
+            window.location.href = 'edit-itinerary.php?id=' + itineraryId;
+        } else {
+            alert('Error saving costing: ' + data.error);
+        }
+    })
+    .catch(err => console.error(err));
+});
+
+
 
 
 </script>
