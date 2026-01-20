@@ -218,16 +218,179 @@ if (!empty($itinerary['city_ids'])) {
                                 <td><input type="date" class="form-control" value="<?= $dateValue ?>"></td>
                                 <td><input type="text" class="form-control" placeholder="Hotel Name"></td>
                                 <td><input type="text" class="form-control" placeholder="Room Category"></td>
-                                <td><input type="text" class="form-control" placeholder="Meal Plan"></td>
-                                <td><input type="number" class="form-control" placeholder="Double"></td>
+                                <td>
+                                    <select class="form-control meal-plan">
+                                        <option value="">Select Meal Plan</option>
+                                        <option value="Breakfast Only">Breakfast Only</option>
+                                        <option value="Half Board">Half Board</option>
+                                        <option value="Full Board">Full Board</option>
+                                        <option value="All Inclusive">All Inclusive</option>
+                                    </select>
+                                </td>                                
+                                <td><input type="number" class="form-control double-col" placeholder="Double"></td>
                                 <td><button type="button" class="btn btn-sm btn-danger remove-row">Remove</button></td>
                             </tr>
                             <?php endforeach; ?>
                         </tbody>
+                        <tfoot>
+                            <!-- Total Double Row -->
+                            <tr style="background-color:#f9f9f9; font-weight:bold;">
+                                <td colspan="5" class="text-start">Total</td>
+                                <td id="totalDouble" style="background-color:#ffe699;">0</td>
+                                <td></td>
+                            </tr>
+
+                            <!-- Explore Commission Row -->
+                            <tr style="background-color:#d9f2d9; font-weight:bold;">
+                                <td colspan="5" class="text-start">Explore Commission</td>
+                                <td><input type="number" id="exploreCommission" class="form-control" placeholder="Enter Commission" value="0"></td>
+                                <td></td>
+                            </tr>
+
+                            <!-- Grand Total Row -->
+                            <tr style="background-color:#cce5ff; font-weight:bold;">
+                                <td colspan="5" class="text-start">Grand Total</td>
+                                <td id="grandTotal" style="background-color:#99ccff;">0</td>
+                                <td></td>
+                            </tr>
+                        </tfoot>
+                        <div class="table-responsive">
+                            <table class="table table-bordered text-center align-middle">
+                                <tbody>
+                                    <tr>
+                                        <td colspan="9" class="text-start">Total Cost for 01 DBL Room</td>
+                                        <td><input type="number" id="dblRoomCost" class="form-control" value="0"></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="5" class="text-start">Entrance Tickets</td>
+                                        <td><input type="number" id="entranceTickets" class="form-control" value="0"></td>
+                                    </tr>
+                                    <tr>
+                                        <td  colspan="5" class="text-start">Lunches & Dinners</td>
+                                        <td><input type="number" id="lunchesDinners" class="form-control" value="0"></td>
+                                    </tr>
+                                    <tr style="background-color:#cce5ff; font-weight:bold;">
+                                        <td colspan="5"  class="text-start">Cost Per Pax - IN USD</td>
+                                        <td id="costPerPax" style="background-color:#99ccff;">0</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="card p-3 mb-5">
+                            <h5 class="fw-bold mb-3">Transport Chart</h5>
+                            <div class="table-responsive">
+                                <table class="table table-bordered text-center align-middle" id="transportTable">
+                                    <thead class="table-light">
+                                        <tr>
+                                            <th>Pax</th>
+                                            <th>Vehicle</th>
+                                            <th>Rs. Per KM</th>
+                                            <th>KM/Miles</th>
+                                            <th>Total Rs.</th>
+                                            <th>No of Days</th>
+                                            <th>Batta Rs.</th>
+                                            <th>Transport Rs.</th>
+                                            <th>Transport USD</th>
+                                            <th>L Guide USD</th>
+                                            <th>Total Cost</th>
+                                            <th>Cost PP</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>02</td>
+                                            <td>Car</td>
+                                            <td><input type="number" class="form-control rsPerKm" value="120"></td>
+                                            <td><input type="number" class="form-control km" value="0"></td>
+                                            <td class="totalRs">0</td>
+                                            <td><input type="number" class="form-control days" value="0"></td>
+                                            <td><input type="number" class="form-control batta" value="0"></td>
+                                            <td class="transportRs">0</td>
+                                            <td><input type="number" class="form-control transportUsd" value="0"></td>
+                                            <td><input type="number" class="form-control lGuideUsd" value="0"></td>
+                                            <td class="totalCost">0</td>
+                                            <td class="costPP">0</td>
+                                        </tr>
+                                        <tr>
+                                            <td>03-06</td>
+                                            <td>Van</td>
+                                            <td><input type="number" class="form-control rsPerKm" value="150"></td>
+                                            <td><input type="number" class="form-control km" value="3365"></td>
+                                            <td class="totalRs">0</td>
+                                            <td><input type="number" class="form-control days" value="21"></td>
+                                            <td><input type="number" class="form-control batta" value="168000"></td>
+                                            <td class="transportRs">0</td>
+                                            <td><input type="number" class="form-control transportUsd" value="2402.678571"></td>
+                                            <td><input type="number" class="form-control lGuideUsd" value="0"></td>
+                                            <td class="totalCost">0</td>
+                                            <td class="costPP">0</td>
+                                        </tr>
+                                        <tr>
+                                            <td>07-15</td>
+                                            <td>Mini Coach</td>
+                                            <td><input type="number" class="form-control rsPerKm" value="200"></td>
+                                            <td><input type="number" class="form-control km" value="0"></td>
+                                            <td class="totalRs">0</td>
+                                            <td><input type="number" class="form-control days" value="0"></td>
+                                            <td><input type="number" class="form-control batta" value="0"></td>
+                                            <td class="transportRs">0</td>
+                                            <td><input type="number" class="form-control transportUsd" value="0"></td>
+                                            <td><input type="number" class="form-control lGuideUsd" value="0"></td>
+                                            <td class="totalCost">0</td>
+                                            <td class="costPP">0</td>
+                                        </tr>
+                                        <tr>
+                                            <td>16-21</td>
+                                            <td>33 Seater Bus</td>
+                                            <td><input type="number" class="form-control rsPerKm" value="230"></td>
+                                            <td><input type="number" class="form-control km" value="0"></td>
+                                            <td class="totalRs">0</td>
+                                            <td><input type="number" class="form-control days" value="0"></td>
+                                            <td><input type="number" class="form-control batta" value="0"></td>
+                                            <td class="transportRs">0</td>
+                                            <td><input type="number" class="form-control transportUsd" value="0"></td>
+                                            <td><input type="number" class="form-control lGuideUsd" value="0"></td>
+                                            <td class="totalCost">0</td>
+                                            <td class="costPP">0</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
                     </table>
+
+                    <div class="card p-3 mb-5">
+                        <h5 class="fw-bold mb-3">Trip Cost Summary</h5>
+                        <div class="table-responsive">
+                            <table class="table table-bordered text-center align-middle" id="transportSummary">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Description</th>
+                                        <th>Amount (USD)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Transport: IN USD (Total * Pax)</td>
+                                        <td id="transportTotalUSD">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>10% Discount</td>
+                                        <td id="discountAmount">0</td>
+                                    </tr>
+                                    <tr style="font-weight:bold; background-color:#ffe699;">
+                                        <td>Cost for the Trip</td>
+                                        <td id="tripCost">0</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
                 </div>
             </div>
-
         </div>
     </div>
 </div>
@@ -254,7 +417,21 @@ if (!empty($itinerary['city_ids'])) {
         const row = tbody.insertRow();
         const defaultCols = ['','', '', '', '', '']; 
 
-        defaultCols.forEach(val => row.insertCell().innerHTML = `<input type="text" class="form-control">`);
+        defaultCols.forEach((val, i) => {
+            if (i === 4) { 
+                row.insertCell().innerHTML = `
+                    <select class="form-control meal-plan">
+                        <option value="">Select Meal Plan</option>
+                        <option value="Breakfast Only">Breakfast Only</option>
+                        <option value="Half Board">Half Board</option>
+                        <option value="Full Board">Full Board</option>
+                        <option value="All Inclusive">All Inclusive</option>
+                    </select>
+                `;
+            } else {
+                row.insertCell().innerHTML = `<input type="text" class="form-control">`;
+            }
+        });
 
         // Extra dynamic columns
         const extraCols = tableHead.children.length - defaultCols.length - 2;
@@ -294,6 +471,117 @@ if (!empty($itinerary['city_ids'])) {
             .forEach(row => tbody.appendChild(row));
         updateRowNumbers();
     }
+
+
+    function updateTotals() {
+        let totalDouble = 0;
+
+        // Sum all Double column values
+        costTable.querySelectorAll('tbody tr').forEach(tr => {
+            totalDouble += parseFloat(tr.querySelector('.double-col').value) || 0;
+        });
+        document.getElementById('totalDouble').textContent = totalDouble.toFixed(2);
+
+        // Get Explore Commission value
+        const commission = parseFloat(document.getElementById('exploreCommission').value) || 0;
+
+        // Calculate Grand Total
+        const grandTotal = totalDouble + commission;
+        document.getElementById('grandTotal').textContent = grandTotal.toFixed(2);
+
+        // Get other cost items
+        const dblRoom = parseFloat(document.getElementById('dblRoomCost').value) || 0;
+        const entrance = parseFloat(document.getElementById('entranceTickets').value) || 0;
+        const lunches = parseFloat(document.getElementById('lunchesDinners').value) || 0;
+
+        // Cost Per Pax = grandTotal + dblRoom + entrance + lunches
+        const costPerPax = grandTotal + dblRoom + entrance + lunches;
+        document.getElementById('costPerPax').textContent = costPerPax.toFixed(2);
+    }
+
+    // Recalculate totals when any input changes
+    costTable.addEventListener('input', updateTotals);
+    document.getElementById('exploreCommission').addEventListener('input', updateTotals);
+    document.getElementById('dblRoomCost').addEventListener('input', updateTotals);
+    document.getElementById('entranceTickets').addEventListener('input', updateTotals);
+    document.getElementById('lunchesDinners').addEventListener('input', updateTotals);
+
+    // Update totals on row add/remove
+    document.getElementById('addRowBtn').addEventListener('click', updateTotals);
+    document.getElementById('addColBtn').addEventListener('click', updateTotals);
+    document.addEventListener('click', e => {
+        if (e.target.classList.contains('remove-row')) updateTotals();
+    });
+
+    // Initial total calculation
+    updateTotals();
+
+    function updateTransportTotals() {
+    const rows = document.querySelectorAll('#transportTable tbody tr');
+
+    rows.forEach(tr => {
+        const rsPerKm = parseFloat(tr.querySelector('.rsPerKm').value) || 0;
+        const km = parseFloat(tr.querySelector('.km').value) || 0;
+        const days = parseFloat(tr.querySelector('.days').value) || 0;
+        const batta = parseFloat(tr.querySelector('.batta').value) || 0;
+        const transportUsd = parseFloat(tr.querySelector('.transportUsd').value) || 0;
+        const lGuideUsd = parseFloat(tr.querySelector('.lGuideUsd').value) || 0;
+
+        // Calculated fields
+        const totalRs = rsPerKm * km;
+        const transportRs = totalRs + batta;
+        const totalCost = transportRs + transportUsd + lGuideUsd;
+        let pax = tr.cells[0].textContent.split('-');
+        let paxCount = pax.length === 2 ? (parseInt(pax[1]) + parseInt(pax[0])) / 2 : parseInt(pax[0]); // approximate if range
+        const costPP = paxCount ? totalCost / paxCount : totalCost;
+
+        tr.querySelector('.totalRs').textContent = totalRs.toFixed(2);
+        tr.querySelector('.transportRs').textContent = transportRs.toFixed(2);
+        tr.querySelector('.totalCost').textContent = totalCost.toFixed(2);
+        tr.querySelector('.costPP').textContent = costPP.toFixed(2);
+    });
+}
+
+// Recalculate on input
+document.querySelectorAll('#transportTable input').forEach(input => {
+    input.addEventListener('input', updateTransportTotals);
+});
+
+// Initial calculation
+updateTransportTotals();
+
+function updateTransportSummary() {
+    // Get total Transport USD from Transport Chart
+    let totalTransportUSD = 0;
+    document.querySelectorAll('#transportTable tbody tr').forEach(tr => {
+        totalTransportUSD += parseFloat(tr.querySelector('.totalCost').textContent) || 0;
+    });
+
+    // Get total pax from itinerary (sum adults + children + infants)
+    const adults = parseInt("<?= $itinerary['adults'] ?? 0 ?>");
+    const children_6_11 = parseInt("<?= $itinerary['children_6_11'] ?? 0 ?>");
+    const children_above_11 = parseInt("<?= $itinerary['children_above_11'] ?? 0 ?>");
+    const infants = parseInt("<?= $itinerary['infants'] ?? 0 ?>");
+    const totalPax = adults + children_6_11 + children_above_11 + infants;
+
+    const transportUSDTotal = totalTransportUSD * totalPax;
+    const discount = transportUSDTotal * 0.10; // 10%
+    const tripCost = transportUSDTotal - discount;
+
+    document.getElementById('transportTotalUSD').textContent = transportUSDTotal.toFixed(2);
+    document.getElementById('discountAmount').textContent = discount.toFixed(2);
+    document.getElementById('tripCost').textContent = tripCost.toFixed(2);
+}
+
+// Call this function whenever Transport Chart changes
+document.querySelectorAll('#transportTable input').forEach(input => {
+    input.addEventListener('input', updateTransportSummary);
+});
+
+// Initial calculation
+updateTransportSummary();
+
+
 </script>
 </body>
 </html>
