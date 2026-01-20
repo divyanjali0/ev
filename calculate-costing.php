@@ -47,6 +47,26 @@ if (!empty($itinerary['city_ids'])) {
         $cityNames = $stmt->fetchAll(PDO::FETCH_COLUMN);
     }
 }
+
+// Fetch latest costing for this itinerary
+$stmt = $conn->prepare("
+    SELECT *
+    FROM costing
+    WHERE itinerary_id = ?
+    ORDER BY version DESC
+    LIMIT 1
+");
+$stmt->execute([$id]);
+$latestCosting = $stmt->fetch(PDO::FETCH_ASSOC);
+
+// Decode JSON fields if exists
+$latestCostSheet = $latestCosting['cost_sheet'] ?? null;
+$latestCostSheet = $latestCostSheet ? json_decode($latestCostSheet, true) : [];
+$latestEntranceFees = $latestCosting['entrance_fees'] ?? null;
+$latestEntranceFees = $latestEntranceFees ? json_decode($latestEntranceFees, true) : [];
+$latestTransport = $latestCosting['transport_json'] ?? null;
+$latestTransport = $latestTransport ? json_decode($latestTransport, true) : [];
+
 ?>
 
 
@@ -143,12 +163,12 @@ if (!empty($itinerary['city_ids'])) {
                 <div class="row g-3 align-items-center">
                     <div class="col-md-3">
                         <label for="agent_name" class="form-label">Agent Name</label>
-                        <input type="text" id="agent_name" class="form-control" placeholder="Enter agent name">
+<input type="text" id="agent_name" class="form-control" placeholder="Enter agent name" value="<?= htmlspecialchars($latestCosting['agent_name'] ?? '') ?>">
                     </div>
 
                     <div class="col-md-3">
                         <label for="group_name" class="form-label">Group Name</label>
-                        <input type="text" id="group_name" class="form-control" placeholder="Enter group name">
+                        <input type="text" id="group_name" class="form-control" placeholder="Enter group name" value="<?= htmlspecialchars($latestCosting['group_name'] ?? '') ?>">
                     </div>
 
                     <div class="col-md-2">
@@ -163,7 +183,7 @@ if (!empty($itinerary['city_ids'])) {
 
                     <div class="col-md-2">
                         <label for="exchange_rate" class="form-label">Exchange Rate</label>
-                        <input type="text" id="exchange_rate" class="form-control" placeholder="Enter rate">
+                        <input type="text" id="exchange_rate" class="form-control" placeholder="Enter rate" value="<?= htmlspecialchars($latestCosting['exchange_rate'] ?? 0) ?>">
                     </div>
 
                     <div class="col-md-3">
@@ -227,25 +247,30 @@ if (!empty($itinerary['city_ids'])) {
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($dates as $index => $dateValue): ?>
-                            <tr>
-                                <th scope="row"><?= $index + 1 ?></th>
-                                <td><input type="date" class="form-control" value="<?= $dateValue ?>"></td>
-                                <td><input type="text" class="form-control" placeholder="Hotel Name"></td>
-                                <td><input type="text" class="form-control" placeholder="Room Category"></td>
-                                <td>
-                                    <select class="form-control meal-plan">
-                                        <option value="">Select Meal Plan</option>
-                                        <option value="Breakfast Only">Breakfast Only</option>
-                                        <option value="Half Board">Half Board</option>
-                                        <option value="Full Board">Full Board</option>
-                                        <option value="All Inclusive">All Inclusive</option>
-                                    </select>
-                                </td>                                
-                                <td><input type="number" class="form-control double-col" placeholder="Double"></td>
-                                <td><button type="button" class="btn btn-sm btn-danger remove-row">Remove</button></td>
-                            </tr>
-                            <?php endforeach; ?>
+                           <?php
+$costRows = !empty($latestCostSheet) ? $latestCostSheet : [];
+foreach ($dates as $index => $dateValue):
+    $rowData = $costRows[$index] ?? null;
+?>
+<tr>
+    <th scope="row"><?= $index + 1 ?></th>
+    <td><input type="date" class="form-control" value="<?= htmlspecialchars($rowData['date'] ?? $dateValue) ?>"></td>
+    <td><input type="text" class="form-control" value="<?= htmlspecialchars($rowData['hotel'] ?? '') ?>" placeholder="Hotel Name"></td>
+    <td><input type="text" class="form-control" value="<?= htmlspecialchars($rowData['room_category'] ?? '') ?>" placeholder="Room Category"></td>
+    <td>
+        <select class="form-control meal-plan">
+            <option value="">Select Meal Plan</option>
+            <option value="Breakfast Only" <?= (isset($rowData['meal_plan']) && $rowData['meal_plan'] == 'Breakfast Only') ? 'selected' : '' ?>>Breakfast Only</option>
+            <option value="Half Board" <?= (isset($rowData['meal_plan']) && $rowData['meal_plan'] == 'Half Board') ? 'selected' : '' ?>>Half Board</option>
+            <option value="Full Board" <?= (isset($rowData['meal_plan']) && $rowData['meal_plan'] == 'Full Board') ? 'selected' : '' ?>>Full Board</option>
+            <option value="All Inclusive" <?= (isset($rowData['meal_plan']) && $rowData['meal_plan'] == 'All Inclusive') ? 'selected' : '' ?>>All Inclusive</option>
+        </select>
+    </td>
+    <td><input type="number" class="form-control double-col" value="<?= htmlspecialchars($rowData['double_price'] ?? 0) ?>" placeholder="Double"></td>
+    <td><button type="button" class="btn btn-sm btn-danger remove-row">Remove</button></td>
+</tr>
+<?php endforeach; ?>
+
                         </tbody>
                         <tfoot>
                             <!-- Total Double Row -->
@@ -258,7 +283,8 @@ if (!empty($itinerary['city_ids'])) {
                             <!-- Explore Commission Row -->
                             <tr style="background-color:#d9f2d9; font-weight:bold;">
                                 <td colspan="5" class="text-start">Explore Commission</td>
-                                <td><input type="number" id="exploreCommission" class="form-control" placeholder="Enter Commission" value="0"></td>
+                                <td><input type="number" id="exploreCommission" class="form-control" value="<?= htmlspecialchars($latestCosting['explore_commission'] ?? 0) ?>">
+</td>
                                 <td></td>
                             </tr>
 
@@ -274,19 +300,22 @@ if (!empty($itinerary['city_ids'])) {
                                 <tbody>
                                     <tr>
                                         <td colspan="9" class="text-start">Total Cost for 01 DBL Room</td>
-                                        <td><input type="number" id="dblRoomCost" class="form-control" value="0"></td>
+                                        <td><input type="number" id="dblRoomCost" class="form-control" ></td>
                                     </tr>
                                     <tr>
                                         <td colspan="9" class="text-start">Entrance Tickets</td>
-                                        <td><input type="number" id="entranceTickets" class="form-control" value="0"></td>
+                                        <td><input type="number" id="entranceTickets" class="form-control" value="<?= htmlspecialchars(array_sum(array_column($latestEntranceFees, 'price')) ?? 0) ?>">
+</td>
                                     </tr>
                                     <tr>
                                         <td  colspan="9" class="text-start">Lunches & Dinners</td>
-                                        <td><input type="number" id="lunchesDinners" class="form-control" value="0"></td>
+                                        <td><input type="number" id="lunchesDinners" class="form-control" value="<?= htmlspecialchars($latestCosting['lunch_dinner'] ?? 0) ?>">
+</td>
                                     </tr>
                                     <tr style="background-color:#cce5ff; font-weight:bold;">
                                         <td colspan="9"  class="text-start">Cost Per Pax - IN USD</td>
-                                        <td id="costPerPax" style="background-color:#99ccff;">0</td>
+                                        <td id="costPerPax" style="background-color:#99ccff;"><span id="costPerPax"><?= htmlspecialchars($latestCosting['cost_per_pax'] ?? 0) ?></span>
+</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -313,7 +342,24 @@ if (!empty($itinerary['city_ids'])) {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
+                                        <?php foreach($latestTransport as $t): ?>
+<tr>
+    <td><?= htmlspecialchars($t['pax'] ?? '') ?></td>
+    <td><?= htmlspecialchars($t['vehicle'] ?? '') ?></td>
+    <td><input type="number" class="form-control rsPerKm" value="<?= htmlspecialchars($t['rsPerKm'] ?? 0) ?>"></td>
+    <td><input type="number" class="form-control km" value="<?= htmlspecialchars($t['km'] ?? 0) ?>"></td>
+    <td class="totalRs"><?= htmlspecialchars($t['totalRs'] ?? 0) ?></td>
+    <td><input type="number" class="form-control days" value="<?= htmlspecialchars($t['days'] ?? 0) ?>"></td>
+    <td><input type="number" class="form-control batta" value="<?= htmlspecialchars($t['batta'] ?? 0) ?>"></td>
+    <td class="transportRs"><?= htmlspecialchars($t['transportRs'] ?? 0) ?></td>
+    <td><input type="number" class="form-control transportUsd" value="<?= htmlspecialchars($t['transportUsd'] ?? 0) ?>" readonly></td>
+    <td><input type="number" class="form-control lGuideUsd" value="<?= htmlspecialchars($t['lGuideUsd'] ?? 0) ?>"></td>
+    <td class="totalCost"><?= htmlspecialchars($t['totalCost'] ?? 0) ?></td>
+    <td class="costPP"><?= htmlspecialchars($t['costPP'] ?? 0) ?></td>
+</tr>
+<?php endforeach; ?>
+
+                                        <!-- <tr>
                                             <td>02</td>
                                             <td>Car</td>
                                             <td><input type="number" class="form-control rsPerKm" value="120"></td>
@@ -368,7 +414,7 @@ if (!empty($itinerary['city_ids'])) {
                                             <td><input type="number" class="form-control lGuideUsd" value="0"></td>
                                             <td class="totalCost">0</td>
                                             <td class="costPP">0</td>
-                                        </tr>
+                                        </tr> -->
                                     </tbody>
                                 </table>
                             </div>
@@ -436,15 +482,19 @@ if (!empty($itinerary['city_ids'])) {
             </thead>
             <tbody>
               <?php foreach($entranceFees as $fee): ?>
-                <tr>
-                  <!-- Add data-id for checkbox -->
-                  <td>
-                    <input type="checkbox" class="entrance-checkbox" data-id="<?= $fee['id'] ?>" data-price="<?= $fee['price_usd'] ?>">
-                  </td>
-                  <td class="text-start"><?= htmlspecialchars($fee['name']) ?></td>
-                  <td>$ <?= number_format($fee['price_usd'], 2) ?></td>
-                </tr>
-              <?php endforeach; ?>
+<tr>
+    <td>
+        <input type="checkbox" class="entrance-checkbox"
+            data-id="<?= $fee['id'] ?>"
+            data-price="<?= $fee['price_usd'] ?>"
+            <?= in_array($fee['id'], array_column($latestEntranceFees, 'id') ?? []) ? 'checked' : '' ?>
+        >
+    </td>
+    <td class="text-start"><?= htmlspecialchars($fee['name']) ?></td>
+    <td>$ <?= number_format($fee['price_usd'], 2) ?></td>
+</tr>
+<?php endforeach; ?>
+
               <tr>
                 <td colspan="2" class="text-end fw-bold fs-5">Total</td>
                 <td id="entranceTotal" class="fw-bold fs-5">$ 0.00</td>
