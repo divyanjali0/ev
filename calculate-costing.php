@@ -7,6 +7,14 @@ if (!isset($_SESSION['user_id'])) {
     exit;
 }
 
+
+// Fetch entrance fees from DB
+$stmt = $conn->prepare("SELECT id, name, price_usd FROM entrance_fees ORDER BY name");
+$stmt->execute();
+$entranceFees = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+
+
 $id = $_GET['id'] ?? 0;
 $id = (int)$id; 
 
@@ -162,8 +170,15 @@ if (!empty($itinerary['city_ids'])) {
                         <label class="form-label">Pax Count</label>
                         <input type="text" class="form-control" value="Adults: <?= htmlspecialchars($itinerary['adults'] ?? 0); ?>, 6-11: <?= htmlspecialchars($itinerary['children_6_11'] ?? 0); ?>, 11+: <?= htmlspecialchars($itinerary['children_above_11'] ?? 0); ?>, Infants: <?= htmlspecialchars($itinerary['infants'] ?? 0); ?>" readonly>
                     </div>
-                </div>
 
+                    <div class="col-md-3 d-flex flex-column">
+                        <label class="form-label">Entrance Fees</label>
+                        <button class="btn btn-outline-primary mb-0" type="button" data-bs-toggle="modal" data-bs-target="#entranceModal">
+                            Add Entrance Fees
+                        </button>
+                    </div>
+                </div>
+                <hr>
                 <div class="row mt-0">
                     <div class="col-12">
                         <input type="text" class="form-control text-center fw-bold border-0"  value="<?= htmlspecialchars($itinerary['start_date'] ?? '') ?> to <?= htmlspecialchars($itinerary['end_date'] ?? '') ?>" readonly>
@@ -392,9 +407,87 @@ if (!empty($itinerary['city_ids'])) {
 
                 </div>
             </div>
+
+            
         </div>
     </div>
 </div>
+
+<!-- Entrance Fees Modal -->
+<div class="modal fade" id="entranceModal" tabindex="-1" aria-labelledby="entranceModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="entranceModalLabel">Add Entrance Fees</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="entranceFeesForm">
+          <table class="table table-bordered align-middle">
+            <thead class="table-light">
+              <tr>
+                <th>Select</th>
+                <th>Entrance Tickets</th>
+                <th>Price PP (USD) </th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php foreach($entranceFees as $fee): ?>
+                <tr>
+                  <td><input type="checkbox" class="entrance-checkbox" data-price="<?= $fee['price_usd'] ?>"></td>
+                  <td class="text-left"><?= htmlspecialchars($fee['name']) ?></td>
+                  <td>$ <?= number_format($fee['price_usd'], 2) ?></td>
+                </tr>
+              <?php endforeach; ?>
+              <tr>
+                <td colspan="2" class="text-end fw-bold fs-5">Total</td>
+                <td id="entranceTotal" class="fw-bold fs-5">$ 0.00</td>
+              </tr>
+            </tbody>
+          </table>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id="saveEntranceFees">Save Fees</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+  const entranceCheckboxes = document.querySelectorAll('.entrance-checkbox');
+  const entranceTotal = document.getElementById('entranceTotal');
+  const mainEntranceInput = document.getElementById('entranceTickets');
+
+  function calculateEntranceTotal() {
+    let total = 0;
+    entranceCheckboxes.forEach(cb => {
+      if (cb.checked) {
+        total += parseFloat(cb.dataset.price) || 0;
+      }
+    });
+    entranceTotal.textContent = '$' + total.toFixed(2);
+    return total;
+  }
+
+  entranceCheckboxes.forEach(cb => cb.addEventListener('change', calculateEntranceTotal));
+
+  document.getElementById('saveEntranceFees').addEventListener('click', () => {
+    const total = calculateEntranceTotal();
+    mainEntranceInput.value = total.toFixed(2);
+    const modal = bootstrap.Modal.getInstance(document.getElementById('entranceModal'));
+    modal.hide();
+  });
+
+  // Initialize total
+  calculateEntranceTotal();
+</script>
+
 
 <script>
     const costTable = document.getElementById('costTable');
