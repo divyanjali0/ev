@@ -1321,3 +1321,229 @@ header .navbar.scrolled .logo-scrolled {
     align-items: center;
     gap: 0.5rem;
 }
+
+/* Container */
+#wechat-widget {
+    position: fixed;
+    bottom: 10%;
+    right: 12px;
+    z-index: 9999;
+    font-family: Arial, sans-serif;
+}
+
+/* Floating icon */
+#wechat-widget .chat-icon {
+    width: 60px;
+    height: 60px;
+    background: #07c160;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+/* Chat box */
+#wechat-widget .chat-box {
+    width: 320px;
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    display: none;
+    flex-direction: column;
+}
+
+/* Header */
+#wechat-widget .chat-header {
+    background: #07c160;
+    color: #fff;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#wechat-widget .chat-header .avatar-container {
+    width: 32px;
+    height: 32px;
+}
+
+#wechat-widget .chat-header .chat-header-info {
+    flex: 1;
+}
+
+/* Chat content */
+#wechat-widget .chat-content {
+    padding: 12px;
+    max-height: 220px;
+    overflow-y: auto;
+    font-size: 14px;
+}
+
+/* Message input */
+#wechat-widget .message-input {
+    padding: 10px;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+#wechat-widget #copy-wechat {
+    background: #07c160;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+/* Typing indicator */
+.typing-indicator {
+    display: flex;
+    gap: 4px;
+}
+
+.typing-indicator span {
+    width: 6px;
+    height: 6px;
+    background: #07c160;
+    border-radius: 50%;
+    animation: blink 1s infinite;
+}
+
+.typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
+.typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes blink {
+    0%, 80%, 100% { opacity: 0; }
+    40% { opacity: 1; }
+}
+
+/* Message bubble */
+.message {
+    background: #f1f1f1;
+    padding: 8px 10px;
+    border-radius: 8px;
+    margin-bottom: 8px;
+}
+
+.close-btn {
+    border: 0;
+    background-color: transparent;
+    color: white;
+}
+
+.trip-card {
+  height: 280px;
+  border-radius: 18px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  overflow: hidden;
+}
+
+.trip-overlay {
+  position: absolute;
+  bottom: 15px;
+  left: 15px;
+  z-index: 2;
+  color: #fff;
+  font-weight: 600;
+  background: #0060a6;
+  padding: 4px 10px;
+  border-radius: 12px;
+}
+
+.trip-button {
+  background-color: #0060a6;
+  color: white;
+  font-weight: 600;
+}
+
+.trips-carousel {
+  overflow: hidden;
+}
+
+.trips-track {
+  display: flex;
+  gap: 16px;
+  transition: transform 0.4s ease;
+}
+
+.trip-card {
+  min-width: 220px;
+  height: 300px;
+  border-radius: 18px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  flex-shrink: 0;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.trip-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.1), transparent);
+}
+
+.trip-overlay {
+  position: absolute;
+  bottom: 14px;
+  left: 14px;
+  z-index: 2;
+  background: #0060a6;
+  color: #fff;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+/* Bottom-right arrows */
+.carousel-controls {
+  position: absolute;
+  right: 0;
+  bottom: -55px;
+  display: flex;
+  gap: 10px;
+}
+
+.carousel-controls button {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: none;
+  background: #f1f1f1;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.carousel-controls button:hover {
+  background: #0060a6;
+  color: #fff;
+}
+
+ #trip-tabs h3 {
+  font-family: "Playfair Display", serif;
+  text-align: left;
+  font-weight: 700;
+  font-size: 22px;
+}
+
+#toursEV #trip-tabs .active::after {
+  border-bottom: 1px solid #ffffff;
+}
+
+#toursEV #trip-tabs .nav-link {
+    color: #00394b;
+    font-weight: 700;
+    text-transform: uppercase;
+  }

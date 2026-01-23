@@ -86,7 +86,8 @@ $output .= '
    class="btn btn-primary border-radius-0"
    target="_blank"
    rel="noopener noreferrer">
-    View all reviews
+    查看所有评价
+
 </a>
 
     </div>

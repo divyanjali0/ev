@@ -1,484 +1,1310 @@
-
-
-<body id = "homePage">
-    <!-- Home hero starts -->
-    <section id="homeHero">
-        <div class="swiper homeHeroSwiper">
-            <div class="swiper-wrapper">
-                <!-- Slide 1 -->
-                <div class="swiper-slide">
-                    <img src="assets/images/home-hero/img-1.webp" alt="Explore Vacations"class="img-fluid d-none d-md-block">
-                    <img src="assets/images/home-hero/img-1-sm.webp" alt="Explore Vacations" class="img-fluid d-md-none">
-                </div>
-
-                <!-- Slide 2 -->
-                <div class="swiper-slide">
-                    <img src="assets/images/home-hero/img-2.webp" alt="Explore Vacations" class="img-fluid d-none d-md-block">
-                    <img src="assets/images/home-hero/img-2-sm.webp" alt="Explore Vacations" class="img-fluid d-md-none">
-                </div>
-
-                <!-- Slide 3 -->
-                <div class="swiper-slide">
-                    <img src="assets/images/home-hero/img-3.webp" alt="Explore Vacations" class="img-fluid d-none d-md-block">
-                    <img src="assets/images/home-hero/img-3-sm.webp" alt="Explore Vacations" class="img-fluid d-md-none">
-                </div>
-            </div>
-        </div>
-
-        <!-- Hero Content -->
-        <div class="homehero-content">
-            <h1 data-aos="fade-down-right" data-aos-duration="1000">Discover Wonders<br class="d-md-none"> with<br class="d-none d-md-block"> Every Step</h1>
-            <p class="mt-3" data-aos="fade-down-left" data-aos-duration="1000">Discover unforgettable journeys with Explore Vacations. <br>Adventure, relaxation, and memories that last a lifetime.</p>
-            <a href="[[~3]]" class="mt-3">Plan Your Trip</a>
+<body id="toursEV">
+    <!-- Hero starts -->
+    <section id="hero">
+        <img src="assets/images/our-trips-bg.jpg" alt="Explore Vacations - Our Trips">
+        <div class="hero-content">
+            <h1>Our Trips</h1>
         </div>
     </section>
-    <!-- Home hero ends -->
+    <!-- Hero ends -->
 
-    <!-- Why choose us section starts -->
-     <section id="why-choose-us" class="py-5">
+    <section id="intro" class="py-5">
         <div class="container">
             <div class="row">
-                <div class="col-12 col-md-6 d-flex align-items-center">
-                    <div class="card">
-                        <div class="card-body" data-aos="fade-up" data-aos-duration="1000">
-                            <h2 class="heading mb-4">Why Choose Us?</h2>
-                            <p class="supportive-text">At Explore Vacations, we are passionate about creating unforgettable travel experiences. Here’s why you should choose us for your next adventure:</p> 
-                            <ul class="list-unstyled">
-                                <li><img src="assets/images/icons/map-marked.svg" class="img-fluid" alt="map-marked"> <p><b>Personalized Itineraries :</b> We tailor each trip to your preferences, ensuring a unique and memorable experience.</p></li>
-                                <li><img src="assets/images/icons/user-tie.svg" class="img-fluid" alt="user-tie"> <p><b>Expert Guides :</b> Our knowledgeable guides provide insights and local expertise to enrich your journey.</p></li>
-                                <li><img src="assets/images/icons/headset.svg" class="img-fluid" alt="headset"> <p><b>24/7 Support :</b> We are available around the clock to assist you during your travels.</p></li>
-                                <li><img src="assets/images/icons/dollar-sign.svg" class="img-fluid" alt="dollar-sign"> <p><b>Best Price Guarantee :</b> We offer competitive pricing without compromise.</p></li>
-                                <li><img src="assets/images/icons/leaf.svg" class="img-fluid" alt="leaf"> <p><b>Commitment to Sustainability :</b> We prioritize eco-friendly practices to preserve the beauty of our destinations.</p></li>
-                            </ul>
-                        </div> 
-                    </div>
-                </div>
-                <div class="col-12 col-md-6 d-flex align-items-center mt-3 mt-md-0" data-aos="fade-left" data-aos-duration="1000">
-                    <img src="assets/images/why-choose-us-img.jpg" alt="Why Choose Us" class="img-fluid why-choose-us-img">
+                <div class="col">
+                    <h2 class="heading">Our Trips</h2>
+                    <p class="supportive-text">If you’re in the midst of planning an exciting getaway to the enchanting land of Sri Lanka, look no further than Explore Vacations – your friendly and reliable travel companion. With a profound passion for travel and an unwavering commitment to crafting unforgettable experiences, Explore Vacations has garnered a multitude of glowing reviews from delighted customers.</p>
+                    <p class="supportive-text">Sri Lanka is a destination that promises a treasure trove of natural beauty and captivating cultural attractions. From its awe-inspiring natural landscapes to its rich and vibrant heritage, there’s no shortage of things to see and do in this picturesque paradise.</p>
+                    <p class="supportive-text">What sets Explore Vacations apart is the sheer happiness of its customers, as evidenced by the numerous positive reviews. When you choose Explore Vacations as your trusted guide, you can rest easy knowing that every single detail of your journey will be meticulously taken care of, leaving you with the freedom to relax and fully immerse yourself in the joy of your adventure.</p>
+                    <p class="supportive-text">So, whether you yearn to explore the breathtaking landscapes or delve into the rich cultural tapestry of Sri Lanka, let Explore Vacations be your ideal partner in turning your travel dreams into reality. Your satisfaction and happiness are their ultimate goals, and they’ve left a trail of happy customers who can vouch for it.</p>
                 </div>
             </div>
-        </div>
-    </section>
-    <!-- Why choose us section ends -->
-
-    <!--Get in Touch section starts -->
-    <section id="get-in-touch" class="py-5">
-        <div class="container">
-            <div class="row">   
-                <div class="col-12">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="row align-items-center">
-                                <div class="col-md-6 mb-4 mb-md-0" data-aos="fade-up" data-aos-duration="1000">
-                                    <h2 class="heading mb-3">Design Your Personalized Itinerary</h2>
-                                    <p class="supportive-text mb-4">
-                                            Use our itinerary builder to create your ideal travel plan exactly the way you want it. Once you’re happy with your plan, get in touch with us and we’ll make your dream trip a reality.
-                                    </p>
-                                    <a href="[[~3]]" class="btn btn-primary" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
-                                        Plan Now
-                                    </a>
-                                </div>
-                                <div class="col-md-6 text-center" data-aos="fade-left" data-aos-duration="1000">
-                                    <img src="assets/images/travel-cta.webp" alt="Travel" class="img-fluid hover-zoom">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!--Get in Touch section ends -->
-
-    <!-- Service Counter section starts -->
-    <section id="service-counter" class="py-5">
-        <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <div class="service-counter-wrapper d-flex flex-column flex-md-row justify-content-around align-items-center">
-                        <div class="counter-item text-center" data-aos="fade-up" data-aos-duration="1000">
-                            <h2 class="counter-number">500+</h2>
-                            <p class="counter-label">Happy Travellders</p>
-                        </div>
-                        <div class="counter-item text-center" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
-                            <h2 class="counter-number">150+</h2>
-                            <p class="counter-label">Destinations Covered</p>
-                        </div>
-                        <div class="counter-item text-center" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
-                            <h2 class="counter-number">50+</h2>
-                            <p class="counter-label">Expert Guides</p>
-                        </div>
-                        <div class="mb-0 counter-item text-center" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="600">
-                            <h2 class="counter-number">24/7</h2>
-                            <p class="counter-label">Customer Support</p>
+                    <!-- Swiper -->
+                    <div class="swiper mySwiper">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <img src="assets/ev-tours/Sri Lanka Tour Snaps/1.webp" alt="Slide 1">
+                            </div>
+
+                            <div class="swiper-slide">
+                                <img src="assets/ev-tours/Sri Lanka Tour Snaps/2.webp" alt="Slide 2">
+                            </div>
+
+                            <div class="swiper-slide">
+                                <img src="assets/ev-tours/Sri Lanka Tour Snaps/3.webp" alt="Slide 3">
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="assets/ev-tours/Sri Lanka Tour Snaps/4.webp" alt="Slide 1">
+                            </div>
+
+                            <div class="swiper-slide">
+                                <img src="assets/ev-tours/Sri Lanka Tour Snaps/5.webp" alt="Slide 2">
+                            </div>
+
+                            <div class="swiper-slide">
+                                <img src="assets/ev-tours/Sri Lanka Tour Snaps/6.webp" alt="Slide 3">
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="assets/ev-tours/Sri Lanka Tour Snaps/7.webp" alt="Slide 1">
+                            </div>
+
+                            <div class="swiper-slide">
+                                <img src="assets/ev-tours/Sri Lanka Tour Snaps/8.webp" alt="Slide 2">
+                            </div>
+
+                            <div class="swiper-slide">
+                                <img src="assets/ev-tours/Sri Lanka Tour Snaps/9.webp" alt="Slide 3">
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="assets/ev-tours/Sri Lanka Tour Snaps/10.webp" alt="Slide 1">
+                            </div>
+
+                            <div class="swiper-slide">
+                                <img src="assets/ev-tours/Sri Lanka Tour Snaps/11.webp" alt="Slide 2">
+                            </div>
+
+                            <div class="swiper-slide">
+                                <img src="assets/ev-tours/Sri Lanka Tour Snaps/12.webp" alt="Slide 3">
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="assets/ev-tours/Sri Lanka Tour Snaps/13.webp" alt="Slide 2">
+                            </div>
+
+                            <div class="swiper-slide">
+                                <img src="assets/ev-tours/Sri Lanka Tour Snaps/14.webp" alt="Slide 3">
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="assets/ev-tours/Sri Lanka Tour Snaps/20.webp" alt="Slide 1">
+                            </div>
+
+                            <div class="swiper-slide">
+                                <img src="assets/ev-tours/Group & Family Tours In Sri Lanka/1.webp" alt="Slide 2">
+                            </div>
+
+                            <div class="swiper-slide">
+                                <img src="assets/ev-tours/Group & Family Tours In Sri Lanka/2.webp" alt="Slide 3">
+                            </div>
+
+                            <div class="swiper-slide">
+                                <img src="assets/ev-tours/Group & Family Tours In Sri Lanka/4.webp" alt="Slide 2">
+                            </div>
+
+                            <div class="swiper-slide">
+                                <img src="assets/ev-tours/Group & Family Tours In Sri Lanka/6.webp" alt="Slide 3">
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="assets/ev-tours/Group & Family Tours In Sri Lanka/7.webp" alt="Slide 1">
+                            </div>
+
+                            <div class="swiper-slide">
+                                <img src="assets/ev-tours/Group & Family Tours In Sri Lanka/9.webp" alt="Slide 2">
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <!-- Service Counter section ends -->
 
-    <!-- Trending Destinations section starts -->
-    <section id="trending-destinations" class="py-5">
+
+
+    <!-- Trips Tabs Section starts -->
+    <section id="trip-tabs" class="py-5 bg-light">
         <div class="container">
-            <div class="row">
-                <div class="col">
-                    <h2 class="heading text-center">Trending Destinations</h2>
-                </div>
-            </div>
-            <div class="swiper myDestinationsSwiper mt-3">
-                <div class="swiper-wrapper" data-aos="zoom-in" data-aos-duration="1000">
 
-                    <!-- Sigiriya -->
-                    <div class="swiper-slide">
-                        <div class="destination-item text-center">
-                            <img src="assets/images/trending-destinations/1.jpg" alt="Sigiriya" class="img-fluid">
-                            <h3 class="destination-name mt-2">Sigiriya</h3>
-                        </div>
-                    </div>
-
-                    <!-- Kandy -->
-                    <div class="swiper-slide">
-                        <div class="destination-item text-center">
-                            <img src="assets/images/trending-destinations/2.jpg" alt="Kandy" class="img-fluid">
-                            <h3 class="destination-name mt-2">Kandy</h3>
-                        </div>
-                    </div>
-
-                    <!-- Mirissa -->
-                    <div class="swiper-slide">
-                        <div class="destination-item text-center">
-                            <img src="assets/images/trending-destinations/3.jpg" alt="Mirissa" class="img-fluid">
-                            <h3 class="destination-name mt-2">Mirissa</h3>
-                        </div>
-                    </div>
-
-                    <!-- Jaffna -->
-                    <div class="swiper-slide">
-                        <div class="destination-item text-center">
-                            <img src="assets/images/trending-destinations/4.jpg" alt="Jaffna" class="img-fluid">
-                            <h3 class="destination-name mt-2">Jaffna</h3>
-                        </div>
-                    </div>
-
-                    <!-- Galle -->
-                    <div class="swiper-slide">
-                        <div class="destination-item text-center">
-                            <img src="assets/images/trending-destinations/5.jpg" alt="Galle" class="img-fluid">
-                            <h3 class="destination-name mt-2">Galle</h3>
-                        </div>
-                    </div>
-
-                    <!-- Ella -->
-                    <div class="swiper-slide">
-                        <div class="destination-item text-center">
-                            <img src="assets/images/trending-destinations/6.jpg" alt="Ella" class="img-fluid">
-                            <h3 class="destination-name mt-2">Ella</h3>
-                        </div>
-                    </div>
-
-                    <!-- Nuwara Eliya -->
-                    <div class="swiper-slide">
-                        <div class="destination-item text-center">
-                            <img src="assets/images/trending-destinations/7.jpg" alt="Nuwara Eliya" class="img-fluid">
-                            <h3 class="destination-name mt-2">Nuwara Eliya</h3>
-                        </div>
-                    </div>
-
-                    <!-- Trincomalee -->
-                    <div class="swiper-slide mb-4">
-                        <div class="destination-item text-center">
-                            <img src="assets/images/trending-destinations/8.jpg" alt="Trincomalee" class="img-fluid">
-                            <h3 class="destination-name mt-2">Trincomalee</h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-pagination"></div>
-            </div>
-        </div>
-    </section>
-    <!-- Trending Destinations section ends -->
-
-    <!-- Beauty of Srilanka section starts -->
-    <section id="beauty-of-srilanka" class="pt-5">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col px-0">
-                    <div class="image-overlay">
-                        <img src="assets/images/beauty-srilanka.png" alt="Beauty of Srilanka" class="img-fluid w-100">
-                        <div class="overlay"></div> 
-                        <div class="overlay-text">
-                            <h2 class="heading">Journey Through Sri Lanka</h2>
-                            <a href="[[~3]]" class="btn btn-primary mt-3">Explore More</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Beauty of Srilanka section ends -->
-
-    <!-- Book your trip section starts -->
-    <section id="book-your-trip" class="py-5">
-        <div class="container">
-            <div class="row">
-                <div class="col-12 col-md-6">
-                    <span>Easy and Fast</span>
-                    <h2 class="heading" data-aos="fade-up" data-aos-duration="1000">Book your next trip <br> in 3 easy steps</h2>
-                    <ul class="list-unstyled mt-5" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
-                        <div class="d-flex align-items-center mb-4">
-                            <img src="assets/images/icons/destinations.svg" alt="Choose Destination" class="img-fluid">
-                            <li>
-                                <h3>Choose Destination</h3>
-                                <p>Whether you love beaches, mountains, or cities—choose the destination that excites you.</p>
-                            </li>
-                        </div>
-                        <div class="d-flex align-items-center mb-4">
-                            <img src="assets/images/icons/payment.svg" alt="Choose Payment" class="img-fluid">
-                            <li>
-                                <h3>Plan Your Itinerary</h3>
-                                <p>Customize your trip schedule to match your interests and travel style</p>
-                            </li>
-                        </div>
-                        <div class="d-flex align-items-center">
-                            <img src="assets/images/icons/travel.svg" alt="Reach Airport on Selected Date" class="img-fluid">
-                            <li>
-                                <h3>Begin Your Adventure</h3>
-                                <p>Experience the beauty and excitement of your chosen destination to the fullest.</p>
-                            </li>
-                        </div>
-                    </ul>
-                </div>
-                <div class="col-12 col-md-6 mt-3 mt-md-0 d-flex justify-content-center align-items-center">
-                    <img src="assets/images/book-trip.png" alt="Book your trip" class="img-fluid beauty-srilanka" data-aos="fade-left" data-aos-duration="1000">
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Book your trip section ends -->
-
-    <!-- Popular things to do section starts -->
-    <section id="popular-things-to-do" class="py-5">
-        <div class="container">
+            <!-- Section Heading -->
             <div class="row mb-4">
-                <div class="col">
-                    <h2 class="heading text-center">Popular Things to Do</h2>
+                <div class="col text-center">
+                    <h2 class="heading">Sri Lankan Tours We've Designed & Delivered</h2>
+                    <p class="supportive-text text-center mt-2">
+Each tour represents a journey we’ve carefully planned and brought to life,
+reflecting diverse travel styles and unforgettable experiences.                    </p>
                 </div>
             </div>
 
-            <div class="row g-4">
-                <!-- Left column: 2 stacked images -->
-                <div class="col-12 col-md-4">
-                    <div class="popular-card mb-4">
-                    <img src="assets/images/popular/1.jpg" alt="Safari">
-                    <div class="overlay"></div>
-                    <span class="title">Safari</span>
+            <!-- Tabs Navigation -->
+            <ul class="nav nav-tabs justify-content-center flex-wrap" id="tripTabs" role="tablist">
+                <li class="nav-item"><button class="nav-link active" data-bs-toggle="tab" data-bs-target="#tab-chinese">Chinese</button></li>
+                <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-canadian">Canadian</button></li>
+                <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-indian">Indian</button></li>
+                <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-swiss">Swiss</button></li>
+                <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-ireland">Ireland</button></li>
+                <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-dutch">Dutch</button></li>
+                <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-uk">UK</button></li>
+                <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-vietnamese">Vietnamese</button></li>
+                <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-spanish">Spanish</button></li>
+                <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-egyptian">Egyptian</button></li>
+                <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-bangaldesh">Bangaldesh</button></li>
+                <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-bbc">BBC Media</button></li>
+            </ul>
+
+            <!-- Tabs Content -->
+            <div class="tab-content pt-4">
+                <div class="tab-pane fade show active" id="tab-chinese">
+                    <h3 class="mb-4">Chinese Group Tours In Sri Lanka</h3>
+                    <div class="row g-4">
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Groups In Sri Lanka/1.webp" class="img-fluid" alt="image-1">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Groups In Sri Lanka/2.webp" class="img-fluid" alt="image-2">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Groups In Sri Lanka/3.webp" class="img-fluid" alt="image-3">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Groups In Sri Lanka/4.webp" class="img-fluid" alt="image-4">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Groups In Sri Lanka/5.webp" class="img-fluid" alt="image-5">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Groups In Sri Lanka/6.webp" class="img-fluid" alt="image-6">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Groups In Sri Lanka/7.webp" class="img-fluid" alt="image-7">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Groups In Sri Lanka/8.webp" class="img-fluid" alt="image-8">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Groups In Sri Lanka/9.webp" class="img-fluid" alt="image-9">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Groups In Sri Lanka/10.webp" class="img-fluid" alt="image-10">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Groups In Sri Lanka/11.webp" class="img-fluid" alt="image-11">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Groups In Sri Lanka/12.webp" class="img-fluid" alt="image-12">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Groups In Sri Lanka/13.webp" class="img-fluid" alt="image-13">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Groups In Sri Lanka/14.webp" class="img-fluid" alt="image-14">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Groups In Sri Lanka/15.webp" class="img-fluid" alt="image-15">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Groups In Sri Lanka/16.webp" class="img-fluid" alt="image-16">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Groups In Sri Lanka/17.webp" class="img-fluid" alt="image-17">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Groups In Sri Lanka/18.webp" class="img-fluid" alt="image-18">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Groups In Sri Lanka/19.webp" class="img-fluid" alt="image-19">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Groups In Sri Lanka/20.webp" class="img-fluid" alt="image-20">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Groups In Sri Lanka/21.webp" class="img-fluid" alt="image-21">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Groups In Sri Lanka/22.webp" class="img-fluid" alt="image-22">
+                        </div>
                     </div>
-                    <div class="popular-card">
-                    <img src="assets/images/popular/4.jpg" alt="Train Rides">
-                    <div class="overlay"></div>
-                    <span class="title">Train Rides</span>
+                    <hr>
+                    <h3 class="mb-4 mt-4">Chinese Group Tour In Sri Lanka ( 30.04.2025 - 07.05.2025 )</h3>
+                    <div class="row g-4">
+                         <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Group Tour In Sri Lanka30.04.2025 - 07.05.2025/1.webp" class="img-fluid" alt="image-1">
+                        </div>
+                         <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Group Tour In Sri Lanka30.04.2025 - 07.05.2025/2.webp" class="img-fluid" alt="image-2">
+                        </div>
+                    </div>
+                    <hr>
+                    <h3 class="mb-4 mt-4">Chinese Group Tour In Sri Lanka ( 13.06.2025 - 20.05.2025 )</h3>
+                    <div class="row g-4">
+                         <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Group Tour In Sri Lanka13.06.2025 - 20.05.2025/1.webp" class="img-fluid" alt="image-1">
+                        </div>
+                         <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Group Tour In Sri Lanka13.06.2025 - 20.05.2025/2.webp" class="img-fluid" alt="image-2">
+                        </div>
+                         <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Group Tour In Sri Lanka13.06.2025 - 20.05.2025/3.webp" class="img-fluid" alt="image-3">
+                        </div>
+                         <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Group Tour In Sri Lanka13.06.2025 - 20.05.2025/4.webp" class="img-fluid" alt="image-4">
+                        </div>
+                         <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Group Tour In Sri Lanka13.06.2025 - 20.05.2025/5.webp" class="img-fluid" alt="image-5">
+                        </div>
+                         <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Group Tour In Sri Lanka13.06.2025 - 20.05.2025/6.webp" class="img-fluid" alt="image-6">
+                        </div>
+                         <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Group Tour In Sri Lanka13.06.2025 - 20.05.2025/7.webp" class="img-fluid" alt="image-7">
+                        </div>
+                    </div>
+                    <hr>
+                    <h3 class="mb-4 mt-4">Chinese Group Tour In Sri Lanka ( 29.04.2024 - 07.05.2024 )</h3>
+                    <div class="row g-4">
+                         <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Group Tour In Sri Lanka29.04.2024 - 07.05.2024/1.webp" class="img-fluid" alt="image-1">
+                        </div>
+                         <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Group Tour In Sri Lanka29.04.2024 - 07.05.2024/2.webp" class="img-fluid" alt="image-2">
+                        </div>
+                         <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Group Tour In Sri Lanka29.04.2024 - 07.05.2024/3.webp" class="img-fluid" alt="image-3">
+                        </div>
+                         <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Group Tour In Sri Lanka29.04.2024 - 07.05.2024/4.webp" class="img-fluid" alt="image-4">
+                        </div>
+                         <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Group Tour In Sri Lanka29.04.2024 - 07.05.2024/5.webp" class="img-fluid" alt="image-5">
+                        </div>
+                         <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Group Tour In Sri Lanka29.04.2024 - 07.05.2024/6.webp" class="img-fluid" alt="image-6">
+                        </div>
+                         <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Group Tour In Sri Lanka29.04.2024 - 07.05.2024/7.webp" class="img-fluid" alt="image-7">
+                        </div>
+                         <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Group Tour In Sri Lanka29.04.2024 - 07.05.2024/8.webp" class="img-fluid" alt="image-8">
+                        </div>
+                         <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Group Tour In Sri Lanka29.04.2024 - 07.05.2024/9.webp" class="img-fluid" alt="image-9">
+                        </div>
+                         <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Group Tour In Sri Lanka29.04.2024 - 07.05.2024/10.webp" class="img-fluid" alt="image-10">
+                        </div>
+                    </div>
+                    <div class="row g-4 mt-3">
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Group Tour In Sri Lanka29.04.2024 - 07.05.2024/11.webp" class="img-fluid" alt="image-11">
+                        </div>
+                         <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Group Tour In Sri Lanka29.04.2024 - 07.05.2024/12.webp" class="img-fluid" alt="image-12">
+                        </div>
+                         <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Group Tour In Sri Lanka29.04.2024 - 07.05.2024/13.webp" class="img-fluid" alt="image-13">
+                        </div>
+                         <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Group Tour In Sri Lanka29.04.2024 - 07.05.2024/14.webp" class="img-fluid" alt="image-14">
+                        </div>
+                    </div>
+                    <hr>
+                    <h3 class="mb-4 mt-4">Chinese Group Tour In Sri Lanka ( 29.04.2023 - 13.05.2023 )</h3>
+                    <div class="row g-4">
+                         <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Group Tour In Sri Lanka29.04.2023 - 13.05.2023/1.webp" class="img-fluid" alt="image-1">
+                        </div>
+                         <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Group Tour In Sri Lanka29.04.2023 - 13.05.2023/2.webp" class="img-fluid" alt="image-2">
+                        </div>
+                         <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Group Tour In Sri Lanka29.04.2023 - 13.05.2023/3.webp" class="img-fluid" alt="image-3">
+                        </div>
+                    </div>
+                    <hr>
+                    <h3 class="mb-4 mt-4">Chinese Group Tour In Sri Lanka : 29.01.2025</h3>
+                    <div class="row g-4">
+                         <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Group Tour In Sri Lanka29.01.2025 -/1.webp" class="img-fluid" alt="image-1">
+                        </div>
+                    </div>
+                    <hr>
+                    <h3 class="mb-4 mt-4">Chinese Group Tour In Sri Lanka : 27.01.2025</h3>
+                    <div class="row g-4">
+                         <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Group Tour In Sri Lanka27.01.2025 -/1.webp" class="img-fluid" alt="image-1">
+                        </div>
+                    </div>
+                    <hr>
+                    <h3 class="mb-4 mt-4">Chinese Group Tour In Sri Lanka ( 23.09.2023 - 30.09.2023 )</h3>
+                    <div class="row g-4">
+                         <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Group Tour In Sri Lanka23.09.2023 - 30.09.2023/1.webp" class="img-fluid" alt="image-1">
+                        </div>
+                         <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Group Tour In Sri Lanka23.09.2023 - 30.09.2023/2.webp" class="img-fluid" alt="image-2">
+                        </div>
+                         <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Group Tour In Sri Lanka23.09.2023 - 30.09.2023/3.webp" class="img-fluid" alt="image-3">
+                        </div>
+                         <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Group Tour In Sri Lanka23.09.2023 - 30.09.2023/4.webp" class="img-fluid" alt="image-4">
+                        </div>
+                         <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Group Tour In Sri Lanka23.09.2023 - 30.09.2023/5.webp" class="img-fluid" alt="image-5">
+                        </div>
+                         <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Group Tour In Sri Lanka23.09.2023 - 30.09.2023/6.webp" class="img-fluid" alt="image-6">
+                        </div>
+                    </div>
+                    <hr>
+                    <h3 class="mb-4 mt-4">Chinese Group Tour In Sri Lanka ( 17.06.2023 - 24.06.2023 )</h3>
+                    <div class="row g-4">
+                         <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Group Tour In Sri Lanka17.06.2023 - 24.06.2023/1.webp" class="img-fluid" alt="image-1">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Group Tour In Sri Lanka17.06.2023 - 24.06.2023/2.webp" class="img-fluid" alt="image-2">
+                        </div>
+                         <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Group Tour In Sri Lanka17.06.2023 - 24.06.2023/3.webp" class="img-fluid" alt="image-3">
+                        </div>
+                         <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Group Tour In Sri Lanka17.06.2023 - 24.06.2023/4.webp" class="img-fluid" alt="image-4">
+                        </div>
+                         <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Group Tour In Sri Lanka17.06.2023 - 24.06.2023/5.webp" class="img-fluid" alt="image-5">
+                        </div>
+                         <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Group Tour In Sri Lanka17.06.2023 - 24.06.2023/6.webp" class="img-fluid" alt="image-6">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Group Tour In Sri Lanka17.06.2023 - 24.06.2023/7.webp" class="img-fluid" alt="image-7">
+                        </div>
+                         <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Group Tour In Sri Lanka17.06.2023 - 24.06.2023/8.webp" class="img-fluid" alt="image-8">
+                        </div>
+                         <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Group Tour In Sri Lanka17.06.2023 - 24.06.2023/9.webp" class="img-fluid" alt="image-9">
+                        </div>
+                         <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Group Tour In Sri Lanka17.06.2023 - 24.06.2023/10.webp" class="img-fluid" alt="image-10">
+                        </div>
+                    </div>
+                    <hr>
+                    <h3 class="mb-4 mt-4">Chinese Group Tour In Sri Lanka ( 13.02.2024 - 19.02.2024 )</h3>
+                    <div class="row g-4">
+                         <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Group Tour In Sri Lanka13.02.2024 - 19.02.2024/1.webp" class="img-fluid" alt="image-1">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Group Tour In Sri Lanka13.02.2024 - 19.02.2024/2.webp" class="img-fluid" alt="image-2">
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Group Tour In Sri Lanka13.02.2024 - 19.02.2024/3.webp" class="img-fluid" alt="image-3">
+                        </div>
+                         <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Group Tour In Sri Lanka13.02.2024 - 19.02.2024/4.webp" class="img-fluid" alt="image-4">
+                        </div>
+                         <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Group Tour In Sri Lanka13.02.2024 - 19.02.2024/5.webp" class="img-fluid" alt="image-5">
+                        </div>
+                         <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Group Tour In Sri Lanka13.02.2024 - 19.02.2024/6.webp" class="img-fluid" alt="image-6">
+                        </div>
+                    </div>
+                    <hr>
+                    <h3 class="mb-4 mt-4">Chinese Group Tour In Sri Lanka : 01.10.2024 </h3>
+                    <div class="row g-4">
+                         <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Group Tour In Sri Lanka01.10.2024 -/1.webp" class="img-fluid" alt="image-1">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Group Tour In Sri Lanka01.10.2024 -/2.webp" class="img-fluid" alt="image-2">
+                        </div>
+                    </div>
+                    <hr>
+                    <h3 class="mb-4 mt-4">Chinese Group Tour In Sri Lanka : 02.08.2024</h3>
+                    <div class="row g-4">
+                         <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Group Tour In Sri Lanka02.08.2024 -/1.webp" class="img-fluid" alt="image-1">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Group Tour In Sri Lanka02.08.2024 -/2.webp" class="img-fluid" alt="image-2">
+                        </div>
+                    </div>
+                    <hr>
+                    <h3 class="mb-4 mt-4">Chinese Group Tour In Sri Lanka : 02.08.2024</h3>
+                    <div class="row g-4">
+                         <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Group Tour In Sri Lanka02.08.2024 -/1.webp" class="img-fluid" alt="image-1">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Group Tour In Sri Lanka02.08.2024 -/2.webp" class="img-fluid" alt="image-2">
+                        </div>
+                    </div>
+                    <hr>
+                    <h3 class="mb-4 mt-4">Chinese Group Tour In Sri Lanka : 03.10.2024</h3>
+                    <div class="row g-4">
+                         <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Group Tour In Sri Lanka03.10.2024/1.webp" class="img-fluid" alt="image-1">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Group Tour In Sri Lanka03.10.2024/2.webp" class="img-fluid" alt="image-2">
+                        </div>
+                         <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Group Tour In Sri Lanka03.10.2024/3.webp" class="img-fluid" alt="image-1">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Group Tour In Sri Lanka03.10.2024/4.webp" class="img-fluid" alt="image-2">
+                        </div>
+                         <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Group Tour In Sri Lanka03.10.2024/5.webp" class="img-fluid" alt="image-1">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Group Tour In Sri Lanka03.10.2024/6.webp" class="img-fluid" alt="image-2">
+                        </div>
+                         <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Group Tour In Sri Lanka03.10.2024/7.webp" class="img-fluid" alt="image-1">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Group Tour In Sri Lanka03.10.2024/8.webp" class="img-fluid" alt="image-2">
+                        </div>
+                         <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Group Tour In Sri Lanka03.10.2024/9.webp" class="img-fluid" alt="image-1">
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Group Tour In Sri Lanka03.10.2024/10.webp" class="img-fluid" alt="image-2">
+                        </div>
+                         <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Group Tour In Sri Lanka03.10.2024/11.webp" class="img-fluid" alt="image-1">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Group Tour In Sri Lanka03.10.2024/12.webp" class="img-fluid" alt="image-2">
+                        </div>
+                         <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Group Tour In Sri Lanka03.10.2024/13.webp" class="img-fluid" alt="image-1">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Group Tour In Sri Lanka03.10.2024/14.webp" class="img-fluid" alt="image-2">
+                        </div>
+                         <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Group Tour In Sri Lanka03.10.2024/15.webp" class="img-fluid" alt="image-1">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Group Tour In Sri Lanka03.10.2024/16.webp" class="img-fluid" alt="image-2">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Group Tour In Sri Lanka03.10.2024/17.webp" class="img-fluid" alt="image-1">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Group Tour In Sri Lanka03.10.2024/18.webp" class="img-fluid" alt="image-1">
+                        </div>
+                    </div>
+                    <hr>
+                    <h3 class="mb-4 mt-4">Chinese Group Tour In Sri Lanka ( 04.02.2024 - 12.02.2024 )</h3>
+                    <div class="row g-4">
+                         <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Group Tour In Sri Lanka04.02.2024 - 12.02.2024/1.webp" class="img-fluid" alt="image-1">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Group Tour In Sri Lanka04.02.2024 - 12.02.2024/2.webp" class="img-fluid" alt="image-2">
+                        </div>
+                         <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Group Tour In Sri Lanka04.02.2024 - 12.02.2024/3.webp" class="img-fluid" alt="image-1">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Group Tour In Sri Lanka04.02.2024 - 12.02.2024/4.webp" class="img-fluid" alt="image-2">
+                        </div>
+                         <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Group Tour In Sri Lanka04.02.2024 - 12.02.2024/5.webp" class="img-fluid" alt="image-1">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Group Tour In Sri Lanka04.02.2024 - 12.02.2024/6.webp" class="img-fluid" alt="image-2">
+                        </div>
+                         <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Group Tour In Sri Lanka04.02.2024 - 12.02.2024/7.webp" class="img-fluid" alt="image-1">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Group Tour In Sri Lanka04.02.2024 - 12.02.2024/8.webp" class="img-fluid" alt="image-2">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Group Tour In Sri Lanka04.02.2024 - 12.02.2024/9.webp" class="img-fluid" alt="image-1">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Group Tour In Sri Lanka04.02.2024 - 12.02.2024/10.webp" class="img-fluid" alt="image-1">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Group Tour In Sri Lanka04.02.2024 - 12.02.2024/11.webp" class="img-fluid" alt="image-1">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Group Tour In Sri Lanka04.02.2024 - 12.02.2024/12.webp" class="img-fluid" alt="image-1">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Group Tour In Sri Lanka04.02.2024 - 12.02.2024/13.webp" class="img-fluid" alt="image-1">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Group Tour In Sri Lanka04.02.2024 - 12.02.2024/14.webp" class="img-fluid" alt="image-1">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Group Tour In Sri Lanka04.02.2024 - 12.02.2024/15.webp" class="img-fluid" alt="image-1">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Group Tour In Sri Lanka04.02.2024 - 12.02.2024/16.webp" class="img-fluid" alt="image-1">
+                        </div>
+                    </div>
+                    <div class="row mt-3 g-4">
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Group Tour In Sri Lanka04.02.2024 - 12.02.2024/17.webp" class="img-fluid" alt="image-2">
+                        </div>
+                         <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Group Tour In Sri Lanka04.02.2024 - 12.02.2024/18.webp" class="img-fluid" alt="image-1">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Group Tour In Sri Lanka04.02.2024 - 12.02.2024/19.webp" class="img-fluid" alt="image-2">
+                        </div>
+                         <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Group Tour In Sri Lanka04.02.2024 - 12.02.2024/20.webp" class="img-fluid" alt="image-1">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Group Tour In Sri Lanka04.02.2024 - 12.02.2024/21.webp" class="img-fluid" alt="image-2">
+                        </div>
+                         <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Group Tour In Sri Lanka04.02.2024 - 12.02.2024/22.webp" class="img-fluid" alt="image-1">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Group Tour In Sri Lanka04.02.2024 - 12.02.2024/23.webp" class="img-fluid" alt="image-2">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Chinese Group Tour In Sri Lanka04.02.2024 - 12.02.2024/24.webp" class="img-fluid" alt="image-1">
+                        </div>
                     </div>
                 </div>
-
-                <!-- Center column: single tall image spanning rows naturally -->
-                <div class="col-12 col-md-4">
-                    <div class="popular-card h-100">
-                    <img src="assets/images/popular/2.jpg" alt="Visiting Temples" style="height: 100%; object-fit: cover;">
-                    <div class="overlay"></div>
-                    <span class="title">Visiting Temples</span>
+                <div class="tab-pane fade show" id="tab-canadian">
+                    <h3 class="mb-4">Canadian Family Tour In Sri Lanka ( 11.11.2022 - 26.11.2022 )</h3>
+                    <div class="row g-4">
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Canadian Family Tour In Sri Lanka11.11.2022 - 26.11.2022/1.webp" class="img-fluid" alt="image-1">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Canadian Family Tour In Sri Lanka11.11.2022 - 26.11.2022/2.webp" class="img-fluid" alt="image-2">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Canadian Family Tour In Sri Lanka11.11.2022 - 26.11.2022/3.webp" class="img-fluid" alt="image-3">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Canadian Family Tour In Sri Lanka11.11.2022 - 26.11.2022/4.webp" class="img-fluid" alt="image-4">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Canadian Family Tour In Sri Lanka11.11.2022 - 26.11.2022/5.webp" class="img-fluid" alt="image-5">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Canadian Family Tour In Sri Lanka11.11.2022 - 26.11.2022/6.webp" class="img-fluid" alt="image-6">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Canadian Family Tour In Sri Lanka11.11.2022 - 26.11.2022/7.webp" class="img-fluid" alt="image-7">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Canadian Family Tour In Sri Lanka11.11.2022 - 26.11.2022/8.webp" class="img-fluid" alt="image-8">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Canadian Family Tour In Sri Lanka11.11.2022 - 26.11.2022/9.webp" class="img-fluid" alt="image-9">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Canadian Family Tour In Sri Lanka11.11.2022 - 26.11.2022/10.webp" class="img-fluid" alt="image-10">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Canadian Family Tour In Sri Lanka11.11.2022 - 26.11.2022/11.webp" class="img-fluid" alt="image-11">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Canadian Family Tour In Sri Lanka11.11.2022 - 26.11.2022/12.webp" class="img-fluid" alt="image-12">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Canadian Family Tour In Sri Lanka11.11.2022 - 26.11.2022/13.webp" class="img-fluid" alt="image-13">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Canadian Family Tour In Sri Lanka11.11.2022 - 26.11.2022/14.webp" class="img-fluid" alt="image-14">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Canadian Family Tour In Sri Lanka11.11.2022 - 26.11.2022/15.webp" class="img-fluid" alt="image-15">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Canadian Family Tour In Sri Lanka11.11.2022 - 26.11.2022/16.webp" class="img-fluid" alt="image-16">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Canadian Family Tour In Sri Lanka11.11.2022 - 26.11.2022/17.webp" class="img-fluid" alt="image-17">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Canadian Family Tour In Sri Lanka11.11.2022 - 26.11.2022/18.webp" class="img-fluid" alt="image-18">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Canadian Family Tour In Sri Lanka11.11.2022 - 26.11.2022/19.webp" class="img-fluid" alt="image-19">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Canadian Family Tour In Sri Lanka11.11.2022 - 26.11.2022/20.webp" class="img-fluid" alt="image-20">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Canadian Family Tour In Sri Lanka11.11.2022 - 26.11.2022/21.webp" class="img-fluid" alt="image-21">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Canadian Family Tour In Sri Lanka11.11.2022 - 26.11.2022/22.webp" class="img-fluid" alt="image-22">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Canadian Family Tour In Sri Lanka11.11.2022 - 26.11.2022/23.webp" class="img-fluid" alt="image-21">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Canadian Family Tour In Sri Lanka11.11.2022 - 26.11.2022/24.webp" class="img-fluid" alt="image-22">
+                        </div>
                     </div>
                 </div>
-
-                <!-- Right column: 2 stacked images -->
-                <div class="col-12 col-md-4">
-                    <div class="popular-card mb-4">
-                    <img src="assets/images/popular/3.jpg" alt="Tea Plantation Tours">
-                    <div class="overlay"></div>
-                    <span class="title">Tea Plantation Tours</span>
+                <div class="tab-pane fade show" id="tab-indian">
+                    <h3 class="mb-4">Indian Family Tour In Sri Lanka ( 24.05.2025 - 29.05.2025 )</h3>
+                    <div class="row g-4">
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Indian Family Tour In Sri Lanka24.05.2025 - 29.05.2025/1.webp" class="img-fluid" alt="image-1">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Indian Family Tour In Sri Lanka24.05.2025 - 29.05.2025/2.webp" class="img-fluid" alt="image-2">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Indian Family Tour In Sri Lanka24.05.2025 - 29.05.2025/3.webp" class="img-fluid" alt="image-3">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Indian Family Tour In Sri Lanka24.05.2025 - 29.05.2025/4.webp" class="img-fluid" alt="image-4">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Indian Family Tour In Sri Lanka24.05.2025 - 29.05.2025/5.webp" class="img-fluid" alt="image-5">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Indian Family Tour In Sri Lanka24.05.2025 - 29.05.2025/6.webp" class="img-fluid" alt="image-6">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Indian Family Tour In Sri Lanka24.05.2025 - 29.05.2025/7.webp" class="img-fluid" alt="image-7">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Indian Family Tour In Sri Lanka24.05.2025 - 29.05.2025/8.webp" class="img-fluid" alt="image-8">
+                        </div>
                     </div>
-                   <div class="col-12">
-                        <div class="row g-2">
-                            <!-- First image -->
-                            <div class="col-12 col-md-6">
-                            <div class="popular-card">
-                                <img src="assets/images/popular/5.jpg" alt="Rafting">
-                                <div class="overlay"></div>
-                                <span class="title">Rafting</span>
-                            </div>
-                            </div>
-
-                            <!-- Second image -->
-                            <div class="col-12 col-md-6">
-                            <div class="popular-card">
-                                <img src="assets/images/popular/6.jpg" alt="Shopping">
-                                <div class="overlay"></div>
-                                <span class="title">Shopping</span>
-                            </div>
-                            </div>
+                    <div class="row g-4 mt-3">
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Indian Family Tour In Sri Lanka24.05.2025 - 29.05.2025/9.webp" class="img-fluid" alt="image-9">
                         </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Indian Family Tour In Sri Lanka24.05.2025 - 29.05.2025/10.webp" class="img-fluid" alt="image-10">
                         </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Indian Family Tour In Sri Lanka24.05.2025 - 29.05.2025/11.webp" class="img-fluid" alt="image-11">
+                        </div>
+                    </div>
+                    <hr>
+                    <h3 class="mb-4">Indian Family Tour In Sri Lanka ( 11.01.2024 - 20.01.2024 )</h3>
+                    <div class="row g-4">
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Indian Family Tour In Sri Lanka11.01.2024 - 20.01.2024/1.webp" class="img-fluid" alt="image-1">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Indian Family Tour In Sri Lanka11.01.2024 - 20.01.2024/2.webp" class="img-fluid" alt="image-2">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Indian Family Tour In Sri Lanka11.01.2024 - 20.01.2024/3.webp" class="img-fluid" alt="image-3">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Indian Family Tour In Sri Lanka11.01.2024 - 20.01.2024/4.webp" class="img-fluid" alt="image-4">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Indian Family Tour In Sri Lanka11.01.2024 - 20.01.2024/5.webp" class="img-fluid" alt="image-5">
+                        </div>
+                    </div>
+                    <div class="row g-4 mt-3">
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Indian Family Tour In Sri Lanka11.01.2024 - 20.01.2024/6.webp" class="img-fluid" alt="image-6">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Indian Family Tour In Sri Lanka11.01.2024 - 20.01.2024/7.webp" class="img-fluid" alt="image-7">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Indian Family Tour In Sri Lanka11.01.2024 - 20.01.2024/8.webp" class="img-fluid" alt="image-8">
+                        </div>
+                    </div>
+                    <hr>
+                    <h3 class="mb-4">Indian Family Tour In Sri Lanka : 26.08.2024</h3>
+                    <div class="row g-4">
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Indian Family Tour In Sri Lanka26.08.2024 -/1.webp" class="img-fluid" alt="image-1">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Indian Family Tour In Sri Lanka26.08.2024 -/2.webp" class="img-fluid" alt="image-2">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Indian Family Tour In Sri Lanka26.08.2024 -/3.webp" class="img-fluid" alt="image-3">
+                        </div>
+                    </div>
+                    <hr>
+                    <h3 class="mb-4">Indian Family Tour In Sri Lanka 2020</h3>
+                    <div class="row g-4">
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Indian Family Tour In Sri Lanka2020/1.webp" class="img-fluid" alt="image-1">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Indian Family Tour In Sri Lanka2020/2.webp" class="img-fluid" alt="image-2">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Indian Family Tour In Sri Lanka2020/3.webp" class="img-fluid" alt="image-3">
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade show" id="tab-swiss">
+                    <h3 class="mb-4">SWISS FAM Tour In Sri Lanka : 14.03.2025</h3>
+                    <div class="row g-4">
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/SWISS FAM Tour In Sri Lanka14.03.2025 -/1.webp" class="img-fluid" alt="image-1">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/SWISS FAM Tour In Sri Lanka14.03.2025 -/2.webp" class="img-fluid" alt="image-2">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/SWISS FAM Tour In Sri Lanka14.03.2025 -/3.webp" class="img-fluid" alt="image-3">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/SWISS FAM Tour In Sri Lanka14.03.2025 -/4.webp" class="img-fluid" alt="image-4">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/SWISS FAM Tour In Sri Lanka14.03.2025 -/5.webp" class="img-fluid" alt="image-5">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/SWISS FAM Tour In Sri Lanka14.03.2025 -/6.webp" class="img-fluid" alt="image-6">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/SWISS FAM Tour In Sri Lanka14.03.2025 -/7.webp" class="img-fluid" alt="image-7">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/SWISS FAM Tour In Sri Lanka14.03.2025 -/8.webp" class="img-fluid" alt="image-8">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/SWISS FAM Tour In Sri Lanka14.03.2025 -/9.webp" class="img-fluid" alt="image-1">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/SWISS FAM Tour In Sri Lanka14.03.2025 -/10.webp" class="img-fluid" alt="image-2">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/SWISS FAM Tour In Sri Lanka14.03.2025 -/11.webp" class="img-fluid" alt="image-3">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/SWISS FAM Tour In Sri Lanka14.03.2025 -/12.webp" class="img-fluid" alt="image-4">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/SWISS FAM Tour In Sri Lanka14.03.2025 -/13.webp" class="img-fluid" alt="image-5">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/SWISS FAM Tour In Sri Lanka14.03.2025 -/14.webp" class="img-fluid" alt="image-6">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/SWISS FAM Tour In Sri Lanka14.03.2025 -/15.webp" class="img-fluid" alt="image-7">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/SWISS FAM Tour In Sri Lanka14.03.2025 -/16.webp" class="img-fluid" alt="image-8">
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade show" id="tab-ireland">
+                    <h3 class="mb-4">Ireland Family Tour In Sri Lanka ( 24.03.2024 - 29.03.2024 )</h3>
+                    <div class="row g-4">
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Ireland Family Tour In Sri Lanka24.03.2024 - 29.03.2024/1.webp" class="img-fluid" alt="image-1">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Ireland Family Tour In Sri Lanka24.03.2024 - 29.03.2024/2.webp" class="img-fluid" alt="image-2">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Ireland Family Tour In Sri Lanka24.03.2024 - 29.03.2024/3.webp" class="img-fluid" alt="image-3">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Ireland Family Tour In Sri Lanka24.03.2024 - 29.03.2024/4.webp" class="img-fluid" alt="image-4">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Ireland Family Tour In Sri Lanka24.03.2024 - 29.03.2024/5.webp" class="img-fluid" alt="image-5">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Ireland Family Tour In Sri Lanka24.03.2024 - 29.03.2024/6.webp" class="img-fluid" alt="image-6">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Ireland Family Tour In Sri Lanka24.03.2024 - 29.03.2024/7.webp" class="img-fluid" alt="image-7">
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade show" id="tab-dutch">
+                    <h3 class="mb-4">Dutch Family Tour In Sri Lanka : 01.11.2024</h3>
+                    <div class="row g-4">
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Dutch Family Tour In Sri Lanka01.11.2024 -/1.webp" class="img-fluid" alt="image-1">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Dutch Family Tour In Sri Lanka01.11.2024 -/2.webp" class="img-fluid" alt="image-2">
+                        </div>
+                    </div>
+                    <div class="row g-4 mt-2">
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Dutch Family Tour In Sri Lanka01.11.2024 -/3.webp" class="img-fluid" alt="image-3">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Dutch Family Tour In Sri Lanka01.11.2024 -/4.webp" class="img-fluid" alt="image-4">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Dutch Family Tour In Sri Lanka01.11.2024 -/5.webp" class="img-fluid" alt="image-5">
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade show" id="tab-uk">
+                    <h3 class="mb-4">UK Couple Tour In Sri Lanka ( 20.01.2023 - 22.01.2023 )</h3>
+                    <div class="row g-4">
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/UK Couple Tour In Sri Lanka20.01.2023 - 22.01.2023/1.webp" class="img-fluid" alt="image-1">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/UK Couple Tour In Sri Lanka20.01.2023 - 22.01.2023/2.webp" class="img-fluid" alt="image-2">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/UK Couple Tour In Sri Lanka20.01.2023 - 22.01.2023/3.webp" class="img-fluid" alt="image-2">
+                        </div>
+                    </div>
+                    <div class="row g-4 mt-2">
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/UK Couple Tour In Sri Lanka20.01.2023 - 22.01.2023/4.webp" class="img-fluid" alt="image-3">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/UK Couple Tour In Sri Lanka20.01.2023 - 22.01.2023/5.webp" class="img-fluid" alt="image-4">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/UK Couple Tour In Sri Lanka20.01.2023 - 22.01.2023/6.webp" class="img-fluid" alt="image-5">
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade show" id="tab-vietnamese">
+                    <h3 class="mb-4">Vietnamese FIT Tour In Sri Lanka : 21.03.2025</h3>
+                    <div class="row g-4">
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Vietnamese FIT Tour In Sri Lanka21.03.2025 -/1.webp" class="img-fluid" alt="image-1">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Vietnamese FIT Tour In Sri Lanka21.03.2025 -/2.webp" class="img-fluid" alt="image-2">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Vietnamese FIT Tour In Sri Lanka21.03.2025 -/3.webp" class="img-fluid" alt="image-2">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Vietnamese FIT Tour In Sri Lanka21.03.2025 -/4.webp" class="img-fluid" alt="image-2">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Vietnamese FIT Tour In Sri Lanka21.03.2025 -/5.webp" class="img-fluid" alt="image-2">
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade show" id="tab-egyptian">
+                    <h3 class="mb-4">Egyptian Couple Tour In Sri Lanka : 11.08.2024</h3>
+                    <div class="row g-4">
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Egyptian Couple Tour In Sri Lanka11.08.2024 -/1.webp" class="img-fluid" alt="image-1">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Egyptian Couple Tour In Sri Lanka11.08.2024 -/2.webp" class="img-fluid" alt="image-2">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Egyptian Couple Tour In Sri Lanka11.08.2024 -/3.webp" class="img-fluid" alt="image-2">
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade show" id="tab-bangaldesh">
+                    <h3 class="mb-4">Bangladesh Couple Tour In Sri Lanka ( 14.01.2023 - 17.01.2023 )</h3>
+                    <div class="row g-4">
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Bangladesh Couple Tour In Sri Lanka14.01.2023 - 17.01.2023/1.webp" class="img-fluid" alt="image-1">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Bangladesh Couple Tour In Sri Lanka14.01.2023 - 17.01.2023/2.webp" class="img-fluid" alt="image-2">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Bangladesh Couple Tour In Sri Lanka14.01.2023 - 17.01.2023/3.webp" class="img-fluid" alt="image-2">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Bangladesh Couple Tour In Sri Lanka14.01.2023 - 17.01.2023/4.webp" class="img-fluid" alt="image-2">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Bangladesh Couple Tour In Sri Lanka14.01.2023 - 17.01.2023/5.webp" class="img-fluid" alt="image-2">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Bangladesh Couple Tour In Sri Lanka14.01.2023 - 17.01.2023/6.webp" class="img-fluid" alt="image-2">
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade show" id="tab-bbc">
+                    <h3 class="mb-4">Welcoming BBC Media Crew to Sri Lanka : 08.01.2023</h3>
+                    <div class="row g-4">
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Welcoming BBC Media Crew to Sri Lanka08.01.2023/1.webp" class="img-fluid" alt="image-1">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Welcoming BBC Media Crew to Sri Lanka08.01.2023/2.webp" class="img-fluid" alt="image-2">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Welcoming BBC Media Crew to Sri Lanka08.01.2023/3.webp" class="img-fluid" alt="image-2">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Welcoming BBC Media Crew to Sri Lanka08.01.2023/4.webp" class="img-fluid" alt="image-2">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Welcoming BBC Media Crew to Sri Lanka08.01.2023/5.webp" class="img-fluid" alt="image-2">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Welcoming BBC Media Crew to Sri Lanka08.01.2023/6.webp" class="img-fluid" alt="image-2">
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade show" id="tab-spanish">
+                    <h3 class="mb-4">Spanish Group Tour In Sri Lanka : 02.11.2024</h3>
+                    <div class="row g-4">
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Spanish Group Tour In Sri Lanka02.11.2024 -/1.webp" class="img-fluid" alt="image-1">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Spanish Group Tour In Sri Lanka02.11.2024 -/2.webp" class="img-fluid" alt="image-2">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Spanish Group Tour In Sri Lanka02.11.2024 -/3.webp" class="img-fluid" alt="image-2">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Spanish Group Tour In Sri Lanka02.11.2024 -/4.webp" class="img-fluid" alt="image-2">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Spanish Group Tour In Sri Lanka02.11.2024 -/5.webp" class="img-fluid" alt="image-2">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Spanish Group Tour In Sri Lanka02.11.2024 -/6.webp" class="img-fluid" alt="image-2">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Spanish Group Tour In Sri Lanka02.11.2024 -/7.webp" class="img-fluid" alt="image-1">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Spanish Group Tour In Sri Lanka02.11.2024 -/8.webp" class="img-fluid" alt="image-2">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Spanish Group Tour In Sri Lanka02.11.2024 -/9.webp" class="img-fluid" alt="image-2">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Spanish Group Tour In Sri Lanka02.11.2024 -/10.webp" class="img-fluid" alt="image-2">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Spanish Group Tour In Sri Lanka02.11.2024 -/11.webp" class="img-fluid" alt="image-2">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Spanish Group Tour In Sri Lanka02.11.2024 -/12.webp" class="img-fluid" alt="image-2">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Spanish Group Tour In Sri Lanka02.11.2024 -/13.webp" class="img-fluid" alt="image-2">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Spanish Group Tour In Sri Lanka02.11.2024 -/14.webp" class="img-fluid" alt="image-2">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Spanish Group Tour In Sri Lanka02.11.2024 -/15.webp" class="img-fluid" alt="image-2">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Spanish Group Tour In Sri Lanka02.11.2024 -/16.webp" class="img-fluid" alt="image-2">
+                        </div>
+                    </div>
+                    <div class="row mt-2 g-4">
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Spanish Group Tour In Sri Lanka02.11.2024 -/17.webp" class="img-fluid" alt="image-2">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Spanish Group Tour In Sri Lanka02.11.2024 -/18.webp" class="img-fluid" alt="image-2">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Spanish Group Tour In Sri Lanka02.11.2024 -/19.webp" class="img-fluid" alt="image-2">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Spanish Group Tour In Sri Lanka02.11.2024 -/20.webp" class="img-fluid" alt="image-2">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Spanish Group Tour In Sri Lanka02.11.2024 -/21.webp" class="img-fluid" alt="image-2">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Spanish Group Tour In Sri Lanka02.11.2024 -/22.webp" class="img-fluid" alt="image-2">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Spanish Group Tour In Sri Lanka02.11.2024 -/23.webp" class="img-fluid" alt="image-2">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Spanish Group Tour In Sri Lanka02.11.2024 -/24.webp" class="img-fluid" alt="image-2">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Spanish Group Tour In Sri Lanka02.11.2024 -/25.webp" class="img-fluid" alt="image-2">
+                        </div>
+                    </div>
+                    <hr>
+                    <h3 class="mb-4">Spanish Couple Tour In Sri Lanka ( 10.12.2022 - 24.12.2022 )</h3>
+                    <div class="row g-4">
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Spanish Couple Tour In Sri Lanka10.12.2022 - 24.12.2022/1.webp" class="img-fluid" alt="image-1">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Spanish Couple Tour In Sri Lanka10.12.2022 - 24.12.2022/2.webp" class="img-fluid" alt="image-2">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Spanish Couple Tour In Sri Lanka10.12.2022 - 24.12.2022/3.webp" class="img-fluid" alt="image-2">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Spanish Couple Tour In Sri Lanka10.12.2022 - 24.12.2022/4.webp" class="img-fluid" alt="image-2">
+                        </div>
+                    </div>
+                    <div class="row mt-2 g-4">
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Spanish Couple Tour In Sri Lanka10.12.2022 - 24.12.2022/5.webp" class="img-fluid" alt="image-2">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Spanish Couple Tour In Sri Lanka10.12.2022 - 24.12.2022/6.webp" class="img-fluid" alt="image-2">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Spanish Couple Tour In Sri Lanka10.12.2022 - 24.12.2022/7.webp" class="img-fluid" alt="image-2">
+                        </div>
+                    </div>
+                    <hr>
+                    <h3 class="mb-4">Spanish Family Tour In Sri Lanka ( 31.08.2023 - 10.09.2023 )</h3>
+                    <div class="row g-4">
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Spanish Family Tour In Sri Lanka31.08.2023 - 10.09.2023/1.webp" class="img-fluid" alt="image-1">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Spanish Family Tour In Sri Lanka31.08.2023 - 10.09.2023/2.webp" class="img-fluid" alt="image-2">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Spanish Family Tour In Sri Lanka31.08.2023 - 10.09.2023/3.webp" class="img-fluid" alt="image-2">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Spanish Family Tour In Sri Lanka31.08.2023 - 10.09.2023/4.webp" class="img-fluid" alt="image-2">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Spanish Family Tour In Sri Lanka31.08.2023 - 10.09.2023/5.webp" class="img-fluid" alt="image-2">
+                        </div>
+                    </div>
+                    <hr>
+                    <h3 class="mb-4">Spanish Group Tour In Sri Lanka ( 01.11.2022 - 12.11.2022 )</h3>
+                    <div class="row g-4">
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Spanish Group Tour In Sri Lanka01.11.2022 - 12.11.2022/1.webp" class="img-fluid" alt="image-1">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Spanish Group Tour In Sri Lanka01.11.2022 - 12.11.2022/2.webp" class="img-fluid" alt="image-2">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Spanish Group Tour In Sri Lanka01.11.2022 - 12.11.2022/3.webp" class="img-fluid" alt="image-2">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Spanish Group Tour In Sri Lanka01.11.2022 - 12.11.2022/4.webp" class="img-fluid" alt="image-2">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Spanish Group Tour In Sri Lanka01.11.2022 - 12.11.2022/5.webp" class="img-fluid" alt="image-2">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Spanish Group Tour In Sri Lanka01.11.2022 - 12.11.2022/6.webp" class="img-fluid" alt="image-2">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Spanish Group Tour In Sri Lanka01.11.2022 - 12.11.2022/7.webp" class="img-fluid" alt="image-2">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Spanish Group Tour In Sri Lanka01.11.2022 - 12.11.2022/8.webp" class="img-fluid" alt="image-2">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Spanish Group Tour In Sri Lanka01.11.2022 - 12.11.2022/9.webp" class="img-fluid" alt="image-2">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Spanish Group Tour In Sri Lanka01.11.2022 - 12.11.2022/10.webp" class="img-fluid" alt="image-2">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Spanish Group Tour In Sri Lanka01.11.2022 - 12.11.2022/11.webp" class="img-fluid" alt="image-2">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Spanish Group Tour In Sri Lanka01.11.2022 - 12.11.2022/12.webp" class="img-fluid" alt="image-2">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Spanish Group Tour In Sri Lanka01.11.2022 - 12.11.2022/13.webp" class="img-fluid" alt="image-2">
+                        </div>
+                    </div>
+                    <div class="row mt-2 g-4">
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Spanish Group Tour In Sri Lanka01.11.2022 - 12.11.2022/14.webp" class="img-fluid" alt="image-2">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Spanish Group Tour In Sri Lanka01.11.2022 - 12.11.2022/15.webp" class="img-fluid" alt="image-2">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Spanish Group Tour In Sri Lanka01.11.2022 - 12.11.2022/16.webp" class="img-fluid" alt="image-2">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Spanish Group Tour In Sri Lanka01.11.2022 - 12.11.2022/17.webp" class="img-fluid" alt="image-2">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Spanish Group Tour In Sri Lanka01.11.2022 - 12.11.2022/18.webp" class="img-fluid" alt="image-2">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Spanish Group Tour In Sri Lanka01.11.2022 - 12.11.2022/19.webp" class="img-fluid" alt="image-2">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Spanish Group Tour In Sri Lanka01.11.2022 - 12.11.2022/20.webp" class="img-fluid" alt="image-2">
+                        </div>
+                    </div>
+                    <hr>
+                    <h3 class="mb-4">Spanish Group Tour In Sri Lanka ( 02.04.2023 - 08.04.2023 )</h3>
+                    <div class="row g-4">
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Spanish Group Tour In Sri Lanka02.04.2023 - 08.04.2023/1.webp" class="img-fluid" alt="image-1">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Spanish Group Tour In Sri Lanka02.04.2023 - 08.04.2023/2.webp" class="img-fluid" alt="image-2">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Spanish Group Tour In Sri Lanka02.04.2023 - 08.04.2023/3.webp" class="img-fluid" alt="image-2">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Spanish Group Tour In Sri Lanka02.04.2023 - 08.04.2023/4.webp" class="img-fluid" alt="image-2">
+                        </div>
+                    </div>
+                    <hr>
+                    <h3 class="mb-4">Spanish Group Tour In Sri Lanka ( 10.02.2023 — 17.02.2023 )</h3>
+                    <div class="row g-4">
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Spanish Group Tour In Sri Lanka10.02.2023 — 17.02.2023/1.webp" class="img-fluid" alt="image-1">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Spanish Group Tour In Sri Lanka10.02.2023 — 17.02.2023/2.webp" class="img-fluid" alt="image-2">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Spanish Group Tour In Sri Lanka10.02.2023 — 17.02.2023/3.webp" class="img-fluid" alt="image-2">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Spanish Group Tour In Sri Lanka10.02.2023 — 17.02.2023/4.webp" class="img-fluid" alt="image-2">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Spanish Group Tour In Sri Lanka10.02.2023 — 17.02.2023/5.webp" class="img-fluid" alt="image-1">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Spanish Group Tour In Sri Lanka10.02.2023 — 17.02.2023/6.webp" class="img-fluid" alt="image-2">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Spanish Group Tour In Sri Lanka10.02.2023 — 17.02.2023/7.webp" class="img-fluid" alt="image-2">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Spanish Group Tour In Sri Lanka10.02.2023 — 17.02.2023/8.webp" class="img-fluid" alt="image-2">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Spanish Group Tour In Sri Lanka10.02.2023 — 17.02.2023/9.webp" class="img-fluid" alt="image-1">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Spanish Group Tour In Sri Lanka10.02.2023 — 17.02.2023/10.webp" class="img-fluid" alt="image-2">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Spanish Group Tour In Sri Lanka10.02.2023 — 17.02.2023/11.webp" class="img-fluid" alt="image-2">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Spanish Group Tour In Sri Lanka10.02.2023 — 17.02.2023/12.webp" class="img-fluid" alt="image-2">
+                        </div>
+                    </div>
+                    <div class="row g-4 mt-2">
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Spanish Group Tour In Sri Lanka10.02.2023 — 17.02.2023/13.webp" class="img-fluid" alt="image-2">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Spanish Group Tour In Sri Lanka10.02.2023 — 17.02.2023/14.webp" class="img-fluid" alt="image-1">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Spanish Group Tour In Sri Lanka10.02.2023 — 17.02.2023/15.webp" class="img-fluid" alt="image-2">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Spanish Group Tour In Sri Lanka10.02.2023 — 17.02.2023/16.webp" class="img-fluid" alt="image-2">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Spanish Group Tour In Sri Lanka10.02.2023 — 17.02.2023/17.webp" class="img-fluid" alt="image-2">
+                        </div>
+                    </div>
+                    <hr>
+                    <h3 class="mb-4">Spanish Group Tour In Sri Lanka ( 17.09.2023 - 28.09.2023 )</h3>
+                    <div class="row g-4">
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Spanish Group Tour In Sri Lanka17.09.2023 - 28.09.2023/1.webp" class="img-fluid" alt="image-1">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Spanish Group Tour In Sri Lanka17.09.2023 - 28.09.2023/2.webp" class="img-fluid" alt="image-2">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Spanish Group Tour In Sri Lanka17.09.2023 - 28.09.2023/3.webp" class="img-fluid" alt="image-2">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Spanish Group Tour In Sri Lanka17.09.2023 - 28.09.2023/4.webp" class="img-fluid" alt="image-2">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Spanish Group Tour In Sri Lanka17.09.2023 - 28.09.2023/5.webp" class="img-fluid" alt="image-1">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Spanish Group Tour In Sri Lanka17.09.2023 - 28.09.2023/6.webp" class="img-fluid" alt="image-2">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Spanish Group Tour In Sri Lanka17.09.2023 - 28.09.2023/7.webp" class="img-fluid" alt="image-2">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Spanish Group Tour In Sri Lanka17.09.2023 - 28.09.2023/8.webp" class="img-fluid" alt="image-2">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Spanish Group Tour In Sri Lanka17.09.2023 - 28.09.2023/9.webp" class="img-fluid" alt="image-1">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Spanish Group Tour In Sri Lanka17.09.2023 - 28.09.2023/10.webp" class="img-fluid" alt="image-2">
+                        </div>
+                    </div>
+                    <div class="row g-4 mt-2">
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Spanish Group Tour In Sri Lanka17.09.2023 - 28.09.2023/13.webp" class="img-fluid" alt="image-2">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Spanish Group Tour In Sri Lanka17.09.2023 - 28.09.2023/20.webp" class="img-fluid" alt="image-1">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Spanish Group Tour In Sri Lanka17.09.2023 - 28.09.2023/21.webp" class="img-fluid" alt="image-2">
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/ev-tours/Spanish Group Tour In Sri Lanka17.09.2023 - 28.09.2023/22.webp" class="img-fluid" alt="image-2">
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
-    <!-- Popular things to do section ends -->
-
-    <!-- Featured Trips section starts -->
-    <section id="featured-trips" class="py-5">
-        <div class="container">
-            <div class="row mb-4">
-                <div class="col">
-                    <h2 class="heading text-center">Featured Trips</h2>
-                </div>
-            </div>
-            [[!HomeDB]]
-        </div>
-    </section>
-    <!-- Featured Trips section ends -->
-
-    <!-- Travel Articles section starts -->
-    <section id="travel-articles" class="pb-5">
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <h2 class="heading text-center">Travel Articles</h2>
-                </div>
-            </div>
-            <div class="row mt-4 g-4">
-                <div class="col-12 col-md-6 col-lg-3">
-                    <img src="assets/images/festivals/1.jpg" alt="Travel Articles" class="img-fluid">
-                    <div class="card">
-                        <div class="card-body">
-                            <p class="card-text">November 6 2025 | By Admin</p>
-                            <h3 class="card-title">Festivals of Sri Lanka: When to Visit for Culture, Rituals & Local Life</h3>
-                            <a href="[[~5]]" class="btn btn-primary">Read More</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-md-6 col-lg-3">
-                    <img src="assets/images/festivals/2.jpg" alt="Travel Articles" class="img-fluid">
-                    <div class="card">
-                        <div class="card-body">
-                            <p class="card-text">July 7 2025 | By Admin</p>
-                            <h3 class="card-title">Hidden Cultural Gems: Temples, Forts & Ancient Cities Beyond the Usual</h3>
-                            <a href="[[~5]]" class="btn btn-primary">Read More</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-md-6 col-lg-3">
-                    <img src="assets/images/festivals/3.jpg" alt="Travel Articles" class="img-fluid">
-                    <div class="card">
-                        <div class="card-body">
-                            <p class="card-text">April 16 2025 | By Admin</p>
-                            <h3 class="card-title">Tea Country & Colonial Charm: Discovering Hill Country Heritage</h3>
-                            <a href="[[~5]]" class="btn btn-primary">Read More</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-md-6 col-lg-3">
-                    <img src="assets/images/festivals/1.jpg" alt="Travel Articles" class="img-fluid">
-                    <div class="card">
-                        <div class="card-body">
-                            <p class="card-text">March 6 2025 | By Admin</p>
-                            <h3 class="card-title">Festivals of Sri Lanka: When to Visit for Culture, Rituals & Local Life</h3>
-                            <a href="[[~5]]" class="btn btn-primary">Read More</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Travel Articles section ends -->
-
-    <!-- Customer Reviews section starts -->
-    <section id="customer-reviews" class="py-5">
-        <div class="container text-center">
-            <h2 class="heading">What Our Customers Say</h2>
-            [[!GoogleReviews]]
-        </div>
-    </section>
-    <!-- Customer Reviews section ends -->
-
-    <script>
-        const heroSwiper = new Swiper(".homeHeroSwiper", {
-            loop: true,
-            autoplay: {
-                delay: 3500,
-                disableOnInteraction: false,
-            },
-            speed: 800,
-            effect: "fade",
-            fadeEffect: {
-                crossFade: true
-            }
-        });
-    </script>
-
-    <script>
-        var swiper = new Swiper(".myDestinationsSwiper", {
-            slidesPerView: 2,
-            spaceBetween: 20,
-            loop: true,
-
-            autoplay: {
-                delay: 2000,     
-                disableOnInteraction: false,
-            },
-
-            pagination: {
-                el: ".swiper-pagination",
-                clickable: true,
-            },
-
-            breakpoints: {
-                576: { slidesPerView: 3 },
-                768: { slidesPerView: 4 },
-                992: { slidesPerView: 6 },
-            }
-        });
-    </script>
-
-    <script>
-       const slwiper = new Swiper('.featured-tours-swiper', {
-            slidesPerView: 1,      
-            spaceBetween: 20,   
-            loop: true,          
-            autoplay: {           
-                delay: 3000,       
-                disableOnInteraction: false, 
-            },
-            pagination: {
-                el: '.swiper-pagination',
-                clickable: true,
-            },
-            breakpoints: {
-                576: { slidesPerView: 2 },
-                768: { slidesPerView: 3 },
-                1200: { slidesPerView: 4 },
-            },
-        });
-    </script>
-
-    <script>
-        document.addEventListener('click', function (e) {
-            if (!e.target.classList.contains('read-more')) return;
-
-            e.preventDefault();
-
-            const parent = e.target.closest('.review-text');
-            const shortText = parent.querySelector('.short-text');
-            const fullText  = parent.querySelector('.full-text');
-
-            if (!fullText) return;
-
-            const expanded = !fullText.classList.contains('d-none');
-
-            fullText.classList.toggle('d-none', expanded);
-            shortText.classList.toggle('d-none', !expanded);
-            e.target.textContent = expanded ? 'Read more' : 'Read less';
-        });
-    </script>
+    <!-- Trips Tabs Section ends -->
 
 </body>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    new Swiper(".mySwiper", {
+        loop: true,
+        spaceBetween: 15,
+
+        slidesPerView: 4, 
+
+        autoplay: {
+            delay: 2500,
+            disableOnInteraction: false,
+        },
+
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+        },
+
+        breakpoints: {
+            0: {
+                slidesPerView: 1,
+            },
+            576: {
+                slidesPerView: 2,
+            },
+            768: {
+                slidesPerView: 3,
+            },
+            992: {
+                slidesPerView: 4,
+            }
+        }
+    });
+});
+</script>
+

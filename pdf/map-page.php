@@ -54,7 +54,7 @@ function downloadMapImage($url, $savePath) {
     return false;
 }
 
-$googleApiKey = "AIzaSyBl50Q8W4ZF2_EkOJ1lnRoVxO1IdjIupjM";
+$googleApiKey = "AIzaSyAHmbwBrk0OKY0Nhp9FrR_zn8HKLGZ54OU";
 $cityCoords = [];
 $markers = [];
 

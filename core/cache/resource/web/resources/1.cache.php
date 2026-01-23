@@ -76,6 +76,121 @@
             </div>
         </div>
     </section>
+    <!-- Why choose us section ends -->
+
+    <!-- Our Trips section starts -->
+    <section id="our-trips" class="py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <!-- Left Content -->
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <h2 class="heading fw-bold">Curated Sri Lankan Tours for Global Travelers</h2>
+                    <p class="supportive-text text-muted mt-3">
+                        We organize immersive travel experiences across Sri Lanka for guests from
+                        around the world—combining culture, nature, adventure, and comfort into
+                        thoughtfully planned journeys.
+                    </p>
+                    <a href="[[~19]]" class="trip-button btn rounded-pill px-4 mt-2">
+                        View Our Tours
+                    </a>
+                </div>
+
+                <!-- Right Cards -->
+                <div class="col-lg-8 position-relative">
+
+                <!-- Cards Track -->
+                <div class="trips-carousel">
+                    <div class="trips-track" id="tripsTrack">
+
+                    <!-- Card 1 -->
+                    <div class="trip-card" style="background-image:url(\'assets/ev-tours/Chinese Group Tour In Sri Lanka04.02.2024 - 12.02.2024/20.webp\');">
+                        <div class="trip-overlay"><span>Chinese</span></div>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="trip-card" style="background-image:url(\'assets/ev-tours/Canadian Family Tour In Sri Lanka11.11.2022 - 26.11.2022/8.webp\');">
+                        <div class="trip-overlay"><span>Canada</span></div>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="trip-card" style="background-image:url(\'assets/ev-tours/Indian Family Tour In Sri Lanka24.05.2025 - 29.05.2025/11.webp\');">
+                        <div class="trip-overlay"><span>Indian</span></div>
+                    </div>
+
+                    <div class="trip-card" style="background-image:url(\'assets/ev-tours/SWISS FAM Tour In Sri Lanka14.03.2025 -/1.webp\');">
+                        <div class="trip-overlay"><span>Switzerland</span></div>
+                    </div>
+
+                    <!-- Card 4 -->
+                    <div class="trip-card" style="background-image:url(\'assets/ev-tours/Ireland Family Tour In Sri Lanka24.03.2024 - 29.03.2024/3.webp\');">
+                        <div class="trip-overlay"><span>Ireland</span></div>
+                    </div>
+
+                    <div class="trip-card" style="background-image:url(\'assets/ev-tours/Dutch Family Tour In Sri Lanka01.11.2024 -/2.webp\');">
+                        <div class="trip-overlay"><span>Nederlands</span></div>
+                    </div>
+
+                    <!-- Card 5 -->
+                    <div class="trip-card" style="background-image:url(\'assets/ev-tours/UK Couple Tour In Sri Lanka20.01.2023 - 22.01.2023/5.webp\');">
+                        <div class="trip-overlay"><span>UK</span></div>
+                    </div>
+
+                    <!-- Card 6 -->
+                    <div class="trip-card" style="background-image:url(\'assets/ev-tours/Vietnamese FIT Tour In Sri Lanka21.03.2025 -/2.webp\');">
+                        <div class="trip-overlay"><span>Vietnam</span></div>
+                    </div>
+
+                    <div class="trip-card" style="background-image:url(\'assets/ev-tours/Spanish Group Tour In Sri Lanka02.11.2024 -/24.webp\');">
+                        <div class="trip-overlay"><span>Spain</span></div>
+                    </div>
+
+                    <div class="trip-card" style="background-image:url(\'assets/ev-tours/Egyptian Couple Tour In Sri Lanka11.08.2024 -/3.webp\');">
+                        <div class="trip-overlay"><span>Egypt</span></div>
+                    </div>
+
+                    </div>
+                </div>
+
+                <!-- Controls -->
+                <div class="carousel-controls">
+                    <button onclick="slideTrips(-1)">&#10094;</button>
+                    <button onclick="slideTrips(1)">&#10095;</button>
+                </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Our Trips section ends -->
+
+    <!--Get in Touch section starts -->
+    <section id="get-in-touch" class="py-5">
+        <div class="container">
+            <div class="row">   
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row align-items-center">
+                                <div class="col-md-6 mb-4 mb-md-0" data-aos="fade-up" data-aos-duration="1000">
+                                    <h2 class="heading mb-3">Design Your Personalized Itinerary</h2>
+                                    <p class="supportive-text mb-4">
+                                            Use our itinerary builder to create your ideal travel plan exactly the way you want it. Once you’re happy with your plan, get in touch with us and we’ll make your dream trip a reality.
+                                    </p>
+                                    <a href="[[~3]]" class="btn btn-primary" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
+                                        Plan Now
+                                    </a>
+                                </div>
+                                <div class="col-md-6 text-center" data-aos="fade-left" data-aos-duration="1000">
+                                    <img src="assets/images/travel-cta.webp" alt="Travel" class="img-fluid hover-zoom">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--Get in Touch section ends -->
 
     <!-- Service Counter section starts -->
     <section id="service-counter" class="py-5">
@@ -325,44 +440,6 @@
     </section>
     <!-- Featured Trips section ends -->
 
-    <!--Get in Touch section starts -->
-    <section id="get-in-touch" class="py-5">
-        <div class="container">
-            <div class="row">   
-                <div class="col-12">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="row align-items-center">
-                                <div class="col-md-6 mb-4 mb-md-0" data-aos="fade-up" data-aos-duration="1000">
-                                    <h2 class="heading mb-3">Looking for a Personalized Trip or Tour ?</h2>
-                                    <p class="supportive-text mb-4">
-                                        Tell us about your travel plans, and we’ll create a custom trip just for you. From relaxing holidays to adventure tours, we handle all the details so you can enjoy a smooth and stress-free journey.
-                                    </p>
-                                    <a href="[[~7]]" class="btn btn-primary" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
-                                        Inquire Now
-                                    </a>
-                                </div>
-                                <div class="col-md-6 text-center" data-aos="fade-left" data-aos-duration="1000">
-                                    <img src="assets/images/travel-cta.png" alt="Travel" class="img-fluid hover-zoom">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!--Get in Touch section ends -->
-
-  <!-- Customer Reviews section starts -->
-    <section id="customer-reviews" class="pb-5">
-        <div class="container text-center">
-            <h2 class="heading">What Our Customers Say</h2>
-            [[!GoogleReviews]]
-        </div>
-    </section>
-    <!-- Customer Reviews section ends -->
-
     <!-- Travel Articles section starts -->
     <section id="travel-articles" class="pb-5">
         <div class="container">
@@ -376,7 +453,7 @@
                     <img src="assets/images/festivals/1.jpg" alt="Travel Articles" class="img-fluid">
                     <div class="card">
                         <div class="card-body">
-                            <p class="card-text">April 6 2024 | By Test</p>
+                            <p class="card-text">November 6 2025 | By Admin</p>
                             <h3 class="card-title">Festivals of Sri Lanka: When to Visit for Culture, Rituals & Local Life</h3>
                             <a href="[[~5]]" class="btn btn-primary">Read More</a>
                         </div>
@@ -386,7 +463,7 @@
                     <img src="assets/images/festivals/2.jpg" alt="Travel Articles" class="img-fluid">
                     <div class="card">
                         <div class="card-body">
-                            <p class="card-text">April 6 2024 | By Test</p>
+                            <p class="card-text">July 7 2025 | By Admin</p>
                             <h3 class="card-title">Hidden Cultural Gems: Temples, Forts & Ancient Cities Beyond the Usual</h3>
                             <a href="[[~5]]" class="btn btn-primary">Read More</a>
                         </div>
@@ -396,7 +473,7 @@
                     <img src="assets/images/festivals/3.jpg" alt="Travel Articles" class="img-fluid">
                     <div class="card">
                         <div class="card-body">
-                            <p class="card-text">April 6 2024 | By Test</p>
+                            <p class="card-text">April 16 2025 | By Admin</p>
                             <h3 class="card-title">Tea Country & Colonial Charm: Discovering Hill Country Heritage</h3>
                             <a href="[[~5]]" class="btn btn-primary">Read More</a>
                         </div>
@@ -406,7 +483,7 @@
                     <img src="assets/images/festivals/1.jpg" alt="Travel Articles" class="img-fluid">
                     <div class="card">
                         <div class="card-body">
-                            <p class="card-text">April 6 2024 | By Test</p>
+                            <p class="card-text">March 6 2025 | By Admin</p>
                             <h3 class="card-title">Festivals of Sri Lanka: When to Visit for Culture, Rituals & Local Life</h3>
                             <a href="[[~5]]" class="btn btn-primary">Read More</a>
                         </div>
@@ -416,6 +493,15 @@
         </div>
     </section>
     <!-- Travel Articles section ends -->
+
+    <!-- Customer Reviews section starts -->
+    <section id="customer-reviews" class="py-5">
+        <div class="container text-center">
+            <h2 class="heading">What Our Customers Say</h2>
+            [[!GoogleReviews]]
+        </div>
+    </section>
+    <!-- Customer Reviews section ends -->
 
     <script>
         const heroSwiper = new Swiper(".homeHeroSwiper", {
@@ -478,24 +564,43 @@
     </script>
 
     <script>
-        document.querySelectorAll(\'.read-more\').forEach(btn => {
-            btn.addEventListener(\'click\', function(e) {
-                e.preventDefault();
-                const shortText = this.parentElement.querySelector(\'.short-text\');
-                const fullText = this.parentElement.querySelector(\'.full-text\');
+        document.addEventListener(\'click\', function (e) {
+            if (!e.target.classList.contains(\'read-more\')) return;
 
-                if (fullText.classList.contains(\'d-none\')) {
-                    fullText.classList.remove(\'d-none\');
-                    shortText.classList.add(\'d-none\');
-                    this.textContent = "Read less";
-                } else {
-                    fullText.classList.add(\'d-none\');
-                    shortText.classList.remove(\'d-none\');
-                    this.textContent = "Read more";
-                }
-            });
+            e.preventDefault();
+
+            const parent = e.target.closest(\'.review-text\');
+            const shortText = parent.querySelector(\'.short-text\');
+            const fullText  = parent.querySelector(\'.full-text\');
+
+            if (!fullText) return;
+
+            const expanded = !fullText.classList.contains(\'d-none\');
+
+            fullText.classList.toggle(\'d-none\', expanded);
+            shortText.classList.toggle(\'d-none\', !expanded);
+            e.target.textContent = expanded ? \'Read more\' : \'Read less\';
         });
     </script>
+
+    <script>
+        let position = 0;
+        const track = document.getElementById("tripsTrack");
+        const cardWidth = 236; 
+
+        function slideTrips(direction) {
+            const maxScroll =
+            track.scrollWidth - track.parentElement.offsetWidth;
+
+            position += direction * cardWidth;
+
+            position = Math.max(0, Math.min(position, maxScroll));
+
+            track.style.transform = `translateX(-${position}px)`;
+        }
+    </script>
+
+
 </body>',
     'richtext' => 1,
     'template' => 2,
@@ -505,7 +610,7 @@
     'createdby' => 1,
     'createdon' => 1765877278,
     'editedby' => 1,
-    'editedon' => 1768909079,
+    'editedon' => 1769065338,
     'deleted' => 0,
     'deletedon' => 0,
     'deletedby' => 0,
@@ -781,6 +886,7 @@ langOptions.querySelectorAll("li").forEach((li) => {
 
 
 
+
 <body id = "homePage">
     <!-- Home hero starts -->
     <section id="homeHero">
@@ -840,6 +946,121 @@ langOptions.querySelectorAll("li").forEach((li) => {
             </div>
         </div>
     </section>
+    <!-- Why choose us section ends -->
+
+    <!-- Our Trips section starts -->
+    <section id="our-trips" class="py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <!-- Left Content -->
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <h2 class="heading fw-bold">Curated Sri Lankan Tours for Global Travelers</h2>
+                    <p class="supportive-text text-muted mt-3">
+                        We organize immersive travel experiences across Sri Lanka for guests from
+                        around the world—combining culture, nature, adventure, and comfort into
+                        thoughtfully planned journeys.
+                    </p>
+                    <a href="index.php?id=19" class="trip-button btn rounded-pill px-4 mt-2">
+                        View Our Tours
+                    </a>
+                </div>
+
+                <!-- Right Cards -->
+                <div class="col-lg-8 position-relative">
+
+                <!-- Cards Track -->
+                <div class="trips-carousel">
+                    <div class="trips-track" id="tripsTrack">
+
+                    <!-- Card 1 -->
+                    <div class="trip-card" style="background-image:url(\'assets/ev-tours/Chinese Group Tour In Sri Lanka04.02.2024 - 12.02.2024/20.webp\');">
+                        <div class="trip-overlay"><span>Chinese</span></div>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="trip-card" style="background-image:url(\'assets/ev-tours/Canadian Family Tour In Sri Lanka11.11.2022 - 26.11.2022/8.webp\');">
+                        <div class="trip-overlay"><span>Canada</span></div>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="trip-card" style="background-image:url(\'assets/ev-tours/Indian Family Tour In Sri Lanka24.05.2025 - 29.05.2025/11.webp\');">
+                        <div class="trip-overlay"><span>Indian</span></div>
+                    </div>
+
+                    <div class="trip-card" style="background-image:url(\'assets/ev-tours/SWISS FAM Tour In Sri Lanka14.03.2025 -/1.webp\');">
+                        <div class="trip-overlay"><span>Switzerland</span></div>
+                    </div>
+
+                    <!-- Card 4 -->
+                    <div class="trip-card" style="background-image:url(\'assets/ev-tours/Ireland Family Tour In Sri Lanka24.03.2024 - 29.03.2024/3.webp\');">
+                        <div class="trip-overlay"><span>Ireland</span></div>
+                    </div>
+
+                    <div class="trip-card" style="background-image:url(\'assets/ev-tours/Dutch Family Tour In Sri Lanka01.11.2024 -/2.webp\');">
+                        <div class="trip-overlay"><span>Nederlands</span></div>
+                    </div>
+
+                    <!-- Card 5 -->
+                    <div class="trip-card" style="background-image:url(\'assets/ev-tours/UK Couple Tour In Sri Lanka20.01.2023 - 22.01.2023/5.webp\');">
+                        <div class="trip-overlay"><span>UK</span></div>
+                    </div>
+
+                    <!-- Card 6 -->
+                    <div class="trip-card" style="background-image:url(\'assets/ev-tours/Vietnamese FIT Tour In Sri Lanka21.03.2025 -/2.webp\');">
+                        <div class="trip-overlay"><span>Vietnam</span></div>
+                    </div>
+
+                    <div class="trip-card" style="background-image:url(\'assets/ev-tours/Spanish Group Tour In Sri Lanka02.11.2024 -/24.webp\');">
+                        <div class="trip-overlay"><span>Spain</span></div>
+                    </div>
+
+                    <div class="trip-card" style="background-image:url(\'assets/ev-tours/Egyptian Couple Tour In Sri Lanka11.08.2024 -/3.webp\');">
+                        <div class="trip-overlay"><span>Egypt</span></div>
+                    </div>
+
+                    </div>
+                </div>
+
+                <!-- Controls -->
+                <div class="carousel-controls">
+                    <button onclick="slideTrips(-1)">&#10094;</button>
+                    <button onclick="slideTrips(1)">&#10095;</button>
+                </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Our Trips section ends -->
+
+    <!--Get in Touch section starts -->
+    <section id="get-in-touch" class="py-5">
+        <div class="container">
+            <div class="row">   
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row align-items-center">
+                                <div class="col-md-6 mb-4 mb-md-0" data-aos="fade-up" data-aos-duration="1000">
+                                    <h2 class="heading mb-3">Design Your Personalized Itinerary</h2>
+                                    <p class="supportive-text mb-4">
+                                            Use our itinerary builder to create your ideal travel plan exactly the way you want it. Once you’re happy with your plan, get in touch with us and we’ll make your dream trip a reality.
+                                    </p>
+                                    <a href="index.php?id=3" class="btn btn-primary" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
+                                        Plan Now
+                                    </a>
+                                </div>
+                                <div class="col-md-6 text-center" data-aos="fade-left" data-aos-duration="1000">
+                                    <img src="assets/images/travel-cta.webp" alt="Travel" class="img-fluid hover-zoom">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--Get in Touch section ends -->
 
     <!-- Service Counter section starts -->
     <section id="service-counter" class="py-5">
@@ -1089,44 +1310,6 @@ langOptions.querySelectorAll("li").forEach((li) => {
     </section>
     <!-- Featured Trips section ends -->
 
-    <!--Get in Touch section starts -->
-    <section id="get-in-touch" class="py-5">
-        <div class="container">
-            <div class="row">   
-                <div class="col-12">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="row align-items-center">
-                                <div class="col-md-6 mb-4 mb-md-0" data-aos="fade-up" data-aos-duration="1000">
-                                    <h2 class="heading mb-3">Looking for a Personalized Trip or Tour ?</h2>
-                                    <p class="supportive-text mb-4">
-                                        Tell us about your travel plans, and we’ll create a custom trip just for you. From relaxing holidays to adventure tours, we handle all the details so you can enjoy a smooth and stress-free journey.
-                                    </p>
-                                    <a href="index.php?id=7" class="btn btn-primary" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
-                                        Inquire Now
-                                    </a>
-                                </div>
-                                <div class="col-md-6 text-center" data-aos="fade-left" data-aos-duration="1000">
-                                    <img src="assets/images/travel-cta.png" alt="Travel" class="img-fluid hover-zoom">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!--Get in Touch section ends -->
-
-  <!-- Customer Reviews section starts -->
-    <section id="customer-reviews" class="pb-5">
-        <div class="container text-center">
-            <h2 class="heading">What Our Customers Say</h2>
-            [[!GoogleReviews]]
-        </div>
-    </section>
-    <!-- Customer Reviews section ends -->
-
     <!-- Travel Articles section starts -->
     <section id="travel-articles" class="pb-5">
         <div class="container">
@@ -1140,7 +1323,7 @@ langOptions.querySelectorAll("li").forEach((li) => {
                     <img src="assets/images/festivals/1.jpg" alt="Travel Articles" class="img-fluid">
                     <div class="card">
                         <div class="card-body">
-                            <p class="card-text">April 6 2024 | By Test</p>
+                            <p class="card-text">November 6 2025 | By Admin</p>
                             <h3 class="card-title">Festivals of Sri Lanka: When to Visit for Culture, Rituals & Local Life</h3>
                             <a href="index.php?id=5" class="btn btn-primary">Read More</a>
                         </div>
@@ -1150,7 +1333,7 @@ langOptions.querySelectorAll("li").forEach((li) => {
                     <img src="assets/images/festivals/2.jpg" alt="Travel Articles" class="img-fluid">
                     <div class="card">
                         <div class="card-body">
-                            <p class="card-text">April 6 2024 | By Test</p>
+                            <p class="card-text">July 7 2025 | By Admin</p>
                             <h3 class="card-title">Hidden Cultural Gems: Temples, Forts & Ancient Cities Beyond the Usual</h3>
                             <a href="index.php?id=5" class="btn btn-primary">Read More</a>
                         </div>
@@ -1160,7 +1343,7 @@ langOptions.querySelectorAll("li").forEach((li) => {
                     <img src="assets/images/festivals/3.jpg" alt="Travel Articles" class="img-fluid">
                     <div class="card">
                         <div class="card-body">
-                            <p class="card-text">April 6 2024 | By Test</p>
+                            <p class="card-text">April 16 2025 | By Admin</p>
                             <h3 class="card-title">Tea Country & Colonial Charm: Discovering Hill Country Heritage</h3>
                             <a href="index.php?id=5" class="btn btn-primary">Read More</a>
                         </div>
@@ -1170,7 +1353,7 @@ langOptions.querySelectorAll("li").forEach((li) => {
                     <img src="assets/images/festivals/1.jpg" alt="Travel Articles" class="img-fluid">
                     <div class="card">
                         <div class="card-body">
-                            <p class="card-text">April 6 2024 | By Test</p>
+                            <p class="card-text">March 6 2025 | By Admin</p>
                             <h3 class="card-title">Festivals of Sri Lanka: When to Visit for Culture, Rituals & Local Life</h3>
                             <a href="index.php?id=5" class="btn btn-primary">Read More</a>
                         </div>
@@ -1180,6 +1363,15 @@ langOptions.querySelectorAll("li").forEach((li) => {
         </div>
     </section>
     <!-- Travel Articles section ends -->
+
+    <!-- Customer Reviews section starts -->
+    <section id="customer-reviews" class="py-5">
+        <div class="container text-center">
+            <h2 class="heading">What Our Customers Say</h2>
+            [[!GoogleReviews]]
+        </div>
+    </section>
+    <!-- Customer Reviews section ends -->
 
     <script>
         const heroSwiper = new Swiper(".homeHeroSwiper", {
@@ -1242,24 +1434,43 @@ langOptions.querySelectorAll("li").forEach((li) => {
     </script>
 
     <script>
-        document.querySelectorAll(\'.read-more\').forEach(btn => {
-            btn.addEventListener(\'click\', function(e) {
-                e.preventDefault();
-                const shortText = this.parentElement.querySelector(\'.short-text\');
-                const fullText = this.parentElement.querySelector(\'.full-text\');
+        document.addEventListener(\'click\', function (e) {
+            if (!e.target.classList.contains(\'read-more\')) return;
 
-                if (fullText.classList.contains(\'d-none\')) {
-                    fullText.classList.remove(\'d-none\');
-                    shortText.classList.add(\'d-none\');
-                    this.textContent = "Read less";
-                } else {
-                    fullText.classList.add(\'d-none\');
-                    shortText.classList.remove(\'d-none\');
-                    this.textContent = "Read more";
-                }
-            });
+            e.preventDefault();
+
+            const parent = e.target.closest(\'.review-text\');
+            const shortText = parent.querySelector(\'.short-text\');
+            const fullText  = parent.querySelector(\'.full-text\');
+
+            if (!fullText) return;
+
+            const expanded = !fullText.classList.contains(\'d-none\');
+
+            fullText.classList.toggle(\'d-none\', expanded);
+            shortText.classList.toggle(\'d-none\', !expanded);
+            e.target.textContent = expanded ? \'Read more\' : \'Read less\';
         });
     </script>
+
+    <script>
+        let position = 0;
+        const track = document.getElementById("tripsTrack");
+        const cardWidth = 236; 
+
+        function slideTrips(direction) {
+            const maxScroll =
+            track.scrollWidth - track.parentElement.offsetWidth;
+
+            position += direction * cardWidth;
+
+            position = Math.max(0, Math.min(position, maxScroll));
+
+            track.style.transform = `translateX(-${position}px)`;
+        }
+    </script>
+
+
 </body>
 <footer>
     <div class="container">
@@ -1637,7 +1848,9 @@ langOptions.querySelectorAll("li").forEach((li) => {
 });
 
 </script>
+
 ',
+    '[[~19]]' => 'index.php?id=19',
     '[[$footer?]]' => '<footer>
     <div class="container">
         <div class="row">
@@ -1927,6 +2140,9 @@ scrollTopBtn.addEventListener(\'click\', () => {
         ),
         'policies' => 
         array (
+          'web' => 
+          array (
+          ),
         ),
         'source' => 
         array (
@@ -2124,6 +2340,7 @@ langOptions.querySelectorAll("li").forEach((li) => {
 });
 
 </script>
+
 ',
           'locked' => false,
           'properties' => 
@@ -2303,10 +2520,14 @@ langOptions.querySelectorAll("li").forEach((li) => {
 });
 
 </script>
+
 ',
         ),
         'policies' => 
         array (
+          'web' => 
+          array (
+          ),
         ),
         'source' => 
         array (
@@ -2535,6 +2756,9 @@ langOptions.querySelectorAll("li").forEach((li) => {
         ),
         'policies' => 
         array (
+          'web' => 
+          array (
+          ),
         ),
         'source' => 
         array (
@@ -2677,6 +2901,9 @@ $tours = $stmt->fetchAll(PDO::FETCH_ASSOC);
         ),
         'policies' => 
         array (
+          'web' => 
+          array (
+          ),
         ),
         'source' => 
         array (
@@ -2904,6 +3131,9 @@ return $output;',
         ),
         'policies' => 
         array (
+          'web' => 
+          array (
+          ),
         ),
         'source' => 
         array (
