@@ -48,6 +48,7 @@
     $existingCover     = json_decode($itinerary['cover_page'] ?? '[]', true);
 
 
+
     // Handle form submission
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $fields = [
@@ -225,25 +226,38 @@
         }
     }
 
-// Fetch latest costing for this itinerary
-$stmt = $conn->prepare("
-    SELECT cost_sheet 
-    FROM costing 
-    WHERE itinerary_id = :id 
-    ORDER BY version DESC 
-    LIMIT 1
-");
-$stmt->execute(['id' => $id]);
-$latestCosting = $stmt->fetch(PDO::FETCH_ASSOC);
+    // Fetch latest costing for this itinerary
+    $stmt = $conn->prepare("
+        SELECT trip_full_total
+        FROM costing
+        WHERE itinerary_id = :id
+        ORDER BY version DESC
+        LIMIT 1
+    ");
+    $stmt->execute(['id' => $id]);
+    $latestCosting = $stmt->fetch(PDO::FETCH_ASSOC);
 
-// Decode cost_sheet JSON
-$existingHotels = [];
-if (!empty($latestCosting['cost_sheet'])) {
-    $existingHotels = json_decode($latestCosting['cost_sheet'], true);
-}
+    $tripFullTotal = $latestCosting['trip_full_total'] ?? '';
 
+    $existingCost['currency'] = 'USD';
 
+    $existingCost['total']    = $tripFullTotal;
 
+    $stmt = $conn->prepare("
+        SELECT cost_sheet 
+        FROM costing 
+        WHERE itinerary_id = :id 
+        ORDER BY version DESC 
+        LIMIT 1
+    ");
+    $stmt->execute(['id' => $id]);
+    $latestCosting = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    // Decode cost_sheet JSON
+    $existingHotels = [];
+    if (!empty($latestCosting['cost_sheet'])) {
+        $existingHotels = json_decode($latestCosting['cost_sheet'], true);
+    }    
 ?>
 
 <!DOCTYPE html>
@@ -619,8 +633,9 @@ h5 {
                             </button>
                         </h2>
                         <div id="collapseHotels" class="accordion-collapse collapse">
-                            <div class="accordion-body">
-                           <div id="hotelContainer" class="row g-3">
+                                                        <div class="accordion-body">
+
+                             <div id="hotelContainer" class="row g-3">
                                 <?php
 
                                 $existingHotels = array_values($existingHotels);
@@ -662,6 +677,7 @@ h5 {
                                     }
                                 }
                                 ?>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -716,14 +732,22 @@ h5 {
 
                                     <div class="col-md-6">
                                         <label>Currency</label>
-                                        <input type="text" name="cost[currency]" class="form-control" placeholder="USD"
-                                            value="<?= htmlspecialchars($existingCost['currency'] ?? ''); ?>">
+                                       <input type="text"
+       name="cost[currency]"
+       class="form-control"
+       value="USD"
+       readonly>
+
                                     </div>
 
                                     <div class="col-md-6">
                                         <label>Total Tour Cost</label>
-                                        <input type="text" name="cost[total]" class="form-control" placeholder="Enter amount"
-                                            value="<?= htmlspecialchars($existingCost['total'] ?? ''); ?>">
+                                      <input type="text"
+       name="cost[total]"
+       class="form-control"
+       value="<?= htmlspecialchars($existingCost['total'] ?? ''); ?>"
+       readonly>
+
                                     </div>
                                 </div>
 
