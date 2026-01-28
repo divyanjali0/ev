@@ -239,7 +239,7 @@
 
     $tripFullTotal = $latestCosting['trip_full_total'] ?? '';
 
-    $existingCost['currency'] = 'USD';
+    // $existingCost['currency'] = 'USD';
 
     $existingCost['total']    = $tripFullTotal;
 
@@ -732,22 +732,13 @@ h5 {
 
                                     <div class="col-md-6">
                                         <label>Currency</label>
-                                       <input type="text"
-       name="cost[currency]"
-       class="form-control"
-       value="USD"
-       readonly>
+                                       <input type="text" name="cost[currency]" class="form-control" value="<?= htmlspecialchars($existingCost['currency'] ?? ''); ?>">
 
                                     </div>
 
                                     <div class="col-md-6">
                                         <label>Total Tour Cost</label>
-                                      <input type="text"
-       name="cost[total]"
-       class="form-control"
-       value="<?= htmlspecialchars($existingCost['total'] ?? ''); ?>"
-       readonly>
-
+                                      <input type="text" name="cost[total]" class="form-control" value="<?= htmlspecialchars($existingCost['total'] ?? ''); ?>" readonly>
                                     </div>
                                 </div>
 
