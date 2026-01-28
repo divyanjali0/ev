@@ -48,6 +48,29 @@ if (!empty($itinerary['city_ids'])) {
     }
 }
 
+$defaultTransport = [
+    [
+        'pax' => '1',
+        'vehicle' => 'Sedan',
+        'rsPerKm' => 0,
+        'km' => 0,
+        'totalRs' => 0,
+        'days' => 1,
+        'batta' => 0,
+        'transportRs' => 0,
+        'transportUsd' => 0,
+        'lGuideUsd' => 0,
+        'totalCost' => 0,
+        'costPP' => 0
+    ]
+];
+
+// If no transport data exists, use defaults
+if (empty($latestTransport)) {
+    $latestTransport = $defaultTransport;
+}
+
+
 // Fetch latest costing for this itinerary
 $stmt = $conn->prepare("
     SELECT *
@@ -163,7 +186,7 @@ $latestTransport = $latestTransport ? json_decode($latestTransport, true) : [];
                 <div class="row g-3 align-items-center">
                     <div class="col-md-3">
                         <label for="agent_name" class="form-label">Agent Name</label>
-<input type="text" id="agent_name" class="form-control" placeholder="Enter agent name" value="<?= htmlspecialchars($latestCosting['agent_name'] ?? '') ?>">
+                            <input type="text" id="agent_name" class="form-control" placeholder="Enter agent name" value="<?= htmlspecialchars($latestCosting['agent_name'] ?? '') ?>">
                     </div>
 
                     <div class="col-md-3">
@@ -248,29 +271,28 @@ $latestTransport = $latestTransport ? json_decode($latestTransport, true) : [];
                         </thead>
                         <tbody>
                            <?php
-$costRows = !empty($latestCostSheet) ? $latestCostSheet : [];
-foreach ($dates as $index => $dateValue):
-    $rowData = $costRows[$index] ?? null;
-?>
-<tr>
-    <th scope="row"><?= $index + 1 ?></th>
-    <td><input type="date" class="form-control" value="<?= htmlspecialchars($rowData['date'] ?? $dateValue) ?>"></td>
-    <td><input type="text" class="form-control" value="<?= htmlspecialchars($rowData['hotel'] ?? '') ?>" placeholder="Hotel Name"></td>
-    <td><input type="text" class="form-control" value="<?= htmlspecialchars($rowData['room_category'] ?? '') ?>" placeholder="Room Category"></td>
-    <td>
-        <select class="form-control meal-plan">
-            <option value="">Select Meal Plan</option>
-            <option value="Breakfast Only" <?= (isset($rowData['meal_plan']) && $rowData['meal_plan'] == 'Breakfast Only') ? 'selected' : '' ?>>Breakfast Only</option>
-            <option value="Half Board" <?= (isset($rowData['meal_plan']) && $rowData['meal_plan'] == 'Half Board') ? 'selected' : '' ?>>Half Board</option>
-            <option value="Full Board" <?= (isset($rowData['meal_plan']) && $rowData['meal_plan'] == 'Full Board') ? 'selected' : '' ?>>Full Board</option>
-            <option value="All Inclusive" <?= (isset($rowData['meal_plan']) && $rowData['meal_plan'] == 'All Inclusive') ? 'selected' : '' ?>>All Inclusive</option>
-        </select>
-    </td>
-    <td><input type="number" class="form-control double-col" value="<?= htmlspecialchars($rowData['double_price'] ?? 0) ?>" placeholder="Double"></td>
-    <td><button type="button" class="btn btn-sm btn-danger remove-row">Remove</button></td>
-</tr>
-<?php endforeach; ?>
-
+                                $costRows = !empty($latestCostSheet) ? $latestCostSheet : [];
+                                foreach ($dates as $index => $dateValue):
+                                    $rowData = $costRows[$index] ?? null;
+                                ?>
+                                <tr>
+                                    <th scope="row"><?= $index + 1 ?></th>
+                                    <td><input type="date" class="form-control" value="<?= htmlspecialchars($rowData['date'] ?? $dateValue) ?>"></td>
+                                    <td><input type="text" class="form-control" value="<?= htmlspecialchars($rowData['hotel'] ?? '') ?>" placeholder="Hotel Name"></td>
+                                    <td><input type="text" class="form-control" value="<?= htmlspecialchars($rowData['room_category'] ?? '') ?>" placeholder="Room Category"></td>
+                                    <td>
+                                        <select class="form-control meal-plan">
+                                            <option value="">Select Meal Plan</option>
+                                            <option value="Breakfast Only" <?= (isset($rowData['meal_plan']) && $rowData['meal_plan'] == 'Breakfast Only') ? 'selected' : '' ?>>Breakfast Only</option>
+                                            <option value="Half Board" <?= (isset($rowData['meal_plan']) && $rowData['meal_plan'] == 'Half Board') ? 'selected' : '' ?>>Half Board</option>
+                                            <option value="Full Board" <?= (isset($rowData['meal_plan']) && $rowData['meal_plan'] == 'Full Board') ? 'selected' : '' ?>>Full Board</option>
+                                            <option value="All Inclusive" <?= (isset($rowData['meal_plan']) && $rowData['meal_plan'] == 'All Inclusive') ? 'selected' : '' ?>>All Inclusive</option>
+                                        </select>
+                                    </td>
+                                    <td><input type="number" class="form-control double-col" value="<?= htmlspecialchars($rowData['double_price'] ?? 0) ?>" placeholder="Double"></td>
+                                    <td><button type="button" class="btn btn-sm btn-danger remove-row">Remove</button></td>
+                                </tr>
+                                <?php endforeach; ?>
                         </tbody>
                         <tfoot>
                             <!-- Total Double Row -->
@@ -283,8 +305,7 @@ foreach ($dates as $index => $dateValue):
                             <!-- Explore Commission Row -->
                             <tr style="background-color:#d9f2d9; font-weight:bold;">
                                 <td colspan="5" class="text-start">Explore Commission</td>
-                                <td><input type="number" id="exploreCommission" class="form-control" value="<?= htmlspecialchars($latestCosting['explore_commission'] ?? 0) ?>">
-</td>
+                                <td><input type="number" id="exploreCommission" class="form-control" value="<?= htmlspecialchars($latestCosting['explore_commission'] ?? 0) ?>"></td>
                                 <td></td>
                             </tr>
 
@@ -304,18 +325,15 @@ foreach ($dates as $index => $dateValue):
                                     </tr>
                                     <tr>
                                         <td colspan="9" class="text-start">Entrance Tickets</td>
-                                        <td><input type="number" id="entranceTickets" class="form-control" value="<?= htmlspecialchars(array_sum(array_column($latestEntranceFees, 'price')) ?? 0) ?>">
-</td>
+                                        <td><input type="number" id="entranceTickets" class="form-control" value="<?= htmlspecialchars(array_sum(array_column($latestEntranceFees, 'price')) ?? 0) ?>"></td>
                                     </tr>
                                     <tr>
                                         <td  colspan="9" class="text-start">Lunches & Dinners</td>
-                                        <td><input type="number" id="lunchesDinners" class="form-control" value="<?= htmlspecialchars($latestCosting['lunch_dinner'] ?? 0) ?>">
-</td>
+                                        <td><input type="number" id="lunchesDinners" class="form-control" value="<?= htmlspecialchars($latestCosting['lunch_dinner'] ?? 0) ?>"></td>
                                     </tr>
                                     <tr style="background-color:#cce5ff; font-weight:bold;">
                                         <td colspan="9"  class="text-start">Cost Per Pax - IN USD</td>
                                         <td id="costPerPax" style="background-color:#99ccff;"><span id="costPerPax"><?= htmlspecialchars($latestCosting['cost_per_pax'] ?? 0) ?></span>
-</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -343,80 +361,27 @@ foreach ($dates as $index => $dateValue):
                                     </thead>
                                     <tbody>
                                         <?php foreach($latestTransport as $t): ?>
-<tr>
-    <td><?= htmlspecialchars($t['pax'] ?? '') ?></td>
-    <td><?= htmlspecialchars($t['vehicle'] ?? '') ?></td>
-    <td><input type="number" class="form-control rsPerKm" value="<?= htmlspecialchars($t['rsPerKm'] ?? 0) ?>"></td>
-    <td><input type="number" class="form-control km" value="<?= htmlspecialchars($t['km'] ?? 0) ?>"></td>
-    <td class="totalRs"><?= htmlspecialchars($t['totalRs'] ?? 0) ?></td>
-    <td><input type="number" class="form-control days" value="<?= htmlspecialchars($t['days'] ?? 0) ?>"></td>
-    <td><input type="number" class="form-control batta" value="<?= htmlspecialchars($t['batta'] ?? 0) ?>"></td>
-    <td class="transportRs"><?= htmlspecialchars($t['transportRs'] ?? 0) ?></td>
-    <td><input type="number" class="form-control transportUsd" value="<?= htmlspecialchars($t['transportUsd'] ?? 0) ?>" readonly></td>
-    <td><input type="number" class="form-control lGuideUsd" value="<?= htmlspecialchars($t['lGuideUsd'] ?? 0) ?>"></td>
-    <td class="totalCost"><?= htmlspecialchars($t['totalCost'] ?? 0) ?></td>
-    <td class="costPP"><?= htmlspecialchars($t['costPP'] ?? 0) ?></td>
-</tr>
-<?php endforeach; ?>
-
-                                        <!-- <tr>
-                                            <td>02</td>
-                                            <td>Car</td>
-                                            <td><input type="number" class="form-control rsPerKm" value="120"></td>
-                                            <td><input type="number" class="form-control km" value="0"></td>
-                                            <td class="totalRs">0</td>
-                                            <td><input type="number" class="form-control days" value="0"></td>
-                                            <td><input type="number" class="form-control batta" value="0"></td>
-                                            <td class="transportRs">0</td>
-                                            <td><input type="number" class="form-control transportUsd" value="0" readonly></td>
-                                            <td><input type="number" class="form-control lGuideUsd" value="0"></td>
-                                            <td class="totalCost">0</td>
-                                            <td class="costPP">0</td>
-                                        </tr>
-                                        <tr>
-                                            <td>03-06</td>
-                                            <td>Van</td>
-                                            <td><input type="number" class="form-control rsPerKm" value="150"></td>
-                                            <td><input type="number" class="form-control km" value="3365"></td>
-                                            <td class="totalRs">0</td>
-                                            <td><input type="number" class="form-control days" value="21"></td>
-                                            <td><input type="number" class="form-control batta" value="168000"></td>
-                                            <td class="transportRs">0</td>
-                                            <td><input type="number" class="form-control transportUsd" value="2402.678571"></td>
-                                            <td><input type="number" class="form-control lGuideUsd" value="0"></td>
-                                            <td class="totalCost">0</td>
-                                            <td class="costPP">0</td>
-                                        </tr>
-                                        <tr>
-                                            <td>07-15</td>
-                                            <td>Mini Coach</td>
-                                            <td><input type="number" class="form-control rsPerKm" value="200"></td>
-                                            <td><input type="number" class="form-control km" value="0"></td>
-                                            <td class="totalRs">0</td>
-                                            <td><input type="number" class="form-control days" value="0"></td>
-                                            <td><input type="number" class="form-control batta" value="0"></td>
-                                            <td class="transportRs">0</td>
-                                            <td><input type="number" class="form-control transportUsd" value="0"></td>
-                                            <td><input type="number" class="form-control lGuideUsd" value="0"></td>
-                                            <td class="totalCost">0</td>
-                                            <td class="costPP">0</td>
-                                        </tr>
-                                        <tr>
-                                            <td>16-21</td>
-                                            <td>33 Seater Bus</td>
-                                            <td><input type="number" class="form-control rsPerKm" value="230"></td>
-                                            <td><input type="number" class="form-control km" value="0"></td>
-                                            <td class="totalRs">0</td>
-                                            <td><input type="number" class="form-control days" value="0"></td>
-                                            <td><input type="number" class="form-control batta" value="0"></td>
-                                            <td class="transportRs">0</td>
-                                            <td><input type="number" class="form-control transportUsd" value="0"></td>
-                                            <td><input type="number" class="form-control lGuideUsd" value="0"></td>
-                                            <td class="totalCost">0</td>
-                                            <td class="costPP">0</td>
-                                        </tr> -->
+                                            <tr>
+                                                <td><?= htmlspecialchars($t['pax'] ?? '') ?></td>
+                                                <td><?= htmlspecialchars($t['vehicle'] ?? '') ?></td>
+                                                <td><input type="number" class="form-control rsPerKm" value="<?= htmlspecialchars($t['rsPerKm'] ?? 0) ?>"></td>
+                                                <td><input type="number" class="form-control km" value="<?= htmlspecialchars($t['km'] ?? 0) ?>"></td>
+                                                <td class="totalRs"><?= htmlspecialchars($t['totalRs'] ?? 0) ?></td>
+                                                <td><input type="number" class="form-control days" value="<?= htmlspecialchars($t['days'] ?? 0) ?>"></td>
+                                                <td><input type="number" class="form-control batta" value="<?= htmlspecialchars($t['batta'] ?? 0) ?>"></td>
+                                                <td class="transportRs"><?= htmlspecialchars($t['transportRs'] ?? 0) ?></td>
+                                                <td><input type="number" class="form-control transportUsd" value="<?= htmlspecialchars($t['transportUsd'] ?? 0) ?>" readonly></td>
+                                                <td><input type="number" class="form-control lGuideUsd" value="<?= htmlspecialchars($t['lGuideUsd'] ?? 0) ?>"></td>
+                                                <td class="totalCost"><?= htmlspecialchars($t['totalCost'] ?? 0) ?></td>
+                                                <td class="costPP"><?= htmlspecialchars($t['costPP'] ?? 0) ?></td>
+                                            </tr>
+                                            <?php endforeach; ?>
                                     </tbody>
                                 </table>
+                                <button type="button" id="addTransportRow" class="btn btn-sm btn-primary">
+    Add Transport
+</button>
+
                             </div>
                         </div>
 
@@ -434,7 +399,7 @@ foreach ($dates as $index => $dateValue):
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td>Sub Total</td>
+                                        <td>Sub Total (cost pp + transport total * 2)</td>
                                         <td id="transportTotalUSD">0</td>
                                     </tr>
 
@@ -455,13 +420,12 @@ foreach ($dates as $index => $dateValue):
             </div>
 
             <div class="text-end mb-5">
-    <button class="btn btn-success" id="saveCosting">Save Costing</button>
-</div>
+                <button class="btn btn-success" id="saveCosting">Save Costing</button>
+            </div>
         </div>
     </div>
 </div>
 
-<!-- Entrance Fees Modal -->
 <!-- Entrance Fees Modal -->
 <div class="modal fade" id="entranceModal" tabindex="-1" aria-labelledby="entranceModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg modal-dialog-centered">
@@ -482,19 +446,18 @@ foreach ($dates as $index => $dateValue):
             </thead>
             <tbody>
               <?php foreach($entranceFees as $fee): ?>
-<tr>
-    <td>
-        <input type="checkbox" class="entrance-checkbox"
-            data-id="<?= $fee['id'] ?>"
-            data-price="<?= $fee['price_usd'] ?>"
-            <?= in_array($fee['id'], array_column($latestEntranceFees, 'id') ?? []) ? 'checked' : '' ?>
-        >
-    </td>
-    <td class="text-start"><?= htmlspecialchars($fee['name']) ?></td>
-    <td>$ <?= number_format($fee['price_usd'], 2) ?></td>
-</tr>
-<?php endforeach; ?>
-
+                <tr>
+                    <td>
+                        <input type="checkbox" class="entrance-checkbox"
+                            data-id="<?= $fee['id'] ?>"
+                            data-price="<?= $fee['price_usd'] ?>"
+                            <?= in_array($fee['id'], array_column($latestEntranceFees, 'id') ?? []) ? 'checked' : '' ?>
+                        >
+                    </td>
+                    <td class="text-start"><?= htmlspecialchars($fee['name']) ?></td>
+                    <td>$ <?= number_format($fee['price_usd'], 2) ?></td>
+                </tr>
+                <?php endforeach; ?>
               <tr>
                 <td colspan="2" class="text-end fw-bold fs-5">Total</td>
                 <td id="entranceTotal" class="fw-bold fs-5">$ 0.00</td>
@@ -511,380 +474,249 @@ foreach ($dates as $index => $dateValue):
   </div>
 </div>
 
-
-
-
-
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
-const entranceCheckboxes = document.querySelectorAll('.entrance-checkbox');
-const entranceTotal = document.getElementById('entranceTotal');
-const mainEntranceInput = document.getElementById('entranceTickets');
+    document.addEventListener('DOMContentLoaded', () => {
 
-function calculateEntranceTotal() {
-    let total = 0;
-    entranceCheckboxes.forEach(cb => {
-        if(cb.checked){
-            total += parseFloat(cb.dataset.price) || 0;
-        }
-    });
-    entranceTotal.textContent = '$' + total.toFixed(2);
-    return total;
-}
+        /* ======================================================
+        HELPERS
+        ====================================================== */
+        const $ = id => document.getElementById(id);
+        const $$ = sel => document.querySelectorAll(sel);
 
-entranceCheckboxes.forEach(cb => cb.addEventListener('change', calculateEntranceTotal));
 
-document.getElementById('saveEntranceFees').addEventListener('click', () => {
-    const total = calculateEntranceTotal();
-
-    // Build array of selected entrances with id, name, price
-    const selectedEntrances = [];
-    entranceCheckboxes.forEach(cb => {
-        if(cb.checked){
-            const tr = cb.closest('tr');
-            const name = tr.cells[1].textContent.trim();
-            selectedEntrances.push({
-                id: parseInt(cb.dataset.id),
-                name: name,
-                price: parseFloat(cb.dataset.price)
+        /* ======================================================
+        ENTRANCE FEES
+        ====================================================== */
+        function updateEntranceTotal() {
+            let total = 0;
+            $$('.entrance-checkbox').forEach(cb => {
+                if (cb.checked) total += parseFloat(cb.dataset.price) || 0;
             });
+            if ($('entranceTotal')) $('entranceTotal').textContent = '$' + total.toFixed(2);
+            if ($('entranceTickets')) $('entranceTickets').value = total.toFixed(2);
+            return total;
         }
-    });
 
-    // Save total to main input
-    mainEntranceInput.value = total.toFixed(2);
+        $$('.entrance-checkbox').forEach(cb =>
+            cb.addEventListener('change', updateEntranceTotal)
+        );
 
-    // Store JSON string in a hidden input for sending to server
-    let hiddenInput = document.getElementById('entranceJson');
-    if(!hiddenInput){
-        hiddenInput = document.createElement('input');
-        hiddenInput.type = 'hidden';
-        hiddenInput.id = 'entranceJson';
-        hiddenInput.name = 'entranceJson';
-        document.getElementById('entranceFeesForm').appendChild(hiddenInput);
-    }
-    hiddenInput.value = JSON.stringify(selectedEntrances);
+        $('saveEntranceFees')?.addEventListener('click', () => {
+            updateEntranceTotal();
 
-    // Close modal
-    const modal = bootstrap.Modal.getInstance(document.getElementById('entranceModal'));
-    modal.hide();
-});
+            const selected = [];
+            $$('.entrance-checkbox:checked').forEach(cb => {
+                const tr = cb.closest('tr');
+                selected.push({
+                    id: cb.dataset.id,
+                    name: tr.cells[1].textContent.trim(),
+                    price: parseFloat(cb.dataset.price)
+                });
+            });
 
+            let hidden = $('entranceJson');
+            if (!hidden) {
+                hidden = document.createElement('input');
+                hidden.type = 'hidden';
+                hidden.id = hidden.name = 'entranceJson';
+                $('entranceFeesForm')?.appendChild(hidden);
+            }
+            hidden.value = JSON.stringify(selected);
 
-  // Initialize total
-  calculateEntranceTotal();
-</script>
-
-
-<script>
-    const costTable = document.getElementById('costTable');
-    const tableHead = document.getElementById('tableHead');
-    let newColCount = 0;
-
-    // Add new column
-    document.getElementById('addColBtn').addEventListener('click', () => {
-        const colName = prompt('Enter column heading:', 'Extra ' + (++newColCount));
-        if (!colName) return;
-
-        tableHead.insertBefore(createCell(colName, 'th'), tableHead.lastElementChild);
-        costTable.querySelectorAll('tbody tr').forEach(row => {
-            row.insertBefore(createCell('', 'td', `<input type="text" class="form-control" placeholder="${colName}">`), row.lastElementChild);
+            bootstrap.Modal.getInstance($('entranceModal'))?.hide();
         });
-    });
 
-    // Add new row
-    document.getElementById('addRowBtn').addEventListener('click', () => {
-        const tbody = costTable.querySelector('tbody');
-        const row = tbody.insertRow();
-        const defaultCols = ['','', '', '', '', '']; 
+        updateEntranceTotal();
 
-        defaultCols.forEach((val, i) => {
-            if (i === 4) { 
-                row.insertCell().innerHTML = `
-                    <select class="form-control meal-plan">
-                        <option value="">Select Meal Plan</option>
-                        <option value="Breakfast Only">Breakfast Only</option>
-                        <option value="Half Board">Half Board</option>
-                        <option value="Full Board">Full Board</option>
-                        <option value="All Inclusive">All Inclusive</option>
-                    </select>
-                `;
-            } else {
-                row.insertCell().innerHTML = `<input type="text" class="form-control">`;
+
+        /* ======================================================
+        COST TABLE TOTALS
+        ====================================================== */
+        function updateCostTotals() {
+            const table = $('costTable');
+            if (!table) return;
+
+            let hotelTotal = 0;
+            table.querySelectorAll('.double-col').forEach(i => {
+                hotelTotal += parseFloat(i.value) || 0;
+            });
+
+            $('totalDouble').textContent = hotelTotal.toFixed(2);
+
+            const commission = parseFloat($('exploreCommission')?.value) || 0;
+            const entrance = parseFloat($('entranceTickets')?.value) || 0;
+            const lunches = parseFloat($('lunchesDinners')?.value) || 0;
+
+            const grand = hotelTotal + commission;
+            $('grandTotal').textContent = grand.toFixed(2);
+            $('costPerPax').textContent = (grand + entrance + lunches).toFixed(2);
+        }
+
+        document.addEventListener('input', e => {
+            if (
+                e.target.closest('#costTable') ||
+                ['exploreCommission','entranceTickets','lunchesDinners'].includes(e.target.id)
+            ) {
+                updateCostTotals();
+                updateTransportSummary();
             }
         });
 
-        // Extra dynamic columns
-        const extraCols = tableHead.children.length - defaultCols.length - 2;
-        for (let i = 0; i < extraCols; i++) {
-            const colHeading = tableHead.children[defaultCols.length + i + 1].textContent;
-            row.insertCell().innerHTML = `<input type="text" class="form-control" placeholder="${colHeading}">`;
-        }
 
-        row.insertCell().innerHTML = '<button type="button" class="btn btn-sm btn-danger remove-row">Remove</button>';
-        updateRowNumbers();
-    });
+        /* ======================================================
+        TRANSPORT CHART
+        ====================================================== */
+        function updateTransportTotals() {
+            const table = $('transportTable');
+            if (!table) return;
 
-    // Remove row
-    document.addEventListener('click', e => {
-        if (e.target.classList.contains('remove-row')) {
-            e.target.closest('tr').remove();
-            updateRowNumbers();
-        }
-    });
+            const rate = parseFloat($('exchange_rate')?.value) || 1;
 
-    // Update row numbers
-    function updateRowNumbers() {
-        costTable.querySelectorAll('tbody tr').forEach((tr, i) => tr.querySelector('th').textContent = i + 1);
-    }
+            table.querySelectorAll('tbody tr').forEach(tr => {
+                const rsPerKm = parseFloat(tr.querySelector('.rsPerKm')?.value) || 0;
+                const km = parseFloat(tr.querySelector('.km')?.value) || 0;
+                const batta = parseFloat(tr.querySelector('.batta')?.value) || 0;
+                const guide = parseFloat(tr.querySelector('.lGuideUsd')?.value) || 0;
 
-    function createCell(text, type = 'td', html = '') {
-        const cell = document.createElement(type);
-        if (html) cell.innerHTML = html;
-        else cell.textContent = text;
-        return cell;
-    }
+                const totalRs = rsPerKm * km;
+                const transportRs = totalRs + batta;
+                const transportUsd = transportRs / rate;
+                const totalCost = transportUsd + guide;
 
-    function sortTableByDate() {
-        const tbody = costTable.querySelector('tbody');
-        Array.from(tbody.rows)
-            .sort((a, b) => new Date(a.cells[1].querySelector('input').value) - new Date(b.cells[1].querySelector('input').value))
-            .forEach(row => tbody.appendChild(row));
-        updateRowNumbers();
-    }
+                const paxText = tr.cells[0].textContent.trim();
+                let pax = paxText.includes('-')
+                    ? paxText.split('-').reduce((a,b)=>+a + +b)/2
+                    : parseInt(paxText) || 1;
 
-
-    function updateTotals() {
-        let totalDouble = 0;
-
-        // Sum all Double column values
-        costTable.querySelectorAll('tbody tr').forEach(tr => {
-            totalDouble += parseFloat(tr.querySelector('.double-col').value) || 0;
-        });
-        document.getElementById('totalDouble').textContent = totalDouble.toFixed(2);
-
-        // Get Explore Commission value
-        const commission = parseFloat(document.getElementById('exploreCommission').value) || 0;
-
-        // Calculate Grand Total
-        const grandTotal = totalDouble + commission;
-        document.getElementById('grandTotal').textContent = grandTotal.toFixed(2);
-
-        // Get other cost items
-        const dblRoom = parseFloat(document.getElementById('dblRoomCost').value) || 0;
-        const entrance = parseFloat(document.getElementById('entranceTickets').value) || 0;
-        const lunches = parseFloat(document.getElementById('lunchesDinners').value) || 0;
-
-        // Cost Per Pax = grandTotal + dblRoom + entrance + lunches
-        const costPerPax = grandTotal + entrance + lunches;
-        document.getElementById('costPerPax').textContent = costPerPax.toFixed(2);
-    }
-
-    // Recalculate totals when any input changes
-    costTable.addEventListener('input', updateTotals);
-    document.getElementById('exploreCommission').addEventListener('input', updateTotals);
-    document.getElementById('dblRoomCost').addEventListener('input', updateTotals);
-    document.getElementById('entranceTickets').addEventListener('input', updateTotals);
-    document.getElementById('lunchesDinners').addEventListener('input', updateTotals);
-
-    // Update totals on row add/remove
-    document.getElementById('addRowBtn').addEventListener('click', updateTotals);
-    document.getElementById('addColBtn').addEventListener('click', updateTotals);
-    document.addEventListener('click', e => {
-        if (e.target.classList.contains('remove-row')) updateTotals();
-    });
-
-    // Initial total calculation
-    updateTotals();
-
-function updateTransportTotals() {
-    const exchangeRate = parseFloat(document.getElementById('exchange_rate').value) || 1; // get exchange rate
-    const rows = document.querySelectorAll('#transportTable tbody tr');
-
-    rows.forEach(tr => {
-        const rsPerKm = parseFloat(tr.querySelector('.rsPerKm').value) || 0;
-        const km = parseFloat(tr.querySelector('.km').value) || 0;
-        const days = parseFloat(tr.querySelector('.days').value) || 0;
-        const batta = parseFloat(tr.querySelector('.batta').value) || 0;
-        const lGuideUsd = parseFloat(tr.querySelector('.lGuideUsd').value) || 0;
-
-        // Calculated fields
-        const totalRs = rsPerKm * km;
-        const transportRs = totalRs + batta;
-
-        // Transport USD = Transport Rs. / Exchange Rate
-        const transportUsd = transportRs / exchangeRate;
-
-        const totalCost = transportUsd + lGuideUsd;
-
-        let pax = tr.cells[0].textContent.split('-');
-        let paxCount = pax.length === 2 ? (parseInt(pax[1]) + parseInt(pax[0])) / 2 : parseInt(pax[0]); // approximate if range
-        const costPP = paxCount ? totalCost / paxCount : totalCost;
-
-        tr.querySelector('.totalRs').textContent = totalRs.toFixed(2);
-        tr.querySelector('.transportRs').textContent = transportRs.toFixed(2);
-        tr.querySelector('.transportUsd').value = transportUsd.toFixed(2); // updated
-        tr.querySelector('.totalCost').textContent = totalCost.toFixed(2);
-        tr.querySelector('.costPP').textContent = costPP.toFixed(2);
-    });
-}
-
-document.getElementById('exchange_rate').addEventListener('input', () => {
-    updateTransportTotals();
-    updateTransportSummary();
-});
-
-
-// Recalculate on input
-document.querySelectorAll('#transportTable input').forEach(input => {
-    input.addEventListener('input', updateTransportTotals);
-});
-
-// Initial calculation
-updateTransportTotals();
-
-function updateTransportSummary() {
-    // Get total Transport USD from Transport Chart
-    let totalTransportUSD = 0;
-    document.querySelectorAll('#transportTable tbody tr').forEach(tr => {
-        totalTransportUSD += parseFloat(tr.querySelector('.totalCost').textContent) || 0;
-    });
-
-    // Get Cost Per Pax
-    const costPerPax = parseFloat(document.getElementById('costPerPax').textContent) || 0;
-
-    // Sub Total = Transport Total + Cost Per Pax * 2
-    const subTotal = ( totalTransportUSD + costPerPax ) * 2;
-
-    // 10% Discount
-    const discount = subTotal * 0.10;
-
-    // Cost for Trip
-    const tripCost = subTotal - discount;
-
-    // Update values
-    document.getElementById('transportTotalUSD').textContent = subTotal.toFixed(2);
-    document.getElementById('discountAmount').textContent = discount.toFixed(2);
-    document.getElementById('tripCost').textContent = tripCost.toFixed(2);
-}
-
-
-// Call this function whenever Transport Chart changes
-document.querySelectorAll('#transportTable input').forEach(input => {
-    input.addEventListener('input', updateTransportSummary);
-});
-
-// Initial calculation
-updateTransportSummary();
-
-
-document.getElementById('saveCosting').addEventListener('click', () => {
-    const itineraryId = <?= $itinerary['id']; ?>;
-
-    const agentName = document.getElementById('agent_name').value;
-    const groupName = document.getElementById('group_name').value;
-    const costingBy = document.getElementById('costing_by').value;
-    const costingDate = document.getElementById('costing_date').value;
-    const exchangeRate = parseFloat(document.getElementById('exchange_rate').value) || 1;
-
-    // Entrance Fees
-    const selectedEntrance = [];
-    document.querySelectorAll('.entrance-checkbox').forEach(cb => {
-        if(cb.checked) {
-            selectedEntrance.push({id: cb.dataset.id, price: parseFloat(cb.dataset.price)});
-        }
-    });
-
-    // Cost Sheet Table
-    const costSheet = [];
-    document.querySelectorAll('#costTable tbody tr').forEach(tr => {
-        const cells = tr.querySelectorAll('input, select');
-        if(cells.length > 0){
-            costSheet.push({
-                date: cells[0].value,
-                hotel: cells[1].value,
-                room_category: cells[2].value,
-                meal_plan: cells[3].value,
-                double_price: parseFloat(cells[4].value) || 0
+                tr.querySelector('.totalRs').textContent = totalRs.toFixed(2);
+                tr.querySelector('.transportRs').textContent = transportRs.toFixed(2);
+                tr.querySelector('.transportUsd').value = transportUsd.toFixed(2);
+                tr.querySelector('.totalCost').textContent = totalCost.toFixed(2);
+                tr.querySelector('.costPP').textContent = (totalCost / pax).toFixed(2);
             });
         }
-    });
 
-    // Transport Table
-    const transportData = [];
-    document.querySelectorAll('#transportTable tbody tr').forEach(tr => {
-        const inputs = tr.querySelectorAll('input');
-        transportData.push({
-            pax: tr.cells[0].textContent,
-            vehicle: tr.cells[1].textContent,
-            rsPerKm: parseFloat(inputs[0].value) || 0,
-            km: parseFloat(inputs[1].value) || 0,
-            totalRs: parseFloat(tr.querySelector('.totalRs').textContent) || 0,
-            days: parseFloat(inputs[2].value) || 0,
-            batta: parseFloat(inputs[3].value) || 0,
-            transportRs: parseFloat(tr.querySelector('.transportRs').textContent) || 0,
-            transportUsd: parseFloat(inputs[4].value) || 0,
-            lGuideUsd: parseFloat(inputs[5].value) || 0,
-            totalCost: parseFloat(tr.querySelector('.totalCost').textContent) || 0,
-            costPP: parseFloat(tr.querySelector('.costPP').textContent) || 0
+        function updateTransportSummary() {
+            let transportTotal = 0;
+            $$('#transportTable .totalCost').forEach(td => {
+                transportTotal += parseFloat(td.textContent) || 0;
+            });
+
+            const costPP = parseFloat($('costPerPax')?.textContent) || 0;
+            const sub = (transportTotal + costPP) * 2;
+            const discount = sub * 0.10;
+
+            $('transportTotalUSD').textContent = sub.toFixed(2);
+            $('discountAmount').textContent = discount.toFixed(2);
+            $('tripCost').textContent = (sub - discount).toFixed(2);
+        }
+
+        document.addEventListener('input', e => {
+            if (e.target.closest('#transportTable') || e.target.id === 'exchange_rate') {
+                updateTransportTotals();
+                updateTransportSummary();
+            }
+        });
+
+        updateCostTotals();
+        updateTransportTotals();
+        updateTransportSummary();
+
+
+        /* ======================================================
+        SAVE COSTING
+        ====================================================== */
+        $('saveCosting')?.addEventListener('click', () => {
+            const entranceFees = $('entranceJson')?.value 
+                ? JSON.parse($('entranceJson').value) 
+                : [];
+
+            const costSheet = [...$$('#costTable tbody tr')].map(tr => {
+                const inputs = tr.querySelectorAll('input, select');
+                return {
+                    date: inputs[0]?.value || '',
+                    hotel: inputs[1]?.value || '',
+                    room_category: inputs[2]?.value || '',
+                    meal_plan: inputs[3]?.value || '',
+                    double_price: parseFloat(inputs[4]?.value) || 0
+                };
+            });
+
+            const transportData = [...$$('#transportTable tbody tr')].map(tr => ({
+                pax: tr.cells[0].textContent,
+                vehicle: tr.cells[1].textContent,
+                rsPerKm: parseFloat(tr.querySelector('.rsPerKm')?.value) || 0,
+                km: parseFloat(tr.querySelector('.km')?.value) || 0,
+                totalRs: parseFloat(tr.querySelector('.totalRs')?.textContent) || 0,
+                days: parseFloat(tr.querySelector('.days')?.value) || 0,
+                batta: parseFloat(tr.querySelector('.batta')?.value) || 0,
+                transportRs: parseFloat(tr.querySelector('.transportRs')?.textContent) || 0,
+                transportUsd: parseFloat(tr.querySelector('.transportUsd')?.value) || 0,
+                lGuideUsd: parseFloat(tr.querySelector('.lGuideUsd')?.value) || 0,
+                totalCost: parseFloat(tr.querySelector('.totalCost')?.textContent) || 0,
+                costPP: parseFloat(tr.querySelector('.costPP')?.textContent) || 0
+            }));
+
+            const payload = {
+                itinerary_id: <?= $itinerary['id']; ?>,
+                agent_name: $('agent_name')?.value || '',
+                group_name: $('group_name')?.value || '',
+                costing_by: $('costing_by')?.value || '',
+                costing_date: $('costing_date')?.value || '',
+                exchange_rate: parseFloat($('exchange_rate')?.value) || 1,
+                entrance_fees: entranceFees,
+                cost_sheet: costSheet,
+                hotel_total: parseFloat($('totalDouble')?.textContent) || 0,
+                explore_commission: parseFloat($('exploreCommission')?.value) || 0,
+                grand_total: parseFloat($('grandTotal')?.textContent) || 0,
+                lunch_dinner: parseFloat($('lunchesDinners')?.value) || 0,
+                cost_per_pax: parseFloat($('costPerPax')?.textContent) || 0,
+                transport_json: transportData,
+                transport_total: parseFloat($('transportTotalUSD')?.textContent) || 0,
+                discount: parseFloat($('discountAmount')?.textContent) || 0,
+                trip_full_total: parseFloat($('tripCost')?.textContent) || 0
+            };
+
+            fetch('save_costing.php', {
+                method: 'POST',
+                headers: {'Content-Type':'application/json'},
+                body: JSON.stringify(payload)
+            })
+            .then(res => res.json())
+            .then(data => {
+                if(data.success){
+                    alert('Costing saved successfully!');
+                        window.location.href = 'edit-itinerary.php?id=' + payload.itinerary_id;
+                } else {
+                    alert('Error saving costing: ' + data.error);
+                }
+            })
+            .catch(err => console.error(err));
         });
     });
 
-    // Totals
-    const hotelTotal = parseFloat(document.getElementById('totalDouble').textContent) || 0;
-    const exploreCommission = parseFloat(document.getElementById('exploreCommission').value) || 0;
-    const grandTotal = parseFloat(document.getElementById('grandTotal').textContent) || 0;
-    const entranceTotal = parseFloat(document.getElementById('entranceTickets').value) || 0;
-    const lunchDinner = parseFloat(document.getElementById('lunchesDinners').value) || 0;
-    const costPerPax = parseFloat(document.getElementById('costPerPax').textContent) || 0;
-    const transportTotal = parseFloat(document.getElementById('transportTotalUSD').textContent) || 0;
-    const discount = parseFloat(document.getElementById('discountAmount').textContent) || 0;
-    const tripFullTotal = parseFloat(document.getElementById('tripCost').textContent) || 0;
 
-    // Prepare payload
-    const payload = {
-        itinerary_id: itineraryId,
-        agent_name: agentName,
-        group_name: groupName,
-        costing_by: costingBy,
-        costing_date: costingDate,
-        exchange_rate: exchangeRate,
-        entrance_fees: selectedEntrance,
-        cost_sheet: costSheet,
-        hotel_total: hotelTotal,
-        explore_commission: exploreCommission,
-        grand_total: grandTotal,
-        lunch_dinner: lunchDinner,
-        cost_per_pax: costPerPax,
-        transport_json: transportData,
-        transport_total: transportTotal,
-        discount: discount,
-        trip_full_total: tripFullTotal
-    };
-
-    // AJAX call to save
-    fetch('save_costing.php', {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(payload)
-    })
-    .then(res => res.json())
-    .then(data => {
-        if(data.success){
-            alert('Costing saved successfully!');
-            // Redirect to same page
-            window.location.href = 'edit-itinerary.php?id=' + itineraryId;
-        } else {
-            alert('Error saving costing: ' + data.error);
-        }
-    })
-    .catch(err => console.error(err));
-});
-
-
-
-
+    document.getElementById('addTransportRow')?.addEventListener('click', () => {
+        const tbody = document.querySelector('#transportTable tbody');
+        const tr = tbody.insertRow();
+        tr.innerHTML = `
+            <td>1</td>
+            <td>Vehicle</td>
+            <td><input class="form-control rsPerKm" type="number"></td>
+            <td><input class="form-control km" type="number"></td>
+            <td class="totalRs">0</td>
+            <td><input class="form-control days" type="number" value="1"></td>
+            <td><input class="form-control batta" type="number"></td>
+            <td class="transportRs">0</td>
+            <td><input class="form-control transportUsd" type="number" readonly></td>
+            <td><input class="form-control lGuideUsd" type="number"></td>
+            <td class="totalCost">0</td>
+            <td class="costPP">0</td>
+        `;
+    });
 </script>
+
 </body>
 </html>

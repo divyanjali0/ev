@@ -1547,3 +1547,14 @@ header .navbar.scrolled .logo-scrolled {
     font-weight: 700;
     text-transform: uppercase;
   }
+
+
+  #packages #itinerary  {
+    ul {
+      line-height : 30px;
+      li {
+        margin-bottom : 12px;
+        text-align: justify;
+      }
+    }
+  }
