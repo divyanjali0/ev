@@ -621,45 +621,48 @@ h5 {
                         <div id="collapseHotels" class="accordion-collapse collapse">
                             <div class="accordion-body">
                            <div id="hotelContainer" class="row g-3">
-    <?php
-    if (!empty($existingHotels)) {
-        foreach ($existingHotels as $dayNum => $hotelInfo) {
-            // Assign values from cost_sheet array
-            $hotelName     = $hotelInfo['hotel'] ?? '';
-            $mealPlan      = $hotelInfo['meal_plan'] ?? '';
-            $doublePrice   = $hotelInfo['double_price'] ?? 0;
-            $date          = $hotelInfo['date'] ?? '';
-    ?>
-    <div class="hotel-block col-md-12" data-day="<?= $dayNum; ?>">
-        <button type="button" class="btn btn-danger btn-sm float-end remove-hotel-day-btn"><i class="bi bi-trash"></i></button>
+                                <?php
 
-        <div class="row">
-            <div class="col-md-2 d-flex align-items-center">
-                <h5>Day <?= $dayNum; ?> Hotel</h5>
-            </div>
-            <div class="col-md-4">
-                <input type="text" name="hotels[<?= $dayNum; ?>][name]" class="form-control" placeholder="Hotel Name" value="<?= htmlspecialchars($hotelName); ?>">
-            </div>
-            <div class="col-md-3">
-                <input type="url" name="hotels[<?= $dayNum; ?>][link]" class="form-control" placeholder="Hotel Website">
-            </div>
-            <div class="col-md-3">
-                <select name="hotels[<?= $dayNum; ?>][meal_plan]" class="form-control">
-                    <option value="">Select Meal Plan</option>
-                    <option value="Breakfast Only" <?= $mealPlan=='Breakfast Only' ? 'selected' : '' ?>>Breakfast Only</option>
-                    <option value="Half Board" <?= $mealPlan=='Half Board' ? 'selected' : '' ?>>Half Board</option>
-                    <option value="Full Board" <?= $mealPlan=='Full Board' ? 'selected' : '' ?>>Full Board</option>
-                    <option value="All Inclusive" <?= $mealPlan=='All Inclusive' ? 'selected' : '' ?>>All Inclusive</option>
-                </select>
-            </div>
-        </div>
-    </div>
-    <?php
-        }
-    }
-    ?>
-</div>
+                                $existingHotels = array_values($existingHotels);
+                                if (!empty($existingHotels)) {
+                                    foreach ($existingHotels as $index => $hotelInfo) {
+                                            $dayNum = $index + 1;
 
+                                        // Assign values from cost_sheet array
+                                        $hotelName     = $hotelInfo['hotel'] ?? '';
+                                        $mealPlan      = $hotelInfo['meal_plan'] ?? '';
+                                        $doublePrice   = $hotelInfo['double_price'] ?? 0;
+                                        $date          = $hotelInfo['date'] ?? '';
+                                ?>
+                                <div class="hotel-block col-md-12" data-day="<?= $dayNum; ?>">
+                                    <!-- <button type="button" class="btn btn-danger btn-sm float-end remove-hotel-day-btn"><i class="bi bi-trash"></i></button> -->
+
+                                    <div class="row">
+                                        <div class="col-md-2 d-flex align-items-center">
+                                            <h5>Day <?= $dayNum; ?> Hotel</h5>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <input type="text" name="hotels[<?= $dayNum; ?>][name]" class="form-control" placeholder="Hotel Name" value="<?= htmlspecialchars($hotelName); ?>">
+                                        </div>
+                                        <div class="col-md-3">
+                                            <input type="url" name="hotels[<?= $dayNum; ?>][link]" class="form-control" placeholder="Hotel Website">
+                                        </div>
+                                        <div class="col-md-3">
+                                            <select name="hotels[<?= $dayNum; ?>][meal_plan]" class="form-control">
+                                                <option value="">Select Meal Plan</option>
+                                                <option value="Breakfast Only" <?= $mealPlan=='Breakfast Only' ? 'selected' : '' ?>>Breakfast Only</option>
+                                                <option value="Half Board" <?= $mealPlan=='Half Board' ? 'selected' : '' ?>>Half Board</option>
+                                                <option value="Full Board" <?= $mealPlan=='Full Board' ? 'selected' : '' ?>>Full Board</option>
+                                                <option value="All Inclusive" <?= $mealPlan=='All Inclusive' ? 'selected' : '' ?>>All Inclusive</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <?php
+                                    }
+                                }
+                                ?>
+                            </div>
                         </div>
                     </div>
 
@@ -957,51 +960,6 @@ h5 {
                 if (!quillEditors[quillId]) initQuill(quillId, $(this).find('input[type="hidden"]').val());
             });
         });
-
-        // ---------- Add Hotel Day ----------
-        $('#addHotelDayBtn').click(function() {
-            // Count current hotel blocks
-            hotelDayCount = $('#hotelContainer .hotel-block').length + 1;
-
-            let hotelHtml = `
-            <div class="hotel-block col-md-12" data-day="${hotelDayCount}">
-                <button type="button" class="btn btn-danger btn-sm float-end remove-hotel-day-btn"><i class="bi bi-trash"></i></button>
-                <div class="row">
-                    <div class="col-md-2 d-flex align-items-center">
-                        <h5>Day ${hotelDayCount} Hotel</h5>
-                    </div>
-                    <div class="col-md-5">
-                        <input type="text" name="hotels[${hotelDayCount}][name]" class="form-control" placeholder="Hotel Name">
-                    </div>
-                    <div class="col-md-5">
-                        <input type="url" name="hotels[${hotelDayCount}][link]" class="form-control" placeholder="Hotel Website">
-                    </div>
-                </div>
-            </div>
-            `;
-            $('#hotelContainer').append(hotelHtml);
-        });
-
-        // ---------- Remove Hotel Day ----------
-        $(document).on('click', '.remove-hotel-day-btn', function() {
-            $(this).closest('.hotel-block').remove();
-
-            // Renumber remaining hotel days
-            $('#hotelContainer .hotel-block').each(function(i) {
-                const newDay = i + 1;
-                $(this).attr('data-day', newDay)
-                    .find('h5').text('Day ' + newDay + ' Hotel');
-
-                $(this).find('input').each(function() {
-                    const name = $(this).attr('name');
-                    if (name) $(this).attr('name', name.replace(/\[\d+\]/, `[${newDay}]`));
-                });
-            });
-
-            // Update hotelDayCount
-            hotelDayCount = $('#hotelContainer .hotel-block').length;
-        });
-
     });
 </script>
 </body>
