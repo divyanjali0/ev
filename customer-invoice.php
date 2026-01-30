@@ -8,17 +8,20 @@
     }
 
     $stmt = $conn->prepare("
-        SELECT 
-            id,
-            reference_no,
-            version_number,
-            full_name,
-            pdf_path
-        FROM itinerary_customer_history
-        ORDER BY reference_no DESC, version_number DESC
+        SELECT h.id, h.reference_no, h.version_number, h.full_name, h.pdf_path
+        FROM itinerary_customer_history h
+        JOIN (
+            SELECT reference_no, MAX(version_number) version_number
+            FROM itinerary_customer_history
+            GROUP BY reference_no
+        ) v
+        ON v.reference_no = h.reference_no
+        AND v.version_number = h.version_number
+        ORDER BY h.reference_no DESC
     ");
     $stmt->execute();
     $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
 ?>
 
 <!DOCTYPE html>
