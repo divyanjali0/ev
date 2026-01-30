@@ -69,9 +69,7 @@
                                         <td><?= htmlspecialchars($row['full_name']) ?></td>
                                         <td>
                                             <?php if (!empty($row['pdf_path'])) { ?>
-                                                <a href="<?= htmlspecialchars($row['pdf_path']) ?>" 
-                                                target="_blank" 
-                                                class="btn btn-sm btn-outline-primary">
+                                                <a href="<?= htmlspecialchars($row['pdf_path']) ?>"  target="_blank"  class="btn btn-sm btn-outline-primary">
                                                     <i class="bi bi-file-earmark-pdf"></i> View
                                                 </a>
                                             <?php } else { ?>
@@ -79,8 +77,7 @@
                                             <?php } ?>
                                         </td>
                                         <td>
-                                            <a href="edit_invoice.php?history_id=<?= $row['id'] ?>" 
-                                            class="btn btn-sm btn-warning">
+                                            <a href="edit_invoice.php?history_id=<?= $row['id'] ?>" class="btn btn-sm btn-warning">
                                                 <i class="bi bi-pencil-square"></i> Edit Invoice
                                             </a>
                                         </td>
