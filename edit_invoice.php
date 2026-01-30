@@ -167,6 +167,53 @@ $pax = isset($tourCost['pax']) && is_numeric($tourCost['pax']) ? (int)$tourCost[
                             </table>
                         </div>
 
+                        <?php
+                            // Helper function to convert number to words (simple version)
+                            function numberToWords($num) {
+                                $f = new NumberFormatter("en", NumberFormatter::SPELLOUT);
+                                return strtoupper($f->format($num));
+                            }
+
+                            // Total amount (for single-row table this is $total; for multiple rows, sum them)
+                            $tripTotal = $total; // If multiple rows, sum their totals
+                            $tripTotalWords = numberToWords($tripTotal);
+                            ?>
+                            <hr>
+
+                            <!-- TOTAL AMOUNT -->
+                            <div class="mb-3">
+                                <strong>Total Amount: </strong><br>
+                                <?= htmlspecialchars($currency) ?> <?= $tripTotalWords ?> ONLY (<?= number_format($tripTotal, 2) ?> <?= htmlspecialchars($currency) ?>)
+                            </div>
+                            <hr>
+
+                            <!-- PAYMENT DETAILS -->
+                            <div class="mb-3">
+                                <strong>Payment Details :</strong> PLEASE MAKE THE FULL PAYMENT ON ARRIVAL<br>
+                                Name of Beneficiary : Explore Vacations and Travels (Pvt.) Ltd.<br>
+                                Name of Bank : Nations Trust Bank - Wattala Branch, Sri Lanka<br>
+                                Account Number : 100510008214<br>
+                                Routing Number (SWIFT Code) : NTBCLKLX<br>
+                                Payment Reference: Please put the Invoice No as the payment reference
+                            </div>
+                            <hr>
+
+                            <!-- AUTHORIZED SIGNATORY -->
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <div></div>
+                                <div class="text-center">
+                                    <strong>Authorized Signatory</strong><br>
+                                    <div style="height:80px; width:250px; border-bottom:1px solid #000; margin:20px auto;"></div>
+                                </div>
+                            </div>
+                            <hr>
+
+                            <!-- REMITTANCE NOTE -->
+                            <div class="mb-3">
+                                Please mail a copy of the remittance advice from your bank for us to follow up at this end and remit the exact amount with the bank charges in order to get the Invoice amount (PLEASE DO NOT DEDUCT THE BANK CHARGES)
+                            </div>
+
+
                         <!-- ACTIONS -->
                         <div class="d-flex justify-content-between mt-3">
                             <a href="customer-invoice.php" class="btn btn-secondary btn-sm">
