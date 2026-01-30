@@ -2,40 +2,40 @@
 session_start();
 require_once __DIR__ . '/assets/includes/db_connect.php';
 
+// Redirect if not logged in
 if (!isset($_SESSION['user_id'])) {
     header("Location: login.php");
     exit;
 }
 
+// Validate history_id
 if (!isset($_GET['history_id']) || !is_numeric($_GET['history_id'])) {
     die('Invalid invoice reference.');
 }
 
 $historyId = (int) $_GET['history_id'];
 
+// Fetch itinerary details
 $stmt = $conn->prepare("
-    SELECT 
-        id,
-        reference_no,
-        reference_no,
-        version_number,
-        full_name,
-        start_date,
-        end_date,
-        nights,
-        pdf_path
+    SELECT id, reference_no, version_number, full_name, start_date, end_date, nights, pdf_path, tour_cost
     FROM itinerary_customer_history
     WHERE id = :id
     LIMIT 1
 ");
 $stmt->execute([':id' => $historyId]);
 $invoice = $stmt->fetch(PDO::FETCH_ASSOC);
+if (!$invoice) die('Invoice record not found.');
 
-if (!$invoice) {
-    die('Invoice record not found.');
-}
-
+// Extract data from tour_cost JSON
+$tourCost = json_decode($invoice['tour_cost'] ?? '{}', true) ?: [];
+$roomType = $tourCost['room_type'] ?? '';
+$currency = $tourCost['currency'] ?? '';
+$total = isset($tourCost['total']) ? (float)$tourCost['total'] : 0;
+$pax = isset($tourCost['pax']) && is_numeric($tourCost['pax']) ? (int)$tourCost['pax'] : 0;
 ?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -116,6 +116,56 @@ if (!$invoice) {
                         </div>
 
                         <hr>
+
+                        <!-- TOUR COST DESCRIPTION -->
+                        <div class="mb-3 mt-3" style="line-height:25px;">
+                            <p>
+                                Being cost of <strong><?= htmlspecialchars($invoice['nights']) ?> Nights / <?= htmlspecialchars($invoice['nights'] + 1) ?> Days</strong> tour in Sri Lanka, 
+                                Hotel Accommodation in 
+                                <input type="text" name="room_type" placeholder="Room Type" style="text-align:center; border:none; border-bottom:1px solid #000; width:150px;"> 
+                                Rooms on 
+                                <input type="text" name="basis" placeholder="Basis" style="text-align:center; border:none; border-bottom:1px solid #000; width:150px;"> basis, 
+                                A/C Car with an 
+                                <input type="text" name="chauffeur_type" placeholder="Type" style="text-align:center; border:none; border-bottom:1px solid #000; width:150px;"> Speaking Chauffeur 
+                                for the Tour starting from Airport till ending at the Airport, Sightseeing as per the program. 
+                                All Applicable Taxes and All Government Taxes & Services for the Above Period as Follows:
+                            </p>
+                        </div>
+                       <div class="col">
+                            <p><i><b>Cost Excludes</b> : Lunches, Personal Expenses, Airfare and Visas, Insurance, Optional Activities that are not mentioned</i></p>
+                        </div>
+
+                        <hr>
+
+                        <!-- ROOM DETAILS TABLE -->
+                        <div class="table-responsive mt-3 mb-3">
+                            <table class="table table-bordered table-sm">
+                                <thead class="table-dark">
+                                    <tr>
+                                        <th>Room Details</th>
+                                        <th>No. of Nights / Days</th>
+                                        <th>No. of Pax</th>
+                                        <th>Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <?= htmlspecialchars($roomType) ?>
+                                        </td>
+                                        <td>
+                                            <?= htmlspecialchars($invoice['nights']) ?> / <?= htmlspecialchars($invoice['nights'] + 1) ?>
+                                        </td>
+                                        <td>
+                                            <?= htmlspecialchars($pax) ?>
+                                        </td>
+                                        <td>
+                                            <?= htmlspecialchars(number_format($total, 2)) ?> <?= htmlspecialchars($currency) ?>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
 
                         <!-- ACTIONS -->
                         <div class="d-flex justify-content-between mt-3">

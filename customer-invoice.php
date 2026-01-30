@@ -8,7 +8,7 @@
     }
 
     $stmt = $conn->prepare("
-        SELECT h.id, h.reference_no, h.version_number, h.full_name, h.pdf_path
+        SELECT h.id, h.reference_no, h.itinerary_id, h.version_number, h.full_name, h.pdf_path
         FROM itinerary_customer_history h
         JOIN (
             SELECT reference_no, MAX(version_number) version_number
@@ -78,8 +78,9 @@
                                         </td>
                                         <td>
                                             <a href="edit_invoice.php?history_id=<?= $row['id'] ?>" class="btn btn-sm btn-warning">
-                                                <i class="bi bi-pencil-square"></i> Edit Invoice
-                                            </a>
+    <i class="bi bi-pencil-square"></i> Edit Invoice
+</a>
+
                                         </td>
                                     </tr>
                                 <?php } ?>
