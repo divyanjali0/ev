@@ -200,7 +200,6 @@ function renderCoverPage($pdf, $cover, $nights = 0, $referenceNo = '', $fullName
         }
     }
 
-    // Restore headers & footers for next pages
     $pdf->setPrintHeader(true);
     $pdf->setPrintFooter(false);
 }
