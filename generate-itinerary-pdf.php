@@ -31,26 +31,44 @@ class PDF extends TCPDF {
 
     public function Header() {
 
-        // Outer border
+        // Outer border – BLUE (same as cover)
         $this->SetLineWidth($this->outerWidth);
-        $this->SetDrawColor(32,72,154);
+        $this->SetDrawColor(0,153,218);
         $this->Rect(6, 6, 198, 285);
 
-        // Inner border
+        // Inner border – GREEN (same as cover)
         $this->SetLineWidth($this->innerWidth);
-        $this->SetDrawColor(76,135,100);
+        $this->SetDrawColor(130,200,70);
         $this->Rect(9, 9, 192, 279);
 
         // Logo
         $this->Image(__DIR__.'/assets/images/logo.png', 168, 14, 26);
     }
 
+
     public function Footer() {
+
+        // Do NOT show footer on cover page
+        if ($this->page == 1) {
+            return;
+        }
+
         $this->SetY(-14);
         $this->SetFont('helvetica','',8);
+        $this->SetTextColor(170,170,170);
+
+        // Centered footer text
         $this->Cell(
             0, 6,
             'No. 371/5, Negombo Road, Seeduwa, Sri Lanka | Tel: +94 761 414 552 | www.explorevacations.lk',
+            0, 1, 'C'
+        );
+
+        // Page number (just number)
+        $this->SetFont('helvetica','B',9);
+        $this->Cell(
+            0, 6,
+            $this->getAliasNumPage(),
             0, 0, 'C'
         );
     }
@@ -201,35 +219,133 @@ function renderCoverPage($pdf, $cover, $nights = 0, $referenceNo = '', $fullName
     }
 
     $pdf->setPrintHeader(true);
-    $pdf->setPrintFooter(false);
+    $pdf->setPrintFooter(true);
 }
 
 function renderDestinationsPage($pdf, $days) {
 
-    $pdf->AddPage();
-    setupInnerPage($pdf);
-    sectionTitle($pdf, 'Destinations');
+    global $conn;
+    $isFirstDay = true;
 
     foreach ($days as $day) {
 
+        /* ================= NEW PAGE PER DAY ================= */
+        $pdf->AddPage();
+        setupInnerPage($pdf);
+        $pdf->Ln(12);
+
+        /* ================= PAGE TITLE (ONLY FIRST PAGE) ================= */
+        if ($isFirstDay) {
+            $pdf->SetFont('helvetica','B',14);
+            $pdf->SetTextColor(0,153,218);
+            $pdf->Cell(0, 10, 'Destinations', 0, 1);
+            $pdf->Ln(8);
+            $pdf->SetTextColor(0);
+            $isFirstDay = false;
+        }
+
+        /* ================= FETCH CITY NAME ================= */
+        $cityName = '';
+        if (!empty($day['city_id'])) {
+            $stmt = $conn->prepare("SELECT name FROM cities WHERE id = ?");
+            $stmt->execute([$day['city_id']]);
+            $cityName = $stmt->fetchColumn() ?: '';
+        }
+
+        /* ================= DAY BADGE (PILL STYLE) ================= */
+        $startY = $pdf->GetY();
+        $badgeX = 20;
+
+        $pdf->SetFillColor(0,153,218);
+        $pdf->SetTextColor(255);
+        $pdf->SetFont('helvetica','B',11);
+
+        $pdf->RoundedRect($badgeX, $startY, 26, 10, 5, '1111', 'F');
+        $pdf->SetXY($badgeX, $startY + 2);
+        $pdf->Cell(26, 6, 'DAY '.$day['day'], 0, 0, 'C');
+
+        $pdf->SetTextColor(0);
+
+        /* ================= META TEXT (ALIGNED WITH BADGE) ================= */
+        $pdf->SetXY($badgeX + 32, $startY - 1);
         $pdf->SetFont('helvetica','B',12);
-        $pdf->Cell(0, 8, 'Day '.$day['day'], 0, 1);
+        $pdf->Cell(0, 7, $cityName, 0, 1);
 
-        $pdf->SetFont('helvetica','',11);
-        $pdf->MultiCell(0, 6, strip_tags($day['description']));
-        $pdf->Ln(3);
+        $meta = [];
+        if (!empty($day['date'])) {
+            $meta[] = date('d M Y', strtotime($day['date']));
+        }
+        if (!empty($day['meal_plan'])) {
+            $meta[] = $day['meal_plan'];
+        }
 
-        if (!empty($day['images'])) {
+        if (!empty($meta)) {
+            $pdf->SetX($badgeX + 32);
+            $pdf->SetFont('helvetica','',11);
+            $pdf->SetTextColor(90,90,90);
+            $pdf->Cell(0, 6, implode('  |  ', $meta), 0, 1);
+            $pdf->SetTextColor(0);
+        }
+
+        $pdf->Ln(6);
+
+        /* ================= DESCRIPTION ================= */
+        if (!empty($day['description'])) {
+            $pdf->SetX($badgeX);
+            $pdf->SetFont('helvetica','',11);
+            $pdf->writeHTML(
+                $day['description'],
+                true,
+                false,
+                true,
+                false,
+                ''
+            );
+        }
+
+        $pdf->Ln(6);
+
+        /* ================= IMAGES (4 COLUMN GRID) ================= */
+        if (!empty($day['images']) && is_array($day['images'])) {
+
+            $colWidth  = 38;
+            $imgHeight = 25;
+            $gap       = 4;
+
+            $startX = $badgeX;
+            $y      = $pdf->GetY();
+            $col    = 0;
+
             foreach ($day['images'] as $img) {
-                $path = __DIR__.'/uploads/city_images/'.$img;
-                if (file_exists($path)) {
-                    $pdf->Image($path, '', '', 110);
-                    $pdf->Ln(5);
+
+                $path = __DIR__ . '/uploads/city_images/' . $img;
+                if (!file_exists($path)) continue;
+
+                if ($col === 4) {
+                    $col = 0;
+                    $y += ($imgHeight + 6);
                 }
+
+                if ($y + $imgHeight > ($pdf->getPageHeight() - 30)) {
+                    $pdf->AddPage();
+                    setupInnerPage($pdf);
+                    $pdf->Ln(10);
+                    $y = $pdf->GetY();
+                }
+
+                $x = $startX + ($col * ($colWidth + $gap));
+                $pdf->Image($path, $x, $y, $colWidth, $imgHeight);
+
+                $col++;
             }
+
+            $pdf->SetY($y + $imgHeight + 10);
         }
     }
 }
+
+
+
 
 function renderHotelsPage($pdf, $hotels) {
 
