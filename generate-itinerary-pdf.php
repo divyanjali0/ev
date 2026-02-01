@@ -484,6 +484,7 @@ function renderCostPage($pdf, $cost) {
 
 }
 
+function renderTermsPage($pdf, $terms) {
 
     $pdf->AddPage();
     setupInnerPage($pdf);
