@@ -48,7 +48,7 @@ class PDF extends TCPDF {
 
     public function Footer() {
 
-        // Do NOT show footer on cover page
+        // Skip cover page
         if ($this->page == 1) {
             return;
         }
@@ -57,21 +57,23 @@ class PDF extends TCPDF {
         $this->SetFont('helvetica','',8);
         $this->SetTextColor(170,170,170);
 
-        // Centered footer text
+        /* Footer text - centered */
         $this->Cell(
             0, 6,
             'No. 371/5, Negombo Road, Seeduwa, Sri Lanka | Tel: +94 761 414 552 | www.explorevacations.lk',
-            0, 1, 'C'
-        );
-
-        // Page number (just number)
-        $this->SetFont('helvetica','B',9);
-        $this->Cell(
-            0, 6,
-            $this->getAliasNumPage(),
             0, 0, 'C'
         );
+
+        /* Page number - right */
+        $this->SetFont('helvetica','B',9);
+        $this->SetX(-20);
+        $this->Cell(
+            15, 6,
+            $this->getAliasNumPage(),
+            0, 0, 'R'
+        );
     }
+
 }
 
 /* ================= INIT PDF ================= */
@@ -84,8 +86,8 @@ $pdf->setPrintFooter(true);
 
 /* ================= COMMON HELPERS ================= */
 
-function setupInnerPage($pdf) {
-    $pdf->SetMargins(20, 35, 20);
+function setupInnerPage($pdf, $top = 35) {
+    $pdf->SetMargins(20, $top, 20);
     $pdf->SetAutoPageBreak(true, 25);
     $pdf->SetTextColor(0);
 }
@@ -238,7 +240,7 @@ function renderDestinationsPage($pdf, $days) {
         if ($isFirstDay) {
             $pdf->SetFont('helvetica','B',14);
             $pdf->SetTextColor(0,153,218);
-            $pdf->Cell(0, 10, 'Destinations', 0, 1);
+            $pdf->Cell(0, 10, strtoupper('Destinations'), 0, 1);
             $pdf->Ln(8);
             $pdf->SetTextColor(0);
             $isFirstDay = false;
@@ -344,74 +346,192 @@ function renderDestinationsPage($pdf, $days) {
     }
 }
 
-
-
-
 function renderHotelsPage($pdf, $hotels) {
 
     $pdf->AddPage();
-    setupInnerPage($pdf);
-    sectionTitle($pdf, 'Hotels');
+    setupInnerPage($pdf, 28); // reduced top margin
 
-    $html = '<table border="1" cellpadding="6" width="100%">
-        <tr style="background-color:#20489A;color:#fff;">
-            <th width="15%">Day</th>
-            <th width="45%">Hotel</th>
-            <th width="40%">Website</th>
-        </tr>';
+    /* Page title */
+    $pdf->SetFont('helvetica','B',14);
+    $pdf->SetTextColor(0,153,218);
+    $pdf->Cell(0, 10, strtoupper('Hotels'), 0, 1);
+    $pdf->Ln(6);
+    $pdf->SetTextColor(0);
 
     foreach ($hotels as $day => $hotel) {
-        $html .= '<tr>
-            <td>Day '.$day.'</td>
-            <td>'.htmlspecialchars($hotel['name'] ?? '').'</td>
-            <td>'.(!empty($hotel['link']) ? '<a href="'.$hotel['link'].'">'.$hotel['link'].'</a>' : '').'</td>
-        </tr>';
-    }
 
-    $html .= '</table>';
-    $pdf->writeHTML($html);
+        // Auto page break safety
+        if ($pdf->GetY() > ($pdf->getPageHeight() - 50)) {
+            $pdf->AddPage();
+            setupInnerPage($pdf);
+        }
+
+        $startY = $pdf->GetY();
+        $startX = 20;
+        $boxW   = $pdf->getPageWidth() - 40;
+        $boxH   = 28;
+
+        /* Card background */
+        $pdf->SetFillColor(245,248,250);
+        $pdf->RoundedRect($startX, $startY, $boxW, $boxH, 4, '1111', 'F');
+
+        /* Day badge */
+        $pdf->SetFillColor(0,153,218);
+        $pdf->SetTextColor(255);
+        $pdf->SetFont('helvetica','B',11);
+        $pdf->RoundedRect($startX + 4, $startY + 8, 22, 10, 5, '1111', 'F');
+        $pdf->SetXY($startX + 4, $startY + 10);
+        $pdf->Cell(22, 6, 'DAY '.$day, 0, 0, 'C');
+
+        $pdf->SetTextColor(0);
+
+        /* Hotel name */
+        $pdf->SetXY($startX + 32, $startY + 6);
+        $pdf->SetFont('helvetica','B',12);
+        $pdf->Cell(0, 7, $hotel['name'] ?? '', 0, 1);
+
+        /* Website */
+        if (!empty($hotel['link'])) {
+            $pdf->SetX($startX + 32);
+            $pdf->SetFont('helvetica','',10);
+            $pdf->SetTextColor(90,90,90);
+            $pdf->Cell(0, 6, $hotel['link'], 0, 1);
+            $pdf->SetTextColor(0);
+        }
+
+        $pdf->Ln(6);
+    }
 }
+
 
 function renderCostPage($pdf, $cost) {
 
     $pdf->AddPage();
-    setupInnerPage($pdf);
-    sectionTitle($pdf, 'Tour Cost');
+    setupInnerPage($pdf, 28);
 
-    $html = '<table border="1" cellpadding="6" width="100%">';
-    foreach ($cost as $k => $v) {
-        $html .= '<tr>
-            <th width="40%" style="background-color:#20489A;color:#fff;">'
-            .ucwords(str_replace('_',' ',$k)).
-            '</th>
-            <td width="60%">'.$v.'</td>
-        </tr>';
+    /* ===== PAGE TITLE ===== */
+    $pdf->SetFont('helvetica','B',14);
+    $pdf->SetTextColor(0,153,218);
+    $pdf->Cell(0, 10, strtoupper('Tour Cost'), 0, 1);
+    $pdf->Ln(6);
+
+    $startX = 20;
+    $cardW  = ($pdf->getPageWidth() - 60) / 2; // two cards per row
+    $alt    = false;
+
+    $count = 0;
+    $totalItems = count($cost);
+
+    foreach ($cost as $key => $value) {
+
+        $isLast = (++$count === $totalItems);
+
+        // Auto page break safety
+        if ($pdf->GetY() > ($pdf->getPageHeight() - 45)) {
+            $pdf->AddPage();
+            setupInnerPage($pdf, 28);
+        }
+
+        $x = $startX + ($count % 2 === 0 ? $cardW + 20 : 0);
+        $y = $pdf->GetY();
+
+        /* Card height estimation */
+        $textHeight = $pdf->getStringHeight($cardW - 16, strip_tags($value));
+        $cardH = max($textHeight + 12, 20); // smaller padding, min height 20
+
+        /* Background */
+        $pdf->SetFillColor($alt ? 245 : 250);
+        $pdf->RoundedRect($x, $y, $cardW, $cardH, 4, '1111', 'F');
+
+        /* Accent bar */
+        $pdf->SetFillColor(0,153,218);
+        $pdf->Rect($x, $y, 4, $cardH, 'F');
+
+        /* Title & Description */
+        $pdf->SetXY($x + 8, $y + 4); // small top padding
+
+        if ($isLast) {
+            $pdf->SetFont('helvetica','B',12);
+            $pdf->SetTextColor(220,50,50);
+        } else {
+            $pdf->SetFont('helvetica','B',11);
+            $pdf->SetTextColor(32,72,154);
+        }
+        $label = ucwords(str_replace('_',' ', $key));
+        $pdf->Cell(0, 6, $label, 0, 1);
+
+        $pdf->SetX($x + 8);
+        if ($isLast) {
+            $pdf->SetFont('helvetica','',11);
+            $pdf->SetTextColor(180,30,30);
+        } else {
+            $pdf->SetFont('helvetica','',11);
+            $pdf->SetTextColor(60,60,60);
+        }
+        $pdf->MultiCell($cardW - 12, 6, strip_tags($value), 0, 'L');
+
+        // Move to next row if needed
+        if ($count % 2 === 0) {
+            $pdf->SetY($y + $cardH + 6);
+            $alt = !$alt;
+        }
     }
-    $html .= '</table>';
 
-    $pdf->writeHTML($html);
+    // If odd number of cards, move cursor down after last single card
+    if ($count % 2 !== 0) {
+        $pdf->SetY($y + $cardH + 6);
+    }
+
 }
 
-function renderTermsPage($pdf, $terms) {
 
     $pdf->AddPage();
     setupInnerPage($pdf);
-    sectionTitle($pdf, 'Terms & Conditions');
+    // sectionTitle($pdf, 'Terms & Conditions');
 
+    $pdf->SetFont('helvetica','B',14);
+    $pdf->SetTextColor(0,153,218);
+    $pdf->Cell(0, 10, strtoupper('Terms & Conditions'), 0, 1);
+
+    // Define sections for easier reference
     $sections = [
         'Cost Includes'   => $terms['includes'] ?? '',
         'Cost Excludes'   => $terms['excludes'] ?? '',
         'Additional Info' => $terms['ps'] ?? ''
     ];
 
+    $startX = 20;
+    $boxW   = $pdf->getPageWidth() - 40; // page width minus margins
+
     foreach ($sections as $title => $text) {
-        $pdf->SetFont('helvetica','B',11);
-        $pdf->Cell(0, 8, $title, 0, 1);
+
+        // Title styling
+        $pdf->SetFont('helvetica','B',12);
+        $pdf->SetTextColor(32,72,154); // Formal blue color for title
+        $pdf->Cell(0, 10, strtoupper($title), 0, 1);
+        
+        // Add a line for separation
+        $pdf->SetDrawColor(32,72,154);
+        $pdf->Line($startX, $pdf->GetY(), $startX + $boxW, $pdf->GetY());
+        $pdf->Ln(6); // space after the line
+
+        // Text content styling
         $pdf->SetFont('helvetica','',11);
-        $pdf->MultiCell(0, 6, strip_tags($text));
-        $pdf->Ln(4);
+        $pdf->SetTextColor(60,60,60); // softer grey for text
+
+        // Add a box around the section text
+        $pdf->SetFillColor(245,245,245); // light grey background for readability
+        $pdf->RoundedRect($startX, $pdf->GetY(), $boxW, 40, 4, '1111', 'F');
+        
+        // MultiCell for text content inside the box
+        $pdf->SetXY($startX + 6, $pdf->GetY() + 6); // Padding for better alignment
+        $pdf->MultiCell($boxW - 12, 6, strip_tags($text)); // Adjust text box width
+
+        // Space after each section
+        $pdf->Ln(6);
     }
 }
+
 
 /* ================= BUILD PDF ================= */
 $title = trim($data['title'] ?? $data['salutation'] ?? '');
