@@ -9,28 +9,24 @@
 
     $stmt = $conn->prepare("
         SELECT 
-            h.id, 
-            h.reference_no, 
-            h.itinerary_id, 
-            h.version_number, 
-            h.full_name, 
-            h.pdf_path AS itinerary_pdf,          -- itinerary PDF
-            c.pdf_path AS customer_invoice_pdf    -- customer invoice PDF
+            h.id,
+            h.reference_no,
+            h.version_number,
+            h.full_name,
+            h.pdf_path AS itinerary_pdf,
+            c.pdf_path AS customer_invoice_pdf
         FROM itinerary_customer_history h
         LEFT JOIN customer_invoice c ON c.history_id = h.id
-        JOIN (
-            SELECT reference_no, MAX(version_number) version_number
+        INNER JOIN (
+            -- get latest version per reference_no
+            SELECT reference_no, MAX(version_number) AS latest_version
             FROM itinerary_customer_history
             GROUP BY reference_no
-        ) v
-        ON v.reference_no = h.reference_no
-        AND v.version_number = h.version_number
+        ) v ON v.reference_no = h.reference_no AND v.latest_version = h.version_number
         ORDER BY h.reference_no DESC
     ");
     $stmt->execute();
     $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-
 ?>
 
 <!DOCTYPE html>
@@ -66,42 +62,42 @@
                                         <th>Itinerary Ref No</th>
                                         <th>Version</th>
                                         <th>Customer Name</th>
-                                        <th>PDF</th>
+                                        <th>Itinerary PDF</th>
                                         <th>Customer Invoice</th> 
                                         <th>Action</th>
                                     </tr>
                                 </thead>
-                            <tbody>
-                                <?php foreach ($rows as $row) { ?>
-                                    <tr>
-                                        <td><?= htmlspecialchars($row['reference_no']) ?></td>
-                                        <td>V<?= htmlspecialchars($row['version_number']) ?></td>
-                                        <td><?= htmlspecialchars($row['full_name']) ?></td>
-                                      <td>
-                                            <?php if (!empty($row['itinerary_pdf'])) { ?>
-                                                <a href="<?= htmlspecialchars($row['itinerary_pdf']) ?>" target="_blank" class="btn btn-sm btn-outline-primary">
-                                                    <i class="bi bi-file-earmark-pdf"></i> Itinerary PDF
+                                <tbody>
+                                    <?php foreach ($rows as $row) { ?>
+                                        <tr>
+                                            <td><?= htmlspecialchars($row['reference_no']) ?></td>
+                                            <td>V<?= htmlspecialchars($row['version_number']) ?></td>
+                                            <td><?= htmlspecialchars($row['full_name']) ?></td>
+                                            <td>
+                                                <?php if (!empty($row['itinerary_pdf'])) { ?>
+                                                    <a href="<?= htmlspecialchars($row['itinerary_pdf']) ?>" target="_blank" class="btn btn-sm btn-outline-primary">
+                                                        <i class="bi bi-file-earmark-pdf"></i> View
+                                                    </a>
+                                                <?php } else { ?>
+                                                    <span class="text-muted">N/A</span>
+                                                <?php } ?>
+                                            </td>
+                                            <td>
+                                                <?php if (!empty($row['customer_invoice_pdf'])) { ?>
+                                                    <a href="<?= htmlspecialchars($row['customer_invoice_pdf']) ?>" target="_blank" class="btn btn-sm btn-outline-success">
+                                                        <i class="bi bi-file-earmark-pdf"></i> View
+                                                    </a>
+                                                <?php } else { ?>
+                                                    <span class="text-muted">N/A</span>
+                                                <?php } ?>
+                                            </td>
+                                            <td>
+                                                <a href="edit_invoice.php?history_id=<?= $row['id'] ?>" class="btn btn-sm btn-warning">
+                                                    <i class="bi bi-pencil-square"></i> Edit Invoice
                                                 </a>
-                                            <?php } else { ?>
-                                                <span class="text-muted">N/A</span>
-                                            <?php } ?>
-                                        </td>
-                                        <td>
-                                            <?php if (!empty($row['customer_invoice_pdf'])) { ?>
-                                                <a href="<?= htmlspecialchars($row['customer_invoice_pdf']) ?>" target="_blank" class="btn btn-sm btn-outline-success">
-                                                    <i class="bi bi-file-earmark-pdf"></i> Customer Invoice
-                                                </a>
-                                            <?php } else { ?>
-                                                <span class="text-muted">N/A</span>
-                                            <?php } ?>
-                                        </td>
-                                        <td>
-                                            <a href="edit_invoice.php?history_id=<?= $row['id'] ?>" class="btn btn-sm btn-warning">
-                                                <i class="bi bi-pencil-square"></i> Edit Invoice
-                                            </a>
-                                        </td>
-                                    </tr>
-                                <?php } ?>
+                                            </td>
+                                        </tr>
+                                    <?php } ?>
                                 </tbody>
                             </table>
                         </div>

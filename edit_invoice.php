@@ -1,40 +1,38 @@
 <?php
-session_start();
-require_once __DIR__ . '/assets/includes/db_connect.php';
+    session_start();
+    require_once __DIR__ . '/assets/includes/db_connect.php';
 
-// Redirect if not logged in
-if (!isset($_SESSION['user_id'])) {
-    header("Location: login.php");
-    exit;
-}
+    // Redirect if not logged in
+    if (!isset($_SESSION['user_id'])) {
+        header("Location: login.php");
+        exit;
+    }
 
-// Validate history_id
-if (!isset($_GET['history_id']) || !is_numeric($_GET['history_id'])) {
-    die('Invalid invoice reference.');
-}
+    // Validate history_id
+    if (!isset($_GET['history_id']) || !is_numeric($_GET['history_id'])) {
+        die('Invalid invoice reference.');
+    }
 
-$historyId = (int) $_GET['history_id'];
+    $historyId = (int) $_GET['history_id'];
 
-// Fetch itinerary details
-$stmt = $conn->prepare("
-    SELECT id, reference_no, version_number, full_name, start_date, end_date, nights, pdf_path, tour_cost
-    FROM itinerary_customer_history
-    WHERE id = :id
-    LIMIT 1
-");
-$stmt->execute([':id' => $historyId]);
-$invoice = $stmt->fetch(PDO::FETCH_ASSOC);
-if (!$invoice) die('Invoice record not found.');
+    // Fetch itinerary details
+    $stmt = $conn->prepare("
+        SELECT id, reference_no, version_number, full_name, start_date, end_date, nights, pdf_path, tour_cost
+        FROM itinerary_customer_history
+        WHERE id = :id
+        LIMIT 1
+    ");
+    $stmt->execute([':id' => $historyId]);
+    $invoice = $stmt->fetch(PDO::FETCH_ASSOC);
+    if (!$invoice) die('Invoice record not found.');
 
-// Extract data from tour_cost JSON
-$tourCost = json_decode($invoice['tour_cost'] ?? '{}', true) ?: [];
-$roomType = $tourCost['room_type'] ?? '';
-$currency = $tourCost['currency'] ?? '';
-$total = isset($tourCost['total']) ? (float)$tourCost['total'] : 0;
-$pax = isset($tourCost['pax']) && is_numeric($tourCost['pax']) ? (int)$tourCost['pax'] : 0;
+    // Extract data from tour_cost JSON
+    $tourCost = json_decode($invoice['tour_cost'] ?? '{}', true) ?: [];
+    $roomType = $tourCost['room_type'] ?? '';
+    $currency = $tourCost['currency'] ?? '';
+    $total = isset($tourCost['total']) ? (float)$tourCost['total'] : 0;
+    $pax = isset($tourCost['pax']) && is_numeric($tourCost['pax']) ? (int)$tourCost['pax'] : 0;
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -60,181 +58,178 @@ $pax = isset($tourCost['pax']) && is_numeric($tourCost['pax']) ? (int)$tourCost[
     </style>
 </head>
 <body>
+    <div class="d-flex">
+        <?php include __DIR__ . '/assets/includes/sidebar.php'; ?>
+        <div class="container-fluid mt-4">
+            <div class="row justify-content-center">
+                <div class="col-lg-12">
 
-<div class="d-flex">
-    <?php include __DIR__ . '/assets/includes/sidebar.php'; ?>
-
-    <div class="container-fluid mt-4">
-        <div class="row justify-content-center">
-            <div class="col-lg-12">
-
-                <div class="card shadow-sm">
-                    <div class="card-header bg-dark text-white">
-                        <strong>Edit Invoice</strong>
-                    </div>
-                    <div class="card-body">
-
-                        <!-- HEADER -->
-                        <div class="row align-items-center mb-3">
-                            <div class="col-6">
-                                <img src="assets/images/logo.png" alt="Logo" style="max-height:70px;">
-                            </div>
-                            <div class="col-6 text-end">
-                                <h6 class="fw-bold mb-1">Explore Vacations & Travels (Pvt) Ltd</h6>
-                                <div>No. 371/5, Negombo Road, Seeduwa, Sri Lanka | Tel: +94 114 941 650</div>
-                                <div>Email : info@explorevacations.lk | Web : www.explore.vacations</div>
-                            </div>
+                    <div class="card shadow-sm">
+                        <div class="card-header bg-dark text-white">
+                            <strong>Edit Invoice</strong>
                         </div>
+                        <div class="card-body">
 
-                        <hr class="my-0">
-                        <form action="update-invoice.php" method="POST" enctype="multipart/form-data">
-<input type="hidden" name="history_id" value="<?= $historyId ?>">
-
-                        <!-- INVOICE TITLE -->
-                        <h6 class="text-center fw-bold">INVOICE</h6>
-
-                        <hr class="my-0">
-
-                        <!-- INVOICE DETAILS (2 x 2 GRID) -->
-                        <div class="justify-content-center row my-3">
-
-                            <div class="invoice-details col-6">
-                                <div><strong>Invoice Date : </strong> <?= date('Y-m-d') ?></div>
-                                <div><strong>Tour Start Date : </strong> <?= htmlspecialchars($invoice['start_date']) ?></div>
-                                <div><strong>Tour End Date : </strong> <?= htmlspecialchars($invoice['end_date']) ?></div>
-                                <div><strong>Invoice To : </strong> <?= htmlspecialchars($invoice['full_name']) ?></div>
-                            </div>
-
-                            <div class="invoice-details col-6">
-                                <div><strong>Invoice No : </strong> <?= htmlspecialchars($invoice['reference_no']) ?></div>
-                                <div><strong>Tour No : </strong> <?= htmlspecialchars($invoice['reference_no']) ?></div>
-                                <div>
-                                    <strong>Duration :</strong>
-                                    <?= htmlspecialchars($invoice['nights']) ?> Nights /
-                                    <?= htmlspecialchars($invoice['nights'] + 1) ?> Days 
+                            <!-- HEADER -->
+                            <div class="row align-items-center mb-3">
+                                <div class="col-6">
+                                    <img src="assets/images/logo.png" alt="Logo" style="max-height:70px;">
                                 </div>
-                                <div><strong>Guests : </strong> <?= htmlspecialchars($invoice['full_name']) ?> & Party</div>
-                            </div>
-                        </div>
-
-                        <hr>
-
-                        <!-- TOUR COST DESCRIPTION -->
-                        <div class="mb-3 mt-3" style="line-height:25px;">
-                            <p>
-                                Being cost of <strong><?= htmlspecialchars($invoice['nights']) ?> Nights / <?= htmlspecialchars($invoice['nights'] + 1) ?> Days</strong> tour in Sri Lanka, 
-                                Hotel Accommodation in 
-<input type="text" name="room_type" value="<?= htmlspecialchars($roomType) ?>"
-       style="text-align:center;border:none;border-bottom:1px solid #000;width:150px;" required>                                
-       Rooms on 
-<input type="text" name="meal_basis" value="<?= htmlspecialchars($mealBasis) ?>"
-       style="text-align:center;border:none;border-bottom:1px solid #000;width:150px;" required>                               A/C Car with an 
-                                <input type="text" name="driver_type" value="<?= htmlspecialchars($driverType) ?>"
-       style="text-align:center;border:none;border-bottom:1px solid #000;width:150px;" required> Speaking Chauffeur 
-                                for the Tour starting from Airport till ending at the Airport, Sightseeing as per the program. 
-                                All Applicable Taxes and All Government Taxes & Services for the Above Period as Follows:
-                            </p>
-                        </div>
-                       <div class="col">
-                            <p><i><b>Cost Excludes</b> : Lunches, Personal Expenses, Airfare and Visas, Insurance, Optional Activities that are not mentioned</i></p>
-                        </div>
-
-                        <hr>
-
-                        <!-- ROOM DETAILS TABLE -->
-                        <div class="table-responsive mt-3 mb-3">
-                            <table class="table table-bordered table-sm">
-                                <thead class="table-dark">
-                                    <tr>
-                                        <th>Room Details</th>
-                                        <th>No. of Nights / Days</th>
-                                        <th>No. of Pax</th>
-                                        <th>Total</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            <?= htmlspecialchars($roomType) ?>
-                                        </td>
-                                        <td>
-                                            <?= htmlspecialchars($invoice['nights']) ?> / <?= htmlspecialchars($invoice['nights'] + 1) ?>
-                                        </td>
-                                        <td>
-                                            <?= htmlspecialchars($pax) ?>
-                                        </td>
-                                        <td>
-                                            <?= htmlspecialchars(number_format($total, 2)) ?> <?= htmlspecialchars($currency) ?>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-
-                        <?php
-                            // Helper function to convert number to words (simple version)
-                            function numberToWords($num) {
-                                $f = new NumberFormatter("en", NumberFormatter::SPELLOUT);
-                                return strtoupper($f->format($num));
-                            }
-
-                            // Total amount (for single-row table this is $total; for multiple rows, sum them)
-                            $tripTotal = $total; // If multiple rows, sum their totals
-                            $tripTotalWords = numberToWords($tripTotal);
-                            ?>
-                            <hr>
-
-                            <!-- TOTAL AMOUNT -->
-                            <div class="mb-3">
-                                <strong>Total Amount: </strong><br>
-                                <span class="text-success fw-bold"><?= htmlspecialchars($currency) ?> <?= $tripTotalWords ?> ONLY (<?= number_format($tripTotal, 2) ?> <?= htmlspecialchars($currency) ?>)</span>
-                            </div>
-                            <hr>
-
-                            <!-- PAYMENT DETAILS -->
-                            <div class="mb-3">
-                                <strong>Payment Details :</strong><br><br>
-                                <strong>Name of Beneficiary : Explore Vacations and Travels (Pvt.) Ltd.</strong><br>
-                                <strong>Name of Bank : Nations Trust Bank - Wattala Branch, Sri Lanka</strong><br>
-                                <strong>Account Number : 100510008214</strong><br>
-                                <strong>Routing Number (SWIFT Code) : NTBCLKLX</strong><br><br>
-                                <span class="text-danger"><strong>Payment Reference: </strong> Please add the Invoice No as the payment reference</span>
-                            </div>
-                            <hr>
-
-                            <!-- AUTHORIZED SIGNATORY -->
-                            <div class="d-flex justify-content-between align-items-center mb-3">
-                                <div></div>
-                                <div class="text-center">
-    <strong>Authorized Signatory</strong><br><br>
-    <input type="file" name="signature" accept="image/*" required>
-</div>
-
-                            </div>
-                            <hr>
-
-                            <!-- REMITTANCE NOTE -->
-                            <div class="mb-3 text-center">
-                                Please mail a copy of the remittance advice from your bank for us to follow up at this end and remit the exact amount with the bank charges in order to get the Invoice amount <span class="text-danger fw-bold">(PLEASE DO NOT DEDUCT THE BANK CHARGES)</span>
+                                <div class="col-6 text-end">
+                                    <h6 class="fw-bold mb-1">Explore Vacations & Travels (Pvt) Ltd</h6>
+                                    <div>No. 371/5, Negombo Road, Seeduwa, Sri Lanka | Tel: +94 114 941 650</div>
+                                    <div>Email : info@explorevacations.lk | Web : www.explore.vacations</div>
+                                </div>
                             </div>
 
-                            <hr>
-                        <!-- ACTIONS -->
-                        <div class="d-flex justify-content-between mt-3">
-                            <a href="customer-invoice.php" class="btn btn-secondary btn-sm">
-                                <i class="bi bi-arrow-left"></i> Back
-                            </a>
+                            <hr class="my-0">
+                            <form action="update-invoice.php" method="POST" enctype="multipart/form-data">
+                                <input type="hidden" name="history_id" value="<?= $historyId ?>">
 
-                            <button type="submit" class="btn btn-success btn-sm">
-                                <i class="bi bi-save"></i> Update Invoice
-                            </button>
+                                <!-- INVOICE TITLE -->
+                                <h6 class="text-center fw-bold">INVOICE</h6>
+
+                                <hr class="my-0">
+
+                                <!-- INVOICE DETAILS (2 x 2 GRID) -->
+                                <div class="justify-content-center row my-3">
+
+                                    <div class="invoice-details col-6">
+                                        <div><strong>Invoice Date : </strong> <?= date('Y-m-d') ?></div>
+                                        <div><strong>Tour Start Date : </strong> <?= htmlspecialchars($invoice['start_date']) ?></div>
+                                        <div><strong>Tour End Date : </strong> <?= htmlspecialchars($invoice['end_date']) ?></div>
+                                        <div><strong>Invoice To : </strong> <?= htmlspecialchars($invoice['full_name']) ?></div>
+                                    </div>
+
+                                    <div class="invoice-details col-6">
+                                        <div><strong>Invoice No : </strong> <?= htmlspecialchars($invoice['reference_no']) ?></div>
+                                        <div><strong>Tour No : </strong> <?= htmlspecialchars($invoice['reference_no']) ?></div>
+                                        <div>
+                                            <strong>Duration :</strong>
+                                            <?= htmlspecialchars($invoice['nights']) ?> Nights /
+                                            <?= htmlspecialchars($invoice['nights'] + 1) ?> Days 
+                                        </div>
+                                        <div><strong>Guests : </strong> <?= htmlspecialchars($invoice['full_name']) ?> & Party</div>
+                                    </div>
+                                </div>
+
+                                <hr>
+
+                                <!-- TOUR COST DESCRIPTION -->
+                                <div class="mb-3 mt-3" style="line-height:25px;">
+                                    <p>
+                                        Being cost of <strong><?= htmlspecialchars($invoice['nights']) ?> Nights / <?= htmlspecialchars($invoice['nights'] + 1) ?> Days</strong> tour in Sri Lanka, 
+                                        Hotel Accommodation in 
+                                        <input type="text" name="room_type" value="<?= htmlspecialchars($roomType) ?>"
+                                            style="text-align:center;border:none;border-bottom:1px solid #000;width:150px;" required>                                
+                                            Rooms on 
+                                        <input type="text" name="meal_basis" value="<?= htmlspecialchars($mealBasis) ?>"
+                                            style="text-align:center;border:none;border-bottom:1px solid #000;width:150px;" required>                               A/C Car with an 
+                                                                        <input type="text" name="driver_type" value="<?= htmlspecialchars($driverType) ?>"
+                                            style="text-align:center;border:none;border-bottom:1px solid #000;width:150px;" required> Speaking Chauffeur 
+                                        for the Tour starting from Airport till ending at the Airport, Sightseeing as per the program. 
+                                        All Applicable Taxes and All Government Taxes & Services for the Above Period as Follows:
+                                    </p>
+                                </div>
+                                <div class="col">
+                                    <p><i><b>Cost Excludes</b> : Lunches, Personal Expenses, Airfare and Visas, Insurance, Optional Activities that are not mentioned</i></p>
+                                </div>
+
+                                <hr>
+
+                                <!-- ROOM DETAILS TABLE -->
+                                <div class="table-responsive mt-3 mb-3">
+                                    <table class="table table-bordered table-sm">
+                                        <thead class="table-dark">
+                                            <tr>
+                                                <th>Room Details</th>
+                                                <th>No. of Nights / Days</th>
+                                                <th>No. of Pax</th>
+                                                <th>Total</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <?= htmlspecialchars($roomType) ?>
+                                                </td>
+                                                <td>
+                                                    <?= htmlspecialchars($invoice['nights']) ?> / <?= htmlspecialchars($invoice['nights'] + 1) ?>
+                                                </td>
+                                                <td>
+                                                    <?= htmlspecialchars($pax) ?>
+                                                </td>
+                                                <td>
+                                                    <?= htmlspecialchars(number_format($total, 2)) ?> <?= htmlspecialchars($currency) ?>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <?php
+                                    // Helper function to convert number to words (simple version)
+                                    function numberToWords($num) {
+                                        $f = new NumberFormatter("en", NumberFormatter::SPELLOUT);
+                                        return strtoupper($f->format($num));
+                                    }
+
+                                    // Total amount (for single-row table this is $total; for multiple rows, sum them)
+                                    $tripTotal = $total; // If multiple rows, sum their totals
+                                    $tripTotalWords = numberToWords($tripTotal);
+                                    ?>
+                                    <hr>
+
+                                    <!-- TOTAL AMOUNT -->
+                                    <div class="mb-3">
+                                        <strong>Total Amount: </strong><br>
+                                        <span class="text-success fw-bold"><?= htmlspecialchars($currency) ?> <?= $tripTotalWords ?> ONLY (<?= number_format($tripTotal, 2) ?> <?= htmlspecialchars($currency) ?>)</span>
+                                    </div>
+                                    <hr>
+
+                                    <!-- PAYMENT DETAILS -->
+                                    <div class="mb-3">
+                                        <strong>Payment Details :</strong><br><br>
+                                        <strong>Name of Beneficiary : Explore Vacations and Travels (Pvt.) Ltd.</strong><br>
+                                        <strong>Name of Bank : Nations Trust Bank - Wattala Branch, Sri Lanka</strong><br>
+                                        <strong>Account Number : 100510008214</strong><br>
+                                        <strong>Routing Number (SWIFT Code) : NTBCLKLX</strong><br><br>
+                                        <span class="text-danger"><strong>Payment Reference: </strong> Please add the Invoice No as the payment reference</span>
+                                    </div>
+                                    <hr>
+
+                                    <!-- AUTHORIZED SIGNATORY -->
+                                    <div class="d-flex justify-content-between align-items-center mb-3">
+                                        <div></div>
+                                        <div class="text-center">
+                                            <strong>Authorized Signatory</strong><br><br>
+                                            <input type="file" name="signature" accept="image/*" required>
+                                        </div>
+                                    </div>
+                                    <hr>
+
+                                    <!-- REMITTANCE NOTE -->
+                                    <div class="mb-3 text-center">
+                                        Please mail a copy of the remittance advice from your bank for us to follow up at this end and remit the exact amount with the bank charges in order to get the Invoice amount <span class="text-danger fw-bold">(PLEASE DO NOT DEDUCT THE BANK CHARGES)</span>
+                                    </div>
+
+                                    <hr>
+                                <!-- ACTIONS -->
+                                <div class="d-flex justify-content-between mt-3">
+                                    <a href="customer-invoice.php" class="btn btn-secondary btn-sm">
+                                        <i class="bi bi-arrow-left"></i> Back
+                                    </a>
+
+                                    <button type="submit" class="btn btn-success btn-sm">
+                                        <i class="bi bi-save"></i> Update Invoice
+                                    </button>
+                                </div>
+                            </form>
                         </div>
-                        </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 </body>
 </html>
