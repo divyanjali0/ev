@@ -39,6 +39,11 @@
                 <i class="bi bi-calendar-check me-2"></i> Customer Invoice
             </a>
         </li>
+        <li class="nav-item">
+            <a href="./customer-payment-receipts.php" class="nav-link text-white <?= $currentPage === 'customer-payment-receipts.php' ? 'active' : '' ?>" aria-current="page">
+                <i class="bi bi-calendar-check me-2"></i> Customer Payment Receipts
+            </a>
+        </li>
         <?php if (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'admin'): ?>
             <li>
                 <a href="./users.php" class="nav-link text-white <?= $currentPage === 'users.php' ? 'active' : '' ?>">
