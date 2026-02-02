@@ -13,6 +13,7 @@
             h.reference_no,
             h.version_number,
             h.full_name,
+            h.whatsapp,
             h.pdf_path AS itinerary_pdf,
             c.pdf_path AS customer_invoice_pdf
         FROM itinerary_customer_history h
@@ -27,6 +28,19 @@
     ");
     $stmt->execute();
     $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    function whatsappUrl(string $number, string $pdfUrl, string $ref, string $fullName): string {
+        $text = urlencode(
+            "Dear {$fullName},\n\n" .
+            "Please find your invoice for reference {$ref}.\n\n" .
+            "Invoice PDF:\n{$pdfUrl}\n\n" .
+            "Thank you.\nExplore Vacations & Travels"
+        );
+
+        return "https://wa.me/{$number}?text={$text}";
+    }
+
+
 ?>
 
 <!DOCTYPE html>
@@ -84,9 +98,29 @@
                                             </td>
                                             <td>
                                                 <?php if (!empty($row['customer_invoice_pdf'])) { ?>
-                                                    <a href="<?= htmlspecialchars($row['customer_invoice_pdf']) ?>" target="_blank" class="btn btn-sm btn-outline-success">
+                                                    <a href="<?= htmlspecialchars($row['customer_invoice_pdf']) ?>"
+                                                    target="_blank"
+                                                    class="btn btn-sm btn-outline-success me-1">
                                                         <i class="bi bi-file-earmark-pdf"></i> View
                                                     </a>
+
+                                                    <?php if (!empty($row['whatsapp'])) {
+                                                       $waLink = whatsappUrl(
+                                                            preg_replace('/\D/', '', $row['whatsapp']),
+                                                            (isset($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/' . $row['customer_invoice_pdf'],
+                                                            $row['reference_no'],
+                                                            $row['full_name']
+                                                        );
+
+                                                    ?>
+                                                    <a href="<?= $waLink ?>"
+                                                    target="_blank"
+                                                    class="btn btn-sm btn-outline-success"
+                                                    title="Send via WhatsApp">
+                                                        <i class="bi bi-whatsapp"></i>
+                                                    </a>
+                                                    <?php } ?>
+
                                                 <?php } else { ?>
                                                     <span class="text-muted">N/A</span>
                                                 <?php } ?>
