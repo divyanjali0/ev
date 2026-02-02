@@ -41,69 +41,101 @@ $total    = number_format($tourCost['total'], 2);
 $pax      = $tourCost['pax'];
 
 /* ---------------- TCPDF ---------------- */
+/* ---------------- TCPDF ---------------- */
 $pdf = new TCPDF('P', 'mm', 'A4', true, 'UTF-8', false);
 $pdf->SetMargins(15, 15, 15);
 $pdf->SetAutoPageBreak(TRUE, 15);
 $pdf->AddPage();
 $pdf->SetFont('times', '', 11);
 
-/* ---------------- PDF CONTENT ---------------- */
 $durationDays = $invoice['nights'] + 1;
-$html = <<<HTML
-<h3 style="text-align:center;">INVOICE</h3>
 
-<table width="100%" cellpadding="4">
+// Convert total to words
+$f = new NumberFormatter("en", NumberFormatter::SPELLOUT);
+$tripTotalWords = strtoupper($f->format((float)$tourCost['total'] ?? 0));
+$invoiceDate = date('Y-m-d');
+
+$html = <<<HTML
+<table width="100%">
 <tr>
-<td width="60%">
-<strong>Invoice To:</strong> {$invoice['full_name']}<br>
-<strong>Tour Start:</strong> {$invoice['start_date']}<br>
-<strong>Tour End:</strong> {$invoice['end_date']}
+<td width="20%">
+<img src="assets/images/logo.png" style="max-height:70px;">
 </td>
-<td width="40%">
-<strong>Invoice No:</strong> {$invoice['reference_no']}<br>
-<strong>Nights:</strong> {$invoice['nights']}<br>
-<strong>Pax:</strong> {$pax}
+<td width="80%" style="text-align:right;">
+<strong>Explore Vacations & Travels (Pvt) Ltd</strong><br>
+No. 371/5, Negombo Road, Seeduwa, Sri Lanka<br>
+Tel: +94 114 941 650<br>
+Email: info@explorevacations.lk | Web: www.explore.vacations
 </td>
 </tr>
 </table>
+<br>
+<hr style="margin-top:10px;margin-bottom:10px;">
 
+<h2 style="text-align:center;">INVOICE</h2>
+
+<table width="100%" cellpadding="4">
+<tr>
+<td width="50%">
+<strong>Invoice Date:</strong> {$invoiceDate}<br>
+<strong>Tour Start Date:</strong> {$invoice['start_date']}<br>
+<strong>Tour End Date:</strong> {$invoice['end_date']}<br>
+<strong>Invoice To:</strong> {$invoice['full_name']}
+</td>
+<td width="50%">
+<strong>Invoice No:</strong> {$invoice['reference_no']}<br>
+<strong>Tour No:</strong> {$invoice['reference_no']}<br>
+<strong>Duration:</strong> {$invoice['nights']} Nights / {$durationDays} Days<br>
+<strong>Guests:</strong> {$invoice['full_name']} & Party
+</td>
+</tr>
+</table>
 <br>
 
-<p>Being cost of <strong>{$invoice['nights']} Nights / {$durationDays} Days</strong> tour in Sri Lanka,
-Hotel accommodation in <strong>{$roomType}</strong> rooms on <strong>{$mealBasis}</strong> basis,
-A/C car with <strong>{$driverType}</strong> speaking chauffeur.
-</p>
+<hr style="border:0; border-top:1px solid #cccccc; margin:10px 0;">
+
+<p>Being cost of <strong>{$invoice['nights']} Nights / {$durationDays} Days</strong> tour in Sri Lanka, 
+Hotel Accommodation in <strong>{$roomType}</strong> Rooms on <strong>{$mealBasis}</strong> basis, 
+A/C Car with <strong>{$driverType}</strong> Speaking Chauffeur for the tour starting from Airport till ending at the Airport, Sightseeing as per the program. All applicable taxes included.</p>
 
 <table border="1" cellpadding="5" width="100%">
-<tr>
-<th>Room Type</th>
-<th>Nights / Days</th>
-<th>Pax</th>
-<th>Total</th>
+<tr style="background-color:#e0e0e0; font-weight:bold;">
+<th>Room Details</th>
+<th>No. of Nights / Days</th>
+<th>No. of Pax</th>
+<th>Total ({$currency})</th>
 </tr>
 <tr>
 <td>{$roomType}</td>
 <td>{$invoice['nights']} / {$durationDays}</td>
 <td>{$pax}</td>
-<td>{$currency} {$total}</td>
+<td style="color:#871607; font-weight:bold;">{$total}</td>
 </tr>
 </table>
 
-<br><br>
+<p style="font-weight:bold; color:#198754;">
+    Total Amount: {$currency} {$tripTotalWords} ONLY ({$currency} {$total})
+</p>
 
-<strong>Total Amount:</strong> {$currency} {$total}<br><br>
+<hr style="border:0; border-top:1px solid #d5d0d0c8; margin:10px 0;">
 
-<table width="100%">
-<tr>
-<td></td>
-<td align="center">
+<p><strong>Payment Details:</strong><br><br>
+Name of Beneficiary: Explore Vacations and Travels (Pvt.) Ltd.<br>
+Name of Bank: Nations Trust Bank - Wattala Branch, Sri Lanka<br>
+Account Number: 100510008214<br>
+Routing Number (SWIFT Code): NTBCLKLX<br>
+Payment Reference: Please add the Invoice No as the payment reference
+</p>
+
+<p style="text-align:right;">
 <img src="{$signPath}" width="120"><br>
 <strong>Authorized Signatory</strong>
-</td>
-</tr>
-</table>
-HTML;
+</p>
 
+<p style="text-align:center;font-size:10px;">
+Please mail a copy of the remittance advice from your bank for us to follow up at this end and remit the exact amount with the bank charges in order to get the Invoice amount <strong><span style="color:red;">(PLEASE DO NOT DEDUCT THE BANK CHARGES)</span></strong>
+</p>
+HTML;
 
 $pdf->writeHTML($html, true, false, true, false, '');
 
