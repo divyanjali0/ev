@@ -149,16 +149,18 @@ $pdfPath = 'uploads/invoices/' . $pdfName;
 $pdf->Output(__DIR__ . '/' . $pdfPath, 'F');
 
 /* ---------------- SAVE DB ---------------- */
+/* ---------------- SAVE DB ---------------- */
 $stmt = $conn->prepare("
     INSERT INTO customer_invoice
-    (history_id, room_type, meal_basis, driver_type, signature_path, pdf_path)
-    VALUES (?, ?, ?, ?, ?, ?)
+    (history_id, room_type, meal_basis, driver_type, signature_path, pdf_path, trip_total)
+    VALUES (?, ?, ?, ?, ?, ?, ?)
     ON DUPLICATE KEY UPDATE
         room_type = VALUES(room_type),
         meal_basis = VALUES(meal_basis),
         driver_type = VALUES(driver_type),
         signature_path = VALUES(signature_path),
-        pdf_path = VALUES(pdf_path)
+        pdf_path = VALUES(pdf_path),
+        trip_total = VALUES(trip_total)
 ");
 
 $stmt->execute([
@@ -167,8 +169,10 @@ $stmt->execute([
     $mealBasis,
     $driverType,
     $signPath,
-    $pdfPath
+    $pdfPath,
+    $tourCost['total'] ?? 0  
 ]);
+
 
 header("Location: customer-invoice.php?updated=1");
 exit;
