@@ -115,3 +115,113 @@ Array
     [2] => Duplicate entry 'vtq9ek3nf681okks1svp9v3am2' for key 'PRIMARY'
 )
 
+[2026-02-02 05:29:23] (ERROR @ C:\xampp\htdocs\ev\core\vendor\xpdo\xpdo\src\xPDO\Om\xPDOObject.php : 227) Error HY000 executing statement: 
+Array
+(
+    [0] => HY000
+    [1] => 2006
+    [2] => MySQL server has gone away
+)
+
+[2026-02-02 05:29:23] (ERROR @ C:\xampp\htdocs\ev\core\vendor\xpdo\xpdo\src\xPDO\Om\xPDOObject.php : 227) Error HY000 executing statement: 
+Array
+(
+    [0] => HY000
+    [1] => 2006
+    [2] => MySQL server has gone away
+)
+
+[2026-02-02 05:29:23] (ERROR @ C:\xampp\htdocs\ev\core\vendor\xpdo\xpdo\src\xPDO\Om\xPDOObject.php : 227) Error HY000 executing statement: 
+Array
+(
+    [0] => HY000
+    [1] => 2006
+    [2] => MySQL server has gone away
+)
+
+[2026-02-02 05:29:23] (ERROR @ C:\xampp\htdocs\ev\core\vendor\xpdo\xpdo\src\xPDO\Om\xPDOObject.php : 227) Error HY000 executing statement: 
+Array
+(
+    [0] => HY000
+    [1] => 2006
+    [2] => MySQL server has gone away
+)
+
+[2026-02-02 05:29:23] (ERROR @ C:\xampp\htdocs\ev\core\vendor\xpdo\xpdo\src\xPDO\Om\xPDOObject.php : 227) Error HY000 executing statement: 
+Array
+(
+    [0] => HY000
+    [1] => 2006
+    [2] => MySQL server has gone away
+)
+
+[2026-02-02 05:29:23] (ERROR @ C:\xampp\htdocs\ev\core\vendor\xpdo\xpdo\src\xPDO\Om\xPDOObject.php : 227) Error HY000 executing statement: 
+Array
+(
+    [0] => HY000
+    [1] => 2006
+    [2] => MySQL server has gone away
+)
+
+[2026-02-02 05:29:23] (ERROR @ C:\xampp\htdocs\ev\core\vendor\xpdo\xpdo\src\xPDO\Om\xPDOObject.php : 227) Error HY000 executing statement: 
+Array
+(
+    [0] => HY000
+    [1] => 2006
+    [2] => MySQL server has gone away
+)
+
+[2026-02-02 05:29:23] (ERROR @ C:\xampp\htdocs\ev\core\src\Revolution\modUser.php : 1002) PHP warning: Attempt to read property "photo" on null
+[2026-02-02 05:29:26] (ERROR @ C:\xampp\htdocs\ev\core\vendor\xpdo\xpdo\src\xPDO\Om\xPDOObject.php : 227) Error HY000 executing statement: 
+Array
+(
+    [0] => HY000
+    [1] => 2006
+    [2] => MySQL server has gone away
+)
+
+[2026-02-02 05:29:26] (ERROR @ C:\xampp\htdocs\ev\core\vendor\xpdo\xpdo\src\xPDO\Om\xPDOObject.php : 1447) Error HY000 executing statement:
+INSERT INTO `modx_session` (`id`, `access`, `data`) VALUES ('476md3mgj8m7piu69tivrjt1vl', 1770006566, 'modx.user.contextTokens|a:1:{s:3:\"mgr\";i:1;}modx.user.0.resourceGroups|a:1:{s:3:\"mgr\";a:0:{}}modx.user.0.attributes|a:1:{s:3:\"mgr\";a:5:{s:32:\"MODX\\Revolution\\modAccessContext\";a:2:{s:3:\"web\";a:1:{i:0;a:3:{s:9:\"principal\";i:0;s:9:\"authority\";i:0;s:6:\"policy\";a:1:{s:4:\"load\";b:1;}}}s:2:\"zh\";a:1:{i:0;a:3:{s:9:\"principal\";i:0;s:9:\"authority\";i:0;s:6:\"policy\";a:1:{s:4:\"load\";b:1;}}}}s:38:\"MODX\\Revolution\\modAccessResourceGroup\";a:0:{}s:33:\"MODX\\Revolution\\modAccessCategory\";a:0:{}s:44:\"MODX\\Revolution\\Sources\\modAccessMediaSource\";a:0:{}s:34:\"MODX\\Revolution\\modAccessNamespace\";a:0:{}}}manager_language|s:2:\"en\";modx.mgr.user.token|s:52:\"modx694125ecad3793.81515359_16980281a172823.84728191\";modx.mgr.session.cookie.lifetime|i:0;modx.mgr.user.config|a:0:{}')
+Array
+(
+    [0] => HY000
+    [1] => 2006
+    [2] => MySQL server has gone away
+)
+
+[2026-02-02 05:29:30] (ERROR in xPDO\xPDOConnection::connect @ C:\xampp\htdocs\ev\core\vendor\xpdo\xpdo\src\xPDO\xPDOConnection.php : 89) SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[2026-02-02 05:29:30] (ERROR in xPDO\xPDOConnection::connect @ C:\xampp\htdocs\ev\core\vendor\xpdo\xpdo\src\xPDO\xPDOConnection.php : 89) SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[2026-02-02 05:29:30] (ERROR @ C:\xampp\htdocs\ev\core\vendor\xpdo\xpdo\src\xPDO\Om\xPDOQuery.php : 670) Could not construct or prepare query because it is invalid or could not connect: SELECT `modExtensionPackage`.`id`, `modExtensionPackage`.`namespace`, `modExtensionPackage`.`name`, `modExtensionPackage`.`path`, `modExtensionPackage`.`table_prefix`, `modExtensionPackage`.`service_class`, `modExtensionPackage`.`service_name`, `modExtensionPackage`.`created_at`, `modExtensionPackage`.`updated_at`, Namespace.path AS namespace_path FROM `modx_extension_packages` AS `modExtensionPackage` JOIN `modx_namespaces` `Namespace` ON `modExtensionPackage`.`namespace` =  `Namespace`.`name` ORDER BY namespace ASC 
+[2026-02-02 05:29:30] (ERROR @ C:\xampp\htdocs\ev\core\vendor\xpdo\xpdo\src\xPDO\Om\xPDOQuery.php : 670) Could not construct or prepare query because it is invalid or could not connect: SELECT `modExtensionPackage`.`id`, `modExtensionPackage`.`namespace`, `modExtensionPackage`.`name`, `modExtensionPackage`.`path`, `modExtensionPackage`.`table_prefix`, `modExtensionPackage`.`service_class`, `modExtensionPackage`.`service_name`, `modExtensionPackage`.`created_at`, `modExtensionPackage`.`updated_at`, Namespace.path AS namespace_path FROM `modx_extension_packages` AS `modExtensionPackage` JOIN `modx_namespaces` `Namespace` ON `modExtensionPackage`.`namespace` =  `Namespace`.`name` ORDER BY namespace ASC 
+[2026-02-02 05:29:34] (ERROR in xPDO\xPDOConnection::connect @ C:\xampp\htdocs\ev\core\vendor\xpdo\xpdo\src\xPDO\xPDOConnection.php : 89) SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[2026-02-02 05:29:34] (ERROR @ C:\xampp\htdocs\ev\core\vendor\xpdo\xpdo\src\xPDO\Om\xPDOQuery.php : 670) Could not construct or prepare query because it is invalid or could not connect: SELECT `modSession`.`id` AS `modSession_id`, `modSession`.`access` AS `modSession_access`, `modSession`.`data` AS `modSession_data` FROM `modx_session` AS `modSession` WHERE `modSession`.`id` = ? 
+[2026-02-02 05:29:34] (ERROR in xPDO\xPDOConnection::connect @ C:\xampp\htdocs\ev\core\vendor\xpdo\xpdo\src\xPDO\xPDOConnection.php : 89) SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[2026-02-02 05:29:34] (ERROR @ C:\xampp\htdocs\ev\core\vendor\xpdo\xpdo\src\xPDO\Om\xPDOQuery.php : 670) Could not construct or prepare query because it is invalid or could not connect: SELECT `modSession`.`id` AS `modSession_id`, `modSession`.`access` AS `modSession_access`, `modSession`.`data` AS `modSession_data` FROM `modx_session` AS `modSession` WHERE `modSession`.`id` = ? 
+[2026-02-02 05:29:38] (ERROR in xPDO\xPDOConnection::connect @ C:\xampp\htdocs\ev\core\vendor\xpdo\xpdo\src\xPDO\xPDOConnection.php : 89) SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[2026-02-02 05:29:38] (ERROR @ C:\xampp\htdocs\ev\core\vendor\xpdo\xpdo\src\xPDO\Om\xPDOObject.php : 250) Error preparing statement for query: SELECT `modSession`.`id` AS `modSession_id`, `modSession`.`access` AS `modSession_access`, `modSession`.`data` AS `modSession_data` FROM `modx_session` AS `modSession` WHERE `modSession`.`id` = ?  - 
+[2026-02-02 05:29:38] (ERROR in xPDO\xPDOConnection::connect @ C:\xampp\htdocs\ev\core\vendor\xpdo\xpdo\src\xPDO\xPDOConnection.php : 89) SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[2026-02-02 05:29:38] (ERROR @ C:\xampp\htdocs\ev\core\vendor\xpdo\xpdo\src\xPDO\Om\xPDOObject.php : 250) Error preparing statement for query: SELECT `modSession`.`id` AS `modSession_id`, `modSession`.`access` AS `modSession_access`, `modSession`.`data` AS `modSession_data` FROM `modx_session` AS `modSession` WHERE `modSession`.`id` = ?  - 
+[2026-02-02 05:29:42] (ERROR in xPDO\xPDOConnection::connect @ C:\xampp\htdocs\ev\core\vendor\xpdo\xpdo\src\xPDO\xPDOConnection.php : 89) SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[2026-02-02 05:29:42] (ERROR @ C:\xampp\htdocs\ev\core\vendor\xpdo\xpdo\src\xPDO\Om\xPDOQuery.php : 670) Could not construct or prepare query because it is invalid or could not connect: SELECT modAccessContext.id, modAccessContext.target, modAccessContext.principal, modAccessContext.authority, modAccessContext.policy, Policy.data FROM `modx_access_context` AS `modAccessContext` LEFT JOIN `modx_access_policies` `Policy` ON `modAccessContext`.`policy` =  `Policy`.`id` WHERE  ( `modAccessContext`.`principal_class` = ? AND `modAccessContext`.`target` = ? )  ORDER BY modAccessContext.target,modAccessContext.principal,modAccessContext.authority,modAccessContext.policy ASC 
+[2026-02-02 05:29:42] (ERROR in xPDO\xPDOConnection::connect @ C:\xampp\htdocs\ev\core\vendor\xpdo\xpdo\src\xPDO\xPDOConnection.php : 89) SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[2026-02-02 05:29:42] (ERROR @ C:\xampp\htdocs\ev\core\vendor\xpdo\xpdo\src\xPDO\Om\xPDOQuery.php : 670) Could not construct or prepare query because it is invalid or could not connect: SELECT modAccessContext.id, modAccessContext.target, modAccessContext.principal, modAccessContext.authority, modAccessContext.policy, Policy.data FROM `modx_access_context` AS `modAccessContext` LEFT JOIN `modx_access_policies` `Policy` ON `modAccessContext`.`policy` =  `Policy`.`id` WHERE  ( `modAccessContext`.`principal_class` = ? AND `modAccessContext`.`target` = ? )  ORDER BY modAccessContext.target,modAccessContext.principal,modAccessContext.authority,modAccessContext.policy ASC 
+[2026-02-02 05:29:46] (ERROR in xPDO\xPDOConnection::connect @ C:\xampp\htdocs\ev\core\vendor\xpdo\xpdo\src\xPDO\xPDOConnection.php : 89) SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[2026-02-02 05:29:46] (ERROR @ C:\xampp\htdocs\ev\core\vendor\xpdo\xpdo\src\xPDO\Om\xPDOObject.php : 250) Error preparing statement for query: SELECT modAccessContext.id, modAccessContext.target, modAccessContext.principal, modAccessContext.authority, modAccessContext.policy, Policy.data FROM `modx_access_context` AS `modAccessContext` LEFT JOIN `modx_access_policies` `Policy` ON `modAccessContext`.`policy` =  `Policy`.`id` WHERE  ( `modAccessContext`.`principal_class` = ? AND `modAccessContext`.`target` = ? )  ORDER BY modAccessContext.target,modAccessContext.principal,modAccessContext.authority,modAccessContext.policy ASC  - 
+[2026-02-02 05:29:46] (ERROR @ C:\xampp\htdocs\ev\core\vendor\xpdo\xpdo\src\xPDO\Om\xPDOObject.php : 251) PHP warning: Trying to access array offset on value of type bool
+[2026-02-02 05:29:46] (ERROR @ C:\xampp\htdocs\ev\core\vendor\xpdo\xpdo\src\xPDO\Om\xPDOObject.php : 251) PHP warning: Trying to access array offset on value of type bool
+[2026-02-02 05:29:47] (ERROR in xPDO\xPDOConnection::connect @ C:\xampp\htdocs\ev\core\vendor\xpdo\xpdo\src\xPDO\xPDOConnection.php : 89) SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[2026-02-02 05:29:47] (ERROR @ C:\xampp\htdocs\ev\core\vendor\xpdo\xpdo\src\xPDO\Om\xPDOObject.php : 250) Error preparing statement for query: SELECT modAccessContext.id, modAccessContext.target, modAccessContext.principal, modAccessContext.authority, modAccessContext.policy, Policy.data FROM `modx_access_context` AS `modAccessContext` LEFT JOIN `modx_access_policies` `Policy` ON `modAccessContext`.`policy` =  `Policy`.`id` WHERE  ( `modAccessContext`.`principal_class` = ? AND `modAccessContext`.`target` = ? )  ORDER BY modAccessContext.target,modAccessContext.principal,modAccessContext.authority,modAccessContext.policy ASC  - 
+[2026-02-02 05:29:47] (ERROR @ C:\xampp\htdocs\ev\core\vendor\xpdo\xpdo\src\xPDO\Om\xPDOObject.php : 251) PHP warning: Trying to access array offset on value of type bool
+[2026-02-02 05:29:47] (ERROR @ C:\xampp\htdocs\ev\core\vendor\xpdo\xpdo\src\xPDO\Om\xPDOObject.php : 251) PHP warning: Trying to access array offset on value of type bool
+[2026-02-02 05:29:51] (ERROR in xPDO\xPDOConnection::connect @ C:\xampp\htdocs\ev\core\vendor\xpdo\xpdo\src\xPDO\xPDOConnection.php : 89) SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[2026-02-02 05:29:51] (ERROR @ C:\xampp\htdocs\ev\core\vendor\xpdo\xpdo\src\xPDO\Om\xPDOQuery.php : 670) Could not construct or prepare query because it is invalid or could not connect: SELECT `modSession`.`id` AS `modSession_id`, `modSession`.`access` AS `modSession_access`, `modSession`.`data` AS `modSession_data` FROM `modx_session` AS `modSession` WHERE `modSession`.`id` = ? 
+[2026-02-02 05:29:51] (ERROR in xPDO\xPDOConnection::connect @ C:\xampp\htdocs\ev\core\vendor\xpdo\xpdo\src\xPDO\xPDOConnection.php : 89) SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[2026-02-02 05:29:51] (ERROR @ C:\xampp\htdocs\ev\core\vendor\xpdo\xpdo\src\xPDO\Om\xPDOQuery.php : 670) Could not construct or prepare query because it is invalid or could not connect: SELECT `modSession`.`id` AS `modSession_id`, `modSession`.`access` AS `modSession_access`, `modSession`.`data` AS `modSession_data` FROM `modx_session` AS `modSession` WHERE `modSession`.`id` = ? 
+[2026-02-02 05:29:55] (ERROR in xPDO\xPDOConnection::connect @ C:\xampp\htdocs\ev\core\vendor\xpdo\xpdo\src\xPDO\xPDOConnection.php : 89) SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[2026-02-02 05:29:55] (ERROR @ C:\xampp\htdocs\ev\core\vendor\xpdo\xpdo\src\xPDO\Om\xPDOObject.php : 250) Error preparing statement for query: SELECT `modSession`.`id` AS `modSession_id`, `modSession`.`access` AS `modSession_access`, `modSession`.`data` AS `modSession_data` FROM `modx_session` AS `modSession` WHERE `modSession`.`id` = ?  - 
+[2026-02-02 05:29:55] (ERROR in xPDO\xPDOConnection::connect @ C:\xampp\htdocs\ev\core\vendor\xpdo\xpdo\src\xPDO\xPDOConnection.php : 89) SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[2026-02-02 05:29:55] (ERROR @ C:\xampp\htdocs\ev\core\vendor\xpdo\xpdo\src\xPDO\Om\xPDOObject.php : 250) Error preparing statement for query: SELECT `modSession`.`id` AS `modSession_id`, `modSession`.`access` AS `modSession_access`, `modSession`.`data` AS `modSession_data` FROM `modx_session` AS `modSession` WHERE `modSession`.`id` = ?  - 
+[2026-02-02 05:29:59] (ERROR in xPDO\xPDOConnection::connect @ C:\xampp\htdocs\ev\core\vendor\xpdo\xpdo\src\xPDO\xPDOConnection.php : 89) SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[2026-02-02 05:29:59] (ERROR in xPDO\xPDOConnection::connect @ C:\xampp\htdocs\ev\core\vendor\xpdo\xpdo\src\xPDO\xPDOConnection.php : 89) SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[2026-02-02 05:30:03] (ERROR in xPDO\xPDOConnection::connect @ C:\xampp\htdocs\ev\core\vendor\xpdo\xpdo\src\xPDO\xPDOConnection.php : 89) SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[2026-02-02 05:30:03] (ERROR in xPDO\xPDOConnection::connect @ C:\xampp\htdocs\ev\core\vendor\xpdo\xpdo\src\xPDO\xPDOConnection.php : 89) SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it

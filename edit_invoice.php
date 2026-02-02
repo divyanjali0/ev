@@ -77,7 +77,7 @@ $pax = isset($tourCost['pax']) && is_numeric($tourCost['pax']) ? (int)$tourCost[
                         <!-- HEADER -->
                         <div class="row align-items-center mb-3">
                             <div class="col-6">
-                                <img src="assets/images/footer-logo.png" alt="Logo" style="max-height:70px;">
+                                <img src="assets/images/logo.png" alt="Logo" style="max-height:70px;">
                             </div>
                             <div class="col-6 text-end">
                                 <h6 class="fw-bold mb-1">Explore Vacations & Travels (Pvt) Ltd</h6>
@@ -183,18 +183,18 @@ $pax = isset($tourCost['pax']) && is_numeric($tourCost['pax']) ? (int)$tourCost[
                             <!-- TOTAL AMOUNT -->
                             <div class="mb-3">
                                 <strong>Total Amount: </strong><br>
-                                <?= htmlspecialchars($currency) ?> <?= $tripTotalWords ?> ONLY (<?= number_format($tripTotal, 2) ?> <?= htmlspecialchars($currency) ?>)
+                                <span class="text-success fw-bold"><?= htmlspecialchars($currency) ?> <?= $tripTotalWords ?> ONLY (<?= number_format($tripTotal, 2) ?> <?= htmlspecialchars($currency) ?>)</span>
                             </div>
                             <hr>
 
                             <!-- PAYMENT DETAILS -->
                             <div class="mb-3">
-                                <strong>Payment Details :</strong> PLEASE MAKE THE FULL PAYMENT ON ARRIVAL<br>
-                                Name of Beneficiary : Explore Vacations and Travels (Pvt.) Ltd.<br>
-                                Name of Bank : Nations Trust Bank - Wattala Branch, Sri Lanka<br>
-                                Account Number : 100510008214<br>
-                                Routing Number (SWIFT Code) : NTBCLKLX<br>
-                                Payment Reference: Please put the Invoice No as the payment reference
+                                <strong>Payment Details :</strong><br><br>
+                                <strong>Name of Beneficiary : Explore Vacations and Travels (Pvt.) Ltd.</strong><br>
+                                <strong>Name of Bank : Nations Trust Bank - Wattala Branch, Sri Lanka</strong><br>
+                                <strong>Account Number : 100510008214</strong><br>
+                                <strong>Routing Number (SWIFT Code) : NTBCLKLX</strong><br><br>
+                                <span class="text-danger"><strong>Payment Reference: </strong> Please add the Invoice No as the payment reference</span>
                             </div>
                             <hr>
 
@@ -203,14 +203,14 @@ $pax = isset($tourCost['pax']) && is_numeric($tourCost['pax']) ? (int)$tourCost[
                                 <div></div>
                                 <div class="text-center">
                                     <strong>Authorized Signatory</strong><br>
-                                    <div style="height:80px; width:250px; border-bottom:1px solid #000; margin:20px auto;"></div>
+                                    <div style="height:40px; width:250px; border-bottom:1px solid #000; margin:10px auto;"></div>
                                 </div>
                             </div>
                             <hr>
 
                             <!-- REMITTANCE NOTE -->
-                            <div class="mb-3">
-                                Please mail a copy of the remittance advice from your bank for us to follow up at this end and remit the exact amount with the bank charges in order to get the Invoice amount (PLEASE DO NOT DEDUCT THE BANK CHARGES)
+                            <div class="mb-3 text-center">
+                                Please mail a copy of the remittance advice from your bank for us to follow up at this end and remit the exact amount with the bank charges in order to get the Invoice amount <span class="text-danger fw-bold">(PLEASE DO NOT DEDUCT THE BANK CHARGES)</span>
                             </div>
 
 
