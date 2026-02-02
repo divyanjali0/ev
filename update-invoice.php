@@ -54,6 +54,7 @@ $durationDays = $invoice['nights'] + 1;
 $f = new NumberFormatter("en", NumberFormatter::SPELLOUT);
 $tripTotalWords = strtoupper($f->format((float)$tourCost['total'] ?? 0));
 $invoiceDate = date('Y-m-d');
+$paymentNoteText = $_POST['payment_note'] ?? $invoiceData['payment_note'] ?? '';
 
 $html = <<<HTML
 <table width="100%">
@@ -117,9 +118,22 @@ A/C Car with <strong>{$driverType}</strong> Speaking Chauffeur for the tour star
     Total Amount: {$currency} {$tripTotalWords} ONLY ({$currency} {$total})
 </p>
 
+
+HTML;
+
+if (!empty($paymentNoteText)) {
+    $html .= <<<HTML
+    <hr style="border:0; border-top:1px solid #d5d0d0c8; margin:10px 0;">
+<p style="margin-top:10px; color:#871607;"><strong>**Payment Note / Instructions:</strong> {$paymentNoteText}</p>
+<hr>
+HTML;
+}
+
+$html .= <<<HTML
+
 <hr style="border:0; border-top:1px solid #d5d0d0c8; margin:10px 0;">
 
-<p><strong>Payment Details:</strong><br><br>
+<p style="margin-top:10px;"><strong>Payment Details:</strong><br><br>
 Name of Beneficiary: Explore Vacations and Travels (Pvt.) Ltd.<br>
 Name of Bank: Nations Trust Bank - Wattala Branch, Sri Lanka<br>
 Account Number: 100510008214<br>
@@ -149,18 +163,18 @@ $pdfPath = 'uploads/invoices/' . $pdfName;
 $pdf->Output(__DIR__ . '/' . $pdfPath, 'F');
 
 /* ---------------- SAVE DB ---------------- */
-/* ---------------- SAVE DB ---------------- */
 $stmt = $conn->prepare("
     INSERT INTO customer_invoice
-    (history_id, room_type, meal_basis, driver_type, signature_path, pdf_path, trip_total)
-    VALUES (?, ?, ?, ?, ?, ?, ?)
+    (history_id, room_type, meal_basis, driver_type, signature_path, pdf_path, trip_total, payment_note)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?)
     ON DUPLICATE KEY UPDATE
         room_type = VALUES(room_type),
         meal_basis = VALUES(meal_basis),
         driver_type = VALUES(driver_type),
         signature_path = VALUES(signature_path),
         pdf_path = VALUES(pdf_path),
-        trip_total = VALUES(trip_total)
+        trip_total = VALUES(trip_total),
+        payment_note = VALUES(payment_note)
 ");
 
 $stmt->execute([
@@ -170,8 +184,10 @@ $stmt->execute([
     $driverType,
     $signPath,
     $pdfPath,
-    $tourCost['total'] ?? 0  
+    $tourCost['total'] ?? 0,
+    $_POST['payment_note'] ?? null
 ]);
+
 
 
 header("Location: customer-invoice.php?updated=1");

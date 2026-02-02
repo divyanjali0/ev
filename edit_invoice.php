@@ -32,6 +32,17 @@
     $currency = $tourCost['currency'] ?? '';
     $total = isset($tourCost['total']) ? (float)$tourCost['total'] : 0;
     $pax = isset($tourCost['pax']) && is_numeric($tourCost['pax']) ? (int)$tourCost['pax'] : 0;
+
+
+    $stmt = $conn->prepare("SELECT * FROM customer_invoice WHERE history_id = ?");
+    $stmt->execute([$historyId]);
+    $invoiceData = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    $roomType = $tourCost['room_type'] ?? ($invoiceData['room_type'] ?? '');
+    $mealBasis = $invoiceData['meal_basis'] ?? '';
+    $driverType = $invoiceData['driver_type'] ?? '';
+    $paymentNote = $invoiceData['payment_note'] ?? '';
+
 ?>
 
 <!DOCTYPE html>
@@ -196,6 +207,15 @@
                                         <strong>Routing Number (SWIFT Code) : NTBCLKLX</strong><br><br>
                                         <span class="text-danger"><strong>Payment Reference: </strong> Please add the Invoice No as the payment reference</span>
                                     </div>
+                                    <hr>
+
+                                    <div class="mb-3">
+                                        <label for="payment_note" class="form-label fw-bold">Payment Note / Instructions</label>
+                                        <input type="text" name="payment_note" id="payment_note" 
+                                            value="<?= htmlspecialchars($paymentNote) ?>" 
+                                            class="form-control" placeholder="E.g., Must pay half or Can pay at arrival" require>
+                                    </div>
+
                                     <hr>
 
                                     <!-- AUTHORIZED SIGNATORY -->
