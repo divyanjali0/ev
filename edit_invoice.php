@@ -87,6 +87,8 @@ $pax = isset($tourCost['pax']) && is_numeric($tourCost['pax']) ? (int)$tourCost[
                         </div>
 
                         <hr class="my-0">
+                        <form action="update-invoice.php" method="POST" enctype="multipart/form-data">
+<input type="hidden" name="history_id" value="<?= $historyId ?>">
 
                         <!-- INVOICE TITLE -->
                         <h6 class="text-center fw-bold">INVOICE</h6>
@@ -122,11 +124,13 @@ $pax = isset($tourCost['pax']) && is_numeric($tourCost['pax']) ? (int)$tourCost[
                             <p>
                                 Being cost of <strong><?= htmlspecialchars($invoice['nights']) ?> Nights / <?= htmlspecialchars($invoice['nights'] + 1) ?> Days</strong> tour in Sri Lanka, 
                                 Hotel Accommodation in 
-                                <input type="text" name="room_type" placeholder="Room Type" style="text-align:center; border:none; border-bottom:1px solid #000; width:150px;"> 
-                                Rooms on 
-                                <input type="text" name="basis" placeholder="Basis" style="text-align:center; border:none; border-bottom:1px solid #000; width:150px;"> basis, 
-                                A/C Car with an 
-                                <input type="text" name="chauffeur_type" placeholder="Type" style="text-align:center; border:none; border-bottom:1px solid #000; width:150px;"> Speaking Chauffeur 
+<input type="text" name="room_type" value="<?= htmlspecialchars($roomType) ?>"
+       style="text-align:center;border:none;border-bottom:1px solid #000;width:150px;" required>                                
+       Rooms on 
+<input type="text" name="meal_basis" value="<?= htmlspecialchars($mealBasis) ?>"
+       style="text-align:center;border:none;border-bottom:1px solid #000;width:150px;" required>                               A/C Car with an 
+                                <input type="text" name="driver_type" value="<?= htmlspecialchars($driverType) ?>"
+       style="text-align:center;border:none;border-bottom:1px solid #000;width:150px;" required> Speaking Chauffeur 
                                 for the Tour starting from Airport till ending at the Airport, Sightseeing as per the program. 
                                 All Applicable Taxes and All Government Taxes & Services for the Above Period as Follows:
                             </p>
@@ -202,9 +206,10 @@ $pax = isset($tourCost['pax']) && is_numeric($tourCost['pax']) ? (int)$tourCost[
                             <div class="d-flex justify-content-between align-items-center mb-3">
                                 <div></div>
                                 <div class="text-center">
-                                    <strong>Authorized Signatory</strong><br>
-                                    <div style="height:40px; width:250px; border-bottom:1px solid #000; margin:10px auto;"></div>
-                                </div>
+    <strong>Authorized Signatory</strong><br><br>
+    <input type="file" name="signature" accept="image/*" required>
+</div>
+
                             </div>
                             <hr>
 
@@ -213,7 +218,7 @@ $pax = isset($tourCost['pax']) && is_numeric($tourCost['pax']) ? (int)$tourCost[
                                 Please mail a copy of the remittance advice from your bank for us to follow up at this end and remit the exact amount with the bank charges in order to get the Invoice amount <span class="text-danger fw-bold">(PLEASE DO NOT DEDUCT THE BANK CHARGES)</span>
                             </div>
 
-
+                            <hr>
                         <!-- ACTIONS -->
                         <div class="d-flex justify-content-between mt-3">
                             <a href="customer-invoice.php" class="btn btn-secondary btn-sm">
@@ -224,6 +229,7 @@ $pax = isset($tourCost['pax']) && is_numeric($tourCost['pax']) ? (int)$tourCost[
                                 <i class="bi bi-save"></i> Update Invoice
                             </button>
                         </div>
+                        </form>
                     </div>
                 </div>
             </div>
