@@ -21,37 +21,37 @@
     <ul class="nav nav-pills flex-column mb-auto">
         <li class="nav-item">
             <a href="./dashboard.php" class="nav-link text-white <?= $currentPage === 'dashboard.php' ? 'active' : '' ?>" aria-current="page">
-                <i class="bi-journal-check me-2"></i> Dashboard
+                <i class="bi bi-house-door me-2"></i> Dashboard
             </a>
         </li>
         <li class="nav-item">
             <a href="./itenary-request.php" class="nav-link text-white <?= $currentPage === 'itenary-request.php' ? 'active' : '' ?>" aria-current="page">
-                <i class="bi bi-calendar-check me-2"></i> Itenaries
+                <i class="bi bi-calendar-check me-2"></i> Itineraries
             </a>
         </li>
         <li class="nav-item">
             <a href="./revised-itenary.php" class="nav-link text-white <?= $currentPage === 'revised-itenary.php' ? 'active' : '' ?>" aria-current="page">
-                <i class="bi bi-calendar-check me-2"></i> Revised Itenary
+                <i class="bi bi-calendar-event me-2"></i> Revised Itinerary
             </a>
         </li>
         <li class="nav-item">
             <a href="./customer-invoice.php" class="nav-link text-white <?= $currentPage === 'customer-invoice.php' ? 'active' : '' ?>" aria-current="page">
-                <i class="bi bi-calendar-check me-2"></i> Customer Invoice
+                <i class="bi bi-file-earmark me-2"></i> Customer Invoice
             </a>
         </li>
         <li class="nav-item">
             <a href="./customer-payment-receipts.php" class="nav-link text-white <?= $currentPage === 'customer-payment-receipts.php' ? 'active' : '' ?>" aria-current="page">
-                <i class="bi bi-calendar-check me-2"></i> Customer Payment Receipts
+                <i class="bi bi-credit-card me-2"></i> Customer Payment Receipts
             </a>
         </li>
         <li class="nav-item">
             <a href="./upload-hotel-vouchers.php" class="nav-link text-white <?= $currentPage === 'upload-hotel-vouchers.php' ? 'active' : '' ?>" aria-current="page">
-                <i class="bi bi-calendar-check me-2"></i> Upload Hotel Vouchers
+                <i class="bi bi-upload me-2"></i> Upload Hotel Vouchers
             </a>
         </li>
         <li class="nav-item">
             <a href="./hotel-vouchers.php" class="nav-link text-white <?= $currentPage === 'hotel-vouchers.php' ? 'active' : '' ?>" aria-current="page">
-                <i class="bi bi-calendar-check me-2"></i> Hotel Vouchers
+                <i class="bi bi-file-earmark-image me-2"></i> Hotel Vouchers
             </a>
         </li>
         <?php if (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'admin'): ?>

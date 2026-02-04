@@ -7,10 +7,7 @@
         exit;
     }
 
-    // Fetch tours
     $tours = $conn->query("SELECT id, reference_no, full_name FROM itinerary_customer ORDER BY id DESC")->fetchAll(PDO::FETCH_ASSOC);
-
-    // Fetch vouchers
     $vouchers = [];
     if (!empty($_GET['tour_id']) && is_numeric($_GET['tour_id'])) {
         $stmt = $conn->prepare("
