@@ -59,6 +59,12 @@
                 <i class="bi bi-check-circle me-2"></i> Completed Tours
             </a>
         </li>
+        <li class="nav-item">
+            <a href="./entrance-fees.php" class="nav-link text-white <?= $currentPage === 'entrance-fees.php' ? 'active' : '' ?>" aria-current="page">
+                <i class="bi bi-ticket me-2"></i> Entrance Fees
+            </a>
+        </li>
+
         <?php if (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'admin'): ?>
             <li>
                 <a href="./users.php" class="nav-link text-white <?= $currentPage === 'users.php' ? 'active' : '' ?>">
