@@ -7,7 +7,8 @@
         exit;
     }
 
-    $sql = "SELECT reference_no, start_date, end_date, full_name, whatsapp_code, whatsapp, id 
+    // Fetch itinerary data
+    $sql = "SELECT reference_no, start_date, end_date, full_name, whatsapp_code, whatsapp, id, tour_status
             FROM itinerary_customer ORDER BY created_at DESC";
     $stmt = $conn->prepare($sql);
     $stmt->execute();
@@ -27,7 +28,7 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.1/css/buttons.bootstrap5.min.css">
 </head>
 <style>
-     body { font-family: "Cambria", sans-serif; background-color: #f4f6f8; font-size: 12px; }
+    body { font-family: "Cambria", sans-serif; background-color: #f4f6f8; font-size: 12px; }
     .container { max-width: max-content; }
     .dashboard-card { background: #fff; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.08); padding: 20px; margin-top: 40px; }
 </style>
@@ -53,6 +54,7 @@
                                     <th>End Date</th>
                                     <th>Full Name</th>
                                     <th>WhatsApp</th>
+                                    <th>Status</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -65,18 +67,51 @@
                                         <td><?= htmlspecialchars($row['full_name']); ?></td>
                                         <td><?= htmlspecialchars($row['whatsapp_code'] . ' ' . $row['whatsapp']); ?></td>
                                         <td>
+                                            <?= $row['tour_status'] ? htmlspecialchars($row['tour_status']) : 'Pending'; ?>
+                                        </td>
+                                        <td>
                                             <a href="edit-itinerary.php?id=<?= $row['id']; ?>" class="btn btn-sm btn-primary">
                                                 Edit
                                             </a>
-                                            <!-- <a href="delete-itinerary.php?id=<?= $row['id']; ?>" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?');">
-                                                Delete
-                                            </a> -->
+                                            
+                                            <!-- Mark as Complete (only for admin or if the tour is not already complete) -->
+                                            <?php if ($_SESSION['user_role'] === 'admin' && $row['tour_status'] !== 'Complete'): ?>
+                                                <button class="btn btn-sm btn-warning mark-complete" data-id="<?= $row['id']; ?>" data-name="<?= $row['full_name']; ?>" data-toggle="modal" data-target="#markCompleteModal">
+                                                    Mark as Complete
+                                                </button>
+                                            <?php endif; ?>
+
+                                            <!-- Delete (only for admin) -->
+                                            <?php if ($_SESSION['user_role'] === 'admin'): ?>
+                                                <a href="delete-itinerary.php?id=<?= $row['id']; ?>" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?');">
+                                                    <i class="bi bi-trash3 me-1"></i> 
+                                                </a>
+                                            <?php endif; ?>
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>
                             </tbody>
                         </table>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap Modal for Mark as Complete Confirmation -->
+    <div class="modal fade" id="markCompleteModal" tabindex="-1" aria-labelledby="markCompleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title fw-bold" id="markCompleteModalLabel">Mark Tour as Complete</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to mark this tour as complete?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-warning" id="confirmMarkComplete">Yes, Mark as Complete</button>
                 </div>
             </div>
         </div>
@@ -108,7 +143,62 @@
                     }
                 }]
             });
+
+            // Show the modal when "Mark as Complete" button is clicked
+            $('.mark-complete').click(function() {
+                const id = $(this).data('id');
+                const name = $(this).data('name');
+
+                // Store the ID and Name in the modal
+                $('#confirmMarkComplete').data('id', id);
+                $('#confirmMarkComplete').data('name', name);
+
+                // Manually trigger modal open using Bootstrap JS API
+                var myModal = new bootstrap.Modal(document.getElementById('markCompleteModal'));
+                myModal.show();
+            });
+
+            // Handle the confirmation to mark as complete
+            $('#confirmMarkComplete').click(function() {
+                const id = $(this).data('id');
+
+                $.ajax({
+                    url: 'mark-complete.php',
+                    type: 'POST',
+                    data: { id: id },
+                    success: function(response) {
+                        if (response === 'success') {
+                            // Instead of alert, show a custom success message
+                            const successMessage = `<div class="alert alert-success alert-dismissible fade show" role="alert">
+                                Tour marked as complete successfully!
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>`;
+
+                            // Append the success message to a container (e.g., to the top of the page or within a div)
+                            $('body').prepend(successMessage);
+
+                            // Optionally, you can add a timeout to remove the success message after a few seconds
+                            setTimeout(function() {
+                                $('.alert').alert('close');
+                            }, 3000); // Closes the alert after 3 seconds
+
+                            // Reload the page to reflect the changes
+                            location.reload();
+                        } else {
+                            // Show error message if the update fails
+                            const errorMessage = `<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                Failed to mark the tour as complete. Please try again.
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>`;
+
+                            $('body').prepend(errorMessage);
+                        }
+                        $('#markCompleteModal').modal('hide'); // Close the modal
+                    }
+                });
+            });
         });
+
     </script>
 </body>
 </html>
