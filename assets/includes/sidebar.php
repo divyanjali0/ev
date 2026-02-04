@@ -15,7 +15,7 @@
     <?php endif; ?>
 
     <a href="./dashboard.php" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-        <img src="assets/images/sidebar.png" alt="Logo" style="width: 200px;">
+        <img src="assets/images/logo-header.png" alt="Logo" style="width: 150px;">
     </a>
     <hr>
     <ul class="nav nav-pills flex-column mb-auto">
@@ -52,6 +52,11 @@
         <li class="nav-item">
             <a href="./hotel-vouchers.php" class="nav-link text-white <?= $currentPage === 'hotel-vouchers.php' ? 'active' : '' ?>" aria-current="page">
                 <i class="bi bi-file-earmark-image me-2"></i> Hotel Vouchers
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="./completed-tours.php" class="nav-link text-white <?= $currentPage === 'completed-tours.php' ? 'active' : '' ?>" aria-current="page">
+                <i class="bi bi-check-circle me-2"></i> Completed Tours
             </a>
         </li>
         <?php if (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'admin'): ?>
