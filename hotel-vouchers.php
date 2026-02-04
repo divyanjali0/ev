@@ -25,13 +25,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Hotel Vouchers</title>
+    <title>Explore Vacations | Hotel Vouchers</title>
+    <link rel="icon" type="image/png" href="assets/images/favicon.ico">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.8/css/dataTables.bootstrap5.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <style>
-        body { font-family: Cambria; font-size: 13px; background:#f4f6f8; }
+        body { font-family: Cambria; font-size: 12px; background:#f4f6f8; }
         .container-fluid { margin: 20px; background: #dfe3e65e; }
     </style>
 </head>
