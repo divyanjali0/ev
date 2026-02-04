@@ -32,7 +32,7 @@ $userCount = $stmt->fetchColumn();
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
         <style>
-            body { font-family: "Cambria", sans-serif; background-color: #f4f6f8; font-size: 14px; }
+            body { font-family: "Cambria", sans-serif; background-color: #f4f6f8; font-size: 12px; }
             .dashboard-container { max-width: 95%; margin-top: 40px; }
             .card { border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.08); padding: 20px; }
             .card h3 { font-weight: 600; }
