@@ -86,7 +86,9 @@ if (isset($_POST['add'])) {
                             <label for="price_usd" class="form-label">Price (USD)</label>
                             <input type="number" class="form-control" id="price_usd" name="price_usd" required>
                         </div>
-                        <button type="submit" name="add" class="btn btn-primary w-25">Add Entrance Fee</button>
+                        <div class="d-flex justify-content-end">
+                            <button type="submit" name="add" class="btn btn-primary">Save</button>
+                        </div>
                     </div>
                 </form>
             </div>
@@ -142,7 +144,7 @@ if (isset($_POST['add'])) {
                                                 <label for="price_usd" class="form-label">Price (USD)</label>
                                                 <input type="number" class="form-control" id="price_usd" name="price_usd" value="<?= htmlspecialchars($fee['price_usd']); ?>" required>
                                             </div>
-                                            <button type="submit" name="update" class="btn btn-warning">Update Fee</button>
+                                            <button type="submit" name="update" class="btn btn-warning">Save</button>
                                         </form>
                                     </div>
                                 </div>
