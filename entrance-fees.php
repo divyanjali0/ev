@@ -112,10 +112,14 @@ if (isset($_POST['add'])) {
                             <td><?= htmlspecialchars($fee['name']); ?></td>
                             <td><?= htmlspecialchars($fee['price_usd']); ?></td>
                             <td>
-                                <!-- Update -->
-                                <button class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#updateModal<?= $fee['id']; ?>">Update</button>
+                                <!-- Update with Icon -->
+                                <button class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#updateModal<?= $fee['id']; ?>">
+                                    <i class="bi bi-pencil"></i> 
+                                </button>
                                 <!-- Delete -->
-                                <a href="entrance-fees.php?delete=<?= $fee['id']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this fee?')">Delete</a>
+                                <a href="entrance-fees.php?delete=<?= $fee['id']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this fee?')">
+                                    <i class="bi bi-trash"></i> 
+                                </a>
                             </td>
                         </tr>
 
@@ -126,7 +130,7 @@ if (isset($_POST['add'])) {
                                     <div class="modal-header">
                                         <h5 class="modal-title" id="updateModalLabel<?= $fee['id']; ?>">Update Entrance Fee</h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>a
+                                    </div>
                                     <div class="modal-body">
                                         <form method="POST" action="entrance-fees.php">
                                             <input type="hidden" name="id" value="<?= $fee['id']; ?>">
