@@ -60,6 +60,7 @@
                             </thead>
                             <tbody>
                                 <?php foreach ($rows as $row): ?>
+                                    <?php if ($row['tour_status'] === 'Complete') continue;  ?>
                                     <tr>
                                         <td><?= htmlspecialchars($row['reference_no']); ?></td>
                                         <td><?= htmlspecialchars($row['start_date']); ?></td>
@@ -74,8 +75,7 @@
                                                 Edit
                                             </a>
                                             
-                                            <!-- Mark as Complete (only for admin or if the tour is not already complete) -->
-                                            <?php if ($_SESSION['user_role'] === 'admin' && $row['tour_status'] !== 'Complete'): ?>
+                                            <?php if ($row['tour_status'] !== 'Complete'): ?>
                                                 <button class="btn btn-sm btn-warning mark-complete" data-id="<?= $row['id']; ?>" data-name="<?= $row['full_name']; ?>" data-toggle="modal" data-target="#markCompleteModal">
                                                     Mark as Complete
                                                 </button>
@@ -84,7 +84,7 @@
                                             <!-- Delete (only for admin) -->
                                             <?php if ($_SESSION['user_role'] === 'admin'): ?>
                                                 <a href="delete-itinerary.php?id=<?= $row['id']; ?>" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?');">
-                                                    <i class="bi bi-trash3 me-1"></i> 
+                                                    <i class="bi bi-trash3 me-1"></i> Delete
                                                 </a>
                                             <?php endif; ?>
                                         </td>

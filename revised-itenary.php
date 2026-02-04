@@ -11,10 +11,11 @@
     $projectRoot = rtrim(dirname($_SERVER['SCRIPT_NAME']), '/'); 
     $baseUrl = $protocol . "://" . $_SERVER['HTTP_HOST'] . $projectRoot;
 
+    // Modify query to exclude completed itineraries
     $itineraries = $conn->query("
         SELECT ic.id as itinerary_id, ic.reference_no, ic.full_name, ic.email,
             ic.whatsapp_code, ic.whatsapp, 
-            ich.pdf_path
+            ich.pdf_path, ic.tour_status  -- Assuming `tour_status` is available in `itinerary_customer`
         FROM itinerary_customer ic
         LEFT JOIN itinerary_customer_history ich
             ON ich.itinerary_id = ic.id
@@ -23,6 +24,7 @@
                 FROM itinerary_customer_history
                 WHERE itinerary_id = ic.id
             )
+        WHERE ic.tour_status != 'Complete'  -- Filter out completed itineraries
         ORDER BY ic.id DESC
     ")->fetchAll(PDO::FETCH_ASSOC);
 
@@ -76,8 +78,7 @@
                                     : '#';
 
                                     $pdfLink = $it['pdf_path'] ? $baseUrl . '/' . $it['pdf_path'] : '#';
-
-                                ?>
+                            ?>
                             <tr>
                                 <td><?= $index + 1 ?></td>
                                 <td><?= htmlspecialchars($it['reference_no']); ?></td>
