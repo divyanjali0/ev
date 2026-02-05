@@ -170,52 +170,51 @@
                     </div>
                 </div>
                 <div class="modal fade" id="paymentModal" tabindex="-1">
-                <div class="modal-dialog">
-                    <form method="POST" action="save_payment.php" enctype="multipart/form-data" class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Record Payment</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    <div class="modal-dialog">
+                        <form method="POST" action="save_payment.php" enctype="multipart/form-data" class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Record Payment</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+
+                        <div class="modal-body">
+                            <input type="hidden" name="invoice_id" id="invoice_id">
+                            <input type="hidden" name="reference_no" id="reference_no">
+                            <p>Total Amount: <span id="modal_total"></span></p>
+                            <p>Paid Amount: <span id="modal_paid"></span></p>
+                            <p>Balance: <span id="modal_balance"></span></p>
+
+                            <div class="mb-2">
+                            <label class="form-label">Payment Type <span class="text-danger">*</span></label>
+                            <select name="payment_type" id="payment_type" class="form-select" required>
+                                <option value="">Select</option>
+                                <option value="partial">Partial</option>
+                                <option value="full">Full</option>
+                            </select>
+                            </div>
+
+                            <div class="mb-2 d-none" id="amountBox">
+                            <label class="form-label">Paid Amount <span class="text-danger">*</span></label>
+                            <input type="number" step="0.01" name="amount" class="form-control" id="amountInput">
+                            </div>
+
+                            <div class="mb-2">
+                            <label class="form-label">Receipt Upload <span class="text-danger">*</span></label>
+                            <input type="file" name="receipt" class="form-control" required>
+                            </div>
+
+                            <div class="mb-2">
+                            <label class="form-label">Payment Date</label>
+                            <input type="date" name="paid_on" class="form-control" required>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button class="btn btn-success">Save Payment</button>
+                        </div>
+                        </form>
                     </div>
-
-                    <div class="modal-body">
-                        <input type="hidden" name="invoice_id" id="invoice_id">
-                        <input type="hidden" name="reference_no" id="reference_no">
-                        <p>Total Amount: <span id="modal_total"></span></p>
-                        <p>Paid Amount: <span id="modal_paid"></span></p>
-                        <p>Balance: <span id="modal_balance"></span></p>
-
-                        <div class="mb-2">
-                        <label class="form-label">Payment Type <span class="text-danger">*</span></label>
-                        <select name="payment_type" id="payment_type" class="form-select" required>
-                            <option value="">Select</option>
-                            <option value="partial">Partial</option>
-                            <option value="full">Full</option>
-                        </select>
-                        </div>
-
-                        <div class="mb-2 d-none" id="amountBox">
-                        <label class="form-label">Paid Amount <span class="text-danger">*</span></label>
-                        <input type="number" step="0.01" name="amount" class="form-control" id="amountInput">
-                        </div>
-
-                        <div class="mb-2">
-                        <label class="form-label">Receipt Upload <span class="text-danger">*</span></label>
-                        <input type="file" name="receipt" class="form-control" required>
-                        </div>
-
-                        <div class="mb-2">
-                        <label class="form-label">Payment Date</label>
-                        <input type="date" name="paid_on" class="form-control" required>
-                        </div>
-                    </div>
-
-                    <div class="modal-footer">
-                        <button class="btn btn-success">Save Payment</button>
-                    </div>
-                    </form>
                 </div>
-                </div>
-
             </div>
         </div>
     </div>
