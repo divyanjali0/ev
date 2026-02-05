@@ -14,7 +14,7 @@ $completedTourCount = 0;
 $ongoingTourCount = 0;
 
 // Itinerary count (not completed)
-$stmt = $conn->query("SELECT COUNT(*) FROM itinerary_customer WHERE tour_status != 'Complete'");
+$stmt = $conn->query("SELECT COUNT(*) FROM itinerary_customer WHERE tour_status IS NULL");
 $itineraryCount = $stmt->fetchColumn();
 
 // Users count

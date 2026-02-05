@@ -24,7 +24,7 @@
                 FROM itinerary_customer_history
                 WHERE itinerary_id = ic.id
             )
-        WHERE ic.tour_status != 'Complete'  -- Filter out completed itineraries
+        WHERE ic.tour_status IS NULL
         ORDER BY ic.id DESC
     ")->fetchAll(PDO::FETCH_ASSOC);
 
