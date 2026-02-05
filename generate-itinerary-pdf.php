@@ -152,11 +152,11 @@ function renderCoverPage($pdf, $cover, $nights = 0, $referenceNo = '', $fullName
 
     /* Subheading */
     $pdf->Ln(5);
-    $pdf->SetFont('dejavusans', 'I', 12);
+    $pdf->SetFont('dejavusans', 'B', 12);
     $pdf->SetTextColor(80,80,80);
     $pdf->SetX($marginX);
     $subHeading = ucwords(strtolower(strip_tags($cover['sub_heading'] ?? '')));
-    $pdf->MultiCell($pageWidth - 2*$marginX, 7, $subHeading, 0, 'J');
+    $pdf->MultiCell($pageWidth - 2*$marginX, 7, $subHeading, 0, 'L');
 
     /* Description */
     $pdf->Ln(3);
