@@ -239,6 +239,26 @@
     </script>
 
     <script>
+        $(document).on('change', '#payment_type', function () {
+            const type = $(this).val();
+            const balance = parseFloat($('#modal_balance').text());
+
+            if (type === 'partial') {
+                $('#amountBox').removeClass('d-none');
+                $('#amountInput')
+                    .attr('required', true)
+                    .attr('max', balance)
+                    .val(balance.toFixed(2));
+            } else {
+                $('#amountBox').addClass('d-none');
+                $('#amountInput')
+                    .removeAttr('required')
+                    .val('');
+            }
+        });
+    </script>
+
+    <script>
         $('#paymentModal').on('show.bs.modal', function (e) {
             const btn = e.relatedTarget;
             const invoiceId = btn.getAttribute('data-invoice-id');
